@@ -1,0 +1,31 @@
+:root {
+    --main-bg-color: #ebf7ff;
+}
+
+#root {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+#root_c {
+    background-color: var(--main-bg-color);
+}
+
+.nav_c {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 500px;
+    padding: 5px 0;
+}
+
+.grid4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    gap: 5px;
+}
+
+.text_c {
+    text-align: center;
+}
