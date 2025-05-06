@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+html, body, #root {
+    height: 100%;
+    color: var(--white-text);
+    font-family: var(--font-family-base);
+  }
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+:root {
+    /* --main-bg-color: #ebf7ff; */
+    --white-text: #ffffff;
+    --dark-text: #333333;
+    --text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.9);
+    --font-family-base: 'Quicksand', sans-serif;
+    --main-bg: #222222;
+
+}
+
+body {
+    font-family: var(--font-family-base);
+    background-color: #111; /* valfritt */
+    color: var(--white-text); /* så texten blir vit överallt, om du vill */
+}
+
+
+.grid4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    gap: 5px;
+}
+
+.text_c {
+    text-align: center;
+}

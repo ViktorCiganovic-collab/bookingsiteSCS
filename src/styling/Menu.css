@@ -1,0 +1,20 @@
+
+.menu {
+    margin: 0 auto;    
+    width: 100%;
+    background-color: var(--main-bg);    
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--white-text) !important; /* Använd variabeln för textfärgen */
+  }
+  
+  .navbar-light .navbar-brand {
+    color: var(--white-text) !important; /* Använd variabeln för brand-texten */
+  }
+  
+  /* Hover-effekt för länkar */
+  .navbar-light .navbar-nav .nav-link:hover {
+    color: #f8f9fa !important; /* Ljusare vit för hover-effekt */
+  }

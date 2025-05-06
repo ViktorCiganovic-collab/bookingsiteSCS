@@ -7,6 +7,8 @@ import {
 import App from './App.jsx'
 import Layout from './Layout.jsx'
 import Cert from './Cert.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styling/App.css';
 
 const router = createBrowserRouter([
   {
