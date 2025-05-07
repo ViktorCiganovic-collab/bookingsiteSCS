@@ -33,8 +33,8 @@ function NavComponent() {
           </Nav>
           <Nav>
             {/* Använd Link istället för vanliga Nav.Links */}
-            <Nav.Link as={Link} to="/more-deets">More deets</Nav.Link>
-            <Nav.Link as={Link} to="/memes">Dank memes</Nav.Link>
+            <Nav.Link as={Link} to="/more-deets">Sign Up</Nav.Link>
+            <Nav.Link as={Link} to="/memes">Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

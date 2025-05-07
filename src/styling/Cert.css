@@ -21,3 +21,38 @@
     width: 100%;     
     background-color: var(--main-bg);
   }
+
+  .certificatepageSectionthree {
+    width: 100%;
+    background-color: var(--main-bg);
+  }
+
+  .course-card {
+    transition: ease 0.3s;
+    opacity: 0.8;
+  }
+
+  .course-card:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+
+  .course-card button {
+    font-size: 0.9rem;
+  }
+  
+  .course-card .btn {
+    margin-top: 10px;
+  }
+  
+  .course-card .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .course-card .btn-outline-secondary {
+    border-color: #ccc;
+    color: #333;
+  }
+  
