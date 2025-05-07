@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styling/Cert.css'; 
 import { Container, Row, Col } from 'react-bootstrap';
 import certImage from './assets/networkSecurityImage.webp';
@@ -6,6 +6,16 @@ import certImage2 from './assets/webdev_img.webp';
 import Itcourses from './components/ITcertificates';
 
 export default function Cert() {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  // Get unique categories + "All" option
+  const uniqueCategories = ["All", ...new Set(Itcourses.map(course => course.category))];
+
+  // Filter based on category selection
+  const filteredCourses = selectedCategory === "All"
+    ? Itcourses
+    : Itcourses.filter(course => course.category === selectedCategory);
+
   return (
     <div>
       <section className='certificatesPage'>
@@ -53,8 +63,24 @@ export default function Cert() {
       <section className='py-5 certificatepageSectionthree'>
         <Container>
           <h2 className="text-center mb-4">Alla IT-certifieringar</h2>
+
+          {/* Dropdown for category filter */}
+          <div className="mb-4 mx-auto me-auto" style={{ maxWidth: "400px" }}>
+            <label htmlFor="categoryFilter" className="form-label">Filtrera efter kategori:</label>
+            <select
+              id="categoryFilter"
+              className="form-select"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
+              {uniqueCategories.map((category, idx) => (
+                <option key={idx} value={category}>{category}</option>
+              ))}
+            </select>
+          </div>
+
           <Row>
-            {Itcourses.map((course, index) => (
+            {filteredCourses.map((course, index) => (
               <Col key={index} md={4} className="mb-4">
                 <div className="course-card h-100">
                   <img
