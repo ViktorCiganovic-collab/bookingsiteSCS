@@ -9,61 +9,97 @@ import scriptingImg from '../assets/scripting.jpg';
 import agileImg from '../assets/agile.jpg';
 
 const Itcourses = [
-    {
-      courseName: "Data Analysis with Python",
-      category: "Data & Analytics",
-      description: "Learn the fundamentals of data analysis using Python. Work with libraries like Pandas and Matplotlib to explore, visualize, and interpret data.",
-      image: dataAnalysisImg
-    },
-    {
-      courseName: "DevOps & CI/CD",
-      category: "DevOps & Infrastructure",
-      description: "Get hands-on experience with continuous integration and delivery pipelines. Learn to use tools like Docker, Kubernetes, and GitHub Actions for modern DevOps workflows.",
-      image: devopsImg
-    },
-    {
-      courseName: "Introduction to AI & Machine Learning",
-      category: "AI & Machine Learning",
-      description: "Explore the basics of artificial intelligence and machine learning. Build simple models using Python with TensorFlow and scikit-learn.",
-      image: aiImg
-    },
-    {
-      courseName: "Cybersecurity Fundamentals",
-      category: "Cybersecurity",
-      description: "An entry-level course in IT security. Understand common threats, authentication methods, firewalls, and how to mitigate basic security risks.",
-      image: cybersecurityImg
-    },
-    {
-      courseName: "Cloud Computing Essentials",
-      category: "Cloud Technologies",
-      description: "Gain foundational knowledge in cloud platforms like AWS, Azure, and Google Cloud. Learn about virtualization, deployment models, and key services.",
-      image: cloudImg
-    },
-    {
-      courseName: "Full Stack Web Development",
-      category: "Web Development",
-      description: "Learn to build dynamic web applications using HTML, CSS, JavaScript, and backend technologies like Node.js and Express.",
-      image: webDevImg
-    },
-    {
-      courseName: "Networking Basics",
-      category: "IT Infrastructure",
-      description: "Understand how computer networks operate. Cover topics like IP addressing, DNS, routing, and basic network security.",
-      image: networkingImg
-    },
-    {
-        courseName: "Linux Shell Scripting",
-        category: "System Administration",
-        description: "Master the basics of Bash scripting to automate tasks in Linux environments. Learn scripting logic, file operations, and cron jobs.",
-        image: scriptingImg
-      },
-      {
-        courseName: "Agile & Scrum Fundamentals",
-        category: "Project Management",
-        description: "Understand the principles of Agile development and Scrum methodology. Learn roles, ceremonies, and how to manage iterative workflows.",
-        image: agileImg
-      }
-  ];
-  
-  export default Itcourses;
-  
+  {
+    courseName: "Microsoft Office Specialist",
+    category: "IT-proffs",
+    description: "Certifiering som bekräftar specialistkunskaper i Microsoft Office-program. Utmärkt för både anställda och arbetsgivare att validera kompetens.",
+    image: scriptingImg,
+    certs: [
+      "Word 365/2019 Associate",
+      "Excel 365/2019 Associate",
+      "Outlook 365/2019 Associate",
+      "PowerPoint 365/2019 Associate",
+      "Word 365/2019 Expert",
+      "Excel 365/2019 Expert",
+      "Access 365/2019 Expert"
+    ]
+  },
+  {
+    courseName: "Microsoft Fundamentals",
+    category: "IT-proffs",
+    description: "Grundläggande certifieringar inom molntjänster, AI, data och säkerhet. Perfekt för nybörjare och icke-tekniska roller som vill förstå Microsofts ekosystem.",
+    image: cloudImg,
+    certs: [
+      "Azure Fundamentals (AZ-900)",
+      "Azure AI Fundamentals (AI-900)",
+      "Azure Data Fundamentals (DP-900)",
+      "Security, Compliance, and Identity Fundamentals (SC-900)",
+      "Power Platform Fundamentals (PL-900)",
+      "Microsoft 365 Fundamentals (MS-900)",
+      "Dynamics 365 Fundamentals (CRM)",
+      "Dynamics 365 Fundamentals (ERP)"
+    ]
+  },
+  {
+    courseName: "Unity Certified User",
+    category: "IT-proffs",
+    description: "Unity-certifiering för att bevisa kunskap inom VR/AR, 3D- och spelutveckling. En perfekt startpunkt för kreativa yrkesroller inom teknik.",
+    image: aiImg,
+    certs: [
+      "Unity Certified User: Programmering",
+      "Unity Certified User: Artist",
+      "Unity Certified User: VR/AR Design",
+      "Unity Certified User: Game Development"
+    ]
+  },
+  {
+    courseName: "Adobe Certified Professional",
+    category: "IT-proffs",
+    description: "Certifiera dig i Adobe-program för att visa professionella färdigheter inom digitalt skapande, design och video.",
+    image: webDevImg,
+    certs: [
+      "Adobe After Effects",
+      "Adobe Animate",
+      "Adobe Dreamweaver",
+      "Adobe Illustrator",
+      "Adobe InDesign",
+      "Adobe Photoshop",
+      "Adobe Premiere Pro"
+    ]
+  },
+  {
+    courseName: "Cisco Certified Support Technician (CCST)",
+    category: "IT-proffs",
+    description: "CCST-programmet validerar arbetsklara färdigheter inom nätverk och cybersäkerhet – redo för tekniska roller från dag ett.",
+    image: networkingImg,
+    certs: [
+      "CCST Networking",
+      "CCST Cybersecurity"
+    ]
+  },
+  {
+    courseName: "IT Specialist",
+    category: "IT-proffs",
+    description: "IT Specialist-programmet validerar grundläggande kompetenser inom AI, moln, säkerhet, programmering och nätverk – perfekt för karriärstart inom IT.",
+    image: dataAnalysisImg,
+    certs: [
+      "Artificiell Intelligens",
+      "Molnberäkning",
+      "Beräkningstänkande",
+      "Cybersäkerhet",
+      "Dataanalys",
+      "Databaser",
+      "Enhetkonfiguration och -hantering",
+      "HTML och CSS",
+      "HTML5 Application Development",
+      "Java",
+      "JavaScript",
+      "Nätverk",
+      "Nätverkssäkerhet",
+      "Python",
+      "Programvaruutveckling"
+    ]
+  }
+];
+
+export default Itcourses;

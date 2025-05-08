@@ -9,6 +9,7 @@ import Layout from './Layout.jsx'
 import Cert from './Cert.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styling/App.css';
+import CertDetail from './CertDetail.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: 'cert',
         element: <Cert />
+      },
+      {
+        path: 'cert/:certId',
+        element: <CertDetail />,
       }
     ]
   },
