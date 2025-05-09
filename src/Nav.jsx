@@ -5,36 +5,34 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useTranslation } from 'react-i18next'; // Importera useTranslation
+import LanguageSwitcher from './components/LanguageSwitcher'; // Importera LanguageSwitcher här
 
 function NavComponent() {
+  const { t } = useTranslation(); // Använd useTranslation-hooken för att hämta översättningar
+
   return (
     <Navbar collapseOnSelect expand="lg" className="menu navbar-dark">
       <Container>
         {/* Använd Link för att länka till hemsidan */}
         <Navbar.Brand as={Link} to="/">SCS</Navbar.Brand> {/* Länk till start-sidan */}
-        
+
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className="text-white" />
         <Navbar.Collapse id="responsive-navbar-nav" className="menu text-white">
           <Nav className="me-auto">
-            {/* Länk till Certifieringar */}
-            <Nav.Link as={Link} to="/cert">Certifications</Nav.Link> 
+            {/* Länk till Certifieringar med översättning */}
+            <Nav.Link as={Link} to="/cert">{t('certifications')}</Nav.Link> 
 
-            {/* Länk till Pricing */}
-            <Nav.Link as={Link} to="/pricing">Pricing</Nav.Link> 
-            
-            {/* Dropdown-länkar med Link istället för vanliga href */}
-            <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/action/3.2">Another action</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/action/3.4">Separated link</NavDropdown.Item>
-            </NavDropdown>
+            {/* Länk till Pricing med översättning */}
+            <Nav.Link as={Link} to="/pricing">{t('pricing')}</Nav.Link>
           </Nav>
           <Nav>
             {/* Använd Link istället för vanliga Nav.Links */}
-            <Nav.Link as={Link} to="/more-deets">Sign Up</Nav.Link>
-            <Nav.Link as={Link} to="/memes">Login</Nav.Link>
+            <Nav.Link as={Link} to="/more-deets">{t('sign_up')}</Nav.Link>
+            <Nav.Link as={Link} to="/memes">{t('login')}</Nav.Link>
+
+            {/* Lägg till språkväxlare här */}
+            <LanguageSwitcher />
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -43,3 +41,4 @@ function NavComponent() {
 }
 
 export default NavComponent;
+

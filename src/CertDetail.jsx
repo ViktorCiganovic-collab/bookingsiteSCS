@@ -1,36 +1,42 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import Itcourses from './components/ITcertificates'; // Din kursdata
+import Itcourses from './components/ITcertificates'; // Importera din kursdata
 import './styling/CertDetail.css';
+import { useTranslation } from 'react-i18next';
+
 export default function CertDetail() {
-  const { certId } = useParams(); // Få tag på certifikats-ID från URL-parametern
+  const { certId } = useParams(); // Hämta certifikats-ID från URL-parametern
+  const { t } = useTranslation(); // Använd i18n för översättningar
+
+  // Hämta alla kurser från Itcourses-funktionen
+  const courses = Itcourses(); 
 
   // Hitta certifikatet baserat på certId
-  const cert = Itcourses
-    .map(course => course.certs)
-    .flat()
-    .find(certificate => certificate === certId);
+  const cert = courses
+    .map(course => course.certs) // Skapa en lista med alla certifikat
+    .flat() // Slå samman alla certifikat i en array
+    .find(certificate => certificate === certId); // Leta efter det certifikat som matchar certId
 
-  // Om certifikatet inte finns, visa felmeddelande
+  // Om certifikatet inte finns, visa ett felmeddelande
   if (!cert) {
     return (
       <Container>
-        <h2>Det certifikatet finns inte</h2>
+        <h2>{t('certificate_not_found')}</h2> {/* Översättning för "Det certifikatet finns inte" */}
       </Container>
     );
   }
 
   // Hitta den kurs som certifikatet tillhör
-  const course = Itcourses.find(course => course.certs.includes(cert));
+  const course = courses.find(course => course.certs.includes(cert));
 
   return (
     <section className="py-5 detailSection">
       <Container>
         <Row>
           <Col md={12} className="text-center mb-4">
-            <h2>{cert}</h2>
-            <p>{course.description}</p>
+            <h2>{cert}</h2> {/* Visa certifikatnamnet */}
+            <p>{course.description}</p> {/* Visa kursbeskrivningen */}
             <img
               src={course.image}
               alt={course.courseName}
@@ -39,13 +45,13 @@ export default function CertDetail() {
             />
           </Col>
           <Col md={6} className='detailinfoCert d-flex flex-column w-100 justify-content-center align-items-center'>
-            <h5>Detaljer för {cert}:</h5>
+            <h5>{t('details_for')} {cert}:</h5> {/* Översättning för "Detaljer för {cert}" */}
             <ul>
-              <li>Certifikatnamn: {cert}</li>
-              <li>Beskrivning: {course.description}</li>
+              <li>{t('certificate_name')}: {cert}</li> {/* Översättning för "Certifikatnamn" */}
+              <li>{t('description')}: {course.description}</li> {/* Översättning för "Beskrivning" */}
             </ul>
             <Button variant="primary" className="mt-4">
-              Boka tid för test
+              {t('view_available_timeslots')} {/* Översättning för "Boka tid för test" */}
             </Button>
           </Col>
         </Row>

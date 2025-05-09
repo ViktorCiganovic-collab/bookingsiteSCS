@@ -1,3 +1,4 @@
+import './i18n'; 
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
@@ -10,6 +11,7 @@ import Cert from './Cert.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styling/App.css';
 import CertDetail from './CertDetail.jsx'
+
 
 const router = createBrowserRouter([
   {
