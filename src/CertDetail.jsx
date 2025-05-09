@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Itcourses from './components/ITcertificates'; // Importera din kursdata
 import './styling/CertDetail.css';
 import { useTranslation } from 'react-i18next';
+import Calendar from 'react-calendar'; // Importera react-calendar
+import 'react-calendar/dist/Calendar.css'; // Importera styling för Calendar
 
 export default function CertDetail() {
   const { certId } = useParams(); // Hämta certifikats-ID från URL-parametern
@@ -30,6 +32,13 @@ export default function CertDetail() {
   // Hitta den kurs som certifikatet tillhör
   const course = courses.find(course => course.certs.includes(cert));
 
+  // State för att hålla reda på det valda datumet
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date); // Uppdatera det valda datumet
+  };
+
   return (
     <section className="py-5 detailSection">
       <Container>
@@ -50,9 +59,23 @@ export default function CertDetail() {
               <li>{t('certificate_name')}: {cert}</li> {/* Översättning för "Certifikatnamn" */}
               <li>{t('description')}: {course.description}</li> {/* Översättning för "Beskrivning" */}
             </ul>
-            <Button variant="primary" className="mt-4">
-              {t('view_available_timeslots')} {/* Översättning för "Boka tid för test" */}
-            </Button>
+            
+            {/* Visa kalender direkt när sidan laddas */}
+            <div className="mt-4">
+              <h4 className='text-center'>{t('testTime')}</h4>
+              <Calendar
+                onChange={handleDateChange}
+                value={selectedDate}
+                minDate={new Date()} // Förhindra att tidigare datum väljs
+              />
+            </div>
+
+            {/* Om ett datum är valt, visa det */}
+            {selectedDate && (
+              <div className="mt-3">
+                <p>{t('selected_date')}: {selectedDate.toLocaleDateString()}</p> {/* Visa det valda datumet */}
+              </div>
+            )}
           </Col>
         </Row>
       </Container>

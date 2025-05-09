@@ -90,5 +90,10 @@
   "address": "Adresse",
   "enterAddress": "Indtast adresse",
   "enterPassword": "Indtast adgangskode",
-  "register": "Registrer dig"
+  "register": "Registrer dig",
+  "testTime": "Vælg testtid",
+  "about": "Om os",
+  "about_tagline": "Vi uddanner fremtidens IT-specialister."
+
+
 }

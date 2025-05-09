@@ -13,7 +13,7 @@ import './styling/App.css';
 import CertDetail from './CertDetail.jsx'
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
-
+import About from './About.jsx';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'about',
+        element: <About />,
       }
     ]
   },

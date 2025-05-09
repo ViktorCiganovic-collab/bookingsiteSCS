@@ -90,6 +90,9 @@
   "enterPhoneNumber": "Ange telefonnummer",
   "address": "Adress",
   "enterAddress": "Ange adress",
-  "register": "Registrera dig"
+  "register": "Registrera dig",
+  "testTime": "Välj tid för testet",
+  "about": "Om oss",
+  "about_tagline": "Vi utbildar framtidens IT-specialister."
 
 }

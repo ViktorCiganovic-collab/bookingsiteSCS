@@ -90,6 +90,11 @@
   "address": "Osoite",
   "enterAddress": "Syötä osoite",
   "enterPassword": "Syötä salasana",
-  "register": "Rekisteröidy"
+  "register": "Rekisteröidy",
+  "testTime": "Valitse testi aika",
+  "about": "Meistä",
+  "about_tagline": "Koulutamme tulevaisuuden IT-asiantuntijoita."
+
+
 
 }

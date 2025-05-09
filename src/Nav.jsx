@@ -24,7 +24,7 @@ function NavComponent() {
             <Nav.Link as={Link} to="/cert">{t('certifications')}</Nav.Link> 
 
             {/* Länk till Pricing med översättning */}
-            <Nav.Link as={Link} to="/pricing">{t('pricing')}</Nav.Link>
+            <Nav.Link as={Link} to="/about">{t('about')}</Nav.Link>
           </Nav>
           <Nav>
             {/* Använd Link istället för vanliga Nav.Links */}
