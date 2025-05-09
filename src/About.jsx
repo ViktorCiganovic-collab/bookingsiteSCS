@@ -1,6 +1,6 @@
 import React from 'react';
 import './styling/About.css';
-import backgroundVideoAbout from './assets/background.mp4';
+import backgroundVideoAbout from './assets/background_one.mp4';
 import { useTranslation } from 'react-i18next'; // Importera useTranslation
 
 
