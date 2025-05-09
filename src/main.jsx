@@ -11,6 +11,8 @@ import Cert from './Cert.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styling/App.css';
 import CertDetail from './CertDetail.jsx'
+import Signup from './Signup.jsx';
+import Login from './Login.jsx';
 
 
 const router = createBrowserRouter([
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
       {
         path: 'cert/:certId',
         element: <CertDetail />,
+      },
+      {
+        path: 'signup',
+        element: <Signup />,
+      },
+      {
+        path: 'login',
+        element: <Login />,
       }
     ]
   },

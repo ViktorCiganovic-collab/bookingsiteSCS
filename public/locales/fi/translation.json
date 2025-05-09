@@ -74,5 +74,22 @@
   "python": "Python",
   "software_development": "Ohjelmistokehitys",
   "privacy": "Tietosuojakäytäntö",
-   "terms": "Käyttöehdot"
+   "terms": "Käyttöehdot",
+   "email": "Sähköposti",
+  "enterEmail": "Syötä sähköposti",
+  "password": "Salasana",
+  "checkbox": "Hyväksyn ehdot",
+  "privacyTerms": "Emme koskaan jaa tietojasi kenellekään.",
+  "submit": "Luo tili",
+  "firstName": "Etunimi",
+  "enterFirstName": "Syötä etunimi",
+  "lastName": "Sukunimi",
+  "enterLastName": "Syötä sukunimi",
+  "phoneNumber": "Puhelinnumero",
+  "enterPhoneNumber": "Syötä puhelinnumero",
+  "address": "Osoite",
+  "enterAddress": "Syötä osoite",
+  "enterPassword": "Syötä salasana",
+  "register": "Rekisteröidy"
+
 }

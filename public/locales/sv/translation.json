@@ -74,5 +74,22 @@
   "python": "Python",
   "software_development": "Programvaruutveckling",
   "privacy": "Integritetspolicy",
-   "terms": "Användarvillkor"
+   "terms": "Användarvillkor",
+    "email": "E-post",
+  "enterEmail": "Ange e-post",
+  "password": "Lösenord",
+  "enterPassword": "Ange lösenord",
+  "checkbox": "Jag godkänner villkoren",
+  "privacyTerms": "Vi delar aldrig dina uppgifter med någon annan.",
+  "submit": "Skapa konto",
+  "firstName": "Förnamn",
+  "enterFirstName": "Ange förnamn",
+  "lastName": "Efternamn",
+  "enterLastName": "Ange efternamn",
+  "phoneNumber": "Telefonnummer",
+  "enterPhoneNumber": "Ange telefonnummer",
+  "address": "Adress",
+  "enterAddress": "Ange adress",
+  "register": "Registrera dig"
+
 }

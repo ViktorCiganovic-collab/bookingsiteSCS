@@ -74,5 +74,21 @@
   "python": "Python",
   "software_development": "Programvareutvikling",
   "privacy": "Personvernregler",
-  "terms": "Vilkår for bruk"
+  "terms": "Vilkår for bruk",
+   "email": "E-post",
+  "enterEmail": "Skriv inn e-post",
+  "password": "Passord",
+  "checkbox": "Jeg godtar vilkårene",
+  "privacyTerms": "Vi deler aldri dine opplysninger med andre.",
+  "submit": "Opprett konto",
+  "firstName": "Fornavn",
+  "enterFirstName": "Skriv inn fornavn",
+  "lastName": "Etternavn",
+  "enterLastName": "Skriv inn etternavn",
+  "phoneNumber": "Telefonnummer",
+  "enterPhoneNumber": "Skriv inn telefonnummer",
+  "address": "Adresse",
+  "enterAddress": "Skriv inn adresse",
+  "enterPassword": "Skriv inn passord",
+  "register": "Registrer deg"
 }

@@ -1,0 +1,11 @@
+
+.signupPage {
+width: 100%;
+height: auto;
+background-color: var(--secondary-bg);
+}
+
+.signupSectionOne {
+width: 100%;
+height: 100%;
+}

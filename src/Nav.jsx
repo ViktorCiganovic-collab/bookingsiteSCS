@@ -28,8 +28,8 @@ function NavComponent() {
           </Nav>
           <Nav>
             {/* Använd Link istället för vanliga Nav.Links */}
-            <Nav.Link as={Link} to="/more-deets">{t('sign_up')}</Nav.Link>
-            <Nav.Link as={Link} to="/memes">{t('login')}</Nav.Link>
+            <Nav.Link as={Link} to="/signup">{t('sign_up')}</Nav.Link>
+            <Nav.Link as={Link} to="/login">{t('login')}</Nav.Link>
 
             {/* Lägg till språkväxlare här */}
             <LanguageSwitcher />

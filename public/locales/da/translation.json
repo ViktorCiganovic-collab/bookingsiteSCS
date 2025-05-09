@@ -74,5 +74,21 @@
   "python": "Python",
   "software_development": "Softwareudvikling",
   "privacy": "Privatlivspolitik",
-  "terms": "Vilkår for brug"
+  "terms": "Vilkår for brug",
+   "email": "E-mail",
+  "enterEmail": "Indtast e-mail",
+  "password": "Adgangskode",
+  "checkbox": "Jeg accepterer vilkårene",
+  "privacyTerms": "Vi deler aldrig dine oplysninger med andre.",
+  "submit": "Opret konto",
+  "firstName": "Fornavn",
+  "enterFirstName": "Indtast fornavn",
+  "lastName": "Efternavn",
+  "enterLastName": "Indtast efternavn",
+  "phoneNumber": "Telefonnummer",
+  "enterPhoneNumber": "Indtast telefonnummer",
+  "address": "Adresse",
+  "enterAddress": "Indtast adresse",
+  "enterPassword": "Indtast adgangskode",
+  "register": "Registrer dig"
 }
