@@ -67,6 +67,7 @@ export default function CertDetail() {
                 onChange={handleDateChange}
                 value={selectedDate}
                 minDate={new Date()} // Förhindra att tidigare datum väljs
+                className="text-dark"
               />
             </div>
 

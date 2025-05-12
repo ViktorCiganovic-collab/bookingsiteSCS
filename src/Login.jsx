@@ -21,7 +21,7 @@ function Login() {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>{t('email')}</Form.Label>
                   <Form.Control type="email" placeholder={t('enterEmail')} />
-                  <Form.Text className="text-muted">
+                  <Form.Text className="text-white">
                     {t('privacyTerms')}
                   </Form.Text>
                 </Form.Group> 
@@ -30,7 +30,7 @@ function Login() {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>{t('password')}</Form.Label>
                   <Form.Control type="password" placeholder={t('enterPassword')} />
-                  <Form.Text className="text-muted">
+                  <Form.Text className="text-white">
                     {t('privacyTerms')}
                   </Form.Text>
                 </Form.Group>             
