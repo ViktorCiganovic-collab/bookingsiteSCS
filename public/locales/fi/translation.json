@@ -93,7 +93,26 @@
   "register": "Rekisteröidy",
   "testTime": "Valitse testi aika",
   "about": "Meistä",
-  "about_tagline": "Koulutamme tulevaisuuden IT-asiantuntijoita."
+  "about_tagline": "Koulutamme tulevaisuuden IT-asiantuntijoita.",
+    "who_we_are": "Kuka me olemme",
+  "about_team_description": "Olemme intohimoinen IT-asiantuntijoiden ja kouluttajien tiimi, joka on luonut tämän alustan auttaakseen yksilöitä ja yrityksiä ottamaan seuraavan askeleen IT-urallaan.",
+  "what_we_do": "Mitä me teemme",
+  "booking_certifications": "Sertifiointikokeiden varaaminen",
+  "cert_info": "Tietoa sertifioinneista",
+  "reminders_and_support": "Muistutukset ja tuki ennen koetta",
+  "flexible_exam_options": "Joustavat kokeen vaihtoehdot",
+  "remote_and_on_site": "Etä- ja paikan päällä suoritettavat kokeet",
+  "integration_partners": "Integraatiokumppanit",
+  "certification_tracking": "Sertifiointien seuranta",
+  "why_choose_us": "Miksi valita meidät",
+  "easy_booking": "Helppo varaaminen",
+  "easy_booking_desc": "Alustamme tekee sertifiointikokeiden varaamisesta helppoa ja nopeaa yhdestä paikasta.",
+  "secure_data": "Turvallinen tietojen käsittely",
+  "secure_data_desc": "Varmistamme, että henkilökohtaiset ja sertifiointitiedot käsitellään turvallisesti.",
+  "expert_support": "Asiantunteva tuki",
+  "expert_support_desc": "Tiimimme tarjoaa asiantuntevaa tukea ennen ja jälkeen sertifioinnin.",
+  "contact_us": "Ota yhteyttä",
+  "reach_out": "Ota yhteyttä, jos sinulla on kysyttävää."
 
 
 

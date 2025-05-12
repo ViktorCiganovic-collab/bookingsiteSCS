@@ -1,5 +1,4 @@
-
-
+/* Bakgrundsvideo-sektion */
 .aboutSectionOne {
   position: relative;
   width: 100%;
@@ -18,7 +17,7 @@
 }
 
 .overlayContent {
-  position: absolute;   
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -34,4 +33,63 @@
 
 .overlayContent p {
   font-size: 1.5rem;
+}
+
+/* Sektion 2 – Vilka vi är */
+.aboutSectionTwo {
+  background-color: var(--main-bg) !important;
+  width: 100%;
+  padding: 50px 0;
+}
+
+/* Allmän styling för sektionerna */
+.about-section {
+  padding: 50px 0;
+}
+
+.about-section.bg-light {
+  background-color: #f8f9fa;
+}
+
+/* Om oss, vad vi gör och varför välja oss - textcentrering och justeringar */
+.text-center {
+  text-align: center;
+}
+
+/* Om oss sektion - Responsive grid layout */
+.about-sectionTwo ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.about-sectionTwo ul li {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+/* Kontakt-sektion */
+.about-sectionTwo.bg-light {
+  background-color: #f8f9fa;
+  text-align: center;
+  padding: 50px 0;
+}
+
+.about-sectionTwo h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.about-sectionTwo p {
+  font-size: 1.25rem;
+}
+
+/* Bootstrap anpassningar för mindre skärmar */
+@media (max-width: 767px) {
+  .overlayContent h1 {
+    font-size: 2rem;
+  }
+
+  .overlayContent p {
+    font-size: 1.2rem;
+  }
 }

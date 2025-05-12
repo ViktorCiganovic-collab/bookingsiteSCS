@@ -136,7 +136,7 @@ const categories = [
           {/* Visar certifikat om en kurs är vald */}
           {currentCourse && (
             <Row className="mt-4">
-              <Col md={12} className="mb-4 text-center">
+              <Col md={4} className="mb-4 text-center">
                 <h3>{currentCourse.courseName}</h3>
                 <p>{currentCourse.description}</p>
                 <img
@@ -146,7 +146,7 @@ const categories = [
                   style={{ maxHeight: "300px", objectFit: "cover" }}
                 />
               </Col>
-              <Col md={12}>
+              <Col md={7}>
                 <h5>{t('certifications_for_this_course')}</h5>
                 <ul className="list-group">
                   {currentCourse.certs.map((cert, idx) => (

@@ -93,6 +93,26 @@
   "register": "Registrera dig",
   "testTime": "Välj tid för testet",
   "about": "Om oss",
-  "about_tagline": "Vi utbildar framtidens IT-specialister."
+  "about_tagline": "Vi utbildar framtidens IT-specialister.",
+  "who_we_are": "Vem vi är",
+  "about_team_description": "Vi är ett passionerat team av IT-experter och utbildare som har skapat denna plattform för att hjälpa individer och företag att ta nästa steg i sin IT-karriär.",
+  "what_we_do": "Vad vi gör",
+  "booking_certifications": "Bokning av certifieringsprov",
+  "cert_info": "Information om certifieringar",
+  "reminders_and_support": "Påminnelser och stöd inför provet",
+  "flexible_exam_options": "Flexibla provalternativ",
+  "remote_and_on_site": "Distans- och platsbaserade prov",
+  "integration_partners": "Integrerade partnerskap",
+  "certification_tracking": "Certifieringsspårning",
+  "why_choose_us": "Varför välja oss",
+  "easy_booking": "Enkel bokning",
+  "easy_booking_desc": "Vår plattform gör det enkelt och snabbt att boka certifieringsprov på ett och samma ställe.",
+  "secure_data": "Säker hantering av data",
+  "secure_data_desc": "Vi säkerställer att din personliga och certifieringsinformation hanteras på ett säkert sätt.",
+  "expert_support": "Expertstöd",
+  "expert_support_desc": "Vårt team erbjuder kvalificerat stöd inför och efter din certifiering.",
+  "contact_us": "Kontakta oss",
+  "reach_out": "Hör gärna av dig om du har några frågor."
+
 
 }

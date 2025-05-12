@@ -93,7 +93,26 @@
   "register": "Registrer dig",
   "testTime": "Vælg testtid",
   "about": "Om os",
-  "about_tagline": "Vi uddanner fremtidens IT-specialister."
+  "about_tagline": "Vi uddanner fremtidens IT-specialister.",
+    "who_we_are": "Hvem vi er",
+  "about_team_description": "Vi er et passioneret team af IT-eksperter og undervisere, som har skabt denne platform for at hjælpe enkeltpersoner og virksomheder med at tage det næste skridt i deres IT-karriere.",
+  "what_we_do": "Hvad vi gør",
+  "booking_certifications": "Booking af certificeringsprøver",
+  "cert_info": "Information om certificeringer",
+  "reminders_and_support": "Påmindelser og support før prøven",
+  "flexible_exam_options": "Fleksible eksamensmuligheder",
+  "remote_and_on_site": "Fjern- og stedbaserede prøver",
+  "integration_partners": "Integrerede partnerskaber",
+  "certification_tracking": "Certificeringssporing",
+  "why_choose_us": "Hvorfor vælge os",
+  "easy_booking": "Nem booking",
+  "easy_booking_desc": "Vores platform gør det nemt og hurtigt at booke certificeringsprøver på ét sted.",
+  "secure_data": "Sikker databehandling",
+  "secure_data_desc": "Vi sikrer, at dine personlige og certificeringsoplysninger håndteres på en sikker måde.",
+  "expert_support": "Ekspertstøtte",
+  "expert_support_desc": "Vores team tilbyder kvalificeret støtte før og efter din certificering.",
+  "contact_us": "Kontakt os",
+  "reach_out": "Tøv ikke med at kontakte os, hvis du har spørgsmål."
 
 
 }
