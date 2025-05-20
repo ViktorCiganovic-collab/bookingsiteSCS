@@ -1,22 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import './styling/Cert.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import certImage from './assets/networkSecurityImage.webp';
 import certImage2 from './assets/webdev_img.webp';
-import Itcourses from './components/ITcertificates'; // Import the function (not called here)
+import Itcourses from './components/ITcertificates'; 
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next'; // i18n hook
+import { useTranslation } from 'react-i18next'; 
+
 
 export default function Cert() {
-  const { t } = useTranslation(); // translation hook
+  const { t } = useTranslation(); 
   const [selectedCategory, setSelectedCategory] = useState('IT-proffs');
   const [selectedCourse, setSelectedCourse] = useState('Microsoft Fundamentals');
 
+  const [selectedCertificate, setSelectedCertificate] = useState('');
+  const [allCourses, setAllCourses] = useState([]);
+  const [relevantCertificates, setRelevantCertificates] = useState([]);
+
   // Get translated course array
-  const courses = Itcourses(); // ✅ Function call to get data
+  const courses = Itcourses(); // ✅ Function call to get data  
+
+
+  useEffect(() => {
+    axios.get('http://3.90.225.16:5011/api/examdate')
+    .then(res => {
+      console.log(res.data);
+      setAllCourses(res.data);
+    })
+  }, []);
 
 const categories = [
-  t('it_pros'),  // Använd de interna värdena för kategorier
+  t('it_pros'),  
   'Business_education',
   'IT_user',
   'Distance_education',
@@ -28,6 +43,39 @@ const categories = [
   const filteredCourses = courses.filter(course => course.category === selectedCategory);
   const currentCourse = filteredCourses.find(course => course.courseName === selectedCourse);
 
+  const seeTestTimes = (certName) => {
+    console.log("Clicked on:", certName);
+    setSelectedCertificate(certName);
+  };
+
+  // Filter array based on selected certificate
+ useEffect(() => {
+  if (selectedCertificate) {
+    console.log("🔍 Searching for certificate...:", selectedCertificate);
+    
+    const filteredCertificates = allCourses.filter((course) =>
+      course.certName.trim().toLowerCase() === selectedCertificate.trim().toLowerCase()
+    );
+
+    if (filteredCertificates.length > 0) {
+      setRelevantCertificates(filteredCertificates); 
+      console.log("✅ Chosen certificates with available slots:", filteredCertificates);
+    } else {
+      setRelevantCertificates([]); 
+      console.log("❌ No available slots for:", selectedCertificate);
+    }
+  }
+}, [selectedCertificate, allCourses]);
+
+  function formatCurrency(price) {
+    return new Intl.NumberFormat('sv-SE', {
+      style: 'currency',
+      currency: 'SEK',
+      minimumFractionDigits: 0,
+    }).format(price);
+  }
+
+  
   return (
     <div>
       <section className='certificatesPage'>
@@ -152,14 +200,33 @@ const categories = [
                   {currentCourse.certs.map((cert, idx) => (
                     <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
                       {cert}
-                      <Link to={`/cert/${cert}`}>
-                        <button className="btn btn-primary btn-sm">
+                      {/* <Link to={`/cert/${cert}`}> */}
+                        <button className="btn btn-primary btn-sm" onClick={() => seeTestTimes(cert)}>
                           {t('view_available_timeslots')}
                         </button>
-                      </Link>
+                      {/* </Link> */}
                     </li>
                   ))}
                 </ul>
+
+                {relevantCertificates && relevantCertificates.length > 0 ? (
+                  <div className="mt-4">
+                    <h5>{t('available_exam_times')} {selectedCertificate}</h5>
+                    <ul className="list-group">
+                      {relevantCertificates.map((certificate, idx) => (
+                        <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
+                          <span><strong>{new Date(certificate.examStartingTime).toLocaleString()} - {new Date(certificate.examEndingTime).toLocaleTimeString()}</strong></span>
+                          {t('Price')} ({formatCurrency(certificate.price)})
+                          <button className='btn btn-primary' style={{padding: "5px", borderRadius: "5px"}}>{t('book_time')}</button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : selectedCertificate ? (
+                  <p className="mt-4 text-danger">{t('no_exam_dates_available')}</p>
+                ) : null}
+
+
               </Col>
             </Row>
           )}
