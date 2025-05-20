@@ -116,8 +116,11 @@
   "expert_support": "Asiantunteva tuki",
   "expert_support_desc": "Tiimimme tarjoaa asiantuntevaa tukea ennen ja jälkeen sertifioinnin.",
   "contact_us": "Ota yhteyttä",
-  "reach_out": "Ota yhteyttä, jos sinulla on kysyttävää."
-
-
-
+  "reach_out": "Ota yhteyttä, jos sinulla on kysyttävää.",
+  "admin_dashboard": "Admin-paneeli",
+  "bookings": "Varaukset",
+  "editCertificates": "Muokkaa/lisää sertifikaatteja",
+  "edit_test_times": "Päivitä/lisää testiajat",
+  "edit_remove_lang": "Lisää/poista kieliversioita",
+   "choose_lang": "Valitse kieli"
 }

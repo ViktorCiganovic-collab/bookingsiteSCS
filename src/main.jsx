@@ -14,6 +14,7 @@ import CertDetail from './CertDetail.jsx'
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
 import About from './About.jsx';
+import AdminDashboard from './AdminDashboard.jsx';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: 'about',
         element: <About />,
+      },  
+      {
+        path: 'admin',
+        element: <AdminDashboard />
       }
     ]
   },

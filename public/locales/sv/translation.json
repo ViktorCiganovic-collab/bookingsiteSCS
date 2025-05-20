@@ -116,7 +116,11 @@
   "expert_support": "Expertstöd",
   "expert_support_desc": "Vårt team erbjuder kvalificerat stöd inför och efter din certifiering.",
   "contact_us": "Kontakta oss",
-  "reach_out": "Hör gärna av dig om du har några frågor."
-
-
+  "reach_out": "Hör gärna av dig om du har några frågor.",
+  "admin_dashboard": "Adminpanel",
+  "bookings": "Bokningar",
+  "editCertificates": "Redigera/lägg till certifikat",
+  "edit_test_times": "Uppdatera/lägg till testtider",
+ "edit_remove_lang": "Lägg till/ta bort språk",
+ "choose_lang": "Välj språk"
 }

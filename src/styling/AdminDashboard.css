@@ -1,0 +1,76 @@
+
+
+.adminDashboard {
+    width: 100%;
+    background-color: var(--secondary-bg);
+}
+
+.adminSectionOne {
+    background-image: url('../assets/adminbg.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+   
+}
+
+h1 {
+  font-size: 3rem;
+  color: var(--white-text) !important;
+    text-shadow: var(--text-shadow);
+  text-align: center; 
+}
+
+.adminSectionTwo {
+    background-color: var(--secondary-bg);
+    padding: 2rem 0;}
+
+.adminSectionTwo h1 {
+    margin-top: 2rem;
+
+}
+
+.box {
+    border: 1px solid var(--white-text);
+    width: 50%;
+    height: 50%;
+    margin: 2rem auto;
+    border-radius: 8px;
+    box-shadow: 5px 5px 30px;
+    cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .box h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .box h1 {
+    font-size: 1.2rem;
+  }
+}
+
+.box-content {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 1.5s ease, opacity 2.5s ease;
+  text-align: center;
+}
+
+.box-content.open {
+  max-height: 1000px;  
+  padding: 10px;
+  opacity: 1;
+}
+
+.btn {
+    margin: 5px;
+}

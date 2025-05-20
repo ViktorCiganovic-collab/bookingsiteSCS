@@ -116,7 +116,11 @@
   "expert_support": "Ekspertstøtte",
   "expert_support_desc": "Vores team tilbyder kvalificeret støtte før og efter din certificering.",
   "contact_us": "Kontakt os",
-  "reach_out": "Tøv ikke med at kontakte os, hvis du har spørgsmål."
-
-
+  "reach_out": "Tøv ikke med at kontakte os, hvis du har spørgsmål.",
+  "admin_dashboard": "Admin Dashboard",
+  "bookings": "Bookinger",
+  "editCertificates": "Rediger/tilføj certifikater",
+  "edit_test_times": "Opdater/tilføj testtider",
+  "edit_remove_lang": "Tilføj/fjern sprogversioner",
+   "choose_lang": "Vælg sprog"
 }

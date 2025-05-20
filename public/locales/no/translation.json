@@ -116,8 +116,11 @@
   "expert_support": "Eksperthjelp",
   "expert_support_desc": "Teamet vårt tilbyr kvalifisert støtte før og etter sertifiseringen.",
   "contact_us": "Kontakt oss",
-  "reach_out": "Ta kontakt med oss hvis du har spørsmål."
-
-
-
+  "reach_out": "Ta kontakt med oss hvis du har spørsmål.",
+  "admin_dashboard": "Admin Dashboard",
+  "bookings": "Bestillinger",
+  "editCertificates": "Rediger/legg til sertifikater",
+  "edit_test_times": "Oppdater/legg til testtider",
+  "edit_remove_lang": "Legg til/fjern språkversjoner",
+   "choose_lang": "Velg språk"
 }
