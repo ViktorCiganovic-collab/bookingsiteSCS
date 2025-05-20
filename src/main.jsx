@@ -15,6 +15,8 @@ import Signup from './Signup.jsx';
 import Login from './Login.jsx';
 import About from './About.jsx';
 import AdminDashboard from './AdminDashboard.jsx';
+import PrivateRoute from './components/PrivateRoute.jsx';
+import UserDashboard from './UserDashboard.jsx';
 
 const router = createBrowserRouter([
   {
@@ -46,8 +48,16 @@ const router = createBrowserRouter([
         element: <About />,
       },  
       {
+        path: 'user',
+        element:  <UserDashboard />
+      },
+      {
         path: 'admin',
-        element: <AdminDashboard />
+                element: (
+          <PrivateRoute roleRequired="admin">
+            <AdminDashboard />
+          </PrivateRoute>
+        ),
       }
     ]
   },
