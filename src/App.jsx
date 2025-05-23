@@ -1,7 +1,7 @@
 import './styling/App.css';
 import backgroundVideo from './assets/background_second.mp4';
 import './styling/Main.css';
-import Itcourses from './components/ITcertificates'; // Importera funktionen som returnerar kurser
+import Itcourses from './components/ITcertificates'; 
 import { Container, Row, Col } from 'react-bootstrap';
 import thirdImg from './assets/websiteImg.jpg';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +11,7 @@ function App() {
   
   // Anropa Itcourses-funktionen för att få kurserna som en array
   const courses = Itcourses();  // Här anropar vi Itcourses som en funktion
-  const threeCourses = courses.slice(0, 3);  // Vi kan nu använda slice på den returnerade arrayen
+  const threeCourses = courses.slice(0, 3); 
 
   return (
     <>

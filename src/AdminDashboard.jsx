@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import './styling/AdminDashboard.css';
 import { useTranslation } from 'react-i18next'; 
-
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from './components/AuthProvider';
 
 const AdminDashboard = () => {
 
     const { t } = useTranslation(); 
     const [isOpen, setIsOpen] = useState(null);
+    const [show, setShow] = useState(false);
+    const { role, setRole, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const handleLogout = () => {
+    setIsAuthenticated(false);
+    setRole('');
+    navigate('/login');
+    console.log('You have logged out');
+  }
 
     const toggleBox = (boxName) => {
     setIsOpen(prev => (prev === boxName ? null : boxName));
@@ -18,8 +34,24 @@ const AdminDashboard = () => {
   return (
     <div className='adminDashboard'>
         <section className='adminSectionOne'>
-            <h1>{t('admin_dashboard')}</h1>             
+            <h1>{t('admin_dashboard')}</h1>         
+            <button className='btn btn-primary' onClick={handleShow}>{t('logout')}</button>    
         </section>
+
+        <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{t('questionlogout')}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{t('secondquerylogout')}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            {t('cancel')}
+          </Button>
+          <Button variant="danger" onClick={handleLogout}>
+               {t('logout')}
+          </Button>
+        </Modal.Footer>
+        </Modal>
 
         <section className='adminSectionTwo'>
 
@@ -68,11 +100,7 @@ const AdminDashboard = () => {
                 )}
             </div>  
 
-        </section>      
-
-              
-
-                      
+        </section>              
             
     </div>
   )

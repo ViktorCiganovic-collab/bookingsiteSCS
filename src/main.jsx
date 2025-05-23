@@ -1,21 +1,22 @@
 import './i18n'; 
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { AuthProvider } from './components/AuthProvider.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 import {
   createBrowserRouter,
   RouterProvider,
-} from 'react-router'
-import App from './App.jsx'
-import Layout from './Layout.jsx'
-import Cert from './Cert.jsx'
+} from 'react-router';
+import App from './App.jsx';
+import Layout from './Layout.jsx';
+import Cert from './Cert.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styling/App.css';
-import CertDetail from './CertDetail.jsx'
+import CertDetail from './CertDetail.jsx';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
 import About from './About.jsx';
 import AdminDashboard from './AdminDashboard.jsx';
-import PrivateRoute from './components/PrivateRoute.jsx';
 import UserDashboard from './UserDashboard.jsx';
 
 const router = createBrowserRouter([
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'cert',
-        element: <Cert />
+        element: <Cert />,
       },
       {
         path: 'cert/:certId',
@@ -46,28 +47,26 @@ const router = createBrowserRouter([
       {
         path: 'about',
         element: <About />,
-      },  
+      },
       {
         path: 'user',
-        element:  <UserDashboard />
+        element: <ProtectedRoute requiredRole="User" />,
+        children: [{ index: true, element: <UserDashboard /> }],
       },
       {
         path: 'admin',
-                element: (
-          <PrivateRoute roleRequired="admin">
-            <AdminDashboard />
-          </PrivateRoute>
-        ),
-      }
-    ]
+        element: <ProtectedRoute requiredRole="Admin" />,
+        children: [{ index: true, element: <AdminDashboard /> }],  
+       
+      },
+    ],
   },
-])
+]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
-)
-
-
-
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </StrictMode>
+);

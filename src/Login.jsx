@@ -1,95 +1,122 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Container, Row, Col } from 'react-bootstrap';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next'; // i18n hook
-import './styling/login.css';
+import { useTranslation } from 'react-i18next';
+import './styling/login.css';  
+import { useEffect, useState, useContext } from "react"; 
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { jwtDecode } from 'jwt-decode';
+import { AuthContext } from './components/AuthProvider';
 
 function Login() {
-  const { t } = useTranslation(); // translation hook
-
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');  
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { role, setRole, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    
+
+  const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  try {
+    const response = await axios.post('http://localhost:5219/api/auth/login', {
+      username,
+      password
+    });
+
+    const token = response.data.accessToken;
+    localStorage.setItem('token', token);
+
+    let isAdmin = false;
+
+    // Försök nå admin-endpointen
     try {
-      // Assuming you have a login API endpoint
-      const response = await fetch('http://localhost:5173/api/auth/login', {
-        method: 'POST',
+      const protectedResponse = await axios.get('http://localhost:5219/api/auth/admin-only', {
         headers: {
-          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json();
-      
-      if (response.ok) {
-        // Store the token and role in localStorage
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('role', data.role); // Assuming 'role' is part of the response
-
-        // Redirect based on the role (you can adjust this to navigate in React Router)
-        if (data.role === 'admin') {
-          window.location.href = '/admin'; // Admin route
-        } else {
-          window.location.href = '/user'; // Regular user route
-        }
-      } else {
-        setError(data.message || t('loginFailed'));
+      if (protectedResponse.status === 200) {
+        isAdmin = true;
+        setRole('Admin');
+        setIsAuthenticated(true);
+        console.log("Admin-access bekräftad:", protectedResponse.data);
+        return navigate('/admin');  // Stoppa funktionen om admin
       }
-    } catch (error) {
-      setError(t('error'));
+    } catch (adminError) {
+      console.warn("Inte admin eller förbjuden åtkomst.", adminError);
     }
-  };
 
-  return (
-    <div className='loginPage'>
-      <section className='loginSectionOne'>
+    // Om vi har en token men inte admin, gå till user
+    if (token && !isAdmin) {
+      setRole('User');
+      setIsAuthenticated(true);
+      navigate('/user');
+    }
+
+  } catch (error) {
+    console.error("Fel vid login:", error);
+    setError('Fel användarnamn, lösenord eller obehörig.');
+  }
+};
+
+useEffect(() => {
+  if (role) {
+    console.log(`${role} has logged in`);
+  }
+}, [role]);
+
+useEffect(() => {
+  if (isAuthenticated) {
+    console.log('User is authenticated');
+  }
+})
+
+ return (
+    <div className="loginPage">
+      <section className="loginSectionOne">
         <Container>
-          <Row className='d-flex justify-content-center align-items-center mb-5 width-100'>
+          <Row className="d-flex justify-content-center align-items-center mb-5 width-100">
             <Col md={6}>
-              <h2 className="text-center my-5 mb-4">{t('login')}</h2>
-              <Form className='my-5' onSubmit={handleLogin}>
-                {/* Email Field */}
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>{t('email')}</Form.Label>
-                  <Form.Control
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder={t('enterEmail')}
-                  />
-                </Form.Group> 
+              <h2 className="text-center my-5 mb-4">Login</h2>
+              <Form className="my-5" onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label className='text-white'>Username</Form.Label>
+              <Form.Control 
+                type="text" 
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)} 
+                placeholder="Enter username" 
+              />
+            </Form.Group>
 
-                {/* Password Field */}
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>{t('password')}</Form.Label>
-                  <Form.Control
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder={t('enterPassword')}
-                  />
-                </Form.Group>             
+            <Form.Group className="mb-3">
+            <Form.Label className='text-white'>Password</Form.Label>
+            <Form.Control 
+              type="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              placeholder="Password" 
+            />
+          </Form.Group>
 
-                {/* Error Message */}
                 {error && <p style={{ color: 'red' }}>{error}</p>}
 
-                {/* Login Button */}
                 <Button variant="primary" type="submit">
-                  {t('login')}
+                  Log In
                 </Button>
               </Form>
             </Col>
           </Row>
         </Container>
-      </section>  
+      </section>
     </div>
   );
+
 }
 
 export default Login;

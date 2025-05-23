@@ -3,19 +3,25 @@
        
     width: 100%;
     background-color: var(--main-bg);    
-    color: white;
-    
+    color: white;    
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: var(--white-text) !important; /* Använd variabeln för textfärgen */
+    color: var(--white-text) !important;  
   }
   
   .navbar-light .navbar-brand {
-    color: var(--white-text) !important; /* Använd variabeln för brand-texten */
+    color: var(--white-text) !important; 
   }
   
   /* Hover-effekt för länkar */
   .navbar-light .navbar-nav .nav-link:hover {
-    color: #f8f9fa !important; /* Ljusare vit för hover-effekt */
+    color: #f8f9fa !important; 
   }
+
+  @media (min-width: 992px) {
+  .navbar-light .navbar-nav {
+    display: flex;
+    align-items: center;
+  }
+}

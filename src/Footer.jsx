@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import './styling/Footer.css'; // Optional for custom styling
+import './styling/Footer.css'; 
 import { useTranslation } from 'react-i18next'; // i18n hook
 
 function Footer() {

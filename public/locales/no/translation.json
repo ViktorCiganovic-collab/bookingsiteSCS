@@ -122,5 +122,11 @@
   "editCertificates": "Rediger/legg til sertifikater",
   "edit_test_times": "Oppdater/legg til testtider",
   "edit_remove_lang": "Legg til/fjern språkversjoner",
-   "choose_lang": "Velg språk"
+   "choose_lang": "Velg språk",
+   "logout": "Logg ut",
+   "questionlogout": "Vil du logge ut?",
+   "secondquerylogout": "Er du sikker på at du vil logge ut fra adminpanelet?",
+   "cancel": "Avbryt",
+   "welcomeUserDashboard": "Velkommen til din brukerside",
+   "myPages": "Min side"
 }
