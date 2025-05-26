@@ -75,3 +75,11 @@ h1 {
 .btn {
     margin: 5px;
 }
+
+.grey_line {
+  height: 3px;
+  margin: 20px auto;
+  width: 50%;
+  color: grey;
+  background-color: grey;
+}
