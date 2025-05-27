@@ -1,7 +1,7 @@
 import './styling/App.css';
 import backgroundVideo from './assets/background_second.mp4';
 import './styling/Main.css';
-import Itcourses from './components/ITcertificates'; 
+import Itcourses from './services/ITcertificates'; 
 import { Container, Row, Col } from 'react-bootstrap';
 import thirdImg from './assets/websiteImg.jpg';
 import { useTranslation } from 'react-i18next';

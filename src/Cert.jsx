@@ -4,7 +4,7 @@ import './styling/Cert.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import certImage from './assets/networkSecurityImage.webp';
 import certImage2 from './assets/webdev_img.webp';
-import Itcourses from './components/ITcertificates'; 
+import Itcourses from './services/ITcertificates'; 
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; 
 

@@ -7,7 +7,7 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from 'jwt-decode';
-import { AuthContext } from './components/AuthProvider';
+import { AuthContext } from './services/AuthProvider';
 
 function Login() {
   const [username, setUsername] = useState('');  

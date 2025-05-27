@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import Itcourses from './components/ITcertificates'; 
+import Itcourses from './services/ITcertificates'; 
 import './styling/CertDetail.css';
 import { useTranslation } from 'react-i18next';
 import Calendar from 'react-calendar'; 

@@ -6,8 +6,8 @@ import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from './components/AuthProvider';
-import FilterArrayByCourseCategory from './components/filterArrayByCourseCategory';
+import { AuthContext } from './services/AuthProvider';
+import FilterArrayByCourseCategory from './services/filterArrayByCourseCategory';
 
 const AdminDashboard = () => {
     const { t } = useTranslation(); 

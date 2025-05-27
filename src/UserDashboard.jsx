@@ -3,7 +3,7 @@ import './styling/UserDashboard.css';
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { AuthContext } from './components/AuthProvider';
+import { AuthContext } from './services/AuthProvider';
 import { useTranslation } from 'react-i18next'; // Importera useTranslation
 
 

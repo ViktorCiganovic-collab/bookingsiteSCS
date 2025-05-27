@@ -1,8 +1,8 @@
 import './i18n'; 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { AuthProvider } from './components/AuthProvider.jsx';
-import ProtectedRoute from './components/ProtectedRoute.jsx';
+import { AuthProvider } from './services/AuthProvider.jsx';
+import ProtectedRoute from './services/ProtectedRoute.jsx';
 import {
   createBrowserRouter,
   RouterProvider,

@@ -6,8 +6,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useTranslation } from 'react-i18next'; // Importera useTranslation
-import LanguageSwitcher from './components/LanguageSwitcher'; // Importera LanguageSwitcher här
-import { AuthContext } from './components/AuthProvider';
+import LanguageSwitcher from './services/LanguageSwitcher'; // Importera LanguageSwitcher här
+import { AuthContext } from './services/AuthProvider';
 
 function NavComponent() {
   const { t } = useTranslation(); // Använd useTranslation-hooken för att hämta översättningar
