@@ -8,6 +8,8 @@ import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from './services/AuthProvider';
 import FilterArrayByCourseCategory from './services/filterArrayByCourseCategory';
+import Spinner from 'react-bootstrap/Spinner';
+
 
 const AdminDashboard = () => {
     const { t } = useTranslation(); 
@@ -30,6 +32,13 @@ const AdminDashboard = () => {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(false);
     const [loadingtesttimes, setLoadingtesttimes] = useState(false);
+    const [displaycertificates, setDisplaycertificates] = useState();
+    const [coursenames, setCoursenames] = useState([]);
+    const [selectedcourse, setSelectedcourse] = useState('');
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState(999);
+    const [deletepanel, setDeletepanel] = useState(false);
+    const [editpanel, setEditpanel] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -48,6 +57,28 @@ const AdminDashboard = () => {
       }
       setIsOpen(prev => (prev === boxName ? null : boxName));        
     };
+
+    useEffect(() => {
+      if (isOpen === null) {
+        setLoading(false);
+        setLoadingtesttimes(false);
+      }
+    }, [isOpen]);
+
+    useEffect(() => {
+      const fetchCourses = async () => {
+        try {
+          const res = await axios.get('http://3.90.225.16:5011/api/course');
+          setCoursenames(res.data);
+        } catch (error) {
+          console.error('Kunde inte hämta kurser:', error);
+          setCoursenames([]); // för att inte lämna den odefinierad
+        }
+      };
+
+      fetchCourses();
+    }, []);
+
 
     const Openformfornewtesttimes = () => {
       if (!addTestTimeForm) {        
@@ -202,6 +233,8 @@ const AdminDashboard = () => {
       const newState = !coursesDisplayed;
       const loadingstate = !loading;
       setLoading(loadingstate);
+      setDeletepanel(false);  
+      setDisplaycertificates(false);
       setCoursesDisplayed(newState);
 
       if (newState) {    
@@ -218,7 +251,140 @@ const AdminDashboard = () => {
         }
       }
     }
+
+    const Openfordeletecertificates = async () => {
+    setDisplaycertificates(false);
+    setCoursesDisplayed(false);
+    setDeletepanel(!deletepanel);    
+    }
+
+    const DeleteCertificate = async (event) => {
+      event.preventDefault();
+      if (!certId) {    
+    setError('Vänligen fyll i certifikatets ID.');
+    return;}
+
+    try {
+      const res = await axios.delete(`http://3.90.225.16:5011/api/cert/${Number(certId)}`, {
+        headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+      });
+      setCertId('');
+    }
    
+
+
+    catch (error) {
+        setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`); // Backticks!
+      }
+
+    }
+
+    const openCertificates = async () => {
+      const newState = !displaycertificates;
+      setDeletepanel(false);
+      setCoursesDisplayed(false);
+      setDisplaycertificates(newState);
+
+      if (newState) {
+        try {
+          const res = await axios.get('http://3.90.225.16:5011/api/course');
+          setCoursenames(res.data);
+          console.log(res.data);
+          setError(null);
+        }
+
+        catch (error) {
+          setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+        }
+      }
+    }
+
+  const addCertificate = async (event) => {
+  event.preventDefault();
+
+  if (!name || !selectedcourse || !price) {
+    setError('Vänligen fyll i alla fält och ladda upp en bild!');
+    return;
+  }  
+
+  const certificate = {
+    CourseId: selectedcourse,
+    CertName: name,
+    Price: price, 
+  };
+
+  try {
+    const res = await axios.post('http://3.90.225.16:5011/api/cert', certificate, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    });
+
+    setError('');
+    console.log('Certifikat tillagt:', res.data);
+    setName('');    
+    setSelectedcourse('');
+    setPrice('');
+    setResponse(true);
+  } catch (error) {
+    setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+  }
+};
+
+const Openeditcertificates = () => {
+setEditpanel(!editpanel);
+}
+
+const Editcertificate = async (e) => {
+  e.preventDefault();
+
+  if (!certId || !selectedcourse || !name || !price) {
+    setError('Vänligen fyll i alla fält!');
+    return;
+  }
+
+  const updatedCertificate = {
+    id: Number(certId),
+    courseId: Number(selectedcourse),
+    certName: name,
+    price: Number(price)
+  };
+
+  try {
+    const res = await axios.put(`http://3.90.225.16:5011/api/cert/${updatedCertificate.id}`, updatedCertificate, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    });
+
+    setResponse('Certifikatet har uppdaterats!');
+    setError('');
+    // Rensa fält
+    setCertId('');
+    setName('');
+    setSelectedcourse('');
+    setPrice(999);
+    setEditpanel(false);
+
+  } catch (error) {
+    setError(`Något gick fel: ${error.message || 'Vänligen försök igen senare.'}`);
+    setResponse('');
+  }
+};
+
+useEffect(() => {
+  if (!addTestTimeForm && !addUpdateTestTimeForm && !deleteFormVisible && !deletepanel && !displaycertificates && !editpanel) {
+    setError(null);
+    setResponse('');
+  }
+}, [addTestTimeForm, addUpdateTestTimeForm, deleteFormVisible, deletepanel, displaycertificates, editpanel]);
+
+  
 
   return (
     <div className='adminDashboard'>
@@ -259,15 +425,85 @@ const AdminDashboard = () => {
 
           {isOpen === 'box2' && (
             <div className="box-content open">
-              <button className="btn btn-primary">Redigera certifikat</button>
-              <button className="btn btn-primary">Lägg till certifikat</button>
+              <button className="btn btn-primary" onClick={(e) => {e.stopPropagation(); Openeditcertificates();}}>Redigera certifikat</button>
+              <button className="btn btn-primary" onClick={(e) => {e.stopPropagation(); openCertificates();}}>Lägg till certifikat</button>
+              <button className='btn btn-primary' onClick={(e) => {e.stopPropagation(); Openfordeletecertificates();}}>Radera certifikat</button>
               <button className='btn btn-primary' onClick={(e) => {e.stopPropagation(); viewCourses();}}>Se alla certifikat</button>              
-            </div>
-            )}          
+                              
+            </div>                    
+            )}      
+
+          {editpanel && (<div>            
+              <form onSubmit={Editcertificate} className='d-flex justify-content-center flex-column align-items-center'>
+              <h3 className='text-center'>Redigera Certifikat</h3>
+              <button className="btn btn-primary" onClick={() => setEditpanel(false)}>Go Back</button>
+
+              <label>Certifikat ID:</label>
+              <input className="text-center" type="number" value={certId} onChange={(e) => setCertId(e.target.value)}></input>
+
+              <select className="text-center my-2" value={selectedcourse} onChange={(e) => setSelectedcourse(e.target.value)}>
+              <option value="">-- Välj kurs --</option>
+              {coursenames.map((coursename, index) => (
+                <option key={index} value={coursename.id}>{coursename.name}</option>
+              ))}
+              </select>
+
+              <label>Nytt namn på certifikatet:</label>
+              <input className="text-center" type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
+
+              <label>Nytt pris:</label>
+              <input className="text-center" type="number" value={price} onChange={(e) => setPrice(e.target.value)}></input>
+              <button className='btn btn-primary' type="submit">Redigera certifikat</button>
+            </form>
+          </div>)}  
+
+          {response && <p className="text-center" style={{ color: 'green' }}>{response}</p>}
+          
+          {displaycertificates && (<div onClick={(e) => e.stopPropagation()} className='d-flex flex-column justify-content-center align-items-center'>
+            <h3 className='text-center'>Lägg till certifikat</h3>
+            <button className="btn btn-primary" onClick={() => setDisplaycertificates(false)}>Go Back</button>
+            <form onSubmit={addCertificate} className='d-flex justify-content-center flex-column align-items-center'>
+              <select className="text-center my-2" value={selectedcourse} onChange={(e) => setSelectedcourse(e.target.value)}>
+              <option value="">-- Välj kurs --</option>
+              {coursenames.map((coursename, index) => (
+                <option key={index} value={coursename.id}>{coursename.name}</option>
+              ))}
+              </select>
+              <label>Namn:</label>
+              <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+
+              <label>Pris:</label>
+              <input className='text-center' type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} required />
+                       
+              <button type="submit" className="btn btn-primary mt-3">Skicka</button>
+            </form>
+            {response && (<p style={{color: 'green'}}>Certifikatet har lagts till</p>)}
+            {error && <p style={{color: 'green'}}>Det gick av någon anledning inte att lägga till certifikatet</p>}
+          </div>)}     
+
+          {deletepanel && (            
+            <form onSubmit={DeleteCertificate} className='d-flex justify-content-center flex-column align-items-center'>
+              <h3 className='text-center'>Radera Certifikat</h3>
+              <button className="btn btn-primary" onClick={() => setDeletepanel(false)}>Go Back</button>
+              <label>Certifikat ID:</label>
+              <input type="number" value={certId} onChange={(e) => setCertId(e.target.value)}></input>
+              <button className='btn btn-primary'>Radera certifikat</button>
+            </form>
+          )}
+
+          {response && <p className="text-center" style={{ color: 'green' }}>{response}</p>}
+          {error && <p className="text-center" style={{ color: 'red' }}>{error}</p>}
+             
 
           {coursesDisplayed && (
             <div className='text-center'>
-              {loading && <p>laddar...</p>}
+              {loading && (
+              <div className="text-center my-3">
+                <Spinner animation="border" role="status" />
+                <p>Laddar kurser...</p>
+              </div>
+            )}
+
               <FilterArrayByCourseCategory certArray={courses} />
             </div>
           )}
@@ -290,7 +526,12 @@ const AdminDashboard = () => {
               
               <button className="btn btn-primary" onClick={() => setCertsDisplayed(false)}>Go Back</button>
               <h2 className='text-center my-2'>Alla inlagda testtider</h2>
-              {loadingtesttimes && <p>laddar...</p>}
+              {loadingtesttimes && (
+              <div className="text-center my-3">
+                <Spinner animation="border" role="status" />
+                <p>Laddar testtider...</p>
+              </div>
+            )}
 
               {certificates.map((certificate, index) => (
                 <div className='text-center' key={index}>
