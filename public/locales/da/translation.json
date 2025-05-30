@@ -128,5 +128,9 @@
    "secondquerylogout": "Er du sikker på, at du vil logge ud fra adminpanelet?",
    "cancel": "Annuller",
    "welcomeUserDashboard": "Velkommen til din brugerside",
-    "myPages": "Min side"
+    "myPages": "Min side",
+    "booking": "Booking",
+    "course": "Kurs",
+    "Testtime": "Testtidspunkt",
+    "lastname": "Efternavn"
 }

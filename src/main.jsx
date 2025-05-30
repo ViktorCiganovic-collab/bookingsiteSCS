@@ -18,6 +18,8 @@ import Login from './Login.jsx';
 import About from './About.jsx';
 import AdminDashboard from './AdminDashboard.jsx';
 import UserDashboard from './UserDashboard.jsx';
+import Booking from './Booking.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -59,6 +61,10 @@ const router = createBrowserRouter([
         children: [{ index: true, element: <AdminDashboard /> }],  
        
       },
+      {
+        path: 'booking/:category/:certificate/:price/:examStarttime/:examEndtime',
+        element: <Booking />
+      }
     ],
   },
 ]);

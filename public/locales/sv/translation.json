@@ -128,5 +128,9 @@
  "secondquerylogout": "Är du säker på att du vill logga ut från Adminpanelen?",
  "cancel": "Avbryt",
  "welcomeUserDashboard": "Välkommen till dina sidor",
- "myPages": "Mina sidor"
+ "myPages": "Mina sidor",
+ "booking": "Bokning",
+ "course": "Kurs",
+ "Testtime": "Testtillfälle",
+ "lastname": "Efternamn"
 }

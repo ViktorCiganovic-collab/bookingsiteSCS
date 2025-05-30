@@ -39,6 +39,8 @@ const AdminDashboard = () => {
     const [price, setPrice] = useState(999);
     const [deletepanel, setDeletepanel] = useState(false);
     const [editpanel, setEditpanel] = useState(false);
+    const [bookingspanel, setBookingspanel] = useState(false);
+    const [bookings, setBookings] = useState([]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -236,6 +238,7 @@ const AdminDashboard = () => {
       setDeletepanel(false);  
       setDisplaycertificates(false);
       setCoursesDisplayed(newState);
+      setEditpanel(false);
 
       if (newState) {    
 
@@ -287,10 +290,11 @@ const AdminDashboard = () => {
       setDeletepanel(false);
       setCoursesDisplayed(false);
       setDisplaycertificates(newState);
+      setEditpanel(false);
 
       if (newState) {
         try {
-          const res = await axios.get('http://3.90.225.16:5011/api/course');
+          const res = await axios.get('http://3.90.225.16:5011/api/category');
           setCoursenames(res.data);
           console.log(res.data);
           setError(null);
@@ -311,7 +315,7 @@ const AdminDashboard = () => {
   }  
 
   const certificate = {
-    CourseId: selectedcourse,
+    CategoryId: selectedcourse,
     CertName: name,
     Price: price, 
   };
@@ -337,6 +341,8 @@ const AdminDashboard = () => {
 
 const Openeditcertificates = () => {
 setEditpanel(!editpanel);
+setDisplaycertificates(false);
+setCoursesDisplayed(false);
 }
 
 const Editcertificate = async (e) => {
@@ -348,21 +354,21 @@ const Editcertificate = async (e) => {
   }
 
   const updatedCertificate = {
-    id: Number(certId),
-    courseId: Number(selectedcourse),
-    certName: name,
+    Id: Number(certId),
+    CategoryId: Number(selectedcourse),
+    CertName: name,
     price: Number(price)
   };
 
   try {
-    const res = await axios.put(`http://3.90.225.16:5011/api/cert/${updatedCertificate.id}`, updatedCertificate, {
+    const res = await axios.put(`http://3.90.225.16:5011/api/cert/${updatedCertificate.Id}`, updatedCertificate, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       }
     });
 
-    setResponse('Certifikatet har uppdaterats!');
+    setResponse(true);
     setError('');
     // Rensa fält
     setCertId('');
@@ -376,6 +382,24 @@ const Editcertificate = async (e) => {
     setResponse('');
   }
 };
+
+const viewBookings = async () => {
+  setBookingspanel(true);
+
+  try {
+  const res = await axios.get('http://3.90.225.16:5011/api/booking', {
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
+  setBookings(res.data);
+  setError(null);
+
+  }
+  catch (error) {
+          setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+        }
+}
 
 useEffect(() => {
   if (!addTestTimeForm && !addUpdateTestTimeForm && !deleteFormVisible && !deletepanel && !displaycertificates && !editpanel) {
@@ -410,12 +434,20 @@ useEffect(() => {
 
       <section className='adminSectionTwo'>
 
-        <div className='box box1' onClick={() => toggleBox('box1')}>
+        <div className='box box1' onClick={() => {toggleBox('box1'); viewBookings();}}>
           <h1>{t('bookings')}</h1>
 
           {isOpen === 'box1' && (
-            <div className="box-content open">
-              <p>Content to be added soon</p>
+            <div className="box-content open" style={{padding: '8px'}}>
+              {bookingspanel && (
+                bookings.map((booking, index) => (
+                  <div key={index}>
+                    <h3>{booking.customerFirstName} {booking.customerLastName}</h3>
+                    <p>{booking.certName} - Tid: {booking.examStartingTime}-{booking.examEndingTime}</p>
+                    <div style={{borderBottom: '1px solid grey'}}></div>
+                  </div>                  
+                ))
+              )}
             </div>
           )}
         </div>            
@@ -550,7 +582,7 @@ useEffect(() => {
               <h3 className='text-center'>Lägg till testtillfälle</h3>
               <button className="btn btn-primary" onClick={() => setAddTestTimeForm(false)}>Go Back</button>
               <form onSubmit={Addnewtesttime} className='d-flex flex-column justify-content-center align-items-center'>
-                <label>Testtidens Id:</label>
+                <label>Certiferings Id:</label>
                 <input className='my-2' value={certId} onChange={(e) => setCertId(e.target.value)} type="number" />
 
                 <label>Startdatum för test:</label>

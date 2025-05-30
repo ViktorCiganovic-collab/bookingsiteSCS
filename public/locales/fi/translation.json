@@ -128,5 +128,9 @@
    "secondquerylogout": "Oletko varma, että haluat kirjautua ulos hallintapaneelista?",
    "cancel": "Peruuta",
    "welcomeUserDashboard": "Tervetuloa käyttäjäsivullesi",
-   "myPages": "Omat sivut"
+   "myPages": "Omat sivut",
+  "booking": "Varaus",
+  "course": "Kurssi",
+  "Testtime": "Tenttiaika",
+  "lastname": "Sukunimi"
 }

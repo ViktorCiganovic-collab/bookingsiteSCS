@@ -11,9 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function Cert() {
   const { t } = useTranslation(); 
-  const [selectedCategory, setSelectedCategory] = useState('IT-proffs');
   const [selectedCourse, setSelectedCourse] = useState('Microsoft Fundamentals');
-
   const [selectedCertificate, setSelectedCertificate] = useState('');
   const [allCourses, setAllCourses] = useState([]);
   const [relevantCertificates, setRelevantCertificates] = useState([]);
@@ -21,27 +19,15 @@ export default function Cert() {
   // Get translated course array
   const courses = Itcourses(); // ✅ Function call to get data  
 
-
-  useEffect(() => {
-    axios.get('http://3.90.225.16:5011/api/examdate')
-    .then(res => {
-      console.log(res.data);
-      setAllCourses(res.data);
-    })
-  }, []);
-
-const categories = [
-  t('it_pros'),  
-  'Business_education',
-  'IT_user',
-  'Distance_education',
-  'Seminar'
-];
+useEffect(() => {
+  axios.get('http://3.90.225.16:5011/api/examdate')
+    .then(res => setAllCourses(res.data))
+    .catch(err => console.error("Error fetching exam dates:", err));
+}, []);
 
 
   // Filter courses based on category
-  const filteredCourses = courses.filter(course => course.category === selectedCategory);
-  const currentCourse = filteredCourses.find(course => course.courseName === selectedCourse);
+  const currentCourse = courses.find(course => course.courseName === selectedCourse);
 
   const seeTestTimes = (certName) => {
     console.log("Clicked on:", certName);
@@ -140,98 +126,84 @@ const categories = [
         </Container>
       </section>
 
-      <section className='py-5 certificatepageSectionfour'>
-        <Container>
-          <h2 className="text-center mb-4">{t('search_for_certificates')}</h2>
+   <section className='py-5 certificatepageSectionfour'>
+  <Container>
+    <h2 className="text-center mb-4">{t('search_for_certificates')}</h2>
 
-          <div className="mb-4 mx-auto" style={{ maxWidth: "600px" }}>
-            {/* Kategori-select */}
-            <label htmlFor="categoryFilter" className="form-label">{t('select_category')}:</label>
-            <select
-              id="categoryFilter"
-              className="form-select mb-3"
-              value={selectedCategory}
-              onChange={(e) => {
-                setSelectedCategory(e.target.value);
-                setSelectedCourse('');
-              }}
-            >
-              <option value="">{t('choose_category')}</option>
-              {categories.map((cat, idx) => (
-                <option key={idx} value={cat}>{cat}</option>
-              ))}
-            </select>
+    <div className="mb-4 mx-auto" style={{ maxWidth: "600px" }}>
+      {/* Kurs-select, alltid synlig */}
+      <label htmlFor="courseFilter" className="form-label">{t('choose_category')}</label>
+      <select
+        id="courseFilter"
+        className="form-select"
+        value={selectedCourse}
+        onChange={(e) => {
+          setSelectedCourse(e.target.value);
+          setSelectedCertificate('');
+        }}
+      >
+        <option value="">{t('choose_course')}</option>
+        {courses.map((course, idx) => (
+          <option key={idx} value={course.courseName}>{course.courseName}</option>
+        ))}
+      </select>
+    </div>
 
-            {/* Kurs-select (visas först när kategori är vald) */}
-            {selectedCategory && (
-              <>
-                <label htmlFor="courseFilter" className="form-label">{t('select_course')}:</label>
-                <select
-                  id="courseFilter"
-                  className="form-select"
-                  value={selectedCourse}
-                  onChange={(e) => setSelectedCourse(e.target.value)}
-                >
-                  <option value="">{t('choose_course')}</option>
-                  {filteredCourses.map((course, idx) => (
-                    <option key={idx} value={course.courseName}>{course.courseName}</option>
-                  ))}
-                </select>
-              </>
-            )}
-          </div>
+    {/* Visar certifikat om en kurs är vald */}
+    {currentCourse && (
+      <Row className="mt-4">
+        <Col md={4} className="mb-4 text-center">
+          <h3>{currentCourse.courseName}</h3>
+          <p>{currentCourse.description}</p>
+          <img
+            src={currentCourse.image}
+            alt={currentCourse.courseName}
+            className="img-fluid mb-4 rounded shadow-sm"
+            style={{ maxHeight: "300px", objectFit: "cover" }}
+          />
+        </Col>
+        <Col md={7}>
+          <h5>{t('certifications_for_this_course')}</h5>
+          <ul className="list-group">
+            {currentCourse.certs.map((cert, idx) => (
+              <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
+                {cert}
+                <button className="btn btn-primary btn-sm" onClick={() => seeTestTimes(cert)}>
+                  {t('view_available_timeslots')}
+                </button>
+              </li>
+            ))}
+          </ul>
 
-          {/* Visar certifikat om en kurs är vald */}
-          {currentCourse && (
-            <Row className="mt-4">
-              <Col md={4} className="mb-4 text-center">
-                <h3>{currentCourse.courseName}</h3>
-                <p>{currentCourse.description}</p>
-                <img
-                  src={currentCourse.image}
-                  alt={currentCourse.courseName}
-                  className="img-fluid mb-4 rounded shadow-sm"
-                  style={{ maxHeight: "300px", objectFit: "cover" }}
-                />
-              </Col>
-              <Col md={7}>
-                <h5>{t('certifications_for_this_course')}</h5>
-                <ul className="list-group">
-                  {currentCourse.certs.map((cert, idx) => (
-                    <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
-                      {cert}
-                      {/* <Link to={`/cert/${cert}`}> */}
-                        <button className="btn btn-primary btn-sm" onClick={() => seeTestTimes(cert)}>
-                          {t('view_available_timeslots')}
-                        </button>
-                      {/* </Link> */}
-                    </li>
-                  ))}
-                </ul>
+          {relevantCertificates && relevantCertificates.length > 0 ? (
+            <div className="mt-4">
+              <h5>{t('available_exam_times')} {selectedCertificate}</h5>
+              <ul className="list-group">
+                {relevantCertificates.map((certificate, idx) => (
+                  <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
+                    <span>
+                      <strong>{new Date(certificate.examStartingTime).toLocaleString()} - {new Date(certificate.examEndingTime).toLocaleTimeString()}</strong>
+                    </span>
+                    {t('Price')} ({formatCurrency(certificate.price)})
+                   <Link to={`/booking/${certificate.category}/${encodeURIComponent(certificate.certName)}/${certificate.price}/${encodeURIComponent(certificate.examStartingTime)}/${encodeURIComponent(certificate.examEndingTime)}`}>
+                      <button className='btn btn-primary' style={{ padding: "5px", borderRadius: "5px" }}>
+                      {t('book_time')}
+                      </button>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : selectedCertificate ? (
+            <p className="mt-4 text-danger">{t('no_exam_dates_available')}</p>
+          ) : null}
 
-                {relevantCertificates && relevantCertificates.length > 0 ? (
-                  <div className="mt-4">
-                    <h5>{t('available_exam_times')} {selectedCertificate}</h5>
-                    <ul className="list-group">
-                      {relevantCertificates.map((certificate, idx) => (
-                        <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
-                          <span><strong>{new Date(certificate.examStartingTime).toLocaleString()} - {new Date(certificate.examEndingTime).toLocaleTimeString()}</strong></span>
-                          {t('Price')} ({formatCurrency(certificate.price)})
-                          <button className='btn btn-primary' style={{padding: "5px", borderRadius: "5px"}}>{t('book_time')}</button>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : selectedCertificate ? (
-                  <p className="mt-4 text-danger">{t('no_exam_dates_available')}</p>
-                ) : null}
+        </Col>
+      </Row>
+    )}
+  </Container>
+</section>
 
-
-              </Col>
-            </Row>
-          )}
-        </Container>
-      </section>
     </div>
   );
 }

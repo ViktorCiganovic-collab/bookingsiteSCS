@@ -5,13 +5,13 @@ const FilterArrayByCourseCategory = ({ certArray }) => {
   const groupedByCourse = {};
 
   certArray.forEach(cert => {
-    const courseName = cert.courseName;
+const categoryName = cert.category || "Okänd kategori";
 
-    if (!groupedByCourse[courseName]) {
-      groupedByCourse[courseName] = [];
+    if (!groupedByCourse[categoryName]) {
+      groupedByCourse[categoryName] = [];
     }
 
-    groupedByCourse[courseName].push(cert.certName);
+    groupedByCourse[categoryName].push(cert.certName);
   });
 
   return (
