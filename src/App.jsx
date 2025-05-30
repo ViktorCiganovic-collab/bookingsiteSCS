@@ -42,8 +42,8 @@ function App() {
                       borderRadius: '6px'
                     }}
                   />
-                  <h3>{course.courseName}</h3>
-                  <p><strong>{t('category')}:</strong> {course.category}</p>
+                  <h3>{course.certs[0]}</h3>
+                  <p><strong>{t('category')}:</strong> {course.courseName} </p>
                   <p>{course.description}</p>
                 </div>
               </Col>
