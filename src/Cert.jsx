@@ -185,7 +185,7 @@ useEffect(() => {
                       <strong>{new Date(certificate.examStartingTime).toLocaleString()} - {new Date(certificate.examEndingTime).toLocaleTimeString()}</strong>
                     </span>
                     {t('Price')} ({formatCurrency(certificate.price)})
-                   <Link to={`/booking/${certificate.category}/${encodeURIComponent(certificate.certName)}/${certificate.price}/${encodeURIComponent(certificate.examStartingTime)}/${encodeURIComponent(certificate.examEndingTime)}`}>
+                   <Link to={`/booking/${certificate.category}/${certificate.id}/${encodeURIComponent(certificate.certName)}/${certificate.price}/${encodeURIComponent(certificate.examStartingTime)}/${encodeURIComponent(certificate.examEndingTime)}`}>
                       <button className='btn btn-primary' style={{ padding: "5px", borderRadius: "5px" }}>
                       {t('book_time')}
                       </button>

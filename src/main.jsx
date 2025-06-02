@@ -62,7 +62,7 @@ const router = createBrowserRouter([
        
       },
       {
-        path: 'booking/:category/:certificate/:price/:examStarttime/:examEndtime',
+        path: 'booking/:category/:id/:certificate/:price/:examStarttime/:examEndtime',
         element: <Booking />
       }
     ],
