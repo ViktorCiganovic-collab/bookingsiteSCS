@@ -1,108 +1,214 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Container, Row, Col } from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import AdminSidebar from './AdminSidebar';
+import { AuthContext } from './services/AuthProvider';
 import './styling/AdminDashboard.css';
 import { useTranslation } from 'react-i18next'; 
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from './services/AuthProvider';
 import FilterArrayByCourseCategory from './services/filterArrayByCourseCategory';
 import Spinner from 'react-bootstrap/Spinner';
 
-
 const AdminDashboard = () => {
-    const { t } = useTranslation(); 
-    const [isOpen, setIsOpen] = useState(null);
-    const [show, setShow] = useState(false);
-    const { role, setRole, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-    const navigate = useNavigate();
-    const [addTestTimeForm, setAddTestTimeForm] = useState(false); 
-    const [certId, setCertId] = useState('');
-    const [starttime, setStarttime] = useState('');
-    const [endtime, setEndtime] = useState('');
-    const [error, setError] = useState(false);
-    const [response, setResponse] = useState('');
-    const [addUpdateTestTimeForm, setAddUpdateTestTimeForm] = useState(false);
-    const [testTimeId, setTestTimeId] = useState('');
-    const [deleteFormVisible, setDeleteFormVisible] = useState(false);
-    const [certsDisplayed, setCertsDisplayed] = useState(false);
-    const [certificates, setCertificates] = useState([]);
-    const [coursesDisplayed, setCoursesDisplayed] = useState(false);
-    const [courses, setCourses] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [loadingtesttimes, setLoadingtesttimes] = useState(false);
-    const [displaycertificates, setDisplaycertificates] = useState();
-    const [coursenames, setCoursenames] = useState([]);
-    const [selectedcourse, setSelectedcourse] = useState('');
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState(999);
-    const [deletepanel, setDeletepanel] = useState(false);
-    const [editpanel, setEditpanel] = useState(false);
-    const [bookingspanel, setBookingspanel] = useState(false);
-    const [bookings, setBookings] = useState([]);
+  const [activeSection, setActiveSection] = useState('');
+  const { role, setRole, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const [show, setShow] = useState(false);
+  const [bookings, setBookings] = useState([]);
+  const [certificates, setCertificates] = useState([]);
+  const [testtimes, setTesttimes] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [selectedcategory, setSelectedcategory] = useState('');
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [certId, setCertId] = useState('');
+  const [starttime, setStarttime] = useState('');
+  const [endtime, setEndtime] = useState(''); 
+  const [testTimeId, setTestTimeId] = useState('');
+  const [image, setImage] = useState('');
+  const [description, setDescription] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [response, setResponse] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);  
+  const handleShow = () => setShow(true);
 
-    const handleLogout = () => {
+  const handleLogout = () => {
       setIsAuthenticated(false);
       setRole('');
       navigate('/login');
       console.log('You have logged out');
     }
 
-    const toggleBox = (boxName) => {
-      if (addTestTimeForm) {
-        // Om formuläret är öppet, gör inget när man klickar på boxen
-        return;
-      }
-      setIsOpen(prev => (prev === boxName ? null : boxName));        
-    };
-
-    useEffect(() => {
-      if (isOpen === null) {
-        setLoading(false);
-        setLoadingtesttimes(false);
-      }
-    }, [isOpen]);
-
-    useEffect(() => {
+  useEffect(() => {
       const fetchCourses = async () => {
         try {
-          const res = await axios.get('http://3.90.225.16:5011/api/course');
-          setCoursenames(res.data);
+          const res = await axios.get('http://3.90.225.16:5011/api/category');
+          setCategory(res.data);
+          console.log(res.data);
         } catch (error) {
           console.error('Kunde inte hämta kurser:', error);
-          setCoursenames([]); // för att inte lämna den odefinierad
+          setCategory([]); // för att inte lämna den odefinierad
         }
       };
 
       fetchCourses();
-    }, []);
+    }, []); //när sidan laddar första gången hämta certifikatkategorier från servern
 
-
-    const Openformfornewtesttimes = () => {
-      if (!addTestTimeForm) {        
-        setAddTestTimeForm(true);
-        setAddUpdateTestTimeForm(false);
-        setCertsDisplayed(false);
-        setDeleteFormVisible(false);
-
-      } else {
-        setAddTestTimeForm(false); // Om det redan är öppet, stäng det
+  const viewBookings = async () => {    
+    setLoading(true);
+    try {
+    const res = await axios.get('http://3.90.225.16:5011/api/booking', {
+      headers: {
+        'Accept': 'application/json'
       }
-    };
-
-    const openformforupdatingtesttimes = () => {
-      setAddUpdateTestTimeForm(!addUpdateTestTimeForm);
-      setAddTestTimeForm(false);
-      setCoursesDisplayed(false);
-      setCertsDisplayed(false);
-      setDeleteFormVisible(false);
+    });
+    setBookings(res.data);
+    console.log(res.data);
+    setError(null);
     }
 
-    const Addnewtesttime = async (event) => {
+    catch (error) {
+    setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+    }
+    finally {
+    setLoading(false);
+  }
+
+  }; //se alla bokningar
+
+  const fetchCertificates = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get('http://3.90.225.16:5011/api/cert');
+      setCertificates(res.data);
+      console.log(res.data);
+      setError(null);
+      setLoading(false);
+    }
+
+    catch (error) {
+          setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+        }
+    finally {
+    setLoading(false);
+  }
+  }; // se alla certifikat
+
+  const addCertificate = async (event) => {
+  event.preventDefault();
+
+  if (!name || !selectedcategory || !price) {
+    setError('Vänligen fyll i alla fält och ladda upp en bild!');
+    return;
+  }  
+
+  const certificate = {
+    CategoryId: selectedcategory,
+    CertName: name,
+    Price: price, 
+  };
+
+  try {
+    const res = await axios.post('http://3.90.225.16:5011/api/cert', certificate, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    });
+
+    setError('');
+    console.log('Certifikat tillagt:', res.data);
+    setName('');    
+    setSelectedcategory('');
+    setPrice('');
+    setResponse(true);
+  } catch (error) {
+    setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+  }
+}; // lägg till certifikat
+
+const Editcertificate = async (e) => {
+  e.preventDefault();
+
+  if (!certId || !selectedcategory || !name || !price) {
+    setError('Vänligen fyll i alla fält!');
+    return;
+  }
+
+  const updatedCertificate = {
+    Id: Number(certId),
+    CategoryId: Number(selectedcategory),
+    CertName: name,
+    price: Number(price)
+  };
+
+  try {
+    const res = await axios.put(`http://3.90.225.16:5011/api/cert/${updatedCertificate.Id}`, updatedCertificate, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    });
+
+    setResponse(true);
+    setError('');
+    // Rensa fält
+    setCertId('');
+    setName('');
+    setSelectedcategory('');
+    setPrice(999); 
+
+  } catch (error) {
+    setError(`Något gick fel: ${error.message || 'Vänligen försök igen senare.'}`);
+    setResponse('');
+  }
+}; //updatera certifikat
+
+    const DeleteCertificate = async (event) => {
+      event.preventDefault();
+      if (!certId) {    
+    setError('Vänligen fyll i certifikatets ID.');
+    return;}
+
+    try {
+      const res = await axios.delete(`http://3.90.225.16:5011/api/cert/${Number(certId)}`, {
+        headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+      });
+      setCertId('');
+    }  
+
+    catch (error) {
+        setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`); // Backticks!
+      }
+
+    } //radera certifikat
+
+  const fetchTestTimes = async () => {
+  setLoading(true);
+  try {
+    const res = await axios.get('http://3.90.225.16:5011/api/ExamDate');
+    setTesttimes(res.data);
+    console.log(res.data);
+    setError(null);
+    setLoading(false);
+  }
+  
+    catch (error) {
+          setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+        }
+    finally {
+    setLoading(false);
+  }
+  }; //se alla testtillfällen
+
+  const Addnewtesttime = async (event) => {
       event.preventDefault();
 
       if (!certId || !starttime || !endtime) {
@@ -132,9 +238,9 @@ const AdminDashboard = () => {
       catch (error) {
         setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);  // Backticks!
       }
-    }
+    } //lägg till testtillfälle
 
-    const UpdateTesttime = async (event) => {
+  const UpdateTesttime = async (event) => {
       event.preventDefault();
       
       if (!testTimeId || !starttime || !endtime) {
@@ -170,16 +276,9 @@ const AdminDashboard = () => {
       catch (error) {
         setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`); // Backticks!
       }
-    }
+    } //uppdatera testtillfälle
 
-    const openformDeleteTesttime = async () => {
-      setDeleteFormVisible(!deleteFormVisible);
-      setAddUpdateTestTimeForm(false);
-      setAddTestTimeForm(false);
-      setCertsDisplayed(false);
-    }
-
-    const DeleteTesttime = async (event) => {
+  const DeleteTesttime = async (event) => {
       event.preventDefault();
 
       if (!testTimeId || !starttime || !endtime) {
@@ -206,218 +305,677 @@ const AdminDashboard = () => {
       catch (error) {
         setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`); // Backticks!
       }
-    }
+    } //radera testtillfälle
 
-    const viewTesttimes = async () => {
-      const newState = !certsDisplayed;
-      const loadingState = !loadingtesttimes;
-      setLoadingtesttimes(loadingState);
-      setCertsDisplayed(newState);
-      setAddTestTimeForm(false);
-      setAddUpdateTestTimeForm(false);
-      setDeleteFormVisible(false);      
-
-      if (newState) {
-        try {
-          const result = await axios.get('http://3.90.225.16:5011/api/ExamDate');
-          setCertificates(result.data);
-          console.log(result.data);
-          setError(null);
-          setLoadingtesttimes(false);
-
-        } catch (error) {
-          setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
-        }
-      }
-    };
-
-    const viewCourses = async () => {
-      const newState = !coursesDisplayed;
-      const loadingstate = !loading;
-      setLoading(loadingstate);
-      setDeletepanel(false);  
-      setDisplaycertificates(false);
-      setCoursesDisplayed(newState);
-      setEditpanel(false);
-
-      if (newState) {    
-
-        try {
-          const res = await axios.get('http://3.90.225.16:5011/api/cert');
-          setCourses(res.data);
-          console.log(res.data);
-          setError(null);
-          setLoading(false);
-        }
-        catch (error) {
-          setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
-        }
-      }
-    }
-
-    const Openfordeletecertificates = async () => {
-    setDisplaycertificates(false);
-    setCoursesDisplayed(false);
-    setDeletepanel(!deletepanel);    
-    }
-
-    const DeleteCertificate = async (event) => {
-      event.preventDefault();
-      if (!certId) {    
-    setError('Vänligen fyll i certifikatets ID.');
-    return;}
-
-    try {
-      const res = await axios.delete(`http://3.90.225.16:5011/api/cert/${Number(certId)}`, {
-        headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      }
-      });
-      setCertId('');
-    }
-   
-
-
-    catch (error) {
-        setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`); // Backticks!
-      }
-
-    }
-
-    const openCertificates = async () => {
-      const newState = !displaycertificates;
-      setDeletepanel(false);
-      setCoursesDisplayed(false);
-      setDisplaycertificates(newState);
-      setEditpanel(false);
-
-      if (newState) {
-        try {
-          const res = await axios.get('http://3.90.225.16:5011/api/category');
-          setCoursenames(res.data);
-          console.log(res.data);
-          setError(null);
-        }
-
-        catch (error) {
-          setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
-        }
-      }
-    }
-
-  const addCertificate = async (event) => {
-  event.preventDefault();
-
-  if (!name || !selectedcourse || !price) {
-    setError('Vänligen fyll i alla fält och ladda upp en bild!');
-    return;
-  }  
-
-  const certificate = {
-    CategoryId: selectedcourse,
-    CertName: name,
-    Price: price, 
-  };
-
-  try {
-    const res = await axios.post('http://3.90.225.16:5011/api/cert', certificate, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      }
-    });
-
-    setError('');
-    console.log('Certifikat tillagt:', res.data);
-    setName('');    
-    setSelectedcourse('');
-    setPrice('');
-    setResponse(true);
-  } catch (error) {
-    setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
-  }
-};
-
-const Openeditcertificates = () => {
-setEditpanel(!editpanel);
-setDisplaycertificates(false);
-setCoursesDisplayed(false);
-}
-
-const Editcertificate = async (e) => {
+ 
+  const CreateCategory = async (e) => {
   e.preventDefault();
 
-  if (!certId || !selectedcourse || !name || !price) {
+        if (!name || !description || !image) {
+        setError('Vänligen fyll i alla fält!');
+        setResponse(null);
+        return;
+      }
+
+        const newCategory = {
+        Name: name,  
+        Description: description,
+        Image: image
+      };
+
+      try {
+        const res = await axios.post('http://3.90.225.16:5011/api/category', newCategory, {
+          headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          }
+        });
+    setResponse('Kategori skapad!');
+    setError(null);
+    // Töm inputfält
+    setName('');
+    setDescription('');
+    setImage('');
+      }
+
+      catch (error) {
+        setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);  // Backticks!
+        setResponse(null);
+      }
+  } //skapa ny kategori
+
+ const UpdateCategory = async (e) => {
+  e.preventDefault();
+
+  if (!selectedcategory || !name || !description || !image) {
     setError('Vänligen fyll i alla fält!');
+    setResponse(null);
     return;
   }
-
-  const updatedCertificate = {
-    Id: Number(certId),
-    CategoryId: Number(selectedcourse),
-    CertName: name,
-    price: Number(price)
-  };
+  const updatedCategory = {
+    Id: Number(selectedcategory),
+    Name: name,
+    Description: description,
+    Image: image
+  }; //uppdatera en kategori 
 
   try {
-    const res = await axios.put(`http://3.90.225.16:5011/api/cert/${updatedCertificate.Id}`, updatedCertificate, {
+    const res = await axios.put(`http://3.90.225.16:5011/api/category/${selectedcategory}`, updatedCategory, {
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
       }
     });
-
-    setResponse(true);
-    setError('');
-    // Rensa fält
-    setCertId('');
+    setResponse('Kategori uppdaterad!');
+    setError(null);
+    // Töm inputfält
+    setSelectedcategory('');
     setName('');
-    setSelectedcourse('');
-    setPrice(999);
-    setEditpanel(false);
-
+    setDescription('');
+    setImage('');
   } catch (error) {
-    setError(`Något gick fel: ${error.message || 'Vänligen försök igen senare.'}`);
-    setResponse('');
+    setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+    setResponse(null);
   }
 };
 
-const viewBookings = async () => {
-  setBookingspanel(true);
+const DeleteCategory = async (e) => {
+  e.preventDefault();
+
+  if (!selectedcategory) {
+    setError('Vänligen ange ett kategori-ID!');
+    setResponse(null);
+    return;
+  }
 
   try {
-  const res = await axios.get('http://3.90.225.16:5011/api/booking', {
-    headers: {
-      'Accept': 'application/json'
-    }
-  });
-  setBookings(res.data);
-  setError(null);
-
-  }
-  catch (error) {
-          setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
-        }
-}
-
-useEffect(() => {
-  if (!addTestTimeForm && !addUpdateTestTimeForm && !deleteFormVisible && !deletepanel && !displaycertificates && !editpanel) {
+    const res = await axios.delete(`http://3.90.225.16:5011/api/category/${selectedcategory}`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    setResponse('Kategori raderad!');
     setError(null);
-    setResponse('');
+    setSelectedcategory('');
+  } catch (error) {
+    setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+    setResponse(null);
   }
-}, [addTestTimeForm, addUpdateTestTimeForm, deleteFormVisible, deletepanel, displaycertificates, editpanel]);
+};
 
-  
+  useEffect(() => {
+
+    switch(activeSection) {
+      case 'bookings':
+        viewBookings();
+        break;
+      case 'certificates':
+      fetchCertificates();
+      break;
+    case 'testtimes':
+      fetchTestTimes();
+      break;   
+    default:
+      // Inga åtgärder eller nollställningar
+      break;
+    }
+
+  }, [activeSection]);
+
+ const renderContent = () => {
+  if (loading) {
+  return (
+    <div className="text-center mt-4">
+      <Spinner animation="border" role="status" />
+      <span className="ms-2">Laddar...</span>
+    </div>
+  );
+}
+  switch(activeSection) {
+    // Bookings
+    case 'bookings':
+      return (
+        <div>
+          <h2>Visa bokningar</h2>
+
+          <div className='flexelementsBookings'>
+          {bookings.map((booking) => (
+            <div className='booking'>
+              <p>Test: {booking.certName}</p>
+              <p>Namn: {booking.customerFirstName} {booking.customerLastName}</p>
+              <p>Testtid: {booking.examStartingTime} - {booking.examEndingTime}</p>
+            </div>
+          ))}
+          </div>
+
+        </div>
+      );
+    case 'manageBookings':
+      return (
+        <div>
+          <h2>Hantera bokningar</h2>
+          <p>Här hanterar du bokningar.</p>
+        </div>
+      );
+
+    // Certificates
+    case 'certificates':
+      return (        
+        <div>  
+        <h2>Visa certifikat</h2>        
+        <div className=''>
+            {certificates.map((certificate) => (
+        <div key={certificate.id} className="cert">
+          <p>Certifikat-ID: {certificate.id}</p>
+          <p>Kategori: {certificate.category}</p>
+          <p>Certifikat: {certificate.certName}</p>
+          <p>Pris: {certificate.price} kr</p>
+        </div>
+      ))}
+
+          </div>
+        </div>       
+      );
+    case 'addCert':
+      return (
+  <div className="d-flex flex-column justify-content-center align-items-center mt-4">
+  <h3 className="text-center mb-3">Lägg till certifikat</h3> 
+
+  <form onSubmit={addCertificate} className="w-100" style={{ maxWidth: "400px" }}>
+    <div className="mb-3">
+      <label className="form-label">Välj kurs</label>
+      <select
+        className="form-select text-center"
+        value={selectedcategory}
+        onChange={(e) => setSelectedcategory(e.target.value)}
+        required
+      >
+        <option value="">-- Välj kurs --</option>
+        {category.map((x, index) => (
+          <option key={index} value={x.id}>{x.name}</option>
+        ))}
+      </select>
+    </div>
+
+    <div className="mb-3">
+      <label className="form-label">Namn på certifikat</label>
+      <input
+        type="text"
+        className="form-control text-center"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+      />
+    </div>
+
+    <div className="mb-3">
+      <label className="form-label">Pris</label>
+      <input
+        type="number"
+        className="form-control text-center"
+        value={price}
+        onChange={(e) => setPrice(Number(e.target.value))}
+        required
+      />
+    </div>
+
+    <div className="d-grid">
+      <button type="submit" className="btn btn-primary">Skicka</button>
+    </div>
+  </form>
+
+    {response && (
+      <p className="mt-3 text-success">✅ Certifikatet har lagts till</p>
+    )}
+    {error && (
+      <p className="mt-3 text-danger">❌ Det gick inte att lägga till certifikatet</p>
+    )}
+  </div>
+      );
+    
+    case 'editCert':
+    return (
+    <form onSubmit={Editcertificate} className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
+      <h3 className="text-center mb-3">Redigera Certifikat</h3>
+
+      <div className="mb-3 w-100">
+        <label className="form-label">Certifikat ID</label>
+        <input
+          type="number"
+          className="form-control text-center"
+          value={certId}
+          onChange={(e) => setCertId(e.target.value)}
+          required
+        />
+      </div>
+
+      <div className="mb-3 w-100">
+        <label className="form-label">Välj kurs</label>
+        <select
+          className="form-select text-center"
+          value={selectedcategory}
+          onChange={(e) => setSelectedcategory(e.target.value)}
+          required
+        >
+          <option value="">-- Välj kurs --</option>
+          {category.map((coursename, index) => (
+            <option key={index} value={coursename.id}>
+              {coursename.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="mb-3 w-100">
+        <label className="form-label">Nytt namn på certifikatet</label>
+        <input
+          type="text"
+          className="form-control text-center"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+      </div>
+
+      <div className="mb-3 w-100">
+        <label className="form-label">Nytt pris</label>
+        <input
+          type="number"
+          className="form-control text-center"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          required
+        />
+      </div>
+
+      <div className="d-grid w-100">
+        <button type="submit" className="btn btn-primary">Redigera certifikat</button>
+      </div>
+
+      {response && (
+        <p className="text-success mt-3">✅ Certifikatet har uppdaterats</p>
+      )}
+      {error && (
+        <p className="text-danger mt-3">❌ Det gick inte att uppdatera certifikatet</p>
+      )}
+    </form>
+  );
+
+    case 'deleteCert':
+  return (
+    <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
+      <h3 className="text-center mb-3">Radera Certifikat</h3>  
+
+      <form onSubmit={DeleteCertificate} className="w-100">
+        <div className="mb-3">
+          <label className="form-label">Certifikat ID</label>
+          <input
+            type="number"
+            className="form-control text-center"
+            value={certId}
+            onChange={(e) => setCertId(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="d-grid">
+          <button type="submit" className="btn btn-danger">
+            🗑 Radera certifikat
+          </button>
+        </div>
+      </form>
+
+      {response && (
+        <p className="mt-3 text-success text-center">✅ {response}</p>
+      )}
+      {error && (
+        <p className="mt-3 text-danger text-center">❌ {error}</p>
+      )}
+    </div>
+  );
+
+
+    // Test Times
+    case 'testtimes':
+      return (
+        <div>
+          <h2>Visa testtider</h2>
+          <div className=''>
+            {testtimes.map((testtime) => (
+              <div key={testtime.id} className="cert">
+                <p>Testtid-ID: {testtime.id}</p>
+                <p>Kategori: {testtime.category}</p>
+                <p>Certifikat: {testtime.certName}</p>
+                <p>Pris: {testtime.price} kr</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    case 'addTestTime':
+  return (
+    <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
+      <h3 className="text-center mb-3">Lägg till testtillfälle</h3>
+
+      <form onSubmit={Addnewtesttime} className="w-100">
+        <div className="mb-3">
+          <label className="form-label">Certifierings-ID</label>
+          <input
+            type="number"
+            className="form-control text-center"
+            value={certId}
+            onChange={(e) => setCertId(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Startdatum för test</label>
+          <input
+            type="datetime-local"
+            className="form-control text-center"
+            value={starttime}
+            onChange={(e) => setStarttime(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Slutdatum för test</label>
+          <input
+            type="datetime-local"
+            className="form-control text-center"
+            value={endtime}
+            onChange={(e) => setEndtime(e.target.value)}
+            min={starttime}
+            required
+          />
+        </div>
+
+        <div className="d-grid">
+          <button type="submit" className="btn btn-primary">➕ Lägg till</button>
+        </div>
+      </form>
+
+      {response && <p className="mt-3 text-success text-center">✅ Testtiden har lagts till</p>}
+      {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
+    </div>
+  );
+    case 'editTestTime':
+  return (
+    <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
+      <h3 className="text-center mb-3">Uppdatera ett testtillfälle</h3>   
+
+      <form onSubmit={UpdateTesttime} className="w-100">
+        <div className="mb-3">
+          <label className="form-label">Testtidens ID</label>
+          <input
+            type="number"
+            className="form-control text-center"
+            value={testTimeId}
+            onChange={(e) => setTestTimeId(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Nytt startdatum för test</label>
+          <input
+            type="datetime-local"
+            className="form-control text-center"
+            value={starttime}
+            onChange={(e) => setStarttime(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Nytt slutdatum för test</label>
+          <input
+            type="datetime-local"
+            className="form-control text-center"
+            value={endtime}
+            onChange={(e) => setEndtime(e.target.value)}
+            min={starttime}
+            required
+          />
+        </div>
+
+        <div className="d-grid">
+          <button type="submit" className="btn btn-primary">📝 Uppdatera</button>
+        </div>
+      </form>
+
+      {response && <p className="mt-3 text-success text-center">✅ Testtiden har uppdaterats</p>}
+      {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
+    </div>
+  );
+ 
+    case 'deleteTestTime':
+  return (
+    <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
+      <h3 className="text-center mb-3">Radera ett testtillfälle</h3>
+
+      <form onSubmit={DeleteTesttime} className="w-100">
+        <div className="mb-3">
+          <label className="form-label">Testtidens ID</label>
+          <input
+            type="number"
+            className="form-control text-center"
+            value={testTimeId}
+            onChange={(e) => setTestTimeId(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Startdatum för test</label>
+          <input
+            type="datetime-local"
+            className="form-control text-center"
+            value={starttime}
+            onChange={(e) => setStarttime(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Slutdatum för test</label>
+          <input
+            type="datetime-local"
+            className="form-control text-center"
+            value={endtime}
+            onChange={(e) => setEndtime(e.target.value)}
+            min={starttime}
+            required
+          />
+        </div>
+
+        <div className="d-grid">
+          <button type="submit" className="btn btn-danger">🗑 Radera testtid</button>
+        </div>
+      </form>
+
+      {response && <p className="mt-3 text-success text-center">✅ {response}</p>}
+      {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
+    </div>
+  );
+
+
+    case 'categories':
+      return (
+        <div>
+          <h2>Visa kategorier</h2>
+        <div className=''>
+          {category.map((x) => (
+            <div key={x.id} className="cert">
+              <p>Kategori ID: {x.id}</p>
+              <p>Kategori: {x.name}</p>
+              <p>Beskrivning: {x.description}</p>
+            </div>
+          ))}
+        </div>
+        </div>
+      );
+    case 'createCategory':
+  return (
+    <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
+      <h3 className="text-center mb-3">Skapa ny kategori</h3>
+
+      <form onSubmit={CreateCategory} className="w-100">
+        <div className="mb-3">
+          <label className="form-label">Namn</label>
+          <input
+            type="text"
+            className="form-control"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Beskrivning</label>
+          <textarea
+            className="form-control"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Bild (URL)</label>
+          <input
+            type="text"
+            className="form-control"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+          />
+        </div>
+
+        <div className="d-grid">
+          <button type="submit" className="btn btn-primary">Skapa kategori</button>
+        </div>
+      </form>
+
+      {response && <p className="mt-3 text-success text-center">✅ {response}</p>}
+      {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
+    </div>
+  );
+
+    case 'updateCategory':
+  return (
+    <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
+      <h3 className="text-center mb-3">Uppdatera kategori</h3>
+
+      <form onSubmit={UpdateCategory} className="w-100">
+        <div className="mb-3">
+          <label className="form-label">Kategori ID</label>
+          <input
+            type="number"
+            className="form-control"
+            value={selectedcategory}
+            onChange={(e) => setSelectedcategory(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Namn</label>
+          <input
+            type="text"
+            className="form-control"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Beskrivning</label>
+          <textarea
+            className="form-control"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Bild (URL)</label>
+          <input
+            type="text"
+            className="form-control"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+          />
+        </div>
+
+        <div className="d-grid">
+          <button type="submit" className="btn btn-primary">Uppdatera kategori</button>
+        </div>
+      </form>
+
+      {response && <p className="mt-3 text-success text-center">✅ {response}</p>}
+      {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
+    </div>
+  );
+
+    case 'deleteCategory':
+  return (
+    <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
+      <h3 className="text-center mb-3">Radera kategori</h3>
+
+      <form onSubmit={DeleteCategory} className="w-100">
+        <div className="mb-3">
+          <label className="form-label">Kategori-ID</label>
+          <input
+            type="number"
+            className="form-control text-center"
+            value={selectedcategory}
+            onChange={(e) => setSelectedcategory(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="d-grid">
+          <button type="submit" className="btn btn-danger">🗑 Radera kategori</button>
+        </div>
+      </form>
+
+      {response && <p className="mt-3 text-success text-center">✅ {response}</p>}
+      {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
+    </div>
+  );
+
+    // Fallback
+    default:
+      return (
+        <div>
+          <h2>Välj en sektion</h2>
+          <p>Använd menyn till vänster för att välja en funktion.</p>
+        </div>
+      );
+  }
+};
+
 
   return (
-    <div className='adminDashboard'>
-      <section className='adminSectionOne'>
-        <h1>{t('admin_dashboard')}</h1>         
-        <button className='btn btn-primary' onClick={handleShow}>{t('logout')}</button>    
-      </section>
+    <div style={{ display: 'flex', height: '100vh'}} className="adminDashboard">
+      <AdminSidebar activeSection={activeSection} setActiveSection={setActiveSection} handleShow={handleShow} />
+      <main
+        style={{ 
+          flexGrow: 1, 
+          overflowY: 'auto', 
+          padding: '2rem',         
+        }}
+        className='adminMainpart'
+      >
+        {renderContent()}
 
-      <Modal show={show} onHide={handleClose}>
+              <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{t('questionlogout')}</Modal.Title>
         </Modal.Header>
@@ -431,230 +989,7 @@ useEffect(() => {
           </Button>
         </Modal.Footer>
       </Modal>
-
-      <section className='adminSectionTwo'>
-
-        <div className='box box1' onClick={() => {toggleBox('box1'); viewBookings();}}>
-          <h1>{t('bookings')}</h1>
-
-          {isOpen === 'box1' && (
-            <div className="box-content open" style={{padding: '8px'}}>
-              {bookingspanel && (
-                bookings.map((booking, index) => (
-                  <div key={index}>
-                    <h3>{booking.customerFirstName} {booking.customerLastName}</h3>
-                    <p>{booking.certName} - Tid: {booking.examStartingTime}-{booking.examEndingTime}</p>
-                    <div style={{borderBottom: '1px solid grey'}}></div>
-                  </div>                  
-                ))
-              )}
-            </div>
-          )}
-        </div>            
-
-        <div className='box box2' onClick={() => toggleBox('box2')}>
-          <h1>{t('editCertificates')}</h1>
-
-          {isOpen === 'box2' && (
-            <div className="box-content open">
-              <button className="btn btn-primary" onClick={(e) => {e.stopPropagation(); Openeditcertificates();}}>Redigera certifikat</button>
-              <button className="btn btn-primary" onClick={(e) => {e.stopPropagation(); openCertificates();}}>Lägg till certifikat</button>
-              <button className='btn btn-primary' onClick={(e) => {e.stopPropagation(); Openfordeletecertificates();}}>Radera certifikat</button>
-              <button className='btn btn-primary' onClick={(e) => {e.stopPropagation(); viewCourses();}}>Se alla certifikat</button>              
-                              
-            </div>                    
-            )}      
-
-          {editpanel && (<div>            
-              <form onSubmit={Editcertificate} className='d-flex justify-content-center flex-column align-items-center'>
-              <h3 className='text-center'>Redigera Certifikat</h3>
-              <button className="btn btn-primary" onClick={() => setEditpanel(false)}>Go Back</button>
-
-              <label>Certifikat ID:</label>
-              <input className="text-center" type="number" value={certId} onChange={(e) => setCertId(e.target.value)}></input>
-
-              <select className="text-center my-2" value={selectedcourse} onChange={(e) => setSelectedcourse(e.target.value)}>
-              <option value="">-- Välj kurs --</option>
-              {coursenames.map((coursename, index) => (
-                <option key={index} value={coursename.id}>{coursename.name}</option>
-              ))}
-              </select>
-
-              <label>Nytt namn på certifikatet:</label>
-              <input className="text-center" type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
-
-              <label>Nytt pris:</label>
-              <input className="text-center" type="number" value={price} onChange={(e) => setPrice(e.target.value)}></input>
-              <button className='btn btn-primary' type="submit">Redigera certifikat</button>
-            </form>
-          </div>)}  
-
-          {response && <p className="text-center" style={{ color: 'green' }}>{response}</p>}
-          
-          {displaycertificates && (<div onClick={(e) => e.stopPropagation()} className='d-flex flex-column justify-content-center align-items-center'>
-            <h3 className='text-center'>Lägg till certifikat</h3>
-            <button className="btn btn-primary" onClick={() => setDisplaycertificates(false)}>Go Back</button>
-            <form onSubmit={addCertificate} className='d-flex justify-content-center flex-column align-items-center'>
-              <select className="text-center my-2" value={selectedcourse} onChange={(e) => setSelectedcourse(e.target.value)}>
-              <option value="">-- Välj kurs --</option>
-              {coursenames.map((coursename, index) => (
-                <option key={index} value={coursename.id}>{coursename.name}</option>
-              ))}
-              </select>
-              <label>Namn:</label>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-
-              <label>Pris:</label>
-              <input className='text-center' type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} required />
-                       
-              <button type="submit" className="btn btn-primary mt-3">Skicka</button>
-            </form>
-            {response && (<p style={{color: 'green'}}>Certifikatet har lagts till</p>)}
-            {error && <p style={{color: 'green'}}>Det gick av någon anledning inte att lägga till certifikatet</p>}
-          </div>)}     
-
-          {deletepanel && (            
-            <form onSubmit={DeleteCertificate} className='d-flex justify-content-center flex-column align-items-center'>
-              <h3 className='text-center'>Radera Certifikat</h3>
-              <button className="btn btn-primary" onClick={() => setDeletepanel(false)}>Go Back</button>
-              <label>Certifikat ID:</label>
-              <input type="number" value={certId} onChange={(e) => setCertId(e.target.value)}></input>
-              <button className='btn btn-primary'>Radera certifikat</button>
-            </form>
-          )}
-
-          {response && <p className="text-center" style={{ color: 'green' }}>{response}</p>}
-          {error && <p className="text-center" style={{ color: 'red' }}>{error}</p>}
-             
-
-          {coursesDisplayed && (
-            <div className='text-center'>
-              {loading && (
-              <div className="text-center my-3">
-                <Spinner animation="border" role="status" />
-                <p>Laddar kurser...</p>
-              </div>
-            )}
-
-              <FilterArrayByCourseCategory certArray={courses} />
-            </div>
-          )}
-        </div>  
-
-        <div className='box box3 p-2' onClick={() => toggleBox('box3')}>
-          <h1>{t('edit_test_times')}</h1>
-
-          {isOpen === 'box3' && (
-            <div className="box-content open" onClick={(e) => e.stopPropagation()}>
-              <button className='btn btn-primary' onClick={(e) => { e.stopPropagation(); viewTesttimes(); }}>Se alla testtillfällen</button>
-              <button className="btn btn-primary" onClick={(e) => { e.stopPropagation(); openformforupdatingtesttimes(); }}>Uppdatera testtider</button>
-              <button className="btn btn-primary" onClick={(e) => { e.stopPropagation(); Openformfornewtesttimes(); }}>Lägg till testtider</button>
-              <button className='btn btn-primary' onClick={(e) => { e.stopPropagation(); openformDeleteTesttime(); }}>Radera en testtid</button>
-            </div>
-          )}
-
-          {certsDisplayed && (
-            <div onClick={e => e.stopPropagation()} className='d-flex justify-content-center flex-column align-items-center'>
-              
-              <button className="btn btn-primary" onClick={() => setCertsDisplayed(false)}>Go Back</button>
-              <h2 className='text-center my-2'>Alla inlagda testtider</h2>
-              {loadingtesttimes && (
-              <div className="text-center my-3">
-                <Spinner animation="border" role="status" />
-                <p>Laddar testtider...</p>
-              </div>
-            )}
-
-              {certificates.map((certificate, index) => (
-                <div className='text-center' key={index}>
-                  <p>{certificate.certName}</p>
-                  <p>Test id: {certificate.id}</p>
-                  <p>Testtid: {certificate.examStartingTime} - {certificate.examEndingTime}</p>
-                  <p>Pris: {certificate.price} SEK</p>
-                  <div className='grey_line'></div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {addTestTimeForm && (
-            <div onClick={e => e.stopPropagation()} className='d-flex justify-content-center flex-column align-items-center'>
-              <h3 className='text-center'>Lägg till testtillfälle</h3>
-              <button className="btn btn-primary" onClick={() => setAddTestTimeForm(false)}>Go Back</button>
-              <form onSubmit={Addnewtesttime} className='d-flex flex-column justify-content-center align-items-center'>
-                <label>Certiferings Id:</label>
-                <input className='my-2' value={certId} onChange={(e) => setCertId(e.target.value)} type="number" />
-
-                <label>Startdatum för test:</label>
-                <input className='my-2' value={starttime} onChange={(e) => setStarttime(e.target.value)} type="datetime-local" />
-
-                <label>Slutdatum för test:</label>
-                <input className='my-2' min={starttime} value={endtime} onChange={(e) => setEndtime(e.target.value)} type="datetime-local" />
-                <button type="submit" className='btn btn-primary mt-3 p-3'>Lägg till</button>
-              </form>
-              {response && <p>Testtiden har lagts till</p>}
-              {error && <p className="error-message">{error}</p>}
-            </div>
-          )}
-
-          {addUpdateTestTimeForm && (
-            <div onClick={e => e.stopPropagation()} className='d-flex justify-content-center flex-column align-items-center'>
-              <h3 className='text-center'>Uppdatera ett testtillfälle</h3>
-              <button className="btn btn-primary" onClick={() => setAddUpdateTestTimeForm(false)}>Go Back</button>
-              <form onSubmit={UpdateTesttime} className='d-flex flex-column justify-content-center align-items-center'>
-                <label>Testtidens ID:</label>
-                <input className='my-2' value={testTimeId} onChange={(e) => setTestTimeId(e.target.value)} type="number" />
-
-                <label>Nytt startdatum för test:</label>
-                <input className='my-2' value={starttime} onChange={(e) => setStarttime(e.target.value)} type="datetime-local" />
-
-                <label>Nytt slutdatum för test:</label>
-                <input className='my-2' min={starttime} value={endtime} onChange={(e) => setEndtime(e.target.value)} type="datetime-local" />
-                <button type="submit" className='btn btn-primary mt-3 p-3'>Uppdatera</button>
-              </form>
-              {response && <p>Testtiden har uppdaterats</p>}
-              {error && <p className="error-message">{error}</p>}
-            </div>
-          )}
-
-          {deleteFormVisible && (
-            <div onClick={e => e.stopPropagation()} className='d-flex justify-content-center flex-column align-items-center'>
-              <h3 className='text-center'>Radera ett testtillfälle</h3>
-              <button className="btn btn-primary" onClick={() => setDeleteFormVisible(false)}>Go Back</button>
-              <form className='d-flex flex-column justify-content-center align-items-center' onSubmit={DeleteTesttime}>
-                <label>Testtidens ID:</label>
-                <input className='my-2' value={testTimeId} onChange={(e) => setTestTimeId(e.target.value)} type="number" />
-
-                <label>Startdatum för test:</label>
-                <input className='my-2' value={starttime} onChange={(e) => setStarttime(e.target.value)} type="datetime-local" />
-
-                <label>Slutdatum för test:</label>
-                <input className='my-2' min={starttime} value={endtime} onChange={(e) => setEndtime(e.target.value)} type="datetime-local" />
-                <button type="submit" className='btn btn-primary mt-3 p-3'>Radera testtid</button>
-              </form>
-              {response && <p>Testtiden har raderats</p>}
-              {error && <p className="error-message">{error}</p>}
-            </div>
-          )}
-        </div>  
-
-                    <div className='box box4' onClick={() => toggleBox('box4')}>
-                <h1>{t('edit_remove_lang')}</h1>
-
-                    {isOpen === 'box4' && (
-                   <div className={`box-content open`}>
-                        <p>-- {t('choose_lang')} --</p>
-                        <button class="btn btn-primary">Sv</button>
-                        <button class="btn btn-secondary">No</button>
-                        <button class="btn btn-success">Da</button>
-                        <button class="btn btn-danger">Fi</button>
-                    </div>
-                )}
-            </div> 
-
-      
-
-      </section>
+      </main>
     </div>
   );
 };

@@ -1,85 +1,81 @@
 
 
+
+.adminSidebar {
+  width: 250px;
+  min-width: 250px;
+  height: 100vh;
+  padding: 1rem;
+  border-right: 1px solid #ddd;
+  background-color: #f8f9fa;
+}
+
+.sidebar-title {
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  color: #333;
+}
+
+.sidebar-link {
+  padding: 0.25rem 0;
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.sidebar-link:hover {
+  text-decoration: underline;
+}
+
+.sidebar-group {
+  margin-bottom: 1rem;
+}
+
+
+
 .adminDashboard {
-    width: 100%;
-    background-color: var(--secondary-bg);
+  background-color: var(--secondary-bg);
+
 }
 
-.adminSectionOne {
-    background-image: url('../assets/admin_background.jpg');
-    background-size: cover;
+.adminMainpart {
+  background-image: url('../assets/admin_background.jpg');
+      background-size: cover;
     background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 100%;
-    max-width: 100vw;
-   
 }
 
-h1 {
-  font-size: 3rem;
-  color: var(--white-text) !important;
-    text-shadow: var(--text-shadow);
-  text-align: center; 
+.sidebar-link {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding-left: 10px;
 }
 
-.adminSectionTwo {
-    background-color: var(--secondary-bg);
-    padding: 2rem 0;}
-
-.adminSectionTwo h1 {
-    margin-top: 2rem;
-
+.sidebar-link:hover {
+  color: #0056b3 !important;
+  text-decoration: underline;
 }
 
-.box {
-    border: 1px solid var(--white-text);
-    width: 50%;
-    height: 50%;
-    margin: 2rem auto;
-    border-radius: 8px;
-    box-shadow: 5px 5px 30px;
-    cursor: pointer;
+.sidebar-group.logout-group .sidebar-link {
+  padding-left: 1rem !important; 
+  font-weight: bold; 
 }
 
 
-@media (max-width: 768px) {
-  .box h1 {
-    font-size: 1.5rem;
-  }
+.flexelementsBookings {
+  display: flex; 
+  gap: 1rem; 
+  flex-wrap: wrap;
 }
 
-@media (max-width: 480px) {
-  .box h1 {
-    font-size: 1.2rem;
-  }
-}
-
-.box-content {
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height 1.5s ease, opacity 2.5s ease;
+.booking {   
+  background-color: var(--secondary-bg);
+  padding-top: 20px;
   text-align: center;
+  border-radius: 12px;
 }
 
-.box-content.open {
-  max-height: 1000px;  
-  padding: 10px;
-  opacity: 1;
-}
-
-.btn {
-    margin: 5px;
-}
-
-.grey_line {
-  height: 3px;
-  margin: 20px auto;
-  width: 50%;
-  color: grey;
-  background-color: grey;
+.cert {
+  border-bottom: 1px solid gray;
 }
