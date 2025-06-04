@@ -7,7 +7,6 @@ import AdminSidebar from './AdminSidebar';
 import { AuthContext } from './services/AuthProvider';
 import './styling/AdminDashboard.css';
 import { useTranslation } from 'react-i18next'; 
-import FilterArrayByCourseCategory from './services/filterArrayByCourseCategory';
 import Spinner from 'react-bootstrap/Spinner';
 
 const AdminDashboard = () => {
