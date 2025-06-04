@@ -2,8 +2,27 @@
 .bookingSectionone {
 width: 100%;
 min-height: 100vh;
-background-color: var(--secondary-bg);
+background-image: url('../assets/admin_background.jpg');
+background-size: cover;
+background-position: center;
 }
 
-.sectionTwo {
+.card-element-wrapper {
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: white;
+  margin: 0 auto;
+}
+
+.card-element-wrapper .StripeElement {
+  width: 100% !important;
+}
+
+form.text-center {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }

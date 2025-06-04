@@ -19,6 +19,10 @@ import About from './About.jsx';
 import AdminDashboard from './AdminDashboard.jsx';
 import UserDashboard from './UserDashboard.jsx';
 import Booking from './Booking.jsx';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('pk_test_51QezsBKfpgfUfOSHUfaVmdDwoStl2MTjNGBLi0awJSe1C6kDGYj9QLNy2t4ROEbZmqMhb4IAnw8JVyxv5W6JQHfk00VEPGhTGe'); 
 
 
 const router = createBrowserRouter([
@@ -72,7 +76,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
+      <Elements stripe={stripePromise}>
       <RouterProvider router={router} />
+      </Elements>
     </AuthProvider>
   </StrictMode>
 );
