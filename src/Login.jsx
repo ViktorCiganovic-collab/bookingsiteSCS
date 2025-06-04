@@ -9,6 +9,16 @@ import axios from "axios";
 import { jwtDecode } from 'jwt-decode';
 import { AuthContext } from './services/AuthProvider';
 
+// function parseJwt (token) {
+//     var base64Url = token.split('.')[1];
+//     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+//     var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+//         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+//     }).join(''));
+
+//     return JSON.parse(jsonPayload);
+// }
+
 function Login() {
   const [username, setUsername] = useState('');  
   const [password, setPassword] = useState('');
@@ -22,34 +32,31 @@ function Login() {
   event.preventDefault();
 
   try {
-    const response = await axios.post('http://localhost:5219/api/auth/login', {
-      username,
+    const response = await axios.post('http://3.90.225.16:5011/api/account/login', {
+      email: username,
       password
-    });
+    }
+  );
 
-    const token = response.data.accessToken;
-    localStorage.setItem('token', token);
+    const token = response.data.token;
+    localStorage.setItem('token', token);  
 
-    let isAdmin = false;
+    // const parsedToken = parseJwt(token);
+    // let isAdmin = parsedToken.role == "Admin";
+          
+    // Avkoda token med jwtDecode
+      const parsedToken = jwtDecode(token);
+      console.log(parsedToken)
+      // Exempel: kolla rollen
+      let isAdmin = (parsedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] == "Admin");
+      console.log(isAdmin)
 
-    // Försök nå admin-endpointen
-    try {
-      const protectedResponse = await axios.get('http://localhost:5219/api/auth/admin-only', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (protectedResponse.status === 200) {
-        isAdmin = true;
+      if (isAdmin) {
         setRole('Admin');
         setIsAuthenticated(true);
-        console.log("Admin-access bekräftad:", protectedResponse.data);
-        return navigate('/admin');  // Stoppa funktionen om admin
+        console.log("Admin-access bekräftad:");
+        navigate('/admin');  
       }
-    } catch (adminError) {
-      console.warn("Inte admin eller förbjuden åtkomst.", adminError);
-    }
 
     // Om vi har en token men inte admin, gå till user
     if (token && !isAdmin) {
@@ -87,7 +94,7 @@ useEffect(() => {
             <Form.Group className="mb-3">
               <Form.Label className='text-white'>Username</Form.Label>
               <Form.Control 
-                type="text" 
+                type="email" 
                 value={username} 
                 onChange={(e) => setUsername(e.target.value)} 
                 placeholder="Enter username" 

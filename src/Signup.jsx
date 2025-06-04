@@ -20,7 +20,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://localhost:5219/api/auth/register', {
+      const res = await axios.post('http://3.90.225.16:5011/api/account/register/', {
         username,
         password
       }); 
@@ -49,7 +49,7 @@ function Signup() {
                 <Form.Group className="mb-3" controlId="formFirstName">
                   <Form.Label>{t('firstName')} - Username</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="email"
                     name="firstName"              
                     value={username}
                     onChange={(event) => setUsername(event.target.value)}      
