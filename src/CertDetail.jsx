@@ -8,74 +8,66 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'; 
 
 export default function CertDetail() {
-  const { certId } = useParams(); 
+  const { certName, category } = useParams(); 
   const { t } = useTranslation(); 
 
-  // Hämta alla kurser från Itcourses-funktionen
-  const courses = Itcourses(); 
-
-  
-  const cert = courses
-    .map(course => course.certs) 
-    .flat() 
-    .find(certificate => certificate === certId); 
-
  
-  if (!cert) {
-    return (
-      <Container>
-        <h2>{t('certificate_not_found')}</h2> 
-      </Container>
-    );
-  }
-
-  const course = courses.find(course => course.certs.includes(cert));
-
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date); 
-  };
-
   return (
     <section className="py-5 detailSection">
       <Container>
         <Row>
-          <Col md={12} className="text-center mb-4">
-            <h2>{cert}</h2> 
-            <p>{course.description}</p> 
-            <img
-              src={course.image}
-              alt={course.courseName}
-              className="img-fluid mb-4 rounded shadow-sm"
-              style={{ maxHeight: '300px', objectFit: 'cover' }}
-            />
+          <Col md={5} className='text-center'>
+          <h1>{category}</h1>
+          <h3>{certName}</h3>
           </Col>
-          <Col md={6} className='detailinfoCert d-flex flex-column w-100 justify-content-center align-items-center'>
-            <h5>{t('details_for')} {cert}:</h5> 
-            <ul>
-              <li>{t('certificate_name')}: {cert}</li> 
-              <li>{t('description')}: {course.description}</li> 
-            </ul>
-            
-          
-            <div className="mt-4">
-              <h4 className='text-center'>{t('testTime')}</h4>
-              <Calendar
-                onChange={handleDateChange}
-                value={selectedDate}
-                minDate={new Date()} 
-                className="text-dark"
-              />
-            </div>
 
-         
-            {selectedDate && (
-              <div className="mt-3">
-                <p>{t('selected_date')}: {selectedDate.toLocaleDateString()}</p> 
-              </div>
-            )}
-          </Col>
+          <Col md={5}>
+  <div className="bg-light p-4 rounded shadow-sm">
+    <h5 className="mb-4 text-dark">Kursfakta</h5>
+    <table className="table table-borderless table-sm mb-4">
+      <tbody>
+        <tr>
+          <td><strong>Typ</strong></td>
+          <td>Öppen</td>
+        </tr>
+        <tr>
+          <td><strong>Längd</strong></td>
+          <td>1 tillfälle, 01:15 h</td>
+        </tr>
+        <tr>
+          <td><strong>Ditt pris</strong></td>
+          <td>750 kr exkl. moms</td>
+        </tr>
+        <tr>
+          <td><strong>Ord.pris</strong></td>
+          <td>1 500 kr exkl. moms</td>
+        </tr>
+        <tr>
+          <td><strong>Rabatt</strong></td>
+          <td>Kampanj, 50%</td>
+        </tr>
+        <tr>
+          <td><strong>Klippkort</strong></td>
+          <td>Ja</td>
+        </tr>
+        <tr>
+          <td><strong>Planerad</strong></td>
+          <td>1 orter</td>
+        </tr>
+        <tr>
+          <td><strong>Antal tillfällen</strong></td>
+          <td>9 tillfällen</td>
+        </tr>
+      </tbody>
+    </table>
+    <Button variant="primary" className="w-100">
+      Boka certifiering
+    </Button>
+  </div>
+</Col>
+
+
+      
         </Row>
       </Container>
     </section>

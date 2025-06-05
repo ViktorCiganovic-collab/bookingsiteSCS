@@ -29,6 +29,8 @@ useEffect(() => {
   // Filter courses based on category
   const currentCourse = courses.find(course => course.courseName === selectedCourse);
 
+  console.log("This is the one we are looking for:", currentCourse);
+
   const seeTestTimes = (certName) => {
     console.log("Clicked on:", certName);
     setSelectedCertificate(certName);
@@ -167,7 +169,11 @@ useEffect(() => {
           <ul className="list-group">
             {currentCourse.certs.map((cert, idx) => (
               <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
+                <Link to={`/cert/${cert}/${currentCourse.courseName}`}>
+                <span className='certStyling'>
                 {cert}
+                </span>
+                </Link>
                 <button className="btn btn-primary btn-sm" onClick={() => seeTestTimes(cert)}>
                   {t('view_available_timeslots')}
                 </button>

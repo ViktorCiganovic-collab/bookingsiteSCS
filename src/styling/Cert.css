@@ -102,11 +102,6 @@ h1 {
   justify-content: space-between;
 }
 
-
-.certificatepageSectionfour {
-  
-}
-
 .course-card .img-fluid {
   max-height: 200px;
   object-fit: cover;
@@ -139,4 +134,8 @@ h1 {
   .course-card-container .col-md-4 {
     flex: 0 0 100%;
   }
+}
+
+.certStyling {
+  cursor: pointer;
 }
