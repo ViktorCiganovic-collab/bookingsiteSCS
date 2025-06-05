@@ -22,7 +22,8 @@ function App() {
         </video>
         <div className="video-overlay">
           <h1>{t('welcome_message')}</h1>
-        </div>
+          <p>{t('subheadline')}</p>          
+        </div>        
       </div>
 
       <section className="mainpageSectiontwo py-5">
@@ -37,14 +38,14 @@ function App() {
                     alt={course.courseName}
                     className="img-fluid mb-3"
                     style={{
-                      height: '200px',
+                      height: 'auto',
                       objectFit: 'cover',
                       borderRadius: '6px'
                     }}
                   />
-                  <h3>{course.certs[0]}</h3>
-                  <p><strong>{t('category')}:</strong> {course.courseName} </p>
-                  <p>{course.description}</p>
+                  <h3 className='text-white'>{course.certs[0]}</h3>
+                  <p className='text-white'><strong>{t('category')}:</strong> {course.courseName} </p>
+                  <p className='text-white'>{course.description}</p>
                 </div>
               </Col>
             ))}

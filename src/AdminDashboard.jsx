@@ -59,10 +59,14 @@ const AdminDashboard = () => {
 
   const viewBookings = async () => {    
     setLoading(true);
+    const token = localStorage.getItem('token');
+
     try {
     const res = await axios.get('http://3.90.225.16:5011/api/booking', {
       headers: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
     });
     setBookings(res.data);

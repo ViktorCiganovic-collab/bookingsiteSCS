@@ -107,7 +107,7 @@ useEffect(() => {
               <blockquote className="blockquote">
                 <p>{t('course_description')}</p>
               </blockquote>
-              <figcaption className="blockquote-footer">
+              <figcaption className="blockquote-footer text-white">
                 {t('certification_explanation')}
               </figcaption>
             </figure>

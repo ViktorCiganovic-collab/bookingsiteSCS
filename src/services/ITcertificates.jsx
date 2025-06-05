@@ -1,11 +1,11 @@
-import dataAnalysisImg from '../assets/data_analysis.jpg';
+import dataAnalysisImg from '../assets/ITspecialist__.png';
 import devopsImg from '../assets/devops.jpg';
-import aiImg from '../assets/ai.jpg';
+import aiImg from '../assets/pexels-photo-2007647.jpeg';
 import cybersecurityImg from '../assets/cybersecurity.jpg';
-import cloudImg from '../assets/cloud.jpg';
-import webDevImg from '../assets/webdev.jpg';
-import networkingImg from '../assets/networking.jpg';
-import scriptingImg from '../assets/scripting.jpg';
+import cloudImg from '../assets/microsoftfundamentals.png';
+import webDevImg from '../assets/adobe_img.png'
+import networkingImg from '../assets/cisco_certified.jpg'
+import scriptingImg from '../assets/MOS-Bundle-800x800.jpg.webp';
 import agileImg from '../assets/agile.jpg';
 
 import { useTranslation } from 'react-i18next';
