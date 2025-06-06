@@ -11,7 +11,7 @@ function App() {
   
   // Anropa Itcourses-funktionen för att få kurserna som en array
   const courses = Itcourses();  // Här anropar vi Itcourses som en funktion
-  const threeCourses = courses.slice(0, 3); 
+  const threeCourses = courses.slice(3, 6); 
 
   return (
     <>
@@ -32,13 +32,12 @@ function App() {
           <Row>
             {threeCourses.map((course, index) => (
               <Col key={index} md={4}>
-                <div className="course-card h-100">
+                <div className="course-card">
                   <img
                     src={course.image}
                     alt={course.courseName}
-                    className="img-fluid mb-3"
-                    style={{
-                      height: 'auto',
+                    className="mb-3"
+                    style={{                      
                       objectFit: 'cover',
                       borderRadius: '6px'
                     }}
