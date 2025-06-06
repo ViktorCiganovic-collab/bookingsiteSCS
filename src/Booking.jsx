@@ -113,7 +113,8 @@ const Booking = () => {
       <p><strong>{t('course')}:</strong> {certificate}</p>
       <p><strong>{t('category')}:</strong> {category}</p>
       <p><strong>{t('Price')}:</strong> {price} SEK</p>
-      <p><strong>{t('Testtime')}:</strong> {new Date(decodeURIComponent(examStarttime)).toLocaleString()} - {new Date(decodeURIComponent(examEndtime)).toLocaleString()}</p>
+      <p><strong>{t('Testtime')}:</strong> {new Date(decodeURIComponent(examStarttime)).toLocaleString(undefined, { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })} - {new Date(decodeURIComponent(examEndtime)).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}</p>
+
 
       <Form className="text-center" onSubmit={handleBookingAndPayment}>
         <Form.Group className="mb-3">

@@ -8,29 +8,43 @@ import Itcourses from './services/ITcertificates';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; 
 
-
 export default function Cert() {
-  const { t } = useTranslation(); 
-  const [selectedCourse, setSelectedCourse] = useState('Microsoft Fundamentals');
+  const { t } = useTranslation();   
+  const [category, setCategory] = useState([]);
+  const [selectedcategory, setSelectedcategory] = useState('Microsoft Office Specialist');  
   const [selectedCertificate, setSelectedCertificate] = useState('');
-  const [allCourses, setAllCourses] = useState([]);
+  const [alltesttimes, setAlltesttimes] = useState([]);
   const [relevantCertificates, setRelevantCertificates] = useState([]);
+  const [error, setError] = useState(false);  
 
   // Get translated course array
   const courses = Itcourses(); // ✅ Function call to get data  
 
 useEffect(() => {
   axios.get('http://3.90.225.16:5011/api/examdate')
-    .then(res => setAllCourses(res.data))
+    .then(res => setAlltesttimes(res.data))
     .catch(err => console.error("Error fetching exam dates:", err));
 }, []);
 
+useEffect(() => {
+  const fetchCategories = async () => {
 
-  // Filter courses based on category
-  const currentCourse = courses.find(course => course.courseName === selectedCourse);
+    try {
+      const res = await axios.get('http://3.90.225.16:5011/api/category');
+      setCategory(res.data);
+      console.log(res.data);
+    }
+    catch (error) {
+      console.error('Kunde inte hämta kurser:', error);
+      setCategory([]);
+    }
+  }  
+  fetchCategories();
+}, []);
 
-  console.log("This is the one we are looking for:", currentCourse);
-
+  // Filter categories based on userchoice
+  const currentCategory = category.find(category => category.name === selectedcategory);
+ 
   const seeTestTimes = (certName) => {
     console.log("Clicked on:", certName);
     setSelectedCertificate(certName);
@@ -41,7 +55,7 @@ useEffect(() => {
   if (selectedCertificate) {
     console.log("🔍 Searching for certificate...:", selectedCertificate);
     
-    const filteredCertificates = allCourses.filter((course) =>
+    const filteredCertificates = alltesttimes.filter((course) =>
       course.certName.trim().toLowerCase() === selectedCertificate.trim().toLowerCase()
     );
 
@@ -53,7 +67,7 @@ useEffect(() => {
       console.log("❌ No available slots for:", selectedCertificate);
     }
   }
-}, [selectedCertificate, allCourses]);
+}, [selectedCertificate, alltesttimes]);
 
   function formatCurrency(price) {
     return new Intl.NumberFormat('sv-SE', {
@@ -138,75 +152,74 @@ useEffect(() => {
       <select
         id="courseFilter"
         className="form-select"
-        value={selectedCourse}
+        value={selectedcategory} 
         onChange={(e) => {
-          setSelectedCourse(e.target.value);
-          setSelectedCertificate('');
+        setSelectedcategory(e.target.value)
         }}
       >
         <option value="">{t('choose_course')}</option>
-        {courses.map((course, idx) => (
-          <option key={idx} value={course.courseName}>{course.courseName}</option>
+        {category.map((category, idx) => (
+          <option key={idx} value={category.name}>{category.name}</option>
         ))}
       </select>
     </div>
 
-    {/* Visar certifikat om en kurs är vald */}
-    {currentCourse && (
-      <Row className="mt-4">
-        <Col md={4} className="mb-4 text-center">
-          <h3>{currentCourse.courseName}</h3>
-          <p>{currentCourse.description}</p>
-          <img
-            src={currentCourse.image}
-            alt={currentCourse.courseName}
-            className="img-fluid mb-4 rounded shadow-sm"
-            style={{ maxHeight: "300px", objectFit: "cover" }}
-          />
-        </Col>
-        <Col md={7}>
-          <h5>{t('certifications_for_this_course')}</h5>
-          <ul className="list-group">
-            {currentCourse.certs.map((cert, idx) => (
-              <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
-                <Link to={`/cert/${cert}/${currentCourse.courseName}`}>
-                <span className='certStyling'>
-                {cert}
-                </span>
-                </Link>
-                <button className="btn btn-primary btn-sm" onClick={() => seeTestTimes(cert)}>
-                  {t('view_available_timeslots')}
-                </button>
-              </li>
-            ))}
-          </ul>
+    {/* Visar certifikat inom kategorin om en kategori är vald */}
+    {selectedcategory && currentCategory ? (
+  <Row className="mt-4">
+    <Col md={4} className="mb-4 text-center">
+      <h3>{currentCategory.name}</h3>
+      <p>{currentCategory.description}</p>
+      <img
+        src={currentCategory.image}
+        alt={currentCategory.name}
+        className="img-fluid mb-4 rounded shadow-sm"
+        style={{ maxHeight: "300px", objectFit: "cover" }}
+      />
+    </Col>
+    <Col md={7}>
+      <h5>{t('certifications_for_this_course')}</h5>
+      <ul className="list-group">
+       {currentCategory.certs.map((cert) => (
+  <li key={cert.id || cert.name} className="list-group-item d-flex justify-content-between align-items-center">
+    <Link to={`/cert/${encodeURIComponent(cert.name)}/${cert.price}/${cert.categoryId}`}>
+      <span className='certStyling'>{cert.name}</span>
+    </Link>
+    <button className='btn btn-primary' onClick={() => seeTestTimes(cert.name)}>{t('view_available_timeslots')}</button>
+  </li>
+))}
+      </ul>
+      {relevantCertificates && relevantCertificates.length > 0 ? (
+  <div className="mt-4">
+    <h5>{t('available_exam_times')} {selectedCertificate}</h5>
+    <ul className="list-group">
+      {relevantCertificates.map((certificate, idx) => (
+        <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
+          <span>
+            <strong>
+              {new Date(certificate.examStartingTime).toLocaleString()} - {new Date(certificate.examEndingTime).toLocaleTimeString()}
+            </strong>
+          </span>
+          {t('Price')} ({formatCurrency(certificate.price)})
+          <Link to={`/booking/${certificate.category}/${certificate.id}/${encodeURIComponent(certificate.certName)}/${certificate.price}/${encodeURIComponent(certificate.examStartingTime)}/${encodeURIComponent(certificate.examEndingTime)}`}>
+            <button className='btn btn-primary' style={{ padding: "5px", borderRadius: "5px" }}>
+              {t('book_time')}
+            </button>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </div>
+) : selectedCertificate ? (
+  <p className="mt-4 text-danger">{t('no_exam_dates_available')}</p>
+) : null}
 
-          {relevantCertificates && relevantCertificates.length > 0 ? (
-            <div className="mt-4">
-              <h5>{t('available_exam_times')} {selectedCertificate}</h5>
-              <ul className="list-group">
-                {relevantCertificates.map((certificate, idx) => (
-                  <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
-                    <span>
-                      <strong>{new Date(certificate.examStartingTime).toLocaleString()} - {new Date(certificate.examEndingTime).toLocaleTimeString()}</strong>
-                    </span>
-                    {t('Price')} ({formatCurrency(certificate.price)})
-                   <Link to={`/booking/${certificate.category}/${certificate.id}/${encodeURIComponent(certificate.certName)}/${certificate.price}/${encodeURIComponent(certificate.examStartingTime)}/${encodeURIComponent(certificate.examEndingTime)}`}>
-                      <button className='btn btn-primary' style={{ padding: "5px", borderRadius: "5px" }}>
-                      {t('book_time')}
-                      </button>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : selectedCertificate ? (
-            <p className="mt-4 text-danger">{t('no_exam_dates_available')}</p>
-          ) : null}
+    </Col>
+  </Row>
+) : selectedcategory ? (
+  <p className="text-danger text-center">{t('category_not_found')}</p>
+) : null}
 
-        </Col>
-      </Row>
-    )}
   </Container>
 </section>
 
