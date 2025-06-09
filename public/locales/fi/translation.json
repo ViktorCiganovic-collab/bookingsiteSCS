@@ -127,6 +127,7 @@
    "logout": "Kirjaudu ulos",
    "questionlogout": "Haluatko kirjautua ulos?",
    "secondquerylogout": "Oletko varma, että haluat kirjautua ulos hallintapaneelista?",
+   "secondquerylogoutusers": "Oletko varma, että haluat kirjautua ulos Userdashboardista?",
    "cancel": "Peruuta",
    "welcomeUserDashboard": "Tervetuloa käyttäjäsivullesi",
    "myPages": "Omat sivut",

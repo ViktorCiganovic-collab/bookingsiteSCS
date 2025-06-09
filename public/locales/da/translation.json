@@ -127,6 +127,7 @@
    "logout": "Log ud",
    "questionlogout": "Vil du logge ud?",
    "secondquerylogout": "Er du sikker på, at du vil logge ud fra adminpanelet?",
+   "secondquerylogoutusers": "Er du sikker på, at du vil logge ud af Userdashboard?",
    "cancel": "Annuller",
    "welcomeUserDashboard": "Velkommen til din brugerside",
     "myPages": "Min side",

@@ -12,7 +12,7 @@ function Signup() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [registered, setRegistered] = useState(false);    
   
@@ -21,7 +21,7 @@ function Signup() {
 
     try {
       const res = await axios.post('http://3.90.225.16:5011/api/account/register/', {
-        username,
+        email,
         password
       }); 
       setRegistered(true);
@@ -47,13 +47,13 @@ function Signup() {
 
               <Form className="my-5" onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formFirstName">
-                  <Form.Label>{t('firstName')} - Username</Form.Label>
+                  <Form.Label>Email - Username</Form.Label>
                   <Form.Control
                     type="email"
                     name="firstName"              
-                    value={username}
-                    onChange={(event) => setUsername(event.target.value)}      
-                    placeholder={t('enterFirstName')}
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}      
+                    placeholder={t('enterEmail')}
                     required
                   />
                 </Form.Group>

@@ -34,7 +34,7 @@ const handleLogout = () => {
         <Modal.Header closeButton>
           <Modal.Title>{t('questionlogout')}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{t('secondquerylogout')}</Modal.Body>
+        <Modal.Body>{t('secondquerylogoutusers')}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             {t('cancel')}
