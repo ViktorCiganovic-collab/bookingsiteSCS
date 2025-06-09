@@ -1,9 +1,9 @@
 import './styling/App.css';
-import backgroundVideo from './assets/background_second.mp4';
+import backgroundVideo from './assets/background_landingpage_.mp4';
 import './styling/Main.css';
 import Itcourses from './services/ITcertificates'; 
 import { Container, Row, Col } from 'react-bootstrap';
-import thirdImg from './assets/websiteImg.jpg';
+import thirdImg from './assets/webdev_img.webp';
 import { useTranslation } from 'react-i18next';
 
 function App() {

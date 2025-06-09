@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 export default function Cert() {
   const { t } = useTranslation();   
   const [category, setCategory] = useState([]);
-  const [selectedcategory, setSelectedcategory] = useState('Microsoft Office Specialist');  
+  const [selectedcategory, setSelectedcategory] = useState('');  
   const [selectedCertificate, setSelectedCertificate] = useState('');
   const [alltesttimes, setAlltesttimes] = useState([]);
   const [relevantCertificates, setRelevantCertificates] = useState([]);
@@ -76,6 +76,17 @@ useEffect(() => {
       minimumFractionDigits: 0,
     }).format(price);
   }
+
+  useEffect(() => {
+  const savedCategory = localStorage.getItem('selectedcategory');
+  if (savedCategory) {
+    setSelectedcategory(savedCategory);
+  }
+}, []);
+
+useEffect(() => {
+  localStorage.setItem('selectedcategory', selectedcategory);
+}, [selectedcategory]);
 
   
   return (
@@ -147,7 +158,7 @@ useEffect(() => {
     <h2 className="text-center mb-4">{t('search_for_certificates')}</h2>
 
     <div className="mb-4 mx-auto" style={{ maxWidth: "600px" }}>
-      {/* Kurs-select, alltid synlig */}
+      {/* Kategori-select, alltid synlig */}
       <label htmlFor="courseFilter" className="form-label">{t('choose_category')}</label>
       <select
         id="courseFilter"
@@ -157,7 +168,7 @@ useEffect(() => {
         setSelectedcategory(e.target.value)
         }}
       >
-        <option value="">{t('choose_course')}</option>
+        
         {category.map((category, idx) => (
           <option key={idx} value={category.name}>{category.name}</option>
         ))}
