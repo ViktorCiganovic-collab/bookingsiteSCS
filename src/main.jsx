@@ -39,7 +39,7 @@ const router = createBrowserRouter([
         element: <Cert />,
       },
       {
-        path: 'cert/:certname/:certtestprice/:certcategory',
+        path: 'cert/:certname/:description/:certtestprice/:certcategory',
         element: <CertDetail />,
       },
       {

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import './styling/CertDetail.css';
 
 export default function CertDetail() {
-  const { certname, certtestprice, certcategory } = useParams();
+  const { certname, description, certtestprice, certcategory } = useParams();
   const decodedCertName = decodeURIComponent(certname);
   const { t } = useTranslation();
 
@@ -43,6 +43,7 @@ export default function CertDetail() {
           <h1>{decodedCertName}</h1>
           <h3>Kurskategori:{' '}
               {selectedCategory ? selectedCategory.name : 'Laddar kategori...'}</h3>
+          <p>{description}</p>
           </Col>
 
           <Col md={5}>

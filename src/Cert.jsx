@@ -193,7 +193,7 @@ useEffect(() => {
       <ul className="list-group">
        {currentCategory.certs.map((cert) => (
   <li key={cert.id || cert.name} className="list-group-item d-flex justify-content-between align-items-center">
-    <Link to={`/cert/${encodeURIComponent(cert.name)}/${cert.price}/${cert.categoryId}`}>
+    <Link to={`/cert/${encodeURIComponent(cert.name)}/${cert.description}/${cert.price}/${cert.categoryId}`}>
       <span className='certStyling'>{cert.name}</span>
     </Link>
     <button className='btn btn-primary' onClick={() => seeTestTimes(cert.name)}>{t('view_available_timeslots')}</button>

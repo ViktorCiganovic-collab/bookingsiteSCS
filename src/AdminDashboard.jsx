@@ -426,6 +426,20 @@ const DeleteCategory = async (e) => {
 
   }, [activeSection]);
 
+const formatDate = (date) =>
+  new Intl.DateTimeFormat('sv-SE', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(date);
+
+const formatTime = (date) =>
+  new Intl.DateTimeFormat('sv-SE', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(date);
+
  const renderContent = () => {
   if (loading) {
   return (
@@ -443,13 +457,18 @@ const DeleteCategory = async (e) => {
           <h2>Visa bokningar</h2>
 
           <div className='flexelementsBookings'>
-          {bookings.map((booking) => (
-            <div className='booking'>
-              <p>Test: {booking.certName}</p>
-              <p>Namn: {booking.customerFirstName} {booking.customerLastName}</p>
-              <p>Testtid: {booking.examStartingTime} - {booking.examEndingTime}</p>
+                {bookings.map((booking, index) => {
+          const startingTime = new Date(booking.examStartingTime);
+          const endingTime = new Date(booking.examEndingTime);
+
+          return (
+            <div key={index} className='booking'>
+              <p>Certifikat: {booking.certName}</p>
+              <p>Kund: {booking.customerFirstName} {booking.customerLastName}</p>
+              <p>Testtid: {formatDate(startingTime)} kl. {formatTime(startingTime)} - {formatTime(endingTime)}</p>
             </div>
-          ))}
+          );
+        })}
           </div>
 
         </div>
