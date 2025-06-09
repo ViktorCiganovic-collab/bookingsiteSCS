@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Nav } from 'react-bootstrap';
 import './styling/UserDashboard.css';
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
@@ -14,6 +15,20 @@ const [show, setShow] = useState(false);
 const navigate = useNavigate();
 const { t } = useTranslation();
 
+  const [expanded, setExpanded] = useState({
+    bookings: false,
+    certificates: false,
+    testtimes: false,    
+    logout: false,
+  });
+
+  const toggleSection = (section) => {
+    setExpanded(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
 
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
@@ -26,9 +41,57 @@ const handleLogout = () => {
   }
 
   return (
-    <div className="userDashboard">
-      <h2>{t('welcomeUserDashboard')}!</h2>
-      <button className='btn btn-primary' onClick={handleShow}>{t('logout')}</button>
+    <div className="userDashboard" style={{ display: 'flex', height: '100vh'}}>
+      <Nav className="flex-column sidepanel">
+        <div className="sidebar-group">
+          <div className="sidebar-title" onClick={() => toggleSection('bookings')}>
+            🗂️ Mina bokningar
+          </div>
+                    {expanded.bookings && (
+                      <>
+                        <Nav.Link className="sidebar-link">
+                          Visa bokningar
+                        </Nav.Link>                      
+                      </>
+                    )}
+        </div>
+
+        <div className="sidebar-group">
+          <div className="sidebar-title" onClick={() => toggleSection('certificates')}>
+            🎓 Certifikat
+          </div>
+              {expanded.bookings && (
+              <>
+              <Nav.Link className="sidebar-link">
+              Visa bokningar
+              </Nav.Link>                      
+              </>
+              )}
+        </div>
+
+        <div className="sidebar-group">
+                    <div className="sidebar-title" onClick={() => toggleSection('testtimes')}>
+            ⏰ Testtillfällen
+          </div>
+        </div>
+
+        <div className="sidebar-group">
+                    <div className="sidebar-title" onClick={handleShow}>
+            🚪 {t('logout')}
+          </div>
+        </div>
+
+      </Nav>
+
+      <main
+        style={{ 
+          flexGrow: 1, 
+          overflowY: 'auto', 
+          padding: '2rem',         
+        }}
+        className='userdashboard_mainpart'
+      >
+      <h2>{t('welcomeUserDashboard')}!</h2>      
 
         <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -44,6 +107,8 @@ const handleLogout = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      </main>
+      
     </div>
   );
 }

@@ -1,10 +1,15 @@
 
-.userDashboard {
-width: 100%;
-min-height: 100vh;
-background-color: var(--secondary-bg);
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+.sidepanel {
+  width: 250px;
+  min-width: 250px;
+  height: 100vh;
+  padding: 1rem;
+  border-right: 1px solid #ddd;
+  background-color: #f8f9fa;
+}
+
+.userdashboard_mainpart {
+  background-image: url('../assets/bookings_bg.jpg');
+      background-size: cover;
+    background-position: center;
 }

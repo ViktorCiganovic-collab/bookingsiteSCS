@@ -57,6 +57,20 @@ const AdminDashboard = () => {
       fetchCourses();
     }, []); //när sidan laddar första gången hämta certifikatkategorier från servern
 
+  const formatDate = (date) =>
+  new Intl.DateTimeFormat('sv-SE', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(date);
+
+const formatTime = (date) =>
+  new Intl.DateTimeFormat('sv-SE', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(date);
+
   const viewBookings = async () => {    
     setLoading(true);
     const token = localStorage.getItem('token');
@@ -426,19 +440,6 @@ const DeleteCategory = async (e) => {
 
   }, [activeSection]);
 
-const formatDate = (date) =>
-  new Intl.DateTimeFormat('sv-SE', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  }).format(date);
-
-const formatTime = (date) =>
-  new Intl.DateTimeFormat('sv-SE', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  }).format(date);
 
  const renderContent = () => {
   if (loading) {
@@ -664,14 +665,25 @@ const formatTime = (date) =>
         <div>
           <h2>Visa testtider</h2>
           <div className=''>
-            {testtimes.map((testtime) => (
+            {testtimes.map((testtime) => {
+            const startingTime = new Date(testtime.examStartingTime);
+            const endingTime = new Date(testtime.examEndingTime);
+            const sameDay = startingTime.toDateString() === endingTime.toDateString();
+
+            return (
               <div key={testtime.id} className="cert">
-                <p>Testtid-ID: {testtime.id}</p>
-                <p>Kategori: {testtime.category}</p>
+                <p>
+                  Testtid: {formatDate(startingTime)} kl. {formatTime(startingTime)} -{" "}
+                  {sameDay ? formatTime(endingTime) : `${formatDate(endingTime)} kl. ${formatTime(endingTime)}`}
+                </p>                
                 <p>Certifikat: {testtime.certName}</p>
+                <p>Kategori: {testtime.category}</p>                             
                 <p>Pris: {testtime.price} kr</p>
+                <p>Testtid-ID: {testtime.id}</p>   
               </div>
-            ))}
+            );
+          })}
+
           </div>
         </div>
       );
