@@ -34,6 +34,9 @@ const Booking = () => {
   const [lastname, setLastname] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [includeMaterial, setIncludeMaterial] = useState(false);
+  const [includeTest, setIncludeTest] = useState(false);
+  const [accprice, setAccprice] = useState(Number(price));
   const [error, setError] = useState(null);
   const [confirmed, setConfirmed] = useState(false);
   const { t } = useTranslation();
@@ -59,7 +62,7 @@ const Booking = () => {
     try {
       // 1. Skapa paymentIntent via backend
       const paymentIntentResponse = await axios.post('https://the-backend-url/api/payments/create-payment-intent', {
-        amount: parseInt(price) * 100, // SEK till öre
+        amount: parseInt(accprice) * 100, // SEK till öre
         testId: id,
       });
 
@@ -107,12 +110,30 @@ const Booking = () => {
   }
   };
 
+  const handleMaterialToggle = (checked) => {
+    if (checked) {
+      setAccprice((prev) => prev + 100);
+    } 
+    else {
+      setAccprice((prev) => prev - 100);
+    }
+  }
+
+  const handleTestToggle = (checked) => {
+    if (checked) {
+      setAccprice((prev) => prev + 100)
+    } 
+    else { 
+      setAccprice((prev) => prev - 100)
+    }
+  }
+
   return (
     <div className="bookingSectionone d-flex flex-column justify-content-center align-items-center">
       <h2>{t('booking')}</h2>
       <p><strong>{t('course')}:</strong> {certificate}</p>
       <p><strong>{t('category')}:</strong> {category}</p>
-      <p><strong>{t('Price')}:</strong> {price} SEK</p>
+      <p><strong>{t('Price')}:</strong> {accprice} SEK</p>
       <p><strong>{t('Testtime')}:</strong> {new Date(decodeURIComponent(examStarttime)).toLocaleString(undefined, { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })} - {new Date(decodeURIComponent(examEndtime)).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}</p>
 
 
@@ -137,8 +158,30 @@ const Booking = () => {
           <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </Form.Group>
 
+        <Form.Check 
+          type="checkbox" 
+          label="Lägg till övningsmaterial (+100 SEK)" 
+          checked={includeMaterial} 
+          onChange={(e) => {
+          const checked = e.target.checked;
+          setIncludeMaterial(checked);
+          handleMaterialToggle(checked); 
+  }} 
+        />
+
+        <Form.Check
+          type="checkbox"
+          label="Lägg till övningstest (+100 SEK)"
+          checked={includeTest}
+          onChange={(e) => {
+            const checked = e.target.checked;
+            setIncludeTest(checked);
+            handleTestToggle(checked);
+          }}
+          />
+
         {/* Kortfält */}
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3 mt-3">
           <Form.Label>Kortinformation</Form.Label>
           <div style={{ border: '1px solid #ccc', padding: '5px', width: '100%' }}>
             <CardElement options={CARD_ELEMENT_OPTIONS} />
