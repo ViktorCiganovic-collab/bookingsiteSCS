@@ -158,6 +158,7 @@ const Booking = () => {
           <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </Form.Group>
 
+        <div className='d-flex justify-content-start gap-3'>
         <Form.Check 
           type="checkbox" 
           label="Lägg till övningsmaterial (+100 SEK)" 
@@ -166,7 +167,7 @@ const Booking = () => {
           const checked = e.target.checked;
           setIncludeMaterial(checked);
           handleMaterialToggle(checked); 
-  }} 
+          }} 
         />
 
         <Form.Check
@@ -179,6 +180,7 @@ const Booking = () => {
             handleTestToggle(checked);
           }}
           />
+          </div>
 
         {/* Kortfält */}
         <Form.Group className="mb-3 mt-3">
