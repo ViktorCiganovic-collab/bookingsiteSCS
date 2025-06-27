@@ -17,12 +17,11 @@ function Login() {
   const navigate = useNavigate();
   const { role, setRole, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
-
   const handleSubmit = async (event) => {
   event.preventDefault();
 
   try {
-    const response = await axios.post('http://3.90.225.16:5011/api/account/login', {
+    const response = await axios.post('http://localhost:5011/api/account/login', {
       email: username,
       password
     }

@@ -21,6 +21,7 @@ const AdminDashboard = () => {
   const [category, setCategory] = useState([]);
   const [selectedcategory, setSelectedcategory] = useState('');
   const [name, setName] = useState('');
+  const [certDesc, setCertDesc] = useState('');
   const [price, setPrice] = useState('');
   const [certId, setCertId] = useState('');
   const [starttime, setStarttime] = useState('');
@@ -45,7 +46,7 @@ const AdminDashboard = () => {
   useEffect(() => {
       const fetchCourses = async () => {
         try {
-          const res = await axios.get('http://3.90.225.16:5011/api/category');
+          const res = await axios.get('http://localhost:5011/api/category');
           setCategory(res.data);
           console.log(res.data);
         } catch (error) {
@@ -76,7 +77,7 @@ const formatTime = (date) =>
     const token = localStorage.getItem('token');
 
     try {
-    const res = await axios.get('http://3.90.225.16:5011/api/booking', {
+    const res = await axios.get('http://localhost:5011/api/booking', {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -100,7 +101,7 @@ const formatTime = (date) =>
   const fetchCertificates = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://3.90.225.16:5011/api/cert');
+      const res = await axios.get('http://localhost:5011/api/cert');
       setCertificates(res.data);
       console.log(res.data);
       setError(null);
@@ -126,11 +127,12 @@ const formatTime = (date) =>
   const certificate = {
     CategoryId: selectedcategory,
     CertName: name,
+    CertDescription: certDesc,
     Price: price, 
   };
 
   try {
-    const res = await axios.post('http://3.90.225.16:5011/api/cert', certificate, {
+    const res = await axios.post('http://localhost:5011/api/cert', certificate, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -142,6 +144,7 @@ const formatTime = (date) =>
     setName('');    
     setSelectedcategory('');
     setPrice('');
+    setCertDesc('');
     setResponse(true);
   } catch (error) {
     setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
@@ -160,11 +163,12 @@ const Editcertificate = async (e) => {
     Id: Number(certId),
     CategoryId: Number(selectedcategory),
     CertName: name,
+    CertDescription: certDesc,
     price: Number(price)
   };
 
   try {
-    const res = await axios.put(`http://3.90.225.16:5011/api/cert/${updatedCertificate.Id}`, updatedCertificate, {
+    const res = await axios.put(`http://localhost:5011/api/cert/${updatedCertificate.Id}`, updatedCertificate, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -192,7 +196,7 @@ const Editcertificate = async (e) => {
     return;}
 
     try {
-      const res = await axios.delete(`http://3.90.225.16:5011/api/cert/${Number(certId)}`, {
+      const res = await axios.delete(`http://localhost:5011/api/cert/${Number(certId)}`, {
         headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -210,7 +214,7 @@ const Editcertificate = async (e) => {
   const fetchTestTimes = async () => {
   setLoading(true);
   try {
-    const res = await axios.get('http://3.90.225.16:5011/api/ExamDate');
+    const res = await axios.get('http://localhost:5011/api/ExamDate');
     setTesttimes(res.data);
     console.log(res.data);
     setError(null);
@@ -240,7 +244,7 @@ const Editcertificate = async (e) => {
       };
 
       try {
-        const res = await axios.post('http://3.90.225.16:5011/api/ExamDate', testTime, {
+        const res = await axios.post('http://localhost:5011/api/ExamDate', testTime, {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -277,7 +281,7 @@ const Editcertificate = async (e) => {
       };
 
       try {
-        const res = await axios.put(`http://3.90.225.16:5011/api/ExamDate/${updatedTestTime.id}`, updatedTestTime, {
+        const res = await axios.put(`http://localhost:5011/api/ExamDate/${updatedTestTime.id}`, updatedTestTime, {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -315,7 +319,7 @@ const Editcertificate = async (e) => {
       // };
 
       try {
-        const res = await axios.delete(`http://3.90.225.16:5011/api/ExamDate/${testTimeId}`);
+        const res = await axios.delete(`http://localhost:5011/api/ExamDate/${testTimeId}`);
         setResponse('Testtiden har raderats!');
         setError(null);
       }   
@@ -341,7 +345,7 @@ const Editcertificate = async (e) => {
       };
 
       try {
-        const res = await axios.post('http://3.90.225.16:5011/api/category', newCategory, {
+        const res = await axios.post('http://localhost:5011/api/category', newCategory, {
           headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -377,7 +381,7 @@ const Editcertificate = async (e) => {
   }; //uppdatera en kategori 
 
   try {
-    const res = await axios.put(`http://3.90.225.16:5011/api/category/${selectedcategory}`, updatedCategory, {
+    const res = await axios.put(`http://localhost:5011/api/category/${selectedcategory}`, updatedCategory, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -406,7 +410,7 @@ const DeleteCategory = async (e) => {
   }
 
   try {
-    const res = await axios.delete(`http://3.90.225.16:5011/api/category/${selectedcategory}`, {
+    const res = await axios.delete(`http://localhost:5011/api/category/${selectedcategory}`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -530,6 +534,18 @@ const DeleteCategory = async (e) => {
         onChange={(e) => setName(e.target.value)}
         required
       />
+    </div>
+
+    <div className="mb-3">
+        <label className='form-label'>Certifieringsbeskrivning</label>
+        <input
+        type="text"
+        className='form-control text-center'
+        value={certDesc}
+        onChange={(e) => setCertDesc(e.target.value)}
+        required
+         />
+
     </div>
 
     <div className="mb-3">

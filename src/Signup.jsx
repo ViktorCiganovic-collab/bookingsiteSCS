@@ -20,7 +20,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://3.90.225.16:5011/api/account/register/', {
+      const res = await axios.post('http://localhost:5011/api/account/register/', {
         email,
         password
       }); 

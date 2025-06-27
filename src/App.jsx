@@ -21,7 +21,7 @@ function App() {
           {t('video_not_supported')}
         </video>
         <div className="video-overlay">
-          <h1>{t('welcome_message')}</h1>
+          <h1>{t('welcome_message')} Scandinavian Certificate Services</h1>
           <p>{t('subheadline')}</p>          
         </div>        
       </div>

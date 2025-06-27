@@ -44,7 +44,8 @@ const Booking = () => {
 
 
   const stripe = useStripe();
-  const elements = useElements();
+  const elements = useElements(); 
+
 
   const handleBookingAndPayment = async (event) => {
     event.preventDefault();
@@ -55,16 +56,31 @@ const Booking = () => {
     return;
     }
 
+    const token = localStorage.getItem("token"); // Hämta token
+
+  if (!token) {
+    setError("Du är inte inloggad. Logga in först.");
+    setLoading(false);
+    return;
+  }
+
     setError(null);
     setConfirmed(false);
     setLoading(true);
 
     try {
       // 1. Skapa paymentIntent via backend
-      const paymentIntentResponse = await axios.post('https://the-backend-url/api/payments/create-payment-intent', {
+      const paymentIntentResponse = await axios.post('http://localhost:5011/payment/create-payment-intent', {
         amount: parseInt(accprice) * 100, // SEK till öre
         testId: id,
-      });
+      }, 
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }
+      }
+    );
 
       const clientSecret = paymentIntentResponse.data.clientSecret;
 
@@ -92,8 +108,9 @@ const Booking = () => {
           customerPassword: password,
         };
 
-        await axios.post('https://your-backend-url/api/booking', customerBooking, {
+        await axios.post('http://localhost:5011/api/booking', customerBooking, {
           headers: {
+             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
             'Accept': 'application/json',
           }

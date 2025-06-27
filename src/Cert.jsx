@@ -15,13 +15,14 @@ export default function Cert() {
   const [selectedCertificate, setSelectedCertificate] = useState('');
   const [alltesttimes, setAlltesttimes] = useState([]);
   const [relevantCertificates, setRelevantCertificates] = useState([]);
+  const [hoveredCategory, setHoveredCategory] = useState(null);
   const [error, setError] = useState(false);  
 
   // Get translated course array
   const courses = Itcourses(); // ✅ Function call to get data  
 
 useEffect(() => {
-  axios.get('http://3.90.225.16:5011/api/examdate')
+  axios.get('http://localhost:5011/api/examdate')
     .then(res => setAlltesttimes(res.data))
     .catch(err => console.error("Error fetching exam dates:", err));
 }, []);
@@ -30,7 +31,7 @@ useEffect(() => {
   const fetchCategories = async () => {
 
     try {
-      const res = await axios.get('http://3.90.225.16:5011/api/category');
+      const res = await axios.get('http://localhost:5011/api/category');
       setCategory(res.data);
       console.log(res.data);
     }
@@ -143,13 +144,53 @@ useEffect(() => {
 
         <Container>
           <Row>
-            {courses.map((course) => (
-              <Col md={4} className='course-card my-3' key={course.courseName}>
-                {course.courseName}
-                <img src={course.image} alt={course.courseName}></img>
-              </Col>
-            ))}
-          </Row>
+  {courses.map((course, index) => (
+    <Col
+      md={4}
+      className="course-card my-3"
+      key={course.courseName}
+      onMouseEnter={() => setHoveredCategory(index)}
+      onMouseLeave={() => setHoveredCategory(null)}
+      style={{ position: 'relative', overflow: 'hidden' }}
+    >
+      <div className="card-base" style={{ height: '100%' }}>
+        <h4>{course.courseName}</h4>
+        <img
+          src={course.image}
+          alt={course.courseName}
+          style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+        />
+      </div>
+
+      <div
+        className="hover-overlay"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          color: 'white',
+          opacity: hoveredCategory === index ? 1 : 0,
+          visibility: hoveredCategory === index ? 'visible' : 'hidden',
+          transition: 'opacity 0.3s ease, visibility 0.3s ease',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          padding: '1rem'
+        }}
+      >
+        <div>
+          <h5>{course.description}</h5>         
+        </div>
+      </div>
+    </Col>
+  ))}
+</Row>
+
+
         </Container>
       </section>
 

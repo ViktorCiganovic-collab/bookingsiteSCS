@@ -16,7 +16,7 @@ export default function CertDetail() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('http://3.90.225.16:5011/api/category');
+        const res = await axios.get('http://localhost:5011/api/category');
         setCategory(res.data);
       } catch (error) {
         console.error('Kunde inte hämta kurser:', error);
