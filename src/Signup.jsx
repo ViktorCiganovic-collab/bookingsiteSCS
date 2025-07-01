@@ -14,6 +14,10 @@ function Signup() {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [personalNumber, setPersonalNumber] = useState('');
+  const [address, setAddress] = useState('');
   const [registered, setRegistered] = useState(false);    
   
   const handleSubmit = async (e) => {
@@ -22,7 +26,11 @@ function Signup() {
     try {
       const res = await axios.post('http://localhost:5011/api/account/register/', {
         email,
-        password
+        password,
+        firstName,
+        lastName,
+        personalNumber,
+        address
       }); 
       setRegistered(true);
       setError(null);
@@ -45,31 +53,73 @@ function Signup() {
             <Col md={6}>
               <h2 className="text-center my-5 mb-4">{t('register')}</h2>
 
-              <Form className="my-5" onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formFirstName">
+              <Form onSubmit={handleSubmit}>
+
+                <Form.Group className='mb-3' controlId="formFirstName">
+                  <Form.Label>Firstname</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder='Your firstname'
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group className='mb-3' controlId='formLastName'>
+                  <Form.Label>Lastname</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    placeholder='Your lastname'
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formPersonalNumber">
+                  <Form.Label>Personnummer</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={personalNumber}
+                    onChange={(e) => setPersonalNumber(e.target.value)}
+                    placeholder="ÅÅÅÅMMDD-XXXX"
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formAddress">
+                  <Form.Label>Adress</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="Ange adress"
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formEmail">
                   <Form.Label>Email - Username</Form.Label>
                   <Form.Control
                     type="email"
-                    name="firstName"              
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}      
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder={t('enterEmail')}
                     required
                   />
                 </Form.Group>
 
-
                 <Form.Group className="mb-3" controlId="formPassword">
                   <Form.Label>{t('password')}</Form.Label>
                   <Form.Control
                     type="password"
-                    name="password" 
                     value={password}
-                    onChange={(event) => setPassword(event.target.value)}                   
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder={t('enterPassword')}
                     required
                   />
-                </Form.Group>        
+                </Form.Group>
 
                 {error && <p style={{ color: 'red' }}>{error}</p>}
 
@@ -77,18 +127,19 @@ function Signup() {
                   {t('register')}
                 </Button>
 
-                
-                 {registered && (
-                <div>            
-                <p style={{color: 'green'}}>Ditt medlemskap har registrerats</p>
-                <p style={{color: 'white'}}>Vill du logga in?</p> 
-                <Link to="/login" className="btn btn-primary">Login</Link>       
-                </div>)}
               </Form>
+
+              {registered && (
+                <div className="mt-3">
+                  <p style={{ color: 'green' }}>Ditt medlemskap har registrerats</p>
+                  <p style={{ color: 'white' }}>Vill du logga in?</p>
+                  <Link to="/login" className="btn btn-primary">Login</Link>
+                </div>
+              )}
+
             </Col>
-          </Row>    
+          </Row>
         </Container>
-     
       </section>
     </div>
   );
