@@ -5,6 +5,7 @@ import Itcourses from './services/ITcertificates';
 import { Container, Row, Col } from 'react-bootstrap';
 import thirdImg from './assets/testworkingenvironment.png';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 function App() {
   const { t } = useTranslation();
@@ -21,8 +22,8 @@ function App() {
           {t('video_not_supported')}
         </video>
         <div className="video-overlay">
-          <h1>{t('welcome_message')} Scandinavian Certificate Services</h1>
-          <p>{t('subheadline')}</p>          
+          <h1 data-aos="zoom-in" data-aos-duration="1000">{t('welcome_message')} Scandinavian Certificate Services</h1>
+          <p data-aos="fade-up">{t('subheadline')}</p>          
         </div>        
       </div>
 
@@ -32,8 +33,9 @@ function App() {
           <Row>
             {threeCourses.map((course, index) => (
               <Col key={index} md={4}>
-                <div className="course-card">
-                  <img
+                <div className="course-card" data-aos="slide-up">
+                  
+                                   <img
                     src={course.image}
                     alt={course.courseName}
                     className="mb-3"
@@ -41,7 +43,8 @@ function App() {
                       objectFit: 'cover',
                       borderRadius: '6px'
                     }}
-                  />
+                  />            
+                 
                   <h3 className='text-white'>{course.certs[0]}</h3>
                   <p className='text-white'><strong>{t('category')}:</strong> {course.courseName} </p>
                   <p className='text-white'>{course.description}</p>

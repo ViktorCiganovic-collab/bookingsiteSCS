@@ -28,7 +28,7 @@ const Itcourses = () => {
       ]
     },
     {
-      courseName: "Microsoft Fundamentals",
+      courseName: "Microsoft Fundamentals Certifieringar",
       category: t('it_pros'),
       description: t("fundamentals_description"),
       image: cloudImg,
@@ -71,7 +71,7 @@ const Itcourses = () => {
       ]
     },
     {
-      courseName: "Cisco Certified Support Technician (CCST)",
+      courseName: "Cisco Certified Support Technican",
       category: t('it_pros'),
       description: t("ccst_description"),
       image: networkingImg,

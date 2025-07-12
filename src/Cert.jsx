@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from "axios";
 import './styling/Cert.css';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -17,6 +17,7 @@ export default function Cert() {
   const [relevantCertificates, setRelevantCertificates] = useState([]);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [error, setError] = useState(false);  
+  const categorySectionRef = useRef(null); 
 
   // Get translated course array
   const courses = Itcourses(); // ✅ Function call to get data  
@@ -89,21 +90,32 @@ useEffect(() => {
   localStorage.setItem('selectedcategory', selectedcategory);
 }, [selectedcategory]);
 
+const handleCourseClick = (courseName) => {
+
+setSelectedcategory(courseName);
+
+    // Scrolla till certifikatsektionen
+    if (categorySectionRef.current) {
+      categorySectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+
+}
+
   
   return (
     <div>
       <section className='certificatesPage'>
-        <h1>{t('certifications')}</h1>
+        <h1 data-aos="fade-down">{t('certifications')}</h1>
       </section>
 
       <section className='certificatesPageSectionTwo py-5'>
         <Container>
           <Row className='align-items-center mb-5'>
-            <Col md={6}>
+            <Col md={6} data-aos="fade-left" data-aos-duration="1000">
               <h2>{t('IT_certification')}</h2>
               <p>{t('IT_certification_description')}</p>
             </Col>
-            <Col md={6}>
+            <Col md={6} data-aos="fade-right" data-aos-duration="1000">
               <img
                 src={certImage}
                 alt={t('certification_image')}
@@ -113,14 +125,14 @@ useEffect(() => {
           </Row>
 
           <Row className='align-items-center mb-5'>
-            <Col md={6}>
+            <Col md={6} data-aos="zoom-in" data-aos-duration="1000">
               <img
                 src={certImage2}
                 alt={t('webdesign_certification_image')}
                 className="img-fluid rounded shadow"
               />
             </Col>
-            <Col md={6}>
+            <Col md={6} data-aos="fade-right" data-aos-duration="1000">
               <h2>{t('Webdesign_UX')}</h2>
               <p>{t('Webdesign_UX_description')}</p>
             </Col>
@@ -150,10 +162,11 @@ useEffect(() => {
       className="course-card my-3"
       key={course.courseName}
       onMouseEnter={() => setHoveredCategory(index)}
-      onMouseLeave={() => setHoveredCategory(null)}
+      onMouseLeave={() => setHoveredCategory(null)}    
       style={{ position: 'relative', overflow: 'hidden' }}
+      onClick={() => handleCourseClick(course.courseName)}
     >
-      <div className="card-base" style={{ height: '100%' }}>
+      <div className="card-base" style={{ height: '100%' }} data-aos="zoom-in-up" data-aos-duration="1000">
         <h4>{course.courseName}</h4>
         <img
           src={course.image}
@@ -194,7 +207,7 @@ useEffect(() => {
         </Container>
       </section>
 
-   <section className='py-5 certificatepageSectionfour'>
+   <section className='py-5 certificatepageSectionfour' ref={categorySectionRef}>
   <Container>
     <h2 className="text-center mb-4">{t('search_for_certificates')}</h2>
 
@@ -207,7 +220,8 @@ useEffect(() => {
         value={selectedcategory} 
         onChange={(e) => {
         setSelectedcategory(e.target.value)
-        }}
+        }}      
+
       >
         
         {category.map((category, idx) => (
