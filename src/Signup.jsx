@@ -15,8 +15,7 @@ function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [personalNumber, setPersonalNumber] = useState('');
+  const [lastName, setLastName] = useState('');  
   const [address, setAddress] = useState('');
   const [registered, setRegistered] = useState(false);    
   
@@ -28,8 +27,7 @@ function Signup() {
         email,
         password,
         firstName,
-        lastName,
-        personalNumber,
+        lastName,        
         address
       }); 
       setRegistered(true);
@@ -75,18 +73,7 @@ function Signup() {
                     placeholder='Your lastname'
                     required
                   />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formPersonalNumber">
-                  <Form.Label>Personnummer</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={personalNumber}
-                    onChange={(e) => setPersonalNumber(e.target.value)}
-                    placeholder="ÅÅÅÅMMDD-XXXX"
-                    required
-                  />
-                </Form.Group>
+                </Form.Group>               
 
                 <Form.Group className="mb-3" controlId="formAddress">
                   <Form.Label>Adress</Form.Label>
