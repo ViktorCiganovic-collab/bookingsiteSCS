@@ -132,7 +132,8 @@
    "welcomeUserDashboard": "Velkommen til din brugerside",
     "myPages": "Min side",
     "booking": "Booking",
-    "course": "Kurs",
+    "course": "Certifikat",
     "Testtime": "Testtidspunkt",
-    "lastname": "Efternavn"
+    "lastname": "Efternavn",
+    "slots": "Pladser tilbage"
 }

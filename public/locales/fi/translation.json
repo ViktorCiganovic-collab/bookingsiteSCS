@@ -132,7 +132,8 @@
    "welcomeUserDashboard": "Tervetuloa käyttäjäsivullesi",
    "myPages": "Omat sivut",
   "booking": "Varaus",
-  "course": "Kurssi",
+  "course": "Sertifikaatti",
   "Testtime": "Tenttiaika",
-  "lastname": "Sukunimi"
+  "lastname": "Sukunimi",
+  "slots": "Paikkoja jäljellä"
 }

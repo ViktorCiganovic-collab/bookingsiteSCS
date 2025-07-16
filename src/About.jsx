@@ -24,7 +24,7 @@ const About = () => {
 
         <div className="overlayContent">
           <h1 data-aos="fade-down-right" data-aos-duration="1000">{t('about')}</h1>
-          <p data-aos="slide-up" data-aos-duration="1000">{t('about_tagline')}</p>
+          <p data-aos="fade-up" data-aos-duration="1000">{t('about_tagline')}</p>
         </div>
       </section>
 

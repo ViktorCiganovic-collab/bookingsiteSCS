@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useStripe, useElements, CardElement, Elements } from '@stripe/react-stripe-js';
 import './styling/Booking.css';
@@ -28,8 +28,13 @@ const CARD_ELEMENT_OPTIONS = {
   },
 };
 
+// path: 'booking/:categoryid/:certificatename/:examid/:price',
+{/* <Link to={`/booking/${selectedTest.categoryID}/${encodeURIComponent(selectedTest.certname)}/${testtime.id}/${testtime.price}`}></Link> */}
+
 const Booking = () => {
-  const { category, id, certificate, price, examStarttime, examEndtime } = useParams();
+  const { categoryid, certificatename, examid, price } = useParams();
+  const [category, setCategory] = useState([]);
+  const [testTime, setTesttime] = useState();
   const [name, setName] = useState('');
   const [lastname, setLastname] = useState('');
   const [password, setPassword] = useState('');
@@ -42,10 +47,85 @@ const Booking = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
-
   const stripe = useStripe();
   const elements = useElements(); 
 
+useEffect(() => {
+  const fetchCategories = async () => {
+
+    try {
+      const res = await axios.get('http://localhost:5011/api/category');
+      const categories = res.data;
+      const selectedCategory = categories.find((category) => category.id === parseInt(categoryid));
+
+      if (selectedCategory) {
+        setCategory(selectedCategory); 
+      } else {
+        console.log("Category not found.")
+      }
+      console.log(res.data);
+    }
+    catch (error) {
+      console.error('Kunde inte hämta kurser:', error);
+      setCategory([]);
+    }
+  }  
+  fetchCategories();
+}, [categoryid]);//on page load get data
+
+useEffect(() => {
+  axios.get('http://localhost:5011/api/examdate')
+    .then((res) => {
+      const formattedTestTimes = res.data.map((testtime) => {
+        // Combine testDate (YYYY-MM-DD) with time (HH:mm:ss)
+        const startTimeString = `${testtime.testDate.split('T')[0]}T${testtime.examStartingTime}`;
+        const endTimeString = `${testtime.testDate.split('T')[0]}T${testtime.examEndingTime}`;
+        
+        // Check the strings before creating Date objects
+        console.log("Start time string:", startTimeString);
+        console.log("End time string:", endTimeString);
+        
+        const startTime = new Date(startTimeString);  // Parse the combined string
+        const endTime = new Date(endTimeString);      // Parse the combined string
+
+        // Check if parsing was successful
+        if (isNaN(startTime)) {
+          console.error("Invalid start time:", startTimeString);
+        }
+        if (isNaN(endTime)) {
+          console.error("Invalid end time:", endTimeString);
+        }
+
+        // Format the start and end times if valid
+        const formattedStartTime = startTime.toLocaleString('sv-SE', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false,
+        });
+
+        const formattedEndTime = endTime.toLocaleTimeString('sv-SE', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false,
+        });
+
+        // Return the formatted testtime object
+        return {
+          ...testtime,
+          formattedStartTime,
+          formattedEndTime,
+        };
+      });
+
+      const chosenTesttime = formattedTestTimes.find((testtime) => testtime.id === parseInt(examid));
+      setTesttime(chosenTesttime);
+    })
+    .catch(err => console.error("Error fetching exam dates:", err));
+}, [examid]);
 
   const handleBookingAndPayment = async (event) => {
     event.preventDefault();
@@ -72,7 +152,7 @@ const Booking = () => {
       // 1. Skapa paymentIntent via backend
       const paymentIntentResponse = await axios.post('http://localhost:5011/payment/create-payment-intent', {
         amount: parseInt(accprice) * 100, // SEK till öre
-        testId: id,
+        testId: examid,
       }, 
       {
         headers: {
@@ -99,13 +179,13 @@ const Booking = () => {
       if (result.paymentIntent.status === 'succeeded') {
         // 3. Skicka bokning till backend
         const customerBooking = {
-          examId: id,
-          examStartingTime: examStarttime,
-          examEndingTime: examEndtime,
-          customerFirstName: name,
-          customerLastName: lastname,
-          customerEmail: email,
-          customerPassword: password,
+          ExamId: examid,
+          Category: categoryid,
+          CertName: certificatename,          
+          CustomerFirstName: name,
+          CustomerLastName: lastname,
+          CustomerEmail: email,
+          CustomerPassword: password,
         };
 
         await axios.post('http://localhost:5011/api/booking', customerBooking, {
@@ -144,15 +224,16 @@ const Booking = () => {
       setAccprice((prev) => prev - 100)
     }
   }
-
+// const { categoryid, certificatename, examid, price } = useParams();
   return (
     <div className="bookingSectionone d-flex flex-column justify-content-center align-items-center">
       <h2>{t('booking')}</h2>
-      <p><strong>{t('course')}:</strong> {certificate}</p>
-      <p><strong>{t('category')}:</strong> {category}</p>
+      <p><strong>{t('course')}:</strong> {certificatename}</p>
+      <p><strong>{t('category')}:</strong> {category.name}</p>
       <p><strong>{t('Price')}:</strong> {accprice} SEK</p>
-      <p><strong>{t('Testtime')}:</strong> {new Date(decodeURIComponent(examStarttime)).toLocaleString(undefined, { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })} - {new Date(decodeURIComponent(examEndtime)).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}</p>
-
+      {testTime && (
+  <p>{testTime.formattedStartTime} - {testTime.formattedEndTime}</p>
+)}
 
       <Form className="text-center" onSubmit={handleBookingAndPayment}>
         <Form.Group className="mb-3">

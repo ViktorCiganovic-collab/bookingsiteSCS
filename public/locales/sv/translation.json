@@ -132,7 +132,8 @@
  "welcomeUserDashboard": "Välkommen till dina sidor",
  "myPages": "Mina sidor",
  "booking": "Bokning",
- "course": "Kurs",
+ "course": "Certifikat",
  "Testtime": "Testtillfälle",
- "lastname": "Efternamn"
+ "lastname": "Efternamn",
+ "slots": "Platser kvar"
 }

@@ -8,6 +8,7 @@ import { AuthContext } from './services/AuthProvider';
 import './styling/AdminDashboard.css';
 import { useTranslation } from 'react-i18next'; 
 import Spinner from 'react-bootstrap/Spinner';
+import Table from 'react-bootstrap/Table';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('');
@@ -27,6 +28,8 @@ const AdminDashboard = () => {
   const [starttime, setStarttime] = useState('');
   const [endtime, setEndtime] = useState(''); 
   const [testTimeId, setTestTimeId] = useState('');
+  const [testDate, setTestDate] = useState();
+  const [slots, setSlots] = useState();
   const [image, setImage] = useState('');
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
@@ -211,23 +214,65 @@ const Editcertificate = async (e) => {
 
     } //radera certifikat
 
-  const fetchTestTimes = async () => {
-  setLoading(true);
+ 
+    const fetchExamTimes = async () => {
+  setLoading(true); // Sätt loading till true medan vi hämtar data
+  setError(null); // Återställ eventuella tidigare fel
+
   try {
-    const res = await axios.get('http://localhost:5011/api/ExamDate');
-    setTesttimes(res.data);
-    console.log(res.data);
-    setError(null);
+    // Hämta data från backend
+    const res = await axios.get('http://localhost:5011/api/examdate');
+    
+    // Formatera testtider när datan är hämtad
+    const formattedTestTimes = res.data.map((testtime) => {
+      // Kombinera testdatum (YYYY-MM-DD) med starttiden (HH:mm:ss)
+      const startTimeString = `${testtime.testDate.split('T')[0]}T${testtime.examStartingTime}`;
+      const endTimeString = `${testtime.testDate.split('T')[0]}T${testtime.examEndingTime}`;
+      
+      // Skapa Date-objekt från start- och sluttider
+      const startTime = new Date(startTimeString);
+      const endTime = new Date(endTimeString);
+
+      // Kontrollera om datumen är ogiltiga
+      if (isNaN(startTime) || isNaN(endTime)) {
+        console.error("Ogiltiga datum/tider för testtillfälle:", testtime);
+      }
+
+      // Formatera start- och sluttiderna till önskat format
+      const formattedStartTime = startTime.toLocaleString('sv-SE', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      });
+
+      const formattedEndTime = endTime.toLocaleTimeString('sv-SE', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      });
+
+      // Returera testtiden med de formaterade tiderna
+      return {
+        ...testtime,
+        formattedStartTime,
+        formattedEndTime,
+      };
+    });
+
+    // Sätt de formaterade testtiderna i state
+    setTesttimes(formattedTestTimes);
+  } catch (error) {
+    // Hantera fel och sätt ett meddelande
+    setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+  } finally {
+    // Sätt loading till false när vi är klara
     setLoading(false);
   }
-  
-    catch (error) {
-          setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
-        }
-    finally {
-    setLoading(false);
-  }
-  }; //se alla testtillfällen
+}; 
 
   const Addnewtesttime = async (event) => {
       event.preventDefault();
@@ -261,62 +306,70 @@ const Editcertificate = async (e) => {
       }
     } //lägg till testtillfälle
 
-  const UpdateTesttime = async (event) => {
-      event.preventDefault();
-      
-      if (!testTimeId || !starttime || !endtime) {
-        setError('Vänligen fyll i alla fält!');
-        return;
-      }
+const UpdateTesttime = async (event) => {
+  event.preventDefault();
 
-      if (new Date(endtime) <= new Date(starttime)) {
-        setError('Slutdatum måste vara efter startdatum.');
-        return;
-      }
+  if (!testTimeId || !testDate || !starttime || !endtime || !slots || !price) {
+    setError('Vänligen fyll i alla fält!');
+    return;
+  }
 
-      const updatedTestTime = {
-        id: Number(testTimeId),  // testtidens id
-        examStartingTime: starttime,
-        examEndingTime: endtime,
-      };
+  // Validera att slutet är efter start
+  if (new Date(`${testDate}T${endtime}`) <= new Date(`${testDate}T${starttime}`)) {
+    setError('Slutdatum måste vara efter startdatum.');
+    return;
+  }
 
-      try {
-        const res = await axios.put(`http://localhost:5011/api/ExamDate/${updatedTestTime.id}`, updatedTestTime, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          }  
-        });
-        setResponse('Testtiden har uppdaterats!');
-        setError(null);
-        setTestTimeId('');
-        setCertId('');
-        setStarttime('');
-        setEndtime('');
+  // Omvandla start och sluttider till TimeSpan format (utan datum)
+  const startDateTime = new Date(`${testDate}T${starttime}`);
+  const endDateTime = new Date(`${testDate}T${endtime}`);
+
+  const updatedTestTime = {
+    id: Number(testTimeId),  // testtidens id
+    examDate: startDateTime, // fullständig testdatum
+    timeStart: {
+      hours: startDateTime.getHours(),
+      minutes: startDateTime.getMinutes(),
+      seconds: startDateTime.getSeconds(),
+    }, // Omvandla till TimeSpan (endast tid, utan datum)
+    timeEnd: {
+      hours: endDateTime.getHours(),
+      minutes: endDateTime.getMinutes(),
+      seconds: endDateTime.getSeconds(),
+    }, // Omvandla till TimeSpan
+    slots: Number(slots),
+    price: parseFloat(price),
+  };
+
+  try {
+    const res = await axios.put(`http://localhost:5011/api/ExamDate/${updatedTestTime.id}`, updatedTestTime, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
       }
-      catch (error) {
-        setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`); // Backticks!
-      }
-    } //uppdatera testtillfälle
+    });
+    setResponse('Testtiden har uppdaterats!');
+    setError(null);
+    setTestTimeId('');
+    setTestDate('');
+    setStarttime('');
+    setEndtime('');
+    setSlots('');
+    setPrice('');
+  }
+  catch (error) {
+    setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+  }
+}
+
 
   const DeleteTesttime = async (event) => {
       event.preventDefault();
 
-      if (!testTimeId || !starttime || !endtime) {
-        setError('Vänligen fyll i alla fält!');
+      if (!testTimeId) {
+        setError('Vänligen fyll i testidens ID!');
         return;        
-      }
-
-      if (new Date(endtime) <= new Date(starttime)) {
-        setError('Slutdatum måste vara efter startdatum.');
-        return;
-      }
-
-      // const deletedTesttime = {
-      //   id: Number(testTimeId),  // testtidens id
-      //   examStartingTime: starttime,
-      //   examEndingTime: endtime,
-      // };
+      }    
 
       try {
         const res = await axios.delete(`http://localhost:5011/api/ExamDate/${testTimeId}`);
@@ -435,7 +488,7 @@ const DeleteCategory = async (e) => {
       fetchCertificates();
       break;
     case 'testtimes':
-      fetchTestTimes();
+      fetchExamTimes();
       break;   
     default:
       // Inga åtgärder eller nollställningar
@@ -456,28 +509,38 @@ const DeleteCategory = async (e) => {
 }
   switch(activeSection) {
     // Bookings
-    case 'bookings':
-      return (
-        <div>
-          <h2>Visa bokningar</h2>
+ case 'bookings':
+  return (
+    <div>
+      <h2>Visa bokningar</h2>
 
-          <div className='flexelementsBookings'>
-                {bookings.map((booking, index) => {
-          const startingTime = new Date(booking.examStartingTime);
-          const endingTime = new Date(booking.examEndingTime);
-
-          return (
-            <div key={index} className='booking'>
-              <p>Certifikat: {booking.certName}</p>
-              <p>Kund: {booking.customerFirstName} {booking.customerLastName}</p>
-              <p>Testtid: {formatDate(startingTime)} kl. {formatTime(startingTime)} - {formatTime(endingTime)}</p>
-            </div>
-          );
-        })}
-          </div>
-
+      {loading ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <Spinner animation="border" variant="primary" />
+          <p>Laddar bokningar...</p>
         </div>
-      );
+      ) : error ? (
+        <p style={{ color: 'red' }}>{error}</p>
+      ) : (
+        <div className='flexelementsBookings'>
+          {bookings.map((booking, index) => {
+            const startingTime = new Date(booking.examStartingTime);
+            const endingTime = new Date(booking.examEndingTime);
+
+            return (
+              <div key={index} className='booking'>
+                <p>Certifikat: {booking.certName}</p>
+                <p>Kund: {booking.customerFirstName} {booking.customerLastName}</p>
+                <p>
+                  Testtid: {formatDate(startingTime)} kl. {formatTime(startingTime)} - {formatTime(endingTime)}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
     case 'manageBookings':
       return (
         <div>
@@ -488,22 +551,31 @@ const DeleteCategory = async (e) => {
 
     // Certificates
     case 'certificates':
-      return (        
-        <div>  
-        <h2>Visa certifikat</h2>        
-        <div className=''>
-            {certificates.map((certificate) => (
-        <div key={certificate.id} className="cert">
-          <p>Certifikat-ID: {certificate.id}</p>
-          <p>Kategori: {certificate.category}</p>
-          <p>Certifikat: {certificate.certName}</p>
-          <p>Pris: {certificate.price} kr</p>
-        </div>
-      ))}
-
-          </div>
-        </div>       
-      );
+  return (
+    <div>  
+      <h2>Visa certifikat</h2>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Certifikat ID</th>
+            <th>Kategori</th>
+            <th>Certifikat</th>
+            <th>Pris</th>
+          </tr>
+        </thead>
+        <tbody>
+          {certificates.map((certificate) => (
+            <tr key={certificate.id}>
+              <td>{certificate.id}</td>
+              <td>{certificate.category}</td>
+              <td>{certificate.certName}</td>
+              <td>{certificate.price} kr</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
+  );
     case 'addCert':
       return (
   <div className="d-flex flex-column justify-content-center align-items-center mt-4">
@@ -676,86 +748,129 @@ const DeleteCategory = async (e) => {
 
 
     // Test Times
-    case 'testtimes':
-      return (
-        <div>
-          <h2>Visa testtider</h2>
-          <div className=''>
-            {testtimes.map((testtime) => {
-            const startingTime = new Date(testtime.examStartingTime);
-            const endingTime = new Date(testtime.examEndingTime);
-            const sameDay = startingTime.toDateString() === endingTime.toDateString();
-
-            return (
-              <div key={testtime.id} className="cert">
-                <p>
-                  Testtid: {formatDate(startingTime)} kl. {formatTime(startingTime)} -{" "}
-                  {sameDay ? formatTime(endingTime) : `${formatDate(endingTime)} kl. ${formatTime(endingTime)}`}
-                </p>                
-                <p>Certifikat: {testtime.certName}</p>
-                <p>Kategori: {testtime.category}</p>                             
-                <p>Pris: {testtime.price} kr</p>
-                <p>Testtid-ID: {testtime.id}</p>   
-              </div>
-            );
-          })}
-
-          </div>
+case 'testtimes':
+  return (
+    <div>
+      <h2>Visa testtider</h2>
+      {loading ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <Spinner animation="border" variant="primary" />
+          <p>Laddar testtider...</p>
         </div>
-      );
-    case 'addTestTime':
+      ) : error ? (
+        <p style={{ color: 'red' }}>{error}</p>
+      ) : (
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Testtid</th>
+              <th>Pris</th>
+              <th>Platser kvar</th>
+              <th>Testtid-ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            {testtimes.map((testtime) => (
+              <tr key={testtime.id}>
+                <td>{testtime.id}</td>
+                <td>
+                  {testtime.formattedStartTime} - {testtime.formattedEndTime}
+                </td>
+                <td>{testtime.price} kr</td>
+                <td>{testtime.slots}</td>
+                <td>{testtime.id}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
+    </div>
+  );
+   case 'addTestTime':
   return (
     <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
       <h3 className="text-center mb-3">Lägg till testtillfälle</h3>
 
       <form onSubmit={Addnewtesttime} className="w-100">
+        {/* Test Date input */}
         <div className="mb-3">
-          <label className="form-label">Certifierings-ID</label>
+          <label className="form-label">Testdatum</label>
+          <input
+            type="date"
+            className="form-control text-center"
+            value={testDate}  // testDate state
+            onChange={(e) => setTestDate(e.target.value)}  // Handle change for testDate
+            required
+          />
+        </div>
+
+        {/* Start time input */}
+        <div className="mb-3">
+          <label className="form-label">Starttid</label>
+          <input
+            type="time"
+            className="form-control text-center"
+            value={starttime}  // starttime state
+            onChange={(e) => setStarttime(e.target.value)}  // Handle change for starttime
+            required
+          />
+        </div>
+
+        {/* End time input */}
+        <div className="mb-3">
+          <label className="form-label">Sluttid</label>
+          <input
+            type="time"
+            className="form-control text-center"
+            value={endtime}  // endtime state
+            onChange={(e) => setEndtime(e.target.value)}  // Handle change for endtime
+            min={starttime}  // Ensure end time is not before start time
+            required
+          />
+        </div>
+
+        {/* Slots input */}
+        <div className="mb-3">
+          <label className="form-label">Platser</label>
           <input
             type="number"
             className="form-control text-center"
-            value={certId}
-            onChange={(e) => setCertId(e.target.value)}
+            value={slots}  // slots state
+            onChange={(e) => setSlots(e.target.value)}  // Handle change for slots
             required
           />
         </div>
 
+        {/* Price input */}
         <div className="mb-3">
-          <label className="form-label">Startdatum för test</label>
+          <label className="form-label">Pris</label>
           <input
-            type="datetime-local"
+            type="number"
+            step="0.01"
             className="form-control text-center"
-            value={starttime}
-            onChange={(e) => setStarttime(e.target.value)}
+            value={price}  // price state
+            onChange={(e) => setPrice(e.target.value)}  // Handle change for price
             required
           />
         </div>
 
-        <div className="mb-3">
-          <label className="form-label">Slutdatum för test</label>
-          <input
-            type="datetime-local"
-            className="form-control text-center"
-            value={endtime}
-            onChange={(e) => setEndtime(e.target.value)}
-            min={starttime}
-            required
-          />
-        </div>
-
+        {/* Submit Button */}
         <div className="d-grid">
           <button type="submit" className="btn btn-primary">➕ Lägg till</button>
         </div>
       </form>
 
+      {/* Response messages */}
       {response && <p className="mt-3 text-success text-center">✅ Testtiden har lagts till</p>}
       {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
     </div>
   );
+
     case 'editTestTime':
   return (
     <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
-      <h3 className="text-center mb-3">Uppdatera ett testtillfälle</h3>   
+      <h3 className="text-center mb-3">Uppdatera ett testtillfälle</h3>
 
       <form onSubmit={UpdateTesttime} className="w-100">
         <div className="mb-3">
@@ -770,24 +885,58 @@ const DeleteCategory = async (e) => {
         </div>
 
         <div className="mb-3">
-          <label className="form-label">Nytt startdatum för test</label>
+          <label className="form-label">Testdatum</label>
           <input
-            type="datetime-local"
+            type="date"
             className="form-control text-center"
-            value={starttime}
-            onChange={(e) => setStarttime(e.target.value)}
+            value={testDate} // testDate state
+            onChange={(e) => setTestDate(e.target.value)} // Handle change for testDate
             required
           />
         </div>
 
         <div className="mb-3">
-          <label className="form-label">Nytt slutdatum för test</label>
+          <label className="form-label">Starttid</label>
           <input
-            type="datetime-local"
+            type="time"
             className="form-control text-center"
-            value={endtime}
-            onChange={(e) => setEndtime(e.target.value)}
-            min={starttime}
+            value={starttime}  // starttime state
+            onChange={(e) => setStarttime(e.target.value)}  // Handle change for starttime
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Sluttid</label>
+          <input
+            type="time"
+            className="form-control text-center"
+            value={endtime}  // endtime state
+            onChange={(e) => setEndtime(e.target.value)}  // Handle change for endtime
+            min={starttime}  // Ensure end time is not before start time
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Platser</label>
+          <input
+            type="number"
+            className="form-control text-center"
+            value={slots}  // slots state
+            onChange={(e) => setSlots(e.target.value)}  // Handle change for slots
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Pris</label>
+          <input
+            type="number"
+            step="0.01"
+            className="form-control text-center"
+            value={price}  // price state
+            onChange={(e) => setPrice(e.target.value)}  // Handle change for price
             required
           />
         </div>
@@ -801,6 +950,7 @@ const DeleteCategory = async (e) => {
       {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
     </div>
   );
+
  
     case 'deleteTestTime':
   return (
@@ -817,30 +967,8 @@ const DeleteCategory = async (e) => {
             onChange={(e) => setTestTimeId(e.target.value)}
             required
           />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">Startdatum för test</label>
-          <input
-            type="datetime-local"
-            className="form-control text-center"
-            value={starttime}
-            onChange={(e) => setStarttime(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">Slutdatum för test</label>
-          <input
-            type="datetime-local"
-            className="form-control text-center"
-            value={endtime}
-            onChange={(e) => setEndtime(e.target.value)}
-            min={starttime}
-            required
-          />
-        </div>
+        </div>      
+      
 
         <div className="d-grid">
           <button type="submit" className="btn btn-danger">🗑 Radera testtid</button>
@@ -853,21 +981,39 @@ const DeleteCategory = async (e) => {
   );
 
 
-    case 'categories':
-      return (
-        <div>
-          <h2>Visa kategorier</h2>
-        <div className=''>
-          {category.map((x) => (
-            <div key={x.id} className="cert">
-              <p>Kategori ID: {x.id}</p>
-              <p>Kategori: {x.name}</p>
-              <p>Beskrivning: {x.description}</p>
-            </div>
-          ))}
+case 'categories':
+  return (
+    <div>
+      <h2>Visa kategorier</h2>
+      {loading ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <Spinner animation="border" variant="primary" />
+          <p>Laddar kategorier...</p>
         </div>
-        </div>
-      );
+      ) : error ? (
+        <p style={{ color: 'red' }}>{error}</p>
+      ) : (
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Kategori ID</th>
+              <th>Kategori</th>
+              <th>Beskrivning</th>
+            </tr>
+          </thead>
+          <tbody>
+            {category.map((x) => (
+              <tr key={x.id}>
+                <td>{x.id}</td>
+                <td>{x.name}</td>
+                <td>{x.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
+    </div>
+  );
     case 'createCategory':
   return (
     <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>

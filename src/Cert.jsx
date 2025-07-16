@@ -18,15 +18,66 @@ export default function Cert() {
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [error, setError] = useState(false);  
   const categorySectionRef = useRef(null); 
+  const [selectedTest, setSelectedTest] = useState('');
 
   // Get translated course array
   const courses = Itcourses(); // ✅ Function call to get data  
 
 useEffect(() => {
   axios.get('http://localhost:5011/api/examdate')
-    .then(res => setAlltesttimes(res.data))
+    .then((res) => {
+      const formattedTestTimes = res.data.map((testtime) => {
+        // Combine testDate (YYYY-MM-DD) with time (HH:mm:ss)
+        const startTimeString = `${testtime.testDate.split('T')[0]}T${testtime.examStartingTime}`;
+        const endTimeString = `${testtime.testDate.split('T')[0]}T${testtime.examEndingTime}`;
+        
+        // Check the strings before creating Date objects
+        console.log("Start time string:", startTimeString);
+        console.log("End time string:", endTimeString);
+        
+        const startTime = new Date(startTimeString);  // Parse the combined string
+        const endTime = new Date(endTimeString);      // Parse the combined string
+
+        // Check if parsing was successful
+        if (isNaN(startTime)) {
+          console.error("Invalid start time:", startTimeString);
+        }
+        if (isNaN(endTime)) {
+          console.error("Invalid end time:", endTimeString);
+        }
+
+        // Format the start and end times if valid
+        const formattedStartTime = startTime.toLocaleString('sv-SE', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false,
+        });
+
+        const formattedEndTime = endTime.toLocaleTimeString('sv-SE', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false,
+        });
+
+        // Return the formatted testtime object
+        return {
+          ...testtime,
+          formattedStartTime,
+          formattedEndTime,
+        };
+      });
+
+      setAlltesttimes(formattedTestTimes);  // Store the formatted times in state
+    })
     .catch(err => console.error("Error fetching exam dates:", err));
 }, []);
+
+
+
 
 useEffect(() => {
   const fetchCategories = async () => {
@@ -47,30 +98,13 @@ useEffect(() => {
   // Filter categories based on userchoice
   const currentCategory = category.find(category => category.name === selectedcategory);
  
-  const seeTestTimes = (certName) => {
+  const seeTestTimes = (certName, categoryId) => {
     console.log("Clicked on:", certName);
     setSelectedCertificate(certName);
+    setSelectedTest({certname: certName, categoryID: categoryId});
   };
 
-  // Filter array based on selected certificate
- useEffect(() => {
-  if (selectedCertificate) {
-    console.log("🔍 Searching for certificate...:", selectedCertificate);
-    
-    const filteredCertificates = alltesttimes.filter((course) =>
-      course.certName.trim().toLowerCase() === selectedCertificate.trim().toLowerCase()
-    );
-
-    if (filteredCertificates.length > 0) {
-      setRelevantCertificates(filteredCertificates); 
-      console.log("✅ Chosen certificates with available slots:", filteredCertificates);
-    } else {
-      setRelevantCertificates([]); 
-      console.log("❌ No available slots for:", selectedCertificate);
-    }
-  }
-}, [selectedCertificate, alltesttimes]);
-
+ 
   function formatCurrency(price) {
     return new Intl.NumberFormat('sv-SE', {
       style: 'currency',
@@ -251,34 +285,37 @@ setSelectedcategory(courseName);
     <Link to={`/cert/${encodeURIComponent(cert.name)}/${cert.description}/${cert.price}/${cert.categoryId}`}>
       <span className='certStyling'>{cert.name}</span>
     </Link>
-    <button className='btn btn-primary' onClick={() => seeTestTimes(cert.name)}>{t('view_available_timeslots')}</button>
+    <button className='btn btn-primary' onClick={() => seeTestTimes(cert.name, cert.categoryId)}>{t('view_available_timeslots')}</button>
   </li>
 ))}
       </ul>
-      {relevantCertificates && relevantCertificates.length > 0 ? (
+{selectedTest && (
   <div className="mt-4">
-    <h5>{t('available_exam_times')} {selectedCertificate}</h5>
+    <h5>{t('available_exam_times')} for {selectedTest.certname}</h5>
     <ul className="list-group">
-      {relevantCertificates.map((certificate, idx) => (
+      {alltesttimes.map((testtime, idx) => (
         <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
           <span>
             <strong>
-              {new Date(certificate.examStartingTime).toLocaleString()} - {new Date(certificate.examEndingTime).toLocaleTimeString()}
+              {testtime.formattedStartTime} - {testtime.formattedEndTime}
             </strong>
           </span>
-          {t('Price')} ({formatCurrency(certificate.price)})
-          <Link to={`/booking/${certificate.category}/${certificate.id}/${encodeURIComponent(certificate.certName)}/${certificate.price}/${encodeURIComponent(certificate.examStartingTime)}/${encodeURIComponent(certificate.examEndingTime)}`}>
-            <button className='btn btn-primary' style={{ padding: "5px", borderRadius: "5px" }}>
-              {t('book_time')}
-            </button>
-          </Link>
+          <span><strong>{t('slots')}:</strong> {testtime.slots}</span>
+          {/* {t('Price')} ({formatCurrency(testtime.price)}) */}
+        <Link to={`/booking/${selectedTest.categoryID}/${encodeURIComponent(selectedTest.certname)}/${testtime.id}/${testtime.price}`}>
+        <button className='btn btn-primary' style={{ padding: "5px", borderRadius: "5px" }}>
+          {t('book_time')}
+        </button>
+      </Link>
         </li>
       ))}
     </ul>
   </div>
-) : selectedCertificate ? (
-  <p className="mt-4 text-danger">{t('no_exam_dates_available')}</p>
-) : null}
+)}
+
+
+
+
 
     </Col>
   </Row>
