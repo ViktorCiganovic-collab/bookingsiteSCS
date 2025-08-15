@@ -35,6 +35,7 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [response, setResponse] = useState(false);
+  const [hoveredCertId, setHoveredCertId] = useState(null);
 
   const handleClose = () => setShow(false);  
   const handleShow = () => setShow(true);
@@ -554,7 +555,7 @@ const DeleteCategory = async (e) => {
   return (
     <div>  
       <h2>Visa certifikat</h2>
-      <Table striped bordered hover>
+      <Table striped bordered hover style={{ position: 'relative' }}>
         <thead>
           <tr>
             <th>Certifikat ID</th>
@@ -565,14 +566,24 @@ const DeleteCategory = async (e) => {
         </thead>
         <tbody>
           {certificates.map((certificate) => (
-            <tr key={certificate.id}>
+            <tr 
+            key={certificate.id}
+            onMouseEnter={() => setHoveredCertId(certificate.id)}
+            onMouseLeave={() => setHoveredCertId(null)}
+            
+            >
               <td>{certificate.id}</td>
               <td>{certificate.category}</td>
               <td>{certificate.certName}</td>
               <td>{certificate.price} kr</td>
-            </tr>
+
+                    
+            </tr>          
+                   
           ))}
         </tbody>
+
+                 
       </Table>
     </div>
   );

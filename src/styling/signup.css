@@ -2,7 +2,10 @@
 .signupPage {
 width: 100%;
 height: auto;
-background-color: var(--secondary-bg);
+/* background-color: var(--secondary-bg); */
+background-image: url('../assets/pexels-junior-teixeira-1064069-2047905.jpg');
+background-size: cover;
+background-position: center;
 }
 
 .signupSectionOne {
