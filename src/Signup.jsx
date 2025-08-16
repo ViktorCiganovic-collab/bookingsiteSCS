@@ -49,9 +49,9 @@ function Signup() {
         <Container>
           <Row className="d-flex justify-content-center align-items-center width-100">
             <Col md={6}>
-              <h2 className="text-center my-5 mb-4">{t('register')}</h2>
+              <h2 className="text-center my-5 mb-4" data-aos="zoom-out-right">{t('register')}</h2>
 
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={handleSubmit} data-aos="zoom-in-left">
 
                 <Form.Group className='mb-3' controlId="formFirstName">
                   <Form.Label>Firstname</Form.Label>
