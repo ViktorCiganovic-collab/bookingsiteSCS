@@ -582,7 +582,17 @@ case 'certificates':
                 </span>
 
                 <div className={`button-container ${hoveredCertId === certificate.id ? 'show-buttons' : ''}`}>
-                  <button className='btn btn-primary'>Duplicera</button>
+                  <button className='btn btn-primary'
+                  onClick={() => {
+                    const categoryObj = category.find(x => x.name === certificate.category);
+                    const certDescription = categoryObj.certs.find(x => x.name === certificate.certName);
+                    setSelectedcategory(categoryObj ? categoryObj.id : '');
+                    setName(certificate.certName);          
+                    setCertDesc(certDescription.description);       
+                    setPrice(certificate.price);
+                    setActiveSection('addCert');
+                  }}
+                  >Duplicera</button>
 
                   <button
                   className='btn btn-secondary'
@@ -681,6 +691,7 @@ case 'certificates':
     )}
   </div>
       );
+   
     
     case 'editCert':
     return (
@@ -819,7 +830,16 @@ case 'testtimes':
             </span>
 
             <div className={`button-container ${hoveredTesttimeId === testtime.id ? 'show-buttons' : ''}`}>
-              <button className='btn btn-primary'>Duplicera</button>
+              <button className='btn btn-primary'
+              onClick={() => {
+              setTestDate(testtime.testDate.split('T')[0]);
+              setStarttime(testtime.examStartingTime);
+              setEndtime(testtime.examEndingTime);
+              setSlots(testtime.slots);
+              setPrice(testtime.price);
+              setActiveSection('addTestTime');
+              }}
+              >Duplicera</button>
 
               <button className='btn btn-secondary' onClick={() => {
                 setTestTimeId(testtime.id);
@@ -1075,7 +1095,14 @@ case 'categories':
                   </span>
 
                 <div className={`button-container ${hoveredCategoryId === x.id ? 'show-buttons' : ''}`}>
-                  <button className='btn btn-primary'>Duplicera</button>
+                  <button className='btn btn-primary'
+                  onClick={() => {
+                    setName(x.name);
+                    setDescription(x.description);
+                    setImage(x.image);
+                    setActiveSection('createCategory');
+                  }}
+                  >Duplicera</button>
 
                   <button className='btn btn-secondary'
                   onClick={() => {

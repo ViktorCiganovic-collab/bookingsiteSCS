@@ -50,7 +50,7 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow }) => {
               </Nav.Link>
               <Nav.Link onClick={() => setActiveSection('addCert')} className="sidebar-link">
                 Lägg till certifikat
-              </Nav.Link>
+              </Nav.Link>              
               <Nav.Link onClick={() => setActiveSection('editCert')} className="sidebar-link">
                 Redigera certifikat
               </Nav.Link>
