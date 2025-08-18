@@ -36,6 +36,8 @@ const AdminDashboard = () => {
   const [error, setError] = useState(false);
   const [response, setResponse] = useState(false);
   const [hoveredCertId, setHoveredCertId] = useState(null);
+  const [hoveredTesttimeId, setHoveredTesttimeId] = useState(null);
+  const [hoveredCategoryId, setHoveredCategoryId] = useState(null);
 
   const handleClose = () => setShow(false);  
   const handleShow = () => setShow(true);
@@ -551,7 +553,7 @@ const DeleteCategory = async (e) => {
       );
 
     // Certificates
-    case 'certificates':
+case 'certificates':
   return (
     <div>  
       <h2>Visa certifikat</h2>
@@ -567,26 +569,50 @@ const DeleteCategory = async (e) => {
         <tbody>
           {certificates.map((certificate) => (
             <tr 
-            key={certificate.id}
-            onMouseEnter={() => setHoveredCertId(certificate.id)}
-            onMouseLeave={() => setHoveredCertId(null)}
-            
+              key={certificate.id}
+              onMouseEnter={() => setHoveredCertId(certificate.id)}
+              onMouseLeave={() => setHoveredCertId(null)}
             >
               <td>{certificate.id}</td>
               <td>{certificate.category}</td>
-              <td>{certificate.certName}</td>
+
+              <td className="cert-name-cell">
+                <span className={hoveredCertId === certificate.id ? 'hidden' : ''}>
+                  {certificate.certName}
+                </span>
+
+                <div className={`button-container ${hoveredCertId === certificate.id ? 'show-buttons' : ''}`}>
+                  <button className='btn btn-primary'>Duplicera</button>
+
+                  <button
+                  className='btn btn-secondary'
+                  onClick={() => {
+                    setCertId(certificate.id);
+                    const catObj = category.find(c => c.name === certificate.category);
+                    setSelectedcategory(catObj ? catObj.id : '');
+                    setActiveSection('editCert');
+                  }}
+                >
+                  Redigera
+                </button>
+
+                  <button className='btn btn-danger' onClick={() => {
+                    setCertId(certificate.id);
+                    setActiveSection('deleteCert')
+                  }}>Radera</button>
+                </div>
+              </td>
+
+
               <td>{certificate.price} kr</td>
 
-                    
             </tr>          
-                   
           ))}
         </tbody>
-
-                 
       </Table>
     </div>
   );
+
     case 'addCert':
       return (
   <div className="d-flex flex-column justify-content-center align-items-center mt-4">
@@ -774,7 +800,7 @@ case 'testtimes':
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>ID</th>
+              
               <th>Testtid</th>
               <th>Pris</th>
               <th>Platser kvar</th>
@@ -783,11 +809,33 @@ case 'testtimes':
           </thead>
           <tbody>
             {testtimes.map((testtime) => (
-              <tr key={testtime.id}>
-                <td>{testtime.id}</td>
-                <td>
-                  {testtime.formattedStartTime} - {testtime.formattedEndTime}
-                </td>
+              <tr key={testtime.id}
+              onMouseEnter={() => setHoveredTesttimeId(testtime.id)}
+              onMouseLeave={() => setHoveredTesttimeId(null)}
+              >
+             <td className="cert-name-cell">
+            <span className={hoveredTesttimeId === testtime.id ? 'hidden' : ''}>
+              {testtime.formattedStartTime} - {testtime.formattedEndTime}
+            </span>
+
+            <div className={`button-container ${hoveredTesttimeId === testtime.id ? 'show-buttons' : ''}`}>
+              <button className='btn btn-primary'>Duplicera</button>
+
+              <button className='btn btn-secondary' onClick={() => {
+                setTestTimeId(testtime.id);
+                setActiveSection('editTestTime');
+              }}>Redigera</button>
+
+              <button className='btn btn-danger'
+              onClick={() => {
+                setTestTimeId(testtime.id);
+                setActiveSection('deleteTestTime');}                
+              }>
+                Radera
+              </button>
+            </div>
+          </td>
+
                 <td>{testtime.price} kr</td>
                 <td>{testtime.slots}</td>
                 <td>{testtime.id}</td>
@@ -1014,10 +1062,39 @@ case 'categories':
           </thead>
           <tbody>
             {category.map((x) => (
-              <tr key={x.id}>
+              <tr key={x.id}
+              onMouseEnter={() => setHoveredCategoryId(x.id)}
+              onMouseLeave={() => setHoveredCategoryId(null)}>
                 <td>{x.id}</td>
                 <td>{x.name}</td>
-                <td>{x.description}</td>
+
+                <td className="cert-name-cell">
+
+                  <span className={hoveredCategoryId === x.id ? 'hidden' : ''}>
+                  {x.description}
+                  </span>
+
+                <div className={`button-container ${hoveredCategoryId === x.id ? 'show-buttons' : ''}`}>
+                  <button className='btn btn-primary'>Duplicera</button>
+
+                  <button className='btn btn-secondary'
+                  onClick={() => {
+                    setSelectedcategory(x.id);
+                    setActiveSection('updateCategory');
+                  }}>Redigera</button>
+
+                  <button className='btn btn-danger'
+                  onClick={() => {
+                    setSelectedcategory(x.id);
+                    setActiveSection('deleteCategory');
+                  }}>Radera</button>
+                </div>
+                  
+                  
+                  
+                </td>
+
+
               </tr>
             ))}
           </tbody>
