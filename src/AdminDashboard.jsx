@@ -28,8 +28,8 @@ const AdminDashboard = () => {
   const [starttime, setStarttime] = useState('');
   const [endtime, setEndtime] = useState(''); 
   const [testTimeId, setTestTimeId] = useState('');
-  const [testDate, setTestDate] = useState();
-  const [slots, setSlots] = useState();
+  const [testDate, setTestDate] = useState('');
+  const [slots, setSlots] = useState('');
   const [image, setImage] = useState('');
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
@@ -280,16 +280,17 @@ const Editcertificate = async (e) => {
   const Addnewtesttime = async (event) => {
       event.preventDefault();
 
-      if (!certId || !starttime || !endtime) {
-        setError('Vänligen fyll i alla fält!');
-        return;
-      }
+  if (!testDate || !starttime || !endtime || !price || !slots) {
+  setError('Vänligen fyll i alla fält!');
+  return;}
 
-      const testTime = {
-        certId: Number(certId),  // Säkerställ att det är ett nummer
-        examStartingTime: starttime,
-        examEndingTime: endtime
-      };
+ const testTime = {
+  testDate,
+  examStartingTime: starttime,
+  examEndingTime: endtime,
+  slots: Number(slots),
+  price: Number(price)
+};
 
       try {
         const res = await axios.post('http://localhost:5011/api/ExamDate', testTime, {
