@@ -135,5 +135,14 @@
  "course": "Certifikat",
  "Testtime": "Testtillfälle",
  "lastname": "Efternamn",
- "slots": "Platser kvar"
+ "slots": "Platser kvar",
+   "dinaTestbokningar": "Dina testbokningar",
+  "certifiering": "Certifiering",
+  "bokningsId": "Boknings ID",
+  "testtid": "Testtid",
+  "avboka": "Avboka",
+  "bekräftaAvbokning": "Bekräfta avbokning",
+  "säkerAvbokaFråga": "Är du säker på att du vill avboka detta testtillfälle?",
+  "avbryt": "Avbryt",
+  "jaAvboka": "Ja, avboka"
 }

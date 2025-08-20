@@ -1,5 +1,6 @@
 
 import React, { createContext, useEffect, useState } from 'react';
+import { jwtDecode } from 'jwt-decode';
 
 const AuthContext = createContext();
 
@@ -14,6 +15,9 @@ const [isAuthenticated, setIsAuthenticated] = useState(() => {
   return savedData === 'true' ? true : false;
 });
 
+  const [token, setToken] = useState(() => localStorage.getItem('token') || '');
+  const [email, setEmail] = useState('');
+
 //uppdatera localstorage varje gång roll uppdateras
 useEffect(() => {
     localStorage.setItem('role', role);
@@ -24,8 +28,24 @@ useEffect(() => {
   localStorage.setItem("authenticationData", isAuthenticated.toString());
 }, [isAuthenticated]);
 
+  // Decode email from token
+  useEffect(() => {
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        setEmail(decoded.sub || '');
+        console.log(email);
+      } catch (error) {
+        console.error('Failed to decode token:', error);
+        setEmail('');
+      }
+    } else {
+      setEmail('');
+    }
+  }, [token, email]);
+
 return (
-<AuthContext.Provider value={{ role, setRole, isAuthenticated, setIsAuthenticated }}>
+<AuthContext.Provider value={{ role, setRole, isAuthenticated, setIsAuthenticated, token, setToken, email }}>
     {children}
 </AuthContext.Provider>
 )

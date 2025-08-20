@@ -135,5 +135,14 @@
     "course": "Sertifikat",
     "Testtime": "Testtidspunkt",
     "lastname": "Etternavn",
-     "slots": "Plasser igjen"
+     "slots": "Plasser igjen",
+       "dinaTestbokningar": "Dine testbestillinger",
+  "certifiering": "Sertifisering",
+  "bokningsId": "Bestillings-ID",
+  "testtid": "Testtid",
+  "avboka": "Avbestill",
+  "bekräftaAvbokning": "Bekreft avbestilling",
+  "säkerAvbokaFråga": "Er du sikker på at du vil avbestille denne testtimen?",
+  "avbryt": "Avbryt",
+  "jaAvboka": "Ja, avbestill"
 }

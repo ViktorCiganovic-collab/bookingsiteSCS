@@ -135,5 +135,14 @@
   "course": "Sertifikaatti",
   "Testtime": "Tenttiaika",
   "lastname": "Sukunimi",
-  "slots": "Paikkoja jäljellä"
+  "slots": "Paikkoja jäljellä",
+    "dinaTestbokningar": "Testivarauksesi",
+  "certifiering": "Sertifiointi",
+  "bokningsId": "Varaus-ID",
+  "testtid": "Testiaika",
+  "avboka": "Peruuta",
+  "bekräftaAvbokning": "Vahvista peruutus",
+  "säkerAvbokaFråga": "Haluatko varmasti peruuttaa tämän testiajan?",
+  "avbryt": "Peruuta",
+  "jaAvboka": "Kyllä, peruuta"
 }

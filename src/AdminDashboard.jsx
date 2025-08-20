@@ -38,6 +38,7 @@ const AdminDashboard = () => {
   const [hoveredCertId, setHoveredCertId] = useState(null);
   const [hoveredTesttimeId, setHoveredTesttimeId] = useState(null);
   const [hoveredCategoryId, setHoveredCategoryId] = useState(null);
+  const [bookingId, setBookingId] = useState(1);
 
   const handleClose = () => setShow(false);  
   const handleShow = () => setShow(true);
@@ -216,6 +217,42 @@ const Editcertificate = async (e) => {
       }
 
     } //radera certifikat
+
+
+  const DeleteBooking = async (event) => {
+  event.preventDefault();
+  setError(null);
+  setResponse(null);
+  const token = localStorage.getItem("token");
+
+  if (!bookingId) {
+    setError('Vänligen fyll i bokningens ID.');
+    return;
+  }
+
+  try {
+    const res = await axios.delete(
+  `http://localhost:5011/api/Booking/${Number(bookingId)}`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
+    if (res.status === 204) {
+      setResponse("Bokningen har raderats.");
+      setBookingId(""); // Töm inputfält
+    } else {
+      setError("Bokningen kunde inte raderas.");
+    }
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      setError("Ingen bokning hittades med det ID:t.");
+    } else {
+      setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+    }
+  }
+};
 
  
     const fetchExamTimes = async () => {
@@ -534,6 +571,7 @@ const DeleteCategory = async (e) => {
             return (
               <div key={index} className='booking'>
                 <p>Certifikat: {booking.certName}</p>
+                <p>Boknings ID: {booking.id}</p>
                 <p>Kund: {booking.customerFirstName} {booking.customerLastName}</p>
                 <p>
                   Testtid: {formatDate(startingTime)} kl. {formatTime(startingTime)} - {formatTime(endingTime)}
@@ -545,13 +583,38 @@ const DeleteCategory = async (e) => {
       )}
     </div>
   );
-    case 'manageBookings':
-      return (
-        <div>
-          <h2>Hantera bokningar</h2>
-          <p>Här hanterar du bokningar.</p>
+    case 'deleteBookings':
+return (
+    <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
+      <h3 className="text-center mb-3">Radera Bokning</h3>  
+
+      <form onSubmit={DeleteBooking} className="w-100">
+        <div className="mb-3">
+          <label className="form-label">Boknings ID</label>
+          <input
+            type="number"
+            className="form-control text-center"
+            value={bookingId}
+            onChange={(e) => setBookingId(e.target.value)}
+            required
+          />
         </div>
-      );
+
+        <div className="d-grid">
+          <button type="submit" className="btn btn-danger">
+            🗑 Radera bokning
+          </button>
+        </div>
+      </form>
+
+      {response && (
+        <p className="mt-3 text-success text-center">✅ {response}</p>
+      )}
+      {error && (
+        <p className="mt-3 text-danger text-center">❌ {error}</p>
+      )}
+    </div>
+  );
 
     // Certificates
 case 'certificates':

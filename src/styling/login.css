@@ -2,7 +2,11 @@
 .loginPage {
 width: 100%;
 min-height: 90vh;
-background-color: var(--secondary-bg);
+/* background-color: var(--secondary-bg); */
+background-image: url('https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg');
+background-size:cover;
+background-position: center;
+background-repeat: no-repeat;
 }
 
 .loginSectionOne {
