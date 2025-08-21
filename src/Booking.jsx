@@ -98,74 +98,102 @@ const Booking = () => {
   };
 
   const handleBooking = async () => {
-    if (!stripe || !elements) {
-      setError("Stripe är inte redo, försök igen om en stund.");
+  if (!stripe || !elements) {
+    setError("Stripe är inte redo, försök igen om en stund.");
+    return;
+  }
+
+  const token = localStorage.getItem("token");
+  if (!token) {
+    setError("Du är inte inloggad. Logga in först.");
+    return;
+  }
+
+  setError(null);
+  setConfirmed(false);
+  setLoading(true);
+
+  try {
+    // ✅ Steg 1: Validera tillgänglighet
+    await axios.post('http://localhost:5011/api/booking/validate', {
+      examId: examid,
+      customerEmail: email,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
+    });
+  } catch (err) {
+    // ✅ Visa direkt feedback om något gick fel vid validering
+    if (err.response?.status === 400 && err.response.data === "Det finns inte platser kvar på det här testdatumet.") {
+      setError("Inga platser finns kvar på det valda testdatumet.");
+    } else if (err.response?.status === 400 && err.response.data === "Kunden har redan en bokning på detta testdatum.") {
+      setError("Du har redan en bokning på detta testdatum.");
+    } else if (err.response?.status === 404) {
+      setError("Det valda testdatumet kunde inte hittas.");
+    } else {
+      setError('Ett fel inträffade vid validering. Försök igen.');
+    }
+
+    setLoading(false);
+    return; // 🛑 Stoppa flödet här – gå inte vidare till betalning
+  }
+
+  try {
+    // 💳 Steg 2: Skapa betalning
+    const paymentIntentResponse = await axios.post('http://localhost:5011/payment/create-payment-intent', {
+      amount: parseInt(accprice) * 100,
+      testId: examid,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
+    });
+
+    const clientSecret = paymentIntentResponse.data.clientSecret;
+
+    const result = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+      },
+    });
+
+    if (result.error) {
+      setError('Betalningen misslyckades: ' + result.error.message);
       return;
     }
 
-    const token = localStorage.getItem("token");
-    if (!token) {
-      setError("Du är inte inloggad. Logga in först.");
-      return;
-    }
+    // ✅ Steg 3: Slutför bokning efter betalning
+    if (result.paymentIntent.status === 'succeeded') {
+      const customerBooking = {
+        ExamId: examid,
+        Category: categoryid,
+        CertName: certificatename,
+        CustomerFirstName: name,
+        CustomerLastName: lastname,
+        CustomerEmail: email,
+        CustomerPassword: password,
+      };
 
-    setError(null);
-    setConfirmed(false);
-    setLoading(true);
-
-    try {
-      const paymentIntentResponse = await axios.post('http://localhost:5011/payment/create-payment-intent', {
-        amount: parseInt(accprice) * 100,
-        testId: examid,
-      }, {
+      await axios.post('http://localhost:5011/api/booking', customerBooking, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         }
       });
 
-      const clientSecret = paymentIntentResponse.data.clientSecret;
-
-      const result = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-        },
-      });
-
-      if (result.error) {
-        setError('Betalningen misslyckades: ' + result.error.message);
-        return;
-      }
-
-      if (result.paymentIntent.status === 'succeeded') {
-        const customerBooking = {
-          ExamId: examid,
-          Category: categoryid,
-          CertName: certificatename,
-          CustomerFirstName: name,
-          CustomerLastName: lastname,
-          CustomerEmail: email,
-          CustomerPassword: password,
-        };
-
-        await axios.post('http://localhost:5011/api/booking', customerBooking, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          }
-        });
-
-        setConfirmed(true);
-        setShowStripeInfoModal(false);
-      }
-    } catch (err) {
-      console.error(err);
-      setError('Ett fel inträffade. Försök igen.');
-    } finally {
-      setLoading(false);
+      setConfirmed(true);
+      setShowStripeInfoModal(false);
     }
-  };
+  } catch (err) {
+    console.error(err);
+    setError('Ett fel inträffade vid betalning eller bokning. Försök igen.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="bookingSectionone d-flex flex-column justify-content-center align-items-center">

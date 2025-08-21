@@ -207,8 +207,9 @@ function UserDashboard() {
             <Button variant="secondary" onClick={() => setShowCancelModal(false)}>
              {t('avbryt')}
             </Button>
-            <Button variant="danger" onClick={cancelTesttime(bookingToCancel)}>
-            {t('jaAvboka')}            </Button>
+           <Button variant="danger" onClick={() => cancelTesttime(bookingToCancel)}>
+          {t('jaAvboka')}
+        </Button>
           </Modal.Footer>
         </Modal>
 
