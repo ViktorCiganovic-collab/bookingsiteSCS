@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import './styling/About.css';
-import backgroundVideoAbout from './assets/background_one.mp4';
+import backgroundVideoAbout from './assets/mainpageSectionthree.jpg';
 import { useTranslation } from 'react-i18next'; // Importera useTranslation
 
 const About = () => {

@@ -5,7 +5,7 @@
   height: 100vh;
   overflow: hidden;
 
-  background-image: url('https://images.pexels.com/photos/919734/pexels-photo-919734.jpeg') !important;
+  background-image: url('../assets/testworkingenvironment.png') !important;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
