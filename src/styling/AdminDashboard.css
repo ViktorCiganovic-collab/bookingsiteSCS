@@ -126,3 +126,19 @@ tbody tr:hover {
   border: 2px solid #007bff;
 }
 
+
+.glow-green {
+  box-shadow:
+    0 0 5px #00ff00,
+    0 0 10px #00ff00,
+    0 0 15px #00ff00;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.glow-red {
+  box-shadow:
+    0 0 5px #ff0000,
+    0 0 10px #ff0000,
+    0 0 15px #ff0000;
+  transition: box-shadow 0.3s ease-in-out;
+}

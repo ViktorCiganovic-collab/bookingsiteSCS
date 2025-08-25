@@ -73,6 +73,9 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow }) => {
               <Nav.Link onClick={() => setActiveSection('addTestTime')} className="sidebar-link">
                 Lägg till tid
               </Nav.Link>
+              <Nav.Link onClick={() => setActiveSection('addDiscount')} className="sidebar-link">
+                Aktivera rabatt
+              </Nav.Link>
               <Nav.Link onClick={() => setActiveSection('editTestTime')} className="sidebar-link">
                 Redigera tid
               </Nav.Link>

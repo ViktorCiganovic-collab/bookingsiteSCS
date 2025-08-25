@@ -39,6 +39,7 @@ const AdminDashboard = () => {
   const [hoveredTesttimeId, setHoveredTesttimeId] = useState(null);
   const [hoveredCategoryId, setHoveredCategoryId] = useState(null);
   const [bookingId, setBookingId] = useState(1);
+  const [discountActive, setDiscountActive] = useState(false);
 
   const handleClose = () => setShow(false);  
   const handleShow = () => setShow(true);
@@ -459,6 +460,29 @@ const UpdateTesttime = async (event) => {
       }
   } //skapa ny kategori
 
+  const updateDiscount = async (activate) => {
+  try {
+    setError('');
+    setResponse('');
+
+    // Exempel på URL med testTimeId, du måste ha testTimeId i scope
+    const url = `http://localhost:5011/api/ExamDate/discount/${testTimeId}`;
+
+    // PUT-request med isDiscount i body
+    const res = await axios.put(url, { isDiscount: activate });
+
+    setDiscountActive(activate);
+
+    setResponse(`Rabatt ${activate ? 'aktiverad' : 'avaktiverad'}`);
+    setError(null);
+  } catch (err) {
+    // Om backend skickar felmeddelande via response
+    const message = err.response?.data?.message || err.message;
+    setError(message);
+  }
+};
+
+
  const UpdateCategory = async (e) => {
   e.preventDefault();
 
@@ -518,6 +542,7 @@ const DeleteCategory = async (e) => {
     setResponse(null);
   }
 };
+
 
   useEffect(() => {
 
@@ -900,7 +925,7 @@ case 'testtimes':
               setStarttime(testtime.examStartingTime);
               setEndtime(testtime.examEndingTime);
               setSlots(testtime.slots);
-              setPrice(testtime.price);
+              setPrice(testtime.finalPrice);
               setActiveSection('addTestTime');
               }}
               >Duplicera</button>
@@ -917,10 +942,30 @@ case 'testtimes':
               }>
                 Radera
               </button>
+
+              <button className='btn btn-primary' onClick={() => 
+                {
+                  setTestTimeId(testtime.id);
+                  setActiveSection('addDiscount');
+                }
+              }>Aktivera rabatt
+              </button>
+
             </div>
           </td>
 
-                <td>{testtime.price} kr</td>
+                <td>{testtime.finalPrice} kr   <span
+    style={{
+      backgroundColor: testtime.discountActive ? '#00FF00' : '#FF4D4D', // diodgrön / röd
+      color: 'white',
+      padding: '2px 8px',
+      borderRadius: '12px',
+      fontSize: '0.85rem',
+      fontWeight: 'bold',
+    }}
+  >
+    {testtime.discountActive ? 'Rabatt' : 'Ingen rabatt'}
+  </span></td>
                 <td>{testtime.slots}</td>
                 <td>{testtime.id}</td>
               </tr>
@@ -1009,6 +1054,44 @@ case 'testtimes':
       {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
     </div>
   );
+
+  case 'addDiscount':
+  return (
+    <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: '400px', margin: '0 auto' }}>
+      <h3 className="text-center mb-3">Aktivera rabatt med 50% på testtillfälle</h3>
+
+      <div className="mb-3 w-100">
+        <label className="form-label">Testtidens ID</label>
+        <input
+          type="number"
+          className="form-control text-center"
+          value={testTimeId}
+          onChange={(e) => setTestTimeId(e.target.value)}
+          required
+        />
+      </div>
+
+      <div className="d-grid w-100">
+        <button
+          className={`btn mb-2 ${discountActive ? 'btn-success glow-green' : 'btn-secondary'}`}
+          onClick={() => updateDiscount(true)}
+          disabled={!testTimeId}
+        >
+          Aktivera
+        </button>
+        <button className={`btn btn-danger ${!discountActive ? 'glow-red' : ''}`}
+          onClick={() => updateDiscount(false)}
+          disabled={!testTimeId}
+        >
+          🗑 Avaktivera
+        </button>
+      </div>
+
+      {response && <p className="mt-3 text-success text-center">✅ {response}</p>}
+      {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
+    </div>
+  );
+
 
     case 'editTestTime':
   return (

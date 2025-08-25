@@ -302,7 +302,7 @@ setSelectedcategory(courseName);
           </span>
           <span><strong>{t('slots')}:</strong> {testtime.slots}</span>
           {/* {t('Price')} ({formatCurrency(testtime.price)}) */}
-        <Link to={`/booking/${selectedTest.categoryID}/${encodeURIComponent(selectedTest.certname)}/${testtime.id}/${testtime.price}`}>
+        <Link to={`/booking/${selectedTest.categoryID}/${encodeURIComponent(selectedTest.certname)}/${testtime.id}/${testtime.finalPrice}`}>
         <button className='btn btn-primary' style={{ padding: "5px", borderRadius: "5px" }}>
           {t('book_time')}
         </button>

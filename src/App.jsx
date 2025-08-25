@@ -22,7 +22,7 @@ function App() {
           {t('video_not_supported')}
         </video>
         <div className="video-overlay">
-          <h1 data-aos="zoom-in" data-aos-duration="1000">{t('welcome_message')} Scandinavian Certificate Services</h1>
+          <h1 data-aos="zoom-in" data-aos-duration="1000">{t('welcome_message')} Scandinavian Certification Services</h1>
           <p data-aos="fade-up">{t('subheadline')}</p>          
         </div>        
       </div>
