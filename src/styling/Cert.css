@@ -32,8 +32,8 @@ h1 {
   padding: 50px 0; /* Add padding for vertical spacing */}
 
 .course-card { 
+  text-align: center;
   border-radius: 10px;
-  
   overflow: hidden;
   transition: ease 0.3s;
   opacity: 0.9;

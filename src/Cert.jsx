@@ -205,7 +205,7 @@ setSelectedcategory(courseName);
         <img
           src={course.image}
           alt={course.courseName}
-          style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+          style={{ width: '100%', height: 'auto', objectFit: 'cover' }} className='mx-2'
         />
       </div>
 

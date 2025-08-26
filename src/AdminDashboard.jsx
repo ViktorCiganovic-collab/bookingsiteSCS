@@ -356,40 +356,41 @@ const UpdateTesttime = async (event) => {
     return;
   }
 
-  // Validera att slutet är efter start
+  // Validera att sluttid är efter starttid
   if (new Date(`${testDate}T${endtime}`) <= new Date(`${testDate}T${starttime}`)) {
     setError('Slutdatum måste vara efter startdatum.');
     return;
   }
 
-  // Omvandla start och sluttider till TimeSpan format (utan datum)
-  const startDateTime = new Date(`${testDate}T${starttime}`);
-  const endDateTime = new Date(`${testDate}T${endtime}`);
+  // Hjälpfunktion för att formatera tid som "HH:mm:ss"
+  const pad = (num) => num.toString().padStart(2, '0');
+
+  const formatTimeSpan = (timeStr) => {
+    const [hours, minutes, seconds = '00'] = timeStr.split(':');
+    return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  };
 
   const updatedTestTime = {
-    id: Number(testTimeId),  // testtidens id
-    examDate: startDateTime, // fullständig testdatum
-    timeStart: {
-      hours: startDateTime.getHours(),
-      minutes: startDateTime.getMinutes(),
-      seconds: startDateTime.getSeconds(),
-    }, // Omvandla till TimeSpan (endast tid, utan datum)
-    timeEnd: {
-      hours: endDateTime.getHours(),
-      minutes: endDateTime.getMinutes(),
-      seconds: endDateTime.getSeconds(),
-    }, // Omvandla till TimeSpan
+    id: Number(testTimeId),
+    examDate: `${testDate}T00:00:00`,        // Datum utan tid
+    timeStart: formatTimeSpan(starttime),   // T.ex. "13:30:00"
+    timeEnd: formatTimeSpan(endtime),       // T.ex. "15:00:00"
     slots: Number(slots),
     price: parseFloat(price),
   };
 
   try {
-    const res = await axios.put(`http://localhost:5011/api/ExamDate/${updatedTestTime.id}`, updatedTestTime, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
+    const res = await axios.put(
+      `http://localhost:5011/api/ExamDate/${updatedTestTime.id}`,
+      updatedTestTime,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
       }
-    });
+    );
+
     setResponse('Testtiden har uppdaterats!');
     setError(null);
     setTestTimeId('');
@@ -398,11 +399,11 @@ const UpdateTesttime = async (event) => {
     setEndtime('');
     setSlots('');
     setPrice('');
-  }
-  catch (error) {
+  } catch (error) {
     setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
   }
-}
+};
+
 
 
   const DeleteTesttime = async (event) => {
@@ -932,6 +933,11 @@ case 'testtimes':
 
               <button className='btn btn-secondary' onClick={() => {
                 setTestTimeId(testtime.id);
+                setTestDate(testtime.testDate.split('T')[0]);
+                setStarttime(testtime.examStartingTime);
+                setEndtime(testtime.examEndingTime);
+                setSlots(testtime.slots);
+                setPrice(testtime.finalPrice);
                 setActiveSection('editTestTime');
               }}>Redigera</button>
 
