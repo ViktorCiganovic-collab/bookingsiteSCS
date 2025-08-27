@@ -599,6 +599,7 @@ const DeleteCategory = async (e) => {
                 <p>Certifikat: {booking.certName}</p>
                 <p>Boknings ID: {booking.id}</p>
                 <p>Kund: {booking.customerFirstName} {booking.customerLastName}</p>
+                <p>Email: {booking.customerEmail}</p>
                 <p>
                   Testtid: {formatDate(startingTime)} kl. {formatTime(startingTime)} - {formatTime(endingTime)}
                 </p>

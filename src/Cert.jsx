@@ -7,6 +7,7 @@ import certImage2 from './assets/webdev_img.webp';
 import Itcourses from './services/ITcertificates'; 
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; 
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function Cert() {
   const { t } = useTranslation();   
@@ -320,7 +321,9 @@ setSelectedcategory(courseName);
     </Col>
   </Row>
 ) : selectedcategory ? (
-  <p className="text-danger text-center">{t('category_not_found')}</p>
+  <div className="d-flex flex-column align-items-center justify-content-center text-center">
+  <span><Spinner animation="border" variant="primary" /></span>
+  <span>Laddar certifikat...</span></div>
 ) : null}
 
   </Container>
