@@ -115,18 +115,18 @@ function UserDashboard() {
       <Nav className="flex-column sidepanel">
         <div className="sidebar-group">
           <div className="sidebar-title" onClick={() => toggleSection('bookings')}>
-            🗂️ {t('minaBokningar', 'Mina bokningar')}
+            🗂️ {t('my_bookings')} 
           </div>
           
         </div>
 
         <div className="sidebar-group">
           <div className="sidebar-title" onClick={() => toggleSection('certificates')}>
-            🎓 {t('certifikat', 'Certifikat')}
+            🎓 {t('certificates')}    
           </div>
           {expanded.certificates && (
             <Nav.Link className="sidebar-link">
-              {t('visaCertifikat', 'Visa certifikat')}
+             ⏰ {t('test_sessions')}  
             </Nav.Link>
           )}
         </div>

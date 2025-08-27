@@ -232,7 +232,7 @@ const Booking = () => {
         <div className='d-flex justify-content-start gap-3'>
           <Form.Check
             type="checkbox"
-            label="Lägg till övningsmaterial (+100 SEK)"
+            label={`${t('add_practice_material')} (+100 SEK)`}
             checked={includeMaterial}
             onChange={(e) => {
               const checked = e.target.checked;
@@ -241,16 +241,17 @@ const Booking = () => {
             }}
           />
 
-          <Form.Check
-            type="checkbox"
-            label="Lägg till övningstest (+100 SEK)"
-            checked={includeTest}
-            onChange={(e) => {
-              const checked = e.target.checked;
-              setIncludeTest(checked);
-              handleTestToggle(checked);
-            }}
-          />
+                <Form.Check
+          type="checkbox"
+          label={`${t('add_practice_test')} (+100 SEK)`}
+          checked={includeTest}
+          onChange={(e) => {
+            const checked = e.target.checked;
+            setIncludeTest(checked);
+            handleTestToggle(checked);
+          }}
+        />
+
         </div>
 
         <Button variant="primary" type="submit" disabled={loading}>
@@ -259,7 +260,7 @@ const Booking = () => {
               <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> Betalar & bokar...
             </>
           ) : (
-            'Betala & boka'
+            t('pay_and_book')
           )}
         </Button>
       </Form>

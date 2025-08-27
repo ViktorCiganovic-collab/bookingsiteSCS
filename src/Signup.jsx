@@ -54,7 +54,7 @@ function Signup() {
               <Form onSubmit={handleSubmit} data-aos="zoom-in-left">
 
                 <Form.Group className='mb-3' controlId="formFirstName">
-                  <Form.Label>Firstname</Form.Label>
+                  <Form.Label>{t('firstName')}</Form.Label>
                   <Form.Control
                     type="text"
                     value={firstName}
@@ -65,7 +65,7 @@ function Signup() {
                 </Form.Group>
 
                 <Form.Group className='mb-3' controlId='formLastName'>
-                  <Form.Label>Lastname</Form.Label>
+                  <Form.Label>{t('lastName')}</Form.Label>
                   <Form.Control
                     type="text"
                     value={lastName}
@@ -76,7 +76,7 @@ function Signup() {
                 </Form.Group>               
 
                 <Form.Group className="mb-3" controlId="formAddress">
-                  <Form.Label>Adress</Form.Label>
+                  <Form.Label>{t('address')}</Form.Label>
                   <Form.Control
                     type="text"
                     value={address}
