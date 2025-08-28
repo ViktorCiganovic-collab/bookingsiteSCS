@@ -109,8 +109,8 @@ export default function CertDetail() {
             <Col md={5} className="text-center">
               <h1>{decodedCertName}</h1>
               <h3>
-                Kurskategori:{' '}
-                {selectedCategory ? selectedCategory.name : 'Laddar kategori...'}
+                {t('course_category')}:{' '}
+                {selectedCategory ? selectedCategory.name : t('loading_category')}
               </h3>
               <p>{description}</p>
             </Col>

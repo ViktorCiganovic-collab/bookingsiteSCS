@@ -99,13 +99,13 @@ const Booking = () => {
 
   const handleBooking = async () => {
   if (!stripe || !elements) {
-    setError("Stripe är inte redo, försök igen om en stund.");
+    setError(t('stripe_not_ready'));
     return;
   }
 
   const token = localStorage.getItem("token");
   if (!token) {
-    setError("Du är inte inloggad. Logga in först.");
+    setError(t('not_logged_in'));
     return;
   }
 
@@ -127,13 +127,13 @@ const Booking = () => {
   } catch (err) {
     // ✅ Visa direkt feedback om något gick fel vid validering
     if (err.response?.status === 400 && err.response.data === "Det finns inte platser kvar på det här testdatumet.") {
-      setError("Inga platser finns kvar på det valda testdatumet.");
+      setError(t('no_slots_left'));
     } else if (err.response?.status === 400 && err.response.data === "Kunden har redan en bokning på detta testdatum.") {
-      setError("Du har redan en bokning på detta testdatum.");
+      setError(t('already_booking'));
     } else if (err.response?.status === 404) {
-      setError("Det valda testdatumet kunde inte hittas.");
+      setError(t('date_not_found'));
     } else {
-      setError('Ett fel inträffade vid validering. Försök igen.');
+      setError(t('validation_error'));
     }
 
     setLoading(false);
@@ -161,7 +161,7 @@ const Booking = () => {
     });
 
     if (result.error) {
-      setError('Betalningen misslyckades: ' + result.error.message);
+      setError(`${t('payment_failed')}: ${result.error.message}`);
       return;
     }
 
@@ -189,7 +189,7 @@ const Booking = () => {
     }
   } catch (err) {
     console.error(err);
-    setError('Ett fel inträffade vid betalning eller bokning. Försök igen.');
+    setError(t('payment_or_booking_error'));
   } finally {
     setLoading(false);
   }
@@ -257,7 +257,7 @@ const Booking = () => {
         <Button variant="primary" type="submit" disabled={loading}>
           {loading ? (
             <>
-              <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> Betalar & bokar...
+              <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> {t('pay_and_book_ing')}
             </>
           ) : (
             t('pay_and_book')
@@ -265,16 +265,18 @@ const Booking = () => {
         </Button>
       </Form>
 
-      {confirmed && <p style={{ color: 'green' }}>✅ Bokningen är klar och betalningen lyckades!</p>}
+      {confirmed && <p style={{ color: 'green' }}>✅ {t('booking_complete')}</p>}
+
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       {/* Stripe informations- och betalmodal */}
       <Modal show={showStripeInfoModal} onHide={() => setShowStripeInfoModal(false)} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Betalning via Stripe</Modal.Title>
+          <Modal.Title>{t('payment_via_stripe')}</Modal.Title>
+
         </Modal.Header>
         <Modal.Body>
-          <p>Du betalar säkert via Stripe. Fyll i dina kortuppgifter nedan:</p>
+          <p>{t('secure_payment_by_stripe')}</p>
           <img
           src="https://www.leafrootfruit.com.au/wp-content/uploads/2018/08/secure-stripe-payment-logo-amex-master-visa@2x.png"
           alt="Stripe logo"
@@ -286,15 +288,16 @@ const Booking = () => {
             <CardElement options={CARD_ELEMENT_OPTIONS} />
           </div>
           <p style={{ fontSize: '0.85rem', color: '#888', marginTop: '10px' }}>
-            Kortinformationen hanteras säkert via <strong>Stripe</strong> och lagras inte hos oss.
+            {t('card_handled_by_stripe')}
+
           </p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowStripeInfoModal(false)}>
-            Avbryt
+              {t('cancel')}
           </Button>
           <Button variant="primary" onClick={handleBooking} disabled={loading}>
-            {loading ? 'Bearbetar...' : 'Fortsätt & betala'}
+           {loading ? t('processing') : t('continue_and_pay')}
           </Button>
         </Modal.Footer>
       </Modal>

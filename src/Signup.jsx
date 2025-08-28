@@ -37,7 +37,7 @@ function Signup() {
     } catch (error) {
       // Hantera eventuella fel - servern hanterar inte förfrågan
       console.error("Error during registration:", error);
-      setError("Registreringen misslyckades. Användarnamnet kan redan vara taget.");
+      setError(t('registration_failed'));
 
     }
   
@@ -59,7 +59,7 @@ function Signup() {
                     type="text"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    placeholder='Your firstname'
+                    placeholder={t('your_firstname')}
                     required
                   />
                 </Form.Group>
@@ -70,7 +70,7 @@ function Signup() {
                     type="text"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    placeholder='Your lastname'
+                     placeholder={t('your_lastname_placeholder')}
                     required
                   />
                 </Form.Group>               
@@ -81,13 +81,13 @@ function Signup() {
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    placeholder="Ange adress"
+                    placeholder={t('address_placeholder')}
                     required
                   />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formEmail">
-                  <Form.Label>Email - Username</Form.Label>
+                  <Form.Label>{t('email_username')}</Form.Label>
                   <Form.Control
                     type="email"
                     value={email}
@@ -118,9 +118,9 @@ function Signup() {
 
               {registered && (
                 <div className="mt-3">
-                  <p style={{ color: 'green' }}>Ditt medlemskap har registrerats</p>
-                  <p style={{ color: 'white' }}>Vill du logga in?</p>
-                  <Link to="/login" className="btn btn-primary">Login</Link>
+                    <p style={{ color: 'green' }}>{t('membership_registered')}</p>
+                    <p style={{ color: 'white' }}>{t('want_to_login')}</p>
+                  <Link to="/login" className="btn btn-primary">{t('login_button')}</Link>
                 </div>
               )}
 

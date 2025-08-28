@@ -56,7 +56,7 @@ function Login() {
 
   } catch (error) {
     console.error("Fel vid login:", error);
-    setError('Fel användarnamn, lösenord eller obehörig.');
+    setError(t('error_invalid_login'));
   }
 };
 
@@ -78,32 +78,32 @@ useEffect(() => {
         <Container>
           <Row className="d-flex justify-content-center align-items-center mb-5 width-100">
             <Col md={6}>
-              <h2 className="text-center my-5 mb-4 text-dark">Login</h2>
+              <h2 className="text-center my-5 mb-4 text-dark">{t('login_title')}</h2>
               <Form className="my-5" onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
-              <Form.Label className='text-dark'>Username</Form.Label>
+              <Form.Label className='text-dark'>{t('username_label')}</Form.Label>
               <Form.Control 
                 type="email" 
                 value={username} 
                 onChange={(e) => setUsername(e.target.value)} 
-                placeholder="Enter username" 
+                placeholder={t('username_placeholder')}
               />
             </Form.Group>
 
             <Form.Group className="mb-3">
-            <Form.Label className='text-dark'>Password</Form.Label>
+            <Form.Label className='text-dark'>{t('password_label')}</Form.Label>
             <Form.Control 
               type="password" 
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
-              placeholder="Password" 
+              placeholder={t('password_placeholder')} 
             />
           </Form.Group>
 
                 {error && <p style={{ color: 'red' }}>{error}</p>}
 
                 <Button variant="primary" type="submit">
-                  Log In
+                    {t('login_button')}
                 </Button>
               </Form>
             </Col>

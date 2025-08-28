@@ -64,7 +64,7 @@ function UserDashboard() {
         setLoadingBookings(false);        
       })
       .catch(err => {
-        setErrorBookings('Kunde inte hämta bokningar.');
+        setErrorBookings(t('error_could_not_fetch_bookings'));
         setLoadingBookings(false);
       });
     }
