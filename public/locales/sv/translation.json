@@ -198,6 +198,155 @@
   "your_lastname_placeholder": "Ditt efternamn",
   "address_placeholder": "Ange adress",
   "email_username": "E-post - Användarnamn",
-    "error_could_not_fetch_bookings": "Kunde inte hämta bokningar."
+    "error_could_not_fetch_bookings": "Kunde inte hämta bokningar.",
+    "sectionThreeHeadline": "Bygg din framtid med oss",
+  "sectionThreeSubtext": "Certifieringar som gör skillnad",
+    
+  "categories.microsoft_office_specialist.name": "Microsoft Office Specialist",
+  "categories.microsoft_office_specialist.description": "Certifieringstest ger bevis på kompetens som både arbetsgivare och medarbetare har nytta av. För företag är kunskapstest och certifiering ett bra sätt att mäta utbildningsbehov och resultat. Med certifierad personal minskar supportkostnader eftersom produktivitet och tekniska kunskaper ökar, dessutom är certifierad personal en kvalitetsgaranti för kunder. För medarbetaren innebär ett certifikat och en certifiering ett erkännande av specialistkunskaper.",
+
+  "categories.microsoft_office_specialist.certs.word_associate.name": "Word 365/2019 Associate",
+  "categories.microsoft_office_specialist.certs.word_associate.description": "Grundläggande kunskaper i att skapa, formatera och redigera professionella dokument i Word.",
+
+  "categories.microsoft_office_specialist.certs.excel_associate.name": "Excel 365/2019 Associate",
+  "categories.microsoft_office_specialist.certs.excel_associate.description": "Grundläggande färdigheter i kalkylblad, formler och datahantering i Excel.",
+
+  "categories.microsoft_office_specialist.certs.outlook_associate.name": "Outlook 365/2019 Associate",
+  "categories.microsoft_office_specialist.certs.outlook_associate.description": "Effektiv hantering av e-post, kalender och kontakter i Outlook.",
+
+  "categories.microsoft_office_specialist.certs.powerpoint_associate.name": "PowerPoint 365/2019 Associate",
+  "categories.microsoft_office_specialist.certs.powerpoint_associate.description": "Skapa engagerande och visuellt tilltalande presentationer med PowerPoint.",
+
+  "categories.microsoft_office_specialist.certs.word_expert.name": "Word 365/2019 Expert",
+  "categories.microsoft_office_specialist.certs.word_expert.description": "Avancerad dokumenthantering, automatisering och samarbetsfunktioner i Word.",
+
+  "categories.microsoft_office_specialist.certs.excel_expert.name": "Excel 365/2019 Expert",
+  "categories.microsoft_office_specialist.certs.excel_expert.description": "Expertkunskaper i avancerade funktioner, pivottabeller och dataanalys i Excel.",
+
+  "categories.microsoft_office_specialist.certs.access_expert.name": "Access 365/2019 Expert",
+  "categories.microsoft_office_specialist.certs.access_expert.description": "Skapa och hantera komplexa databaser och rapporter med Access.",
+
+  "categories.microsoft_fundamentals.name": "Microsoft Fundamentals Certifieringar",
+  "categories.microsoft_fundamentals.description": "Här erbjuder vi ett utbud av grundläggande certifieringar över olika Microsoft-teknologier, vilket ger en solid grund för din karriär inom IT. Dessa certifieringar är utformade för både tekniska och icke-tekniska yrkesverksamma som vill förbättra sin förståelse för Microsofts teknologier.",
+
+  "categories.microsoft_fundamentals.certs.azure_fundamentals.name": "Azure Fundamentals (AZ-900)",
+  "categories.microsoft_fundamentals.certs.azure_fundamentals.description": "Introduktion till molntjänster och Microsoft Azure för nybörjare, även för icke-tekniska.",
+
+  "categories.microsoft_fundamentals.certs.azure_ai_fundamentals.name": "Azure AI Fundamentals (AI-900)",
+  "categories.microsoft_fundamentals.certs.azure_ai_fundamentals.description": "Grundläggande AI och maskininlärning på Azure för nyfikna på AI-teknik.",
+
+  "categories.microsoft_fundamentals.certs.azure_data_fundamentals.name": "Azure Data Fundamentals (DP-900)",
+  "categories.microsoft_fundamentals.certs.azure_data_fundamentals.description": "Basfakta om datahantering, analys och stordata för datadrivna beslut.",
+
+  "categories.microsoft_fundamentals.certs.security_compliance_identity.name": "Security, Compliance, and Identity Fundamentals (SC-900)",
+  "categories.microsoft_fundamentals.certs.security_compliance_identity.description": "Få grundläggande insikter i cybersäkerhet, efterlevnad och identitetshantering – perfekt för dig som vill förstå säkerhetsgrunderna i en digital värld.",
+
+  "categories.microsoft_fundamentals.certs.power_platform.name": "Power Platform Fundamentals (PL-900)",
+  "categories.microsoft_fundamentals.certs.power_platform.description": "Automatisera, analysera och bygg lösningar utan kod. Power Platform gör det möjligt för alla att lösa affärsproblem smartare.",
+
+  "categories.microsoft_fundamentals.certs.microsoft_365.name": "Microsoft 365 Fundamentals (MS-900)",
+  "categories.microsoft_fundamentals.certs.microsoft_365.description": "Upptäck hur Microsoft 365:s appar förenklar samarbete och ökar produktivitet – oavsett var du arbetar ifrån.",
+
+  "categories.microsoft_fundamentals.certs.dynamics_crm.name": "Dynamics 365 Fundamentals (CRM)",
+  "categories.microsoft_fundamentals.certs.dynamics_crm.description": "Utforska kundengagemangsverktyg i Dynamics 365 och förstå hur du skapar starkare kundrelationer genom smart teknik.",
+
+  "categories.microsoft_fundamentals.certs.dynamics_erp.name": "Dynamics 365 Fundamentals (ERP)",
+  "categories.microsoft_fundamentals.certs.dynamics_erp.description": "Lär dig grunderna i ERP-lösningar inom Dynamics 365 – och hur du effektiviserar ekonomi, drift och affärsprocesser med rätt verktyg.",
+
+  "categories.unity_certified_user.name": "Unity Certified User",
+  "categories.unity_certified_user.description": "Unity är den ledande innehållsskapande plattformen för VR/AR, 3D i realtid och mobil 2D. Unity används av studenter och yrkesverksamma runt om i världen för att skapa allt från spel till filmer, 3D-modeller till VR-simuleringar. Unity Certified User-certifieringen hjälper arbetsgivare och institutioner att verifiera en kandidats kunskaper och färdigheter med Unity-teknik för att lyckas i dessa branscher.",
+
+  "categories.unity_certified_user.certs.programmering.name": "Unity Certified User: Programmering",
+  "categories.unity_certified_user.certs.programmering.description": "Programmera spel och interaktiva upplevelser i Unity.",
+
+  "categories.unity_certified_user.certs.artist.name": "Unity Certified User: Artist",
+  "categories.unity_certified_user.certs.artist.description": "Skapa grafik och animationer i Unity-miljö.",
+
+  "categories.unity_certified_user.certs.vr_ar.name": "Unity Certified User: VR/AR Design",
+  "categories.unity_certified_user.certs.vr_ar.description": "Designa upplevelser för VR och AR med Unity.",
+
+  "categories.unity_certified_user.certs.game_dev.name": "Unity Certified User: Game Development",
+  "categories.unity_certified_user.certs.game_dev.description": "Utveckla spel från idé till färdig produkt i Unity.",
+
+  "categories.adobe_certified_professional.name": "Adobe Certified Professional",
+  "categories.adobe_certified_professional.description": "Om du tar något av InDesign, Photoshop och Illustrator tillsammans med en annan Adobe certifiering kvalificerar du för Adobe Certified Professional.",
+
+  "categories.adobe_certified_professional.certs.after_effects.name": "Adobe After Effects",
+  "categories.adobe_certified_professional.certs.after_effects.description": "Skapa imponerande rörlig grafik och visuella effekter för video, webb och film – perfekt för dig som vill ta dina animationer till nästa nivå.",
+
+  "categories.adobe_certified_professional.certs.animate.name": "Adobe Animate",
+  "categories.adobe_certified_professional.certs.animate.description": "Bygg interaktiva animationer för webb, appar och spel.",
+
+  "categories.adobe_certified_professional.certs.dreamweaver.name": "Adobe Dreamweaver",
+  "categories.adobe_certified_professional.certs.dreamweaver.description": "Designa och koda moderna, responsiva webbplatser.",
+
+  "categories.adobe_certified_professional.certs.illustrator.name": "Adobe Illustrator",
+  "categories.adobe_certified_professional.certs.illustrator.description": "Skapa vektorbaserad grafik som håller kvaliteten i alla storlekar.",
+
+    "categories.adobe_certified_professional.certs.indesign.name": "Adobe InDesign",
+  "categories.adobe_certified_professional.certs.indesign.description": "Bygg proffsiga trycksaker och digitala publikationer. InDesign är förstahandsvalet för designers som arbetar med layout för magasin, broschyrer och e-böcker.",
+
+  "categories.adobe_certified_professional.certs.photoshop.name": "Adobe Photoshop",
+  "categories.adobe_certified_professional.certs.photoshop.description": "Redigera bilder, skapa digital konst eller designa grafik med det mest kraftfulla verktyget inom bildbehandling. Photoshop sätter standarden.",
+
+  "categories.adobe_certified_professional.certs.premiere_pro.name": "Adobe Premiere Pro",
+  "categories.adobe_certified_professional.certs.premiere_pro.description": "Kraftfull videoredigering för allt från sociala medier till långfilm. Premiere Pro ger dig total kontroll över din berättelse i rörligt format.",
+
+    "categories.cisco_certified_support_technician.name": "Cisco Certified Support Technician",
+  "categories.cisco_certified_support_technician.description": "Detta program innehåller två certifieringsprov som är utformade för att validera arbetsklara färdigheter och kunskaper för att hjälpa eleverna att hitta ett jobb inom nätverks- och cybersäkerhetsområdet. Att få en Cisco Certified Support Technician-certifiering visar elevens färdigheter för arbetsgivare och berättar för dem att de är redo att kavla upp ärmarna från dag ett.",
+
+  "categories.cisco_certified_support_technician.certs.networking.name": "CCST Networking",
+  "categories.cisco_certified_support_technician.certs.networking.description": "Grundläggande nätverkskunskap, felsökning och förståelse för nätverksinfrastruktur.",
+
+  "categories.cisco_certified_support_technician.certs.cybersecurity.name": "CCST Cybersecurity",
+  "categories.cisco_certified_support_technician.certs.cybersecurity.description": "Introduktion till cybersäkerhet, hotanalys och skydd av digitala resurser.",
+
+    "categories.it_specialist.name": "IT Specialist",
+  "categories.it_specialist.description": "IT Specialist-certifieringar täcker ett brett spektrum av tekniska ämnen – från programmering till cybersäkerhet och dataanalys.",
+
+  "categories.it_specialist.certs.ai.name": "Artificiell Intelligens",
+  "categories.it_specialist.certs.ai.description": "Förstå grunderna i artificiell intelligens och dess tillämpningar.",
+
+  "categories.it_specialist.certs.cloud_computing.name": "Molntjänster",
+  "categories.it_specialist.certs.cloud_computing.description": "Lär dig om molntjänster och hur de används i moderna IT-miljöer.",
+
+  "categories.it_specialist.certs.computational_thinking.name": "Beräkningsmässigt tänkande",
+  "categories.it_specialist.certs.computational_thinking.description": "Utveckla logiskt tänkande för att lösa tekniska problem.",
+
+  "categories.it_specialist.certs.cybersecurity.name": "Cybersäkerhet",
+  "categories.it_specialist.certs.cybersecurity.description": "Skydda system och data från digitala hot.",
+
+  "categories.it_specialist.certs.data_analysis.name": "Dataanalys",
+  "categories.it_specialist.certs.data_analysis.description": "Samla in, bearbeta och analysera data för insikter.",
+
+  "categories.it_specialist.certs.databases.name": "Databaser",
+  "categories.it_specialist.certs.databases.description": "Skapa och hantera databaser effektivt.",
+
+  "categories.it_specialist.certs.device_configuration.name": "Enhetskonfiguration",
+  "categories.it_specialist.certs.device_configuration.description": "Installera och konfigurera digitala enheter.",
+
+  "categories.it_specialist.certs.html_css.name": "HTML och CSS",
+  "categories.it_specialist.certs.html_css.description": "Bygg webbplatser med HTML och CSS.",
+
+  "categories.it_specialist.certs.html5_app.name": "HTML5 Apputveckling",
+  "categories.it_specialist.certs.html5_app.description": "Utveckla appar med HTML5-teknik.",
+
+  "categories.it_specialist.certs.java.name": "Java",
+  "categories.it_specialist.certs.java.description": "Programmera med Java för olika applikationer.",
+
+  "categories.it_specialist.certs.javascript.name": "JavaScript",
+  "categories.it_specialist.certs.javascript.description": "Skapa interaktivitet på webben med JavaScript.",
+
+  "categories.it_specialist.certs.networking.name": "Nätverk",
+  "categories.it_specialist.certs.networking.description": "Förstå nätverksstrukturer och protokoll.",
+
+  "categories.it_specialist.certs.network_security.name": "Nätverkssäkerhet",
+  "categories.it_specialist.certs.network_security.description": "Skydda nätverk mot intrång och attacker.",
+
+  "categories.it_specialist.certs.python.name": "Python",
+  "categories.it_specialist.certs.python.description": "Programmera med Python för automation och analys.",
+
+  "categories.it_specialist.certs.software_development.name": "Programvaruutveckling",
+  "categories.it_specialist.certs.software_development.description": "Utveckla mjukvara med moderna metoder och verktyg."
 
 }

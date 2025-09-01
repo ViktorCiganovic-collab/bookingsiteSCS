@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import './styling/CertDetail.css';
 import { FaCheck } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { translationKeys } from './translationMap';
+
 
 export default function CertDetail() {
   const { certname, description, certtestprice, certcategory } = useParams();
@@ -31,6 +33,10 @@ export default function CertDetail() {
     };
     fetchCategories();
   }, []);
+  
+  const descriptionKey = translationKeys[description] || description;
+
+  console.log('descriptionKey:', descriptionKey, description);
 
   // Hitta vald kategori
   useEffect(() => {
@@ -112,7 +118,7 @@ export default function CertDetail() {
                 {t('course_category')}:{' '}
                 {selectedCategory ? selectedCategory.name : t('loading_category')}
               </h3>
-              <p>{description}</p>
+              <p>{t(descriptionKey)}</p>
             </Col>
 
             <Col md={5}>

@@ -8,6 +8,7 @@ import Itcourses from './services/ITcertificates';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; 
 import Spinner from 'react-bootstrap/Spinner';
+import { translationKeys } from './translationMap';
 
 export default function Cert() {
   const { t } = useTranslation();   
@@ -98,6 +99,10 @@ useEffect(() => {
 
   // Filter categories based on userchoice
   const currentCategory = category.find(category => category.name === selectedcategory);
+  const categoryDescriptionKey = currentCategory?.description
+  ? translationKeys[currentCategory.description] || currentCategory.description
+  : '';
+
  
   const seeTestTimes = (certName, categoryId) => {
     console.log("Clicked on:", certName);
@@ -270,7 +275,7 @@ setSelectedcategory(courseName);
   <Row className="mt-4">
     <Col md={4} className="mb-4 text-center">
       <h3>{currentCategory.name}</h3>
-      <p>{currentCategory.description}</p>
+      <p>{t(categoryDescriptionKey)}</p>
       <img
         src={currentCategory.image}
         alt={currentCategory.name}

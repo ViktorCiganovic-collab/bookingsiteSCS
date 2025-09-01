@@ -1261,6 +1261,9 @@ case 'categories':
                   <button className='btn btn-secondary'
                   onClick={() => {
                     setSelectedcategory(x.id);
+                    setName(x.name);
+                    setDescription(x.description);
+                    setImage(x.image);
                     setActiveSection('updateCategory');
                   }}>Redigera</button>
 

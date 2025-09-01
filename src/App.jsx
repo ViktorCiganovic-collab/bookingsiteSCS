@@ -34,8 +34,9 @@ function App() {
             {threeCourses.map((course, index) => (
               <Col key={index} md={4}>
                 <div className="course-card" data-aos="slide-up">
-                  
-                                   <img
+                  <Link to={`/cert/${encodeURIComponent(course.certs[0].name)}/${encodeURIComponent(course.certs[0].description)}/1500/${course.categoryId}`}>
+
+                  <img
                     src={course.image}
                     alt={course.courseName}
                     className="mb-3"
@@ -43,11 +44,12 @@ function App() {
                       objectFit: 'cover',
                       borderRadius: '6px'
                     }}
-                  />            
+                  />    
+                  </Link>        
                  
-                  <h3 className='text-white'>{course.certs[0]}</h3>
+                  <h3 className='text-white'>{course.certs[0].name}</h3>
                   <p className='text-white'><strong>{t('category')}:</strong> {course.courseName} </p>
-                  <p className='text-white'>{course.description}</p>
+                  <p className='text-white'>{course.certs[0].description}</p>
                 </div>
               </Col>
             ))}
@@ -58,7 +60,14 @@ function App() {
       <section className="mainpageSectionthree">
         <Row>
           <Col md={12}>
-            <img src={thirdImg} className="mainpageImgthree" alt="illustration" />
+            <div className="position-relative">
+  <img src={thirdImg} className="mainpageImgthree" alt="illustration" />
+  <div className="position-absolute top-50 start-50 translate-middle text-white text-center bg-dark bg-opacity-50 p-3 rounded" data-aos="zoom-in" data-aos-duration="1500">
+    <h3>{t('sectionThreeHeadline')}</h3>
+    <p>{t('sectionThreeSubtext')}</p>
+  </div>
+</div>
+
           </Col>
         </Row>
       </section>
