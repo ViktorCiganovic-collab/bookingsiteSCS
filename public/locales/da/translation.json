@@ -201,6 +201,8 @@
    "error_could_not_fetch_bookings": "Kunne ikke hente bookinger.",
   "sectionThreeHeadline": "Byg din fremtid med os",
   "sectionThreeSubtext": "Certificeringer der gør en forskel",   
+     "membership_registered": "Dit medlemskab er registreret.",
+  "want_to_login": "Vil du logge ind?",
   
   "categories.microsoft_office_specialist.name": "Microsoft Office Specialist",
   "categories.microsoft_office_specialist.description": "Certificeringstests beviser kompetencer, som både arbejdsgivere og medarbejdere har gavn af. For virksomheder er videnstests og certificering en god måde at måle uddannelsesbehov og resultater på.",
@@ -275,32 +277,46 @@
 
   "categories.it_specialist.name": "IT Specialist",
   "categories.it_specialist.description": "Certificeringer inden for programmering, dataanalyse, cybersikkerhed og meget mere.",
+
   "categories.it_specialist.certs.ai.name": "Kunstig Intelligens",
   "categories.it_specialist.certs.ai.description": "Forstå det grundlæggende i kunstig intelligens.",
+
   "categories.it_specialist.certs.cloud_computing.name": "Cloud Computing",
-  "categories.it_specialist.certs.cloud_computing.description": "Lær om cloud-tjenester og deres anvendelse.",  
+  "categories.it_specialist.certs.molnberakning.description": "Lær om cloud-tjenester og deres anvendelse.",  
+
   "categories.it_specialist.certs.computational_thinking.name": "Computational Thinking",
-  "categories.it_specialist.certs.computational_thinking.description": "Logisk tænkning til at løse tekniske problemer.",
+  "categories.it_specialist.certs.berakningstankande.description": "Logisk tænkning til at løse tekniske problemer.",
+
   "categories.it_specialist.certs.cybersecurity.name": "Cybersikkerhed",
-  "categories.it_specialist.certs.cybersecurity.description": "Beskyt systemer og data mod digitale trusler.",
+  "categories.it_specialist.certs.cybersakerhet.description": "Beskyt systemer og data mod digitale trusler.",
+
   "categories.it_specialist.certs.data_analysis.name": "Dataanalyse",
-  "categories.it_specialist.certs.data_analysis.description": "Indsaml, bearbejd og analyser data.",
+  "categories.it_specialist.certs.dataanalys.description": "Indsaml, bearbejd og analyser data.",
+
   "categories.it_specialist.certs.databases.name": "Databaser",
-  "categories.it_specialist.certs.databases.description": "Opret og administrer databaser.",
+  "categories.it_specialist.certs.databaser.description": "Opret og administrer databaser.",
+
   "categories.it_specialist.certs.device_configuration.name": "Enhedskonfiguration",
-  "categories.it_specialist.certs.device_configuration.description": "Installer og konfigurer digitale enheder.",
+  "categories.it_specialist.certs.enhetkonfiguration_och_hantering.description": "Installer og konfigurer digitale enheder.",
+
   "categories.it_specialist.certs.html_css.name": "HTML og CSS",
-  "categories.it_specialist.certs.html_css.description": "Byg websites med HTML og CSS.",
+  "categories.it_specialist.certs.html_och_css.description": "Byg websites med HTML og CSS.",
+
   "categories.it_specialist.certs.html5_app.name": "HTML5 Appudvikling",
   "categories.it_specialist.certs.html5_app.description": "Udvikl apps med HTML5-teknologi.",
+
   "categories.it_specialist.certs.java.name": "Java",
   "categories.it_specialist.certs.java.description": "Programmer med Java til forskellige applikationer.",
+
   "categories.it_specialist.certs.javascript.name": "JavaScript",
   "categories.it_specialist.certs.javascript.description": "Skab interaktivitet på webben med JavaScript.",
+
   "categories.it_specialist.certs.networking.name": "Netværk",
-  "categories.it_specialist.certs.networking.description": "Forstå netværksstrukturer og protokoller.",
+  "categories.it_specialist.certs.natverk.description": "Forstå netværksstrukturer og protokoller.",
+
   "categories.it_specialist.certs.network_security.name": "Netværkssikkerhed",
   "categories.it_specialist.certs.network_security.description": "Sikr netværk mod angreb og indtrængen.",
+
   "categories.it_specialist.certs.python.name": "Python",
   "categories.it_specialist.certs.python.description": "Programmer med Python til automatisering"
 }

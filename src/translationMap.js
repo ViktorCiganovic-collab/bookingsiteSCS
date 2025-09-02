@@ -88,10 +88,10 @@ export const translationKeys = {
   "Detta program innehåller två certifieringsprov som är utformade för att validera arbetsklara färdigheter och kunskaper för att hjälpa eleverna att hitta ett jobb inom nätverks- och cybersäkerhetsområdet. Att få en Cisco Certified Support Technician-certifiering visar elevens färdigheter för arbetsgivare och berättar för dem att de är redo att kavla upp ärmarna från dag ett.\n\nCisco Certified Support Technician-programmet består av två prov, Cisco Certified Support Technician Networking och Cisco Certified Support Technician Cybersecurity.\n\nKontakta oss om du vill ha hjälp med kurser och övningstest.": "categories.cisco_certified_support_technician.description",
 
   "CCST Networking": "categories.cisco_certified_support_technician.certs.ccst_networking.name",
-  "Testar dina nätverkskunskaper och förbereder dig för roller som nätverksanalytiker, supporttekniker och mer. Med CCST Networking-certifieringen visar du arbetsgivare att du är redo att ta itu med utmaningar från dag ett.": "categories.cisco_certified_support_technician.certs.ccst_networking.description",
+  "Testar dina nätverkskunskaper och förbereder dig för roller som nätverksanalytiker, supporttekniker och mer. Med CCST Networking-certifieringen visar du arbetsgivare att du är redo att ta itu med utmaningar från dag ett.": "categories.cisco_certified_support_technician.certs.networking.description",
 
   "CCST Cybersecurity": "categories.cisco_certified_support_technician.certs.ccst_cybersecurity.name",
-  "Förbered dig för en karriär inom cybersäkerhet med detta certifikat. Som CCST Cybersecurity-certifierad har du de nödvändiga färdigheterna för att hantera säkerhetsincidenter och skydda organisationers digitala tillgångar.": "categories.cisco_certified_support_technician.certs.ccst_cybersecurity.description",
+  "Förbered dig för en karriär inom cybersäkerhet med detta certifikat. Som CCST Cybersecurity-certifierad har du de nödvändiga färdigheterna för att hantera säkerhetsincidenter och skydda organisationers digitala tillgångar.": "categories.cisco_certified_support_technician.certs.cybersecurity.description",
 
     // IT Specialist
   "IT Specialist": "categories.it_specialist.name",

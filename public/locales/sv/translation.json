@@ -201,7 +201,8 @@
     "error_could_not_fetch_bookings": "Kunde inte hämta bokningar.",
     "sectionThreeHeadline": "Bygg din framtid med oss",
   "sectionThreeSubtext": "Certifieringar som gör skillnad",
-    
+  "membership_registered": "Ditt medlemskap är registrerat.",
+  "want_to_login": "Vill du logga in?",
   "categories.microsoft_office_specialist.name": "Microsoft Office Specialist",
   "categories.microsoft_office_specialist.description": "Certifieringstest ger bevis på kompetens som både arbetsgivare och medarbetare har nytta av. För företag är kunskapstest och certifiering ett bra sätt att mäta utbildningsbehov och resultat. Med certifierad personal minskar supportkostnader eftersom produktivitet och tekniska kunskaper ökar, dessutom är certifierad personal en kvalitetsgaranti för kunder. För medarbetaren innebär ett certifikat och en certifiering ett erkännande av specialistkunskaper.",
 
@@ -296,7 +297,7 @@
   "categories.cisco_certified_support_technician.description": "Detta program innehåller två certifieringsprov som är utformade för att validera arbetsklara färdigheter och kunskaper för att hjälpa eleverna att hitta ett jobb inom nätverks- och cybersäkerhetsområdet. Att få en Cisco Certified Support Technician-certifiering visar elevens färdigheter för arbetsgivare och berättar för dem att de är redo att kavla upp ärmarna från dag ett.",
 
   "categories.cisco_certified_support_technician.certs.networking.name": "CCST Networking",
-  "categories.cisco_certified_support_technician.certs.networking.description": "Grundläggande nätverkskunskap, felsökning och förståelse för nätverksinfrastruktur.",
+  "categories.cisco_certified_support_technician.certs.networking.description": "Testar dina nätverkskunskaper och förbereder dig för roller som nätverksanalytiker, supporttekniker och mer. Med CCST Networking-certifieringen visar du arbetsgivare att du är redo att ta itu med utmaningar från dag ett.",
 
   "categories.cisco_certified_support_technician.certs.cybersecurity.name": "CCST Cybersecurity",
   "categories.cisco_certified_support_technician.certs.cybersecurity.description": "Introduktion till cybersäkerhet, hotanalys och skydd av digitala resurser.",
@@ -308,28 +309,28 @@
   "categories.it_specialist.certs.ai.description": "Förstå grunderna i artificiell intelligens och dess tillämpningar.",
 
   "categories.it_specialist.certs.cloud_computing.name": "Molntjänster",
-  "categories.it_specialist.certs.cloud_computing.description": "Lär dig om molntjänster och hur de används i moderna IT-miljöer.",
+  "categories.it_specialist.certs.molnberakning.description": "Lär dig om molntjänster och hur de används i moderna IT-miljöer.",
 
   "categories.it_specialist.certs.computational_thinking.name": "Beräkningsmässigt tänkande",
-  "categories.it_specialist.certs.computational_thinking.description": "Utveckla logiskt tänkande för att lösa tekniska problem.",
+  "categories.it_specialist.certs.berakningstankande.description": "Utveckla logiskt tänkande för att lösa tekniska problem.",
 
   "categories.it_specialist.certs.cybersecurity.name": "Cybersäkerhet",
-  "categories.it_specialist.certs.cybersecurity.description": "Skydda system och data från digitala hot.",
+  "categories.it_specialist.certs.cybersakerhet.description": "Skydda system och data från digitala hot.",
 
   "categories.it_specialist.certs.data_analysis.name": "Dataanalys",
-  "categories.it_specialist.certs.data_analysis.description": "Samla in, bearbeta och analysera data för insikter.",
+  "categories.it_specialist.certs.dataanalys.description": "Samla in, bearbeta och analysera data för insikter.",
 
   "categories.it_specialist.certs.databases.name": "Databaser",
-  "categories.it_specialist.certs.databases.description": "Skapa och hantera databaser effektivt.",
+  "categories.it_specialist.certs.databaser.description": "Skapa och hantera databaser effektivt.",
 
   "categories.it_specialist.certs.device_configuration.name": "Enhetskonfiguration",
-  "categories.it_specialist.certs.device_configuration.description": "Installera och konfigurera digitala enheter.",
+  "categories.it_specialist.certs.enhetkonfiguration_och_hantering.description": "Installera och konfigurera digitala enheter.",
 
   "categories.it_specialist.certs.html_css.name": "HTML och CSS",
-  "categories.it_specialist.certs.html_css.description": "Bygg webbplatser med HTML och CSS.",
+  "categories.it_specialist.certs.html_och_css.description": "Bygg webbplatser med HTML och CSS.",
 
   "categories.it_specialist.certs.html5_app.name": "HTML5 Apputveckling",
-  "categories.it_specialist.certs.html5_app.description": "Utveckla appar med HTML5-teknik.",
+  "categories.it_specialist.certs.html5_application_development.description": "Utveckla appar med HTML5-teknik.",
 
   "categories.it_specialist.certs.java.name": "Java",
   "categories.it_specialist.certs.java.description": "Programmera med Java för olika applikationer.",
@@ -338,10 +339,10 @@
   "categories.it_specialist.certs.javascript.description": "Skapa interaktivitet på webben med JavaScript.",
 
   "categories.it_specialist.certs.networking.name": "Nätverk",
-  "categories.it_specialist.certs.networking.description": "Förstå nätverksstrukturer och protokoll.",
+  "categories.it_specialist.certs.natverk.description": "Förstå nätverksstrukturer och protokoll.",
 
   "categories.it_specialist.certs.network_security.name": "Nätverkssäkerhet",
-  "categories.it_specialist.certs.network_security.description": "Skydda nätverk mot intrång och attacker.",
+  "categories.it_specialist.certs.natverkssakerhet.description": "Skydda nätverk mot intrång och attacker.",
 
   "categories.it_specialist.certs.python.name": "Python",
   "categories.it_specialist.certs.python.description": "Programmera med Python för automation och analys.",

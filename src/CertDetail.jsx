@@ -38,6 +38,8 @@ export default function CertDetail() {
 
   console.log('descriptionKey:', descriptionKey, description);
 
+  console.log('Description:', t(descriptionKey));
+
   // Hitta vald kategori
   useEffect(() => {
     if (category.length > 0) {

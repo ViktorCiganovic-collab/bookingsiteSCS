@@ -201,6 +201,8 @@
   "error_could_not_fetch_bookings": "Varauksia ei voitu hakea.",
   "sectionThreeHeadline": "Rakenna tulevaisuutesi kanssamme",
   "sectionThreeSubtext": "Sertifikaatit, jotka tekevät eron",
+     "membership_registered": "Jäsenyytesi on rekisteröity.",
+  "want_to_login": "Haluatko kirjautua sisään?",
    
   "categories.microsoft_office_specialist.name": "Microsoft Office Specialist",
   "categories.microsoft_office_specialist.description": "Sertifikaatit osoittavat osaamisen, josta on hyötyä sekä työnantajille että työntekijöille. Yrityksille osaamistestit ja sertifioinnit ovat hyvä tapa mitata koulutustarpeita ja tuloksia.",
@@ -275,32 +277,46 @@
 
   "categories.it_specialist.name": "IT Specialist",
   "categories.it_specialist.description": "Sertifikaatit ohjelmoinnista, data-analytiikasta, kyberturvallisuudesta ja muusta.",
+
   "categories.it_specialist.certs.ai.name": "Tekoäly",
   "categories.it_specialist.certs.ai.description": "Ymmärrä tekoälyn perusteet.",
+
   "categories.it_specialist.certs.cloud_computing.name": "Pilvipalvelut",
-  "categories.it_specialist.certs.cloud_computing.description": "Opi pilvipalveluista ja niiden käytöstä.",
+  "categories.it_specialist.certs.molnberakning.description": "Opi pilvipalveluista ja niiden käytöstä.",
+
   "categories.it_specialist.certs.computational_thinking.name": "Laskennallinen ajattelu",
-  "categories.it_specialist.certs.computational_thinking.description": "Loogista ajattelua teknisten ongelmien ratkaisuun.",
+  "categories.it_specialist.certs.berakningstankande.description": "Loogista ajattelua teknisten ongelmien ratkaisuun.",
+
   "categories.it_specialist.certs.cybersecurity.name": "Kyberturvallisuus",
-  "categories.it_specialist.certs.cybersecurity.description": "Suojaa järjestelmät ja tiedot digitaalisilta uhilta.",
+  "categories.it_specialist.certs.cybersakerhet.description": "Suojaa järjestelmät ja tiedot digitaalisilta uhilta.",
+
   "categories.it_specialist.certs.data_analytics.name": "Data-analytiikka",
-  "categories.it_specialist.certs.data_analytics.description": "Analysoi ja visualisoi dataa päätöksenteon tueksi.",
+  "categories.it_specialist.certs.dataanalys.description": "Analysoi ja visualisoi dataa päätöksenteon tueksi.",
+
   "categories.it_specialist.certs.databases.name": "Tietokannat",
-  "categories.it_specialist.certs.databases.description": "Suunnittele ja hallitse tietokantoja tehokkaasti.",
+  "categories.it_specialist.certs.databaser.description": "Suunnittele ja hallitse tietokantoja tehokkaasti.",
+
   "categories.it_specialist.certs.device_configuration.name": "Laitteiden konfigurointi ja hallinta",
-  "categories.it_specialist.certs.device_configuration.description": "Konfiguroi ja ylläpidä IT-laitteita ja järjestelmiä.",
+  "categories.it_specialist.certs.enhetkonfiguration_och_hantering.description": "Konfiguroi ja ylläpidä IT-laitteita ja järjestelmiä.",
+
   "categories.it_specialist.certs.html_css.name": "HTML ja CSS",
-  "categories.it_specialist.certs.html_css.description": "Luo ja muotoile verkkosivuja HTML:llä ja CSS:llä.",
+  "categories.it_specialist.certs.html_och_css.description": "Luo ja muotoile verkkosivuja HTML:llä ja CSS:llä.",
+
   "categories.it_specialist.certs.javascript.name": "JavaScript",
   "categories.it_specialist.certs.javascript.description": "Ohjelmoi interaktiivisia toimintoja verkkosivuille.",
+
   "categories.it_specialist.certs.networking.name": "Verkko",
-  "categories.it_specialist.certs.networking.description": "Ymmärrä verkkorakenteet, protokollat ja vianmääritys.",
+  "categories.it_specialist.certs.natverk.description": "Ymmärrä verkkorakenteet, protokollat ja vianmääritys.",
+
   "categories.it_specialist.certs.network_security.name": "Verkkoturvallisuus",
   "categories.it_specialist.certs.network_security.description": "Suojaa verkot luvattomalta käytöltä ja hyökkäyksiltä.",
+
   "categories.it_specialist.certs.python.name": "Python",
   "categories.it_specialist.certs.python.description": "Ohjelmoi Pythonilla automaatioon ja data-analyysiin.",
+
   "categories.it_specialist.certs.software_development.name": "Ohjelmistokehitys",
   "categories.it_specialist.certs.software_development.description": "Kehitä sovelluksia ja ymmärrä ohjelmiston elinkaari.",
+
   "categories.it_specialist.certs.database_administration.name": "Tietokannan hallinta",
   "categories.it_specialist.certs.database_administration.description": "Hallinnoi ja optimoi tietokantoja suorituskyvyn ja turvallisuuden takaamiseksi."
 }
