@@ -175,6 +175,8 @@ const Booking = () => {
         CustomerLastName: lastname,
         CustomerEmail: email,
         CustomerPassword: password,
+        PracticeMaterial: includeMaterial,
+        PracticeTest: includeTest
       };
 
       await axios.post('http://localhost:5011/api/booking', customerBooking, {

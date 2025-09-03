@@ -274,6 +274,20 @@ const Editcertificate = async (e) => {
       const startTime = new Date(startTimeString);
       const endTime = new Date(endTimeString);
 
+       const testDateOnly = new Date(`${testtime.testDate.split('T')[0]}T00:00:00`);
+
+  const today = new Date();
+  
+  // Sätt tid till midnatt på båda för att jämföra endast datum
+  testDateOnly.setHours(0, 0, 0, 0);
+  today.setHours(0, 0, 0, 0);
+
+  console.log('testDateOnly:', testDateOnly);
+console.log('today:', today);
+console.log('isPassed:', testDateOnly < today);
+
+  const isPassed = testDateOnly < today;
+
       // Kontrollera om datumen är ogiltiga
       if (isNaN(startTime) || isNaN(endTime)) {
         console.error("Ogiltiga datum/tider för testtillfälle:", testtime);
@@ -301,6 +315,7 @@ const Editcertificate = async (e) => {
         ...testtime,
         formattedStartTime,
         formattedEndTime,
+        isPassed
       };
     });
 
@@ -594,15 +609,23 @@ const DeleteCategory = async (e) => {
             const startingTime = new Date(booking.examStartingTime);
             const endingTime = new Date(booking.examEndingTime);
 
+            const now = new Date();
+            const isPassed = startingTime < now;
+
             return (
               <div key={index} className='booking'>
-                <p>Certifikat: {booking.certName}</p>
-                <p>Boknings ID: {booking.id}</p>
+                <p className="highlight">Certifikat: {booking.certName}</p>
                 <p>Kund: {booking.customerFirstName} {booking.customerLastName}</p>
                 <p>Email: {booking.customerEmail}</p>
-                <p>
+                 <p style={{color: isPassed ? 'red' : '', fontWeight: isPassed ? 'bold' : ''}}>
                   Testtid: {formatDate(startingTime)} kl. {formatTime(startingTime)} - {formatTime(endingTime)}
+                  {isPassed && <span style={{color: 'red', fontWeight: 'bold', marginLeft: '8px'}}>Passerat</span>}
                 </p>
+                <p>Vill ha övningstest: {booking.wantsPracticeTest ? "✅" : "❌"}</p>
+                <p>Vill ha övningsmaterial: {booking.wantsPracticeMaterial ? "✅" : "❌"}</p>
+                <p>Boknings ID: {booking.id}</p>
+                
+               
               </div>
             );
           })}
@@ -910,29 +933,37 @@ case 'testtimes':
             </tr>
           </thead>
           <tbody>
-            {testtimes.map((testtime) => (
-              <tr key={testtime.id}
-              onMouseEnter={() => setHoveredTesttimeId(testtime.id)}
-              onMouseLeave={() => setHoveredTesttimeId(null)}
-              >
-             <td className="cert-name-cell">
-            <span className={hoveredTesttimeId === testtime.id ? 'hidden' : ''}>
-              {testtime.formattedStartTime} - {testtime.formattedEndTime}
-            </span>
+  {testtimes.map((testtime) => {
+   
 
-            <div className={`button-container ${hoveredTesttimeId === testtime.id ? 'show-buttons' : ''}`}>
-              <button className='btn btn-primary'
+    return (
+      <tr
+        key={testtime.id}
+        onMouseEnter={() => setHoveredTesttimeId(testtime.id)}
+        onMouseLeave={() => setHoveredTesttimeId(null)}        
+        >
+        <td className={testtime.isPassed ? 'passed-row cert-name-cell' : 'cert-name-cell'}>
+          <span className={hoveredTesttimeId === testtime.id ? 'hidden' : ''}>
+            {testtime.formattedStartTime} - {testtime.formattedEndTime}            
+          </span>
+           {testtime.isPassed && <span className={testtime.isPassed ? 'heavy-text' : ''}>Datum passerat</span>}
+
+          <div className={`button-container ${hoveredTesttimeId === testtime.id ? 'show-buttons' : ''}`}>
+            <button className='btn btn-primary'
               onClick={() => {
-              setTestDate(testtime.testDate.split('T')[0]);
-              setStarttime(testtime.examStartingTime);
-              setEndtime(testtime.examEndingTime);
-              setSlots(testtime.slots);
-              setPrice(testtime.finalPrice);
-              setActiveSection('addTestTime');
+                setTestDate(testtime.testDate.split('T')[0]);
+                setStarttime(testtime.examStartingTime);
+                setEndtime(testtime.examEndingTime);
+                setSlots(testtime.slots);
+                setPrice(testtime.finalPrice);
+                setActiveSection('addTestTime');
               }}
-              >Duplicera</button>
+            >
+              Duplicera
+            </button>
 
-              <button className='btn btn-secondary' onClick={() => {
+            <button className='btn btn-secondary'
+              onClick={() => {
                 setTestTimeId(testtime.id);
                 setTestDate(testtime.testDate.split('T')[0]);
                 setStarttime(testtime.examStartingTime);
@@ -940,44 +971,55 @@ case 'testtimes':
                 setSlots(testtime.slots);
                 setPrice(testtime.finalPrice);
                 setActiveSection('editTestTime');
-              }}>Redigera</button>
+              }}
+            >
+              Redigera
+            </button>
 
-              <button className='btn btn-danger'
+            <button className='btn btn-danger'
               onClick={() => {
                 setTestTimeId(testtime.id);
-                setActiveSection('deleteTestTime');}                
-              }>
-                Radera
-              </button>
+                setActiveSection('deleteTestTime');
+              }}
+            >
+              Radera
+            </button>
 
-              <button className='btn btn-primary' onClick={() => 
-                {
-                  setTestTimeId(testtime.id);
-                  setActiveSection('addDiscount');
-                }
-              }>Aktivera rabatt
-              </button>
+            <button className='btn btn-primary'
+              onClick={() => {
+                setTestTimeId(testtime.id);
+                setActiveSection('addDiscount');
+              }}
+            >
+              Aktivera rabatt
+            </button>
+          </div>
+        </td>
 
-            </div>
-          </td>
+        <td>
+          {testtime.finalPrice} kr
+          <span
+            style={{
+              backgroundColor: testtime.discountActive ? '#00FF00' : '#FF4D4D',
+              color: 'white',
+              padding: '2px 8px',
+              borderRadius: '12px',
+              fontSize: '0.85rem',
+              fontWeight: 'bold',
+              marginLeft: '8px'
+            }}
+          >
+            {testtime.discountActive ? 'Rabatt' : 'Ingen rabatt'}
+          </span>
+        </td>
 
-                <td>{testtime.finalPrice} kr   <span
-    style={{
-      backgroundColor: testtime.discountActive ? '#00FF00' : '#FF4D4D', // diodgrön / röd
-      color: 'white',
-      padding: '2px 8px',
-      borderRadius: '12px',
-      fontSize: '0.85rem',
-      fontWeight: 'bold',
-    }}
-  >
-    {testtime.discountActive ? 'Rabatt' : 'Ingen rabatt'}
-  </span></td>
-                <td>{testtime.slots}</td>
-                <td>{testtime.id}</td>
-              </tr>
-            ))}
-          </tbody>
+        <td>{testtime.slots}</td>
+        <td>{testtime.id}</td>
+      </tr>
+    );
+  })}
+</tbody>
+
         </Table>
       )}
     </div>
@@ -1060,6 +1102,7 @@ case 'testtimes':
       {response && <p className="mt-3 text-success text-center">✅ Testtiden har lagts till</p>}
       {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
     </div>
+    
   );
 
   case 'addDiscount':
