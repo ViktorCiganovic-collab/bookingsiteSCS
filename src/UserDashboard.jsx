@@ -32,6 +32,8 @@ function UserDashboard() {
   const [bookingToCancel, setBookingToCancel] = useState(null);
   const [loadingBookings, setLoadingBookings] = useState(false);
   const [errorBookings, setErrorBookings] = useState(null);  
+  const [cancelMessageType, setCancelMessageType] = useState(null);
+  const [loadingCancel, setLoadingCancel] = useState(false);
 
   const toggleSection = (section) => {
     setExpanded(prev => ({
@@ -90,23 +92,59 @@ function UserDashboard() {
     setShowCancelModal(true);
   };
 
-    const cancelTesttime = async (bookingId) => {  
-
+ const cancelTesttime = async (bookingId) => {
   const token = localStorage.getItem("token");
 
-  
-  try {
-    await axios.delete(`http://localhost:5011/api/Booking/${Number(bookingId)}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  const cancelledBooking = bookings.find(booking => booking.id === bookingId);  
 
-    // Uppdatera listan efter borttagning
-    setBookings(prev => prev.filter(b => b.id !== bookingId));
+  if (!cancelledBooking) {
+    console.error("Bokning hittades inte.");
+    return;
+  }  
+
+      setLoadingCancel(true); // Starta loading
+    setShowCancelModal(false); // Stäng modal direkt när man trycker "Ja"
+
+  try {
+    // 1. Skicka refund-begäran och låt backend hantera borttagning av bokningen
+    const refundResponse = await axios.post(
+      "http://localhost:5011/api/refund",
+      {
+        paymentIntentId: cancelledBooking.paymentIntentId,
+        reason: "Jag kan inte delta", // Valfritt
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    // 2. Kontrollera om återbetalning lyckades
+    if (refundResponse.data.status === "succeeded") {
+      // 3. Uppdatera UI direkt utan att anropa DELETE eftersom backend redan tagit bort bokningen
+      setBookings((prev) => prev.filter((b) => b.id !== bookingId));
+      setCancelMessageType('success');
+      setTimeout(() => {
+        setCancelMessageType(null);
+      }, 5000);
+
+
+    } else {
+      setCancelMessageType('error');
+      setTimeout(() => {
+        setCancelMessageType(null);
+      }, 5000);
+
+    }
   } catch (error) {
-    console.error("Kunde inte ta bort bokningen:", error);    
-  }
+  setCancelMessageType('error');
+  setTimeout(() => {
+        setCancelMessageType(null);
+      }, 5000);
+
+}
+
 };
 
 
@@ -159,6 +197,18 @@ function UserDashboard() {
       >
         <h2 data-aos="fade-down" data-aos-duration="700">{t('welcomeUserDashboard', 'Välkommen till din dashboard')}!</h2>
 
+                {cancelMessageType && (
+          <div
+            className={`alert ${
+              cancelMessageType === 'success' ? 'alert-success' : 'alert-danger'
+            }`}
+            role="alert"
+          >
+            {cancelMessageType === 'success'
+              ? t('booking_cancelled_success', 'Bokning avbokad och återbetalning genomförd.')
+              : t('booking_cancelled_error', 'Något gick fel. Kontakta Scandinavian Certification Services AB på support@scandinavian-cert.se.')}
+          </div>
+        )}
 
         {/*Bokningarna ska visas här nedanför*/}
         {expanded.bookings && (
@@ -188,7 +238,7 @@ function UserDashboard() {
                     <td>{booking.certName}</td>
                     <td>{booking.id}</td>
                     <td>{formatDate(startingTime)} kl. {formatTime(startingTime)} - {formatTime(endingTime)}</td>
-                    <td onClick={() => confirmCancelBooking(booking.id)} style={{ cursor: 'pointer' }}>🗑️</td>
+                    <td><button onClick={() => confirmCancelBooking(booking.id)} disabled={loadingCancel} style={{ cursor: loadingCancel ? 'not-allowed' : 'pointer', background: 'none', border: 'none', fontSize: '1.2rem' }}>🗑️</button></td>
                   </tr>
                 )
                 })}                
@@ -229,6 +279,8 @@ function UserDashboard() {
             </Button>
           </Modal.Footer>
         </Modal>
+
+       
       </main>
     </div>
   );

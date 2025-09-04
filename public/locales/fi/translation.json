@@ -77,7 +77,8 @@
   "available_exam_times": "Saatavilla olevat kokeiden ajat",
   "no_exam_dates_available": "ei saatavilla olevia kokeen aikoja",
   "Price": "Hinta",
-  "book_time": "Varaa aika",
+  "book_header": "Varaa",
+  "book_time": "Siirry varaukseen",
   "privacy": "Tietosuojakäytäntö",
    "terms": "Käyttöehdot",
    "email": "Sähköposti",
@@ -203,6 +204,8 @@
   "sectionThreeSubtext": "Sertifikaatit, jotka tekevät eron",
      "membership_registered": "Jäsenyytesi on rekisteröity.",
   "want_to_login": "Haluatko kirjautua sisään?",
+    "booking_cancelled_success": "Varaus peruutettu ja hyvitys suoritettu.",
+  "booking_cancelled_error": "Jokin meni pieleen. Ota yhteyttä Scandinavian Certification Services AB:hen osoitteessa support@scandinavian-cert.se.",
    
   "categories.microsoft_office_specialist.name": "Microsoft Office Specialist",
   "categories.microsoft_office_specialist.description": "Sertifikaatit osoittavat osaamisen, josta on hyötyä sekä työnantajille että työntekijöille. Yrityksille osaamistestit ja sertifioinnit ovat hyvä tapa mitata koulutustarpeita ja tuloksia.",

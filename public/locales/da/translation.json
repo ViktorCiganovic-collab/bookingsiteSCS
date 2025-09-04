@@ -77,7 +77,8 @@
   "available_exam_times": "Tilgængelige eksamens tider for",
   "no_exam_dates_available": "Ingen eksamensdatoer tilgængelige",
   "Price": "Pris",
-  "book_time": "Book tid",
+  "book_header": "Book",
+  "book_time": "Gå til booking",
   "privacy": "Privatlivspolitik",
   "terms": "Vilkår for brug",
    "email": "E-mail",
@@ -203,6 +204,8 @@
   "sectionThreeSubtext": "Certificeringer der gør en forskel",   
      "membership_registered": "Dit medlemskab er registreret.",
   "want_to_login": "Vil du logge ind?",
+    "booking_cancelled_success": "Booking annulleret og refusion gennemført.",
+  "booking_cancelled_error": "Noget gik galt. Kontakt Scandinavian Certification Services AB på support@scandinavian-cert.se.",
   
   "categories.microsoft_office_specialist.name": "Microsoft Office Specialist",
   "categories.microsoft_office_specialist.description": "Certificeringstests beviser kompetencer, som både arbejdsgivere og medarbejdere har gavn af. For virksomheder er videnstests og certificering en god måde at måle uddannelsesbehov og resultater på.",

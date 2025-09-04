@@ -167,6 +167,8 @@ const Booking = () => {
 
     // ✅ Steg 3: Slutför bokning efter betalning
     if (result.paymentIntent.status === 'succeeded') {
+      const paymentIntentId = result.paymentIntent.id;
+
       const customerBooking = {
         ExamId: examid,
         Category: categoryid,
@@ -176,7 +178,8 @@ const Booking = () => {
         CustomerEmail: email,
         CustomerPassword: password,
         PracticeMaterial: includeMaterial,
-        PracticeTest: includeTest
+        PracticeTest: includeTest,
+        PaymentIntentId: paymentIntentId
       };
 
       await axios.post('http://localhost:5011/api/booking', customerBooking, {

@@ -77,7 +77,8 @@
   "available_exam_times": "Tillgängliga tentamenstider för",
   "no_exam_dates_available": "Inga tentamensdatum tillgängliga",
   "Price": "Pris",
-  "book_time": "Boka tid",
+  "book_header": "Boka",
+  "book_time": "Gå till bokning",
   "privacy": "Integritetspolicy",
    "terms": "Användarvillkor",
     "email": "E-post",
@@ -203,6 +204,10 @@
   "sectionThreeSubtext": "Certifieringar som gör skillnad",
   "membership_registered": "Ditt medlemskap är registrerat.",
   "want_to_login": "Vill du logga in?",
+    "booking_cancelled_success": "Bokning avbokad och återbetalning genomförd.",
+  "booking_cancelled_error": "Något gick fel. Kontakta Scandinavian Certification Services AB på support@scandinavian-cert.se.",
+
+
   "categories.microsoft_office_specialist.name": "Microsoft Office Specialist",
   "categories.microsoft_office_specialist.description": "Certifieringstest ger bevis på kompetens som både arbetsgivare och medarbetare har nytta av. För företag är kunskapstest och certifiering ett bra sätt att mäta utbildningsbehov och resultat. Med certifierad personal minskar supportkostnader eftersom produktivitet och tekniska kunskaper ökar, dessutom är certifierad personal en kvalitetsgaranti för kunder. För medarbetaren innebär ett certifikat och en certifiering ett erkännande av specialistkunskaper.",
 

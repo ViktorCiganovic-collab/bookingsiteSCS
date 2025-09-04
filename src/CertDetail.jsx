@@ -217,7 +217,7 @@ export default function CertDetail() {
                       <th> {t('test_date')}</th>
                       <th>{t('slots')}</th>
                       <th>{t('your_price')}</th>
-                      <th>{t('book_time')}</th>
+                      <th>{t('book_header')}</th>
                     </tr>
                   </thead>
                   <tbody>

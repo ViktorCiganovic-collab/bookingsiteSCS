@@ -77,7 +77,8 @@
   "available_exam_times": "Tilgjengelige eksamenstider for", 
   "no_exam_dates_available": "Ingen eksamensdatoer tilgjengelige",
   "Price": "Pris",
-  "book_time": "Book tid",
+  "book_header": "Bestill",
+  "book_time": "Gå til bestilling",
   "privacy": "Personvernregler",
   "terms": "Vilkår for bruk",
    "email": "E-post",
@@ -203,6 +204,8 @@
   "sectionThreeSubtext": "Sertifiseringer som gjør en forskjell",
    "membership_registered": "Medlemskapet ditt er registrert.",
   "want_to_login": "Vil du logge inn?",
+    "booking_cancelled_success": "Bestillingen er avbestilt og refusjon er fullført.",
+  "booking_cancelled_error": "Noe gikk galt. Kontakt Scandinavian Certification Services AB på support@scandinavian-cert.se.",
 
   "categories.microsoft_office_specialist.name": "Microsoft Office Specialist",
   "categories.microsoft_office_specialist.description": "Sertifiseringstester gir bevis på kompetanse som både arbeidsgivere og ansatte har nytte av. For bedrifter er kunnskapstester og sertifisering en god måte å måle opplæringsbehov og resultater på.",
