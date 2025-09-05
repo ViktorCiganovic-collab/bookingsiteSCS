@@ -17,6 +17,7 @@ const AdminDashboard = () => {
   const { t } = useTranslation();
   const [show, setShow] = useState(false);
   const [bookings, setBookings] = useState([]);
+  const [cancellations, setCancellations] = useState([]);
   const [certificates, setCertificates] = useState([]);
   const [testtimes, setTesttimes] = useState([]);
   const [category, setCategory] = useState([]);
@@ -106,12 +107,31 @@ const formatTime = (date) =>
 
   }; //se alla bokningar
 
+  const fetchCancellations = async () => {
+    setLoading(true);
+    const token = localStorage.getItem('token');
+    try {
+      const res = await axios.get('http://localhost:5011/api/refund', {headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`}
+      });
+      setCancellations(res.data);
+      console.log(res.data);
+      setError(null);
+      setLoading(false);
+    } catch (error) {
+      setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+    } finally { 
+      setLoading(false);
+    }
+  }
+
   const fetchCertificates = async () => {
     setLoading(true);
-    try {
+      try {
       const res = await axios.get('http://localhost:5011/api/cert');
-      setCertificates(res.data);
-      console.log(res.data);
+      setCertificates(res.data);      
       setError(null);
       setLoading(false);
     }
@@ -566,6 +586,9 @@ const DeleteCategory = async (e) => {
       case 'bookings':
         viewBookings();
         break;
+      case 'cancellations':
+        fetchCancellations();
+        break;
       case 'certificates':
       fetchCertificates();
       break;
@@ -662,6 +685,44 @@ return (
       )}
       {error && (
         <p className="mt-3 text-danger text-center">❌ {error}</p>
+      )}
+    </div>
+  );
+
+case 'cancellations':
+    return (
+    <div>
+      <h2>Visa Avbokningar</h2>
+
+      {loading ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <Spinner animation="border" variant="primary" />
+          <p>Laddar avbokningar...</p>
+        </div>
+      ) : error ? (
+        <p style={{ color: 'red' }}>{error}</p>
+      ) : (
+        <div className='flexelementsBookings'>
+          {cancellations.map((cancellation, index) => {
+            
+            return (
+              <div key={index} className='booking'>
+                <p className="highlight">Avbokning avser: {cancellation.customerName}</p>
+                <p>
+              Avbokningstidpunkt: {new Date(cancellation.cancelledAt).toLocaleDateString('sv-SE', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </p>
+                <p>Återbetalningsstatus: {cancellation.refundStatus == "succeeded" ? "Återbetalt" : "Väntar på behandling"}</p>
+                <p>Betalnings-ID: {cancellation.paymentIntentId}</p>
+                               
+               
+              </div>
+            );
+          })}
+        </div>
       )}
     </div>
   );

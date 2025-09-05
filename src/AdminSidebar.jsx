@@ -32,6 +32,9 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow }) => {
               <Nav.Link onClick={() => setActiveSection('bookings')} className="sidebar-link">
                 Visa bokningar
               </Nav.Link>
+                <Nav.Link onClick={() => setActiveSection('cancellations')} className="sidebar-link">
+                Visa avbokningar
+              </Nav.Link>
               <Nav.Link onClick={() => setActiveSection('deleteBookings')} className="sidebar-link">
                 Ta bort bokning
               </Nav.Link>
