@@ -19,6 +19,7 @@ import About from './About.jsx';
 import AdminDashboard from './AdminDashboard.jsx';
 import UserDashboard from './UserDashboard.jsx';
 import Booking from './Booking.jsx';
+import InfoPage from './InfoPage.jsx';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: 'cert/:certname/:description/:certtestprice/:certcategory',
         element: <CertDetail />,
+      },
+      {
+        path: 'info',
+        element: <InfoPage />
       },
       {
         path: 'signup',
