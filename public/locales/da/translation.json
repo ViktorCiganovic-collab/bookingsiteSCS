@@ -321,5 +321,40 @@
   "categories.it_specialist.certs.network_security.description": "Sikr netværk mod angreb og indtrængen.",
 
   "categories.it_specialist.certs.python.name": "Python",
-  "categories.it_specialist.certs.python.description": "Programmer med Python til automatisering"
+  "categories.it_specialist.certs.python.description": "Programmer med Python til automatisering",
+  
+    "faq_title": "Ofte stillede spørgsmål",
+    "faq_booking_question": "Hvordan booker jeg en certificeringstest?",
+  "faq_remote_question": "Kan jeg tage testen hjemmefra?",
+  "faq_cancel_question": "Hvad sker der, hvis jeg skal aflyse?",
+  
+  
+  "faq_booking_answer": "Du booker testen via vores hjemmeside under \"Mine sider\" eller ved at kontakte os via e-mail.",
+  "faq_remote_answer": "Ja, du kan vælge at tage testen hjemmefra. Du skal bruge en stabil internetforbindelse, webcam og mikrofon.",
+  "faq_cancel_answer": "Du kan aflyse via Mine sider eller ved at kontakte Scandinavian Certification Services telefonisk.",
+
+  "faq_storage_question": "Hvordan opbevarer jeg mine personlige ejendele?",
+  "faq_storage_answer": "Vi tilbyder skabe med nøgle, når du ankommer.",
+
+  "faq_notes_question": "Skal jeg medbringe notesblok og pen?",
+  "faq_notes_answer": "Nej, du får det af os, hvis din certificering tillader brug af notesblok og pen.",
+
+  "faq_computer_question": "Skal jeg tage min egen computer med?",
+  "faq_computer_answer": "Nej, vi har et lokale med computere, hvor certificeringen gennemføres.",
+
+  "faq_food_question": "Må jeg have mad eller drikke med i testlokalet?",
+  "faq_food_answer": "Nej, men ved længere prøver med pauser kan du placere mad og drikke i vores lounge og benytte det i pausen.",
+
+  "faq_arrival_question": "Hvornår skal jeg være på stedet?",
+  "faq_arrival_answer": "Senest 30 minutter før din bookede tid.",
+
+  "faq_id_question": "Skal jeg medbringe to former for legitimation?",
+  "faq_id_answer": "Din bekræftelse angiver, om du skal medbringe både primær og sekundær legitimation. Hvis testen kræver sekundær legitimation (ikke alle gør), er f.eks. et betalingskort med fuldt navn og håndskrevet signatur tilstrækkeligt.",
+
+  "faq_parking_question": "Er der parkering udenfor?",
+  "faq_parking_answer": "Ja, der er rigeligt med parkeringspladser. (Gælder testcenteret i Johanneshov.)",
+
+  "faq_support_question": "Hvem kan jeg kontakte under certificeringen ved spørgsmål?",
+  "faq_support_answer": "Når du besøger os, møder du en testadministrator, som er tilgængelig under hele certificeringen."
 }
+

@@ -353,6 +353,42 @@
   "categories.it_specialist.certs.python.description": "Programmera med Python för automation och analys.",
 
   "categories.it_specialist.certs.software_development.name": "Programvaruutveckling",
-  "categories.it_specialist.certs.software_development.description": "Utveckla mjukvara med moderna metoder och verktyg."
+  "categories.it_specialist.certs.software_development.description": "Utveckla mjukvara med moderna metoder och verktyg.",
 
+   "faq_title": "Vanliga frågor och svar",
+    "faq_booking_question": "Hur bokar jag ett certifieringstest?",
+  "faq_remote_question": "Kan jag skriva testet hemifrån?",
+  "faq_cancel_question": "Vad händer om jag behöver avboka?",
+
+  
+  "faq_booking_answer": "Du bokar testet via vår webbsida under \"Mina sidor\" eller genom att kontakta oss via e-post.",
+  "faq_remote_answer": "Ja, du kan välja att skriva testet på distans. Du behöver en stabil internetuppkoppling, webbkamera och mikrofon.",
+  "faq_cancel_answer": "Du kan avboka via Mina sidor eller genom att kontakta Scandinavian Certification Services på telefon.",
+
+
+
+  "faq_storage_question": "Hur förvarar jag mina personliga saker?",
+  "faq_storage_answer": "Vi erbjuder skåp med nyckel när du kommer hit.",
+
+  "faq_notes_question": "Ska jag ha anteckningsblock och penna med mig?",
+  "faq_notes_answer": "Nej, det får du av oss om din certifiering tillåter användningen av anteckningsblock & penna.",
+
+  "faq_computer_question": "Behöver jag ta med mig egen dator?",
+  "faq_computer_answer": "Nej, vi har en sal med datorer där certifieringen skrivs.",
+
+  "faq_food_question": "Får jag ha mat eller dryck i testsalen?",
+  "faq_food_answer": "Nej, om du har ett längre prov med raster inkluderat kan du placera ät- och drickbart i vår lounge så att du har tillgång till det under rasten.",
+
+  "faq_arrival_question": "När bör jag vara på plats hos er?",
+  "faq_arrival_answer": "Senast 30 minuter innan din bokade tid.",
+
+  "faq_id_question": "Två stycken legitimation, behövs det?",
+  "faq_id_answer": "I din bekräftelse står det om du behöver både en primär och en sekundär legitimation. Om det prov du ska skriva kräver sekundär legitimation (alla gör inte det) så räcker det med t.ex. ett betalkort som innehåller ditt fullständiga namn och en handskriven signatur som andra leg.",
+
+  "faq_parking_question": "Finns parkering utanför?",
+  "faq_parking_answer": "Ja, det finns gott om parkeringsplatser. (Gäller Johanneshovs testcenter.)",
+
+  "faq_support_question": "Vem kan jag vända mig till under certifieringstillfället vid frågor?",
+  "faq_support_answer": "När du besöker oss möts du av en testadministratör som finns tillgänglig under hela din certifiering."
 }
+

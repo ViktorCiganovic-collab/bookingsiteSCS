@@ -7,10 +7,24 @@ import FAQSection from './services/FAQAccordion';
 
 const InfoPage = () => {
   return (
-    <div className="infoPage">
-      <section className="infoPageSectionOne">
-        <h1 data-aos="fade-right" data-aos-duration="1000">Information om certifiering</h1>
-      </section>
+    <div className='infoPage'>
+   <section className="infoPageSectionOne">
+  <h1 data-aos="fade-right" data-aos-duration="1000">Information om certifiering</h1>
+  <p className="lead mt-3">
+    Gör din certifiering på dina villkor – online eller i våra lokaler. Snabbt, säkert och professionellt.
+  </p>
+
+  <div className="certBenefits mt-4" data-aos="fade-up" data-aos-duration="1000">
+    <h3>✅ Varför certifiera dig via oss?</h3>
+    <ul>
+      <li><strong>Tryggt & flexibelt:</strong> Certifiera dig hemifrån eller på plats i Malmö.</li>
+      <li><strong>Snabba besked:</strong> Resultat direkt efter avslutat test.</li>
+      <li><strong>Brett utbud:</strong> Välj bland 100+ certifieringar inom IT, programmering och Office.</li>
+      <li><strong>Personlig kontakt:</strong> Vår support hjälper dig hela vägen.</li>
+    </ul>
+  </div>
+</section>
+
 
       <section className="infoPageSectionTwo w-100">
         <Row className="d-flex justify-content-center p-5">

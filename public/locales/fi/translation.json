@@ -321,6 +321,41 @@
   "categories.it_specialist.certs.software_development.description": "Kehitä sovelluksia ja ymmärrä ohjelmiston elinkaari.",
 
   "categories.it_specialist.certs.database_administration.name": "Tietokannan hallinta",
-  "categories.it_specialist.certs.database_administration.description": "Hallinnoi ja optimoi tietokantoja suorituskyvyn ja turvallisuuden takaamiseksi."
+  "categories.it_specialist.certs.database_administration.description": "Hallinnoi ja optimoi tietokantoja suorituskyvyn ja turvallisuuden takaamiseksi.",
+  
+  
+  "faq_booking_answer": "Voit varata testin verkkosivujemme kautta kohdasta \"Omat sivut\" tai ottamalla meihin yhteyttä sähköpostitse.",
+  "faq_remote_answer": "Kyllä, voit suorittaa testin etänä. Tarvitset vakaan internetyhteyden, webkameran ja mikrofonin.",
+  "faq_cancel_answer": "Voit peruuttaa testin Omien sivujen kautta tai ottamalla yhteyttä Scandinavian Certification Servicesiin puhelimitse.",
+
+  "faq_title": "Usein kysytyt kysymykset",
+  "faq_booking_question": "Miten varaan sertifiointikokeen?",
+  "faq_remote_question": "Voinko suorittaa kokeen kotoa käsin?",
+  "faq_cancel_question": "Mitä tapahtuu, jos joudun perumaan?",
+
+  "faq_storage_question": "Miten säilytän henkilökohtaiset tavarani?",
+  "faq_storage_answer": "Tarjoamme lukollisia kaappeja saapuessasi.",
+
+  "faq_notes_question": "Tarvitseeko ottaa mukaan muistivihko ja kynä?",
+  "faq_notes_answer": "Ei, saat ne meiltä, jos sertifiointi sallii niiden käytön.",
+
+  "faq_computer_question": "Täytyykö ottaa oma tietokone mukaan?",
+  "faq_computer_answer": "Ei, meillä on sali, jossa on tietokoneet sertifiointia varten.",
+
+  "faq_food_question": "Saanko tuoda ruokaa tai juomaa testisaliin?",
+  "faq_food_answer": "Ei, mutta jos kokeessa on taukoja, voit säilyttää ruoan ja juoman loungessa ja käyttää niitä tauon aikana.",
+
+  "faq_arrival_question": "Milloin minun tulisi olla paikalla?",
+  "faq_arrival_answer": "Viimeistään 30 minuuttia ennen varattua aikaa.",
+
+  "faq_id_question": "Tarvitaanko kaksi henkilöllisyystodistusta?",
+  "faq_id_answer": "Vahvistuksessa kerrotaan, tarvitsetko sekä ensisijaisen että toissijaisen henkilöllisyyden. Jos koe vaatii toissijaisen (kaikki eivät vaadi), riittää esimerkiksi maksukortti, jossa on koko nimi ja käsin kirjoitettu allekirjoitus.",
+
+  "faq_parking_question": "Onko pysäköintitilaa ulkona?",
+  "faq_parking_answer": "Kyllä, pysäköintitilaa on runsaasti. (Koskee Johanneshovin testikeskusta.)",
+
+  "faq_support_question": "Keneen voin ottaa yhteyttä sertifioinnin aikana, jos on kysyttävää?",
+  "faq_support_answer": "Kun saavut paikalle, sinua vastaanottaa testihallinnoija, joka on käytettävissä koko sertifioinnin ajan."
 }
+
 

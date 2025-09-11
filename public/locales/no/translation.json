@@ -321,6 +321,41 @@
   "categories.it_specialist.certs.software_development.description": "Utvikle applikasjoner og forstå livssyklusen for programvare.",
 
   "categories.it_specialist.certs.database_administration.name": "Databaseadministrasjon",
-  "categories.it_specialist.certs.database_administration.description": "Administrer og optimaliser databaser for ytelse og sikkerhet."
+  "categories.it_specialist.certs.database_administration.description": "Administrer og optimaliser databaser for ytelse og sikkerhet.",
+  
+    "faq_title": "Vanlige spørsmål og svar",
+  "faq_booking_question": "Hvordan bestiller jeg en sertifiseringstest?",
+  "faq_remote_question": "Kan jeg ta testen hjemmefra?",
+  "faq_cancel_question": "Hva skjer hvis jeg må avbestille?",
+
+  
+  "faq_booking_answer": "Du bestiller testen via nettsiden vår under \"Mine sider\" eller ved å kontakte oss via e-post.",
+  "faq_remote_answer": "Ja, du kan velge å ta testen hjemmefra. Du trenger en stabil internettforbindelse, webkamera og mikrofon.",
+  "faq_cancel_answer": "Du kan avbestille via Mine sider eller ved å kontakte Scandinavian Certification Services på telefon.",
+
+  "faq_storage_question": "Hvordan oppbevarer jeg personlige eiendeler?",
+  "faq_storage_answer": "Vi tilbyr skap med nøkkel når du kommer hit.",
+
+  "faq_notes_question": "Skal jeg ta med notatblokk og penn?",
+  "faq_notes_answer": "Nei, du får det av oss dersom sertifiseringen tillater bruk av notatblokk og penn.",
+
+  "faq_computer_question": "Må jeg ta med egen datamaskin?",
+  "faq_computer_answer": "Nei, vi har et rom med datamaskiner der sertifiseringen gjennomføres.",
+
+  "faq_food_question": "Kan jeg ha mat eller drikke i testrommet?",
+  "faq_food_answer": "Nei, men ved lengre prøver med pauser kan du plassere mat og drikke i vår lounge og bruke det i pausen.",
+
+  "faq_arrival_question": "Når bør jeg være på plass hos dere?",
+  "faq_arrival_answer": "Senest 30 minutter før din bestilte tid.",
+
+  "faq_id_question": "Trenger jeg to legitimasjoner?",
+  "faq_id_answer": "I bekreftelsen står det om du trenger både primær og sekundær legitimasjon. Hvis testen krever sekundær legitimasjon (ikke alle gjør det), holder det med f.eks. et bankkort med fullt navn og håndskrevet signatur.",
+
+  "faq_parking_question": "Finnes det parkering utenfor?",
+  "faq_parking_answer": "Ja, det er godt med parkeringsplasser. (Gjelder testcenteret i Johanneshov.)",
+
+  "faq_support_question": "Hvem kan jeg kontakte under sertifiseringen ved spørsmål?",
+  "faq_support_answer": "Når du besøker oss, møter du en testadministrator som er tilgjengelig under hele sertifiseringen."
 }
+
 
