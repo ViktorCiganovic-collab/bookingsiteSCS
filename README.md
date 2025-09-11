@@ -10,6 +10,8 @@ Here are some screenshots of the project:
 
 ![Admin panel](./Project_images/Image_of_project2.png)
 
+![Info page](./Project_images/Info_page.png)
+
 ---
 
 Key features include:
