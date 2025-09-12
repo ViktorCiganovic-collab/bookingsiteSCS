@@ -191,7 +191,7 @@ setSelectedcategory(courseName);
                 {t('certification_explanation')}
               </figcaption>
             </figure>
-            <Link to="/info" className='custom-link'>Läs mer här</Link>
+            <Link to="/info" className='custom-link'>{t('readMore')}</Link>
           </Col>
         </Row>
 
