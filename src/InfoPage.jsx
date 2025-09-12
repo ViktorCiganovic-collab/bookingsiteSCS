@@ -107,11 +107,7 @@ return (
             <p>{t('infoPage.testCenterSection.address')}</p>
 
             <h4>{t('infoPage.testCenterSection.hoursTitle')}</h4>
-            <p>{t('infoPage.testCenterSection.hours')}</p>
-
-
-            <h4>{t('infoPage.testCenterSection.hoursTitle')}</h4>
-            <p>{t('infoPage.testCenterSection.hours')}</p>
+            <p>{t('infoPage.testCenterSection.hours')}</p>            
 
 
            <div className="map-container mt-4">
