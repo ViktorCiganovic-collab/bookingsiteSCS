@@ -140,3 +140,16 @@ h1 {
 .certStyling {
   cursor: pointer;
 }
+
+.custom-link {
+  color: #007bff;           /* Blå färg */
+  text-decoration: none;    /* Ta bort understrykning */
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.custom-link:hover {
+  color: #0056b3;           /* Mörkare blå vid hover */
+  text-decoration: underline;
+}

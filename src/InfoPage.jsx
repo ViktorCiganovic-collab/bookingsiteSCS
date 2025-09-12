@@ -4,114 +4,119 @@ import { Row, Col } from 'react-bootstrap';
 import './styling/InfoPage.css';
 import malmö_testcenterImg from './assets/malmötestcenter.jpeg'
 import FAQSection from './services/FAQAccordion';
+import { useTranslation, Trans  } from 'react-i18next';
+
 
 const InfoPage = () => {
-  return (
+
+const { t } = useTranslation();
+
+return (
     <div className='infoPage'>
    <section className="infoPageSectionOne">
-  <h1 data-aos="fade-right" data-aos-duration="1000">Information om certifiering</h1>
+  <h1 data-aos="fade-right" data-aos-duration="1000">{t('infoPage.title')}</h1>
   <p className="lead mt-3">
-    Gör din certifiering på dina villkor – online eller i våra lokaler. Snabbt, säkert och professionellt.
+    {t('infoPage.subtitle')}
   </p>
 
   <div className="certBenefits mt-4" data-aos="fade-up" data-aos-duration="1000">
-    <h3>✅ Varför certifiera dig via oss?</h3>
-    <ul>
-      <li><strong>Tryggt & flexibelt:</strong> Certifiera dig hemifrån eller på plats i Malmö.</li>
-      <li><strong>Snabba besked:</strong> Resultat direkt efter avslutat test.</li>
-      <li><strong>Brett utbud:</strong> Välj bland 100+ certifieringar inom IT, programmering och Office.</li>
-      <li><strong>Personlig kontakt:</strong> Vår support hjälper dig hela vägen.</li>
-    </ul>
+    <h3>✅ {t('infoPage.benefits.title')}</h3>
+          <ul>
+            <li><strong>{t('infoPage.benefits.safe')}</strong> {t('infoPage.benefits.safeDesc')}</li>
+            <li><strong>{t('infoPage.benefits.fast')}</strong> {t('infoPage.benefits.fastDesc')}</li>
+            <li><strong>{t('infoPage.benefits.variety')}</strong> {t('infoPage.benefits.varietyDesc')}</li>
+            <li><strong>{t('infoPage.benefits.support')}</strong> {t('infoPage.benefits.supportDesc')}</li>
+          </ul>
   </div>
 </section>
 
 
-      <section className="infoPageSectionTwo w-100">
-        <Row className="d-flex justify-content-center p-5">
-          <Col md={6}>
-            <h2>Så går certifieringstesterna till</h2>
-            <h4>
-              Hos Scandinavian Certification Services genomförs certifieringstester digitalt via Certiports plattform. Du kan välja att skriva testet hemifrån eller på plats hos vårt testcenter i Malmö.
-            </h4>
+        <section className="infoPageSectionTwo w-100">
+      <Row className="d-flex justify-content-center text-start p-5">
+        <Col lg={5}>
+          <h2>{t('title')}</h2>
+          <h4>{t('intro')}</h4>
 
-            <p>
-              Testerna är <strong>tidsstyrda</strong> och sker helt online. Du loggar in via Certiports system med en personlig inloggning som tillhandahålls vid bokning. Bokningsbekräftelse skickas till din e-post några dagar innan testdagen.
-            </p>
+          <p>
+            <Trans i18nKey="paragraph1" components={{ strong: <strong /> }} />
+          </p>
 
-            <p>
-              Varje certifiering har ett visst antal frågor och en fastställd tidsgräns. Resultatet visas direkt efter avslutat test.
-            </p>
+          <p>{t('paragraph2')}</p>
 
-            <p>
-              För distansprov krävs en stabil internetuppkoppling, webbkamera, mikrofon och en lugn miljö fri från störningar.
-            </p>
+          <p>{t('paragraph3')}</p>
 
-            <h3 className="mt-4">Testcenter i Malmö</h3>
-            <p>
-              Om du föredrar att skriva testet på plats erbjuder vi:
-              <ul>
-                <li>Ergonomisk arbetsplats</li>
-                <li>Hjälp från våra testadministratörer</li>
-                <li>Teknisk support vid behov</li>
-                <li>Möjlighet att komma i god tid för att förbereda dig</li>
-              </ul>
-            </p>
+          <h3 className="mt-4">{t('testCenterTitle')}</h3>
+          <p>{t('testCenterDescription')}</p>
+          <ul>
+            <li>{t('testCenterList1')}</li>
+            <li>{t('testCenterList2')}</li>
+            <li>{t('testCenterList3')}</li>
+            <li>{t('testCenterList4')}</li>
+          </ul>
 
-            <p>
-              Vi rekommenderar att du bokar testet minst <strong>fyra arbetsdagar i förväg</strong>. Kontakta oss på&nbsp;
-              <a href="mailto:certifiering@lexicon.se">certifiering@lexicon.se</a> för bokning och eventuell fakturering.
-            </p>
+          <p>
+            <Trans
+              i18nKey="bookingInfo"
+              components={{
+                strong: <strong />,
+                a: <a href="mailto:certifiering@lexicon.se" />
+              }}
+            />
+          </p>
 
-            <h3 className="mt-4">Exempel på certifieringar</h3>
-            <p>
-              Du kan certifiera dig inom flera områden, till exempel:
-              <ul>
-                <li>Python – grundläggande programmering</li>
-                <li>HTML & CSS – webbutveckling</li>
-                <li>Cybersecurity – IT-säkerhet</li>
-                <li>Databaser (SQL) – databasdesign och frågor</li>
-                <li>Microsoft Word, Excel, PowerPoint – Office-kompetens</li>
-              </ul>
-              För fullständig lista över tillgängliga certifieringar, <Link to="/cert">klicka här</Link>.
-            </p>
-          </Col>
-        </Row>
-      </section>
+          <h3 className="mt-4">{t('certificationsTitle')}</h3>
+          <p>{t('certificationsDescription')}</p>
+          <ul>
+            <li>{t('certificationsList1')}</li>
+            <li>{t('certificationsList2')}</li>
+            <li>{t('certificationsList3')}</li>
+            <li>{t('certificationsList4')}</li>
+            <li>{t('certificationsList5')}</li>
+          </ul>
+
+          <p>
+            <Trans
+              i18nKey="certificationsMoreInfo"
+              components={{ Link: <Link to="/cert" /> }}
+            />
+          </p>
+        </Col>
+      </Row>
+    </section>
 
     <section className='infoPageSectionThree w-100'>
         <Row className="d-flex justify-content-center p-5">
-            <Col md={5}>
+            <Col lg={4}>
                 <img src={malmö_testcenterImg} alt="Testcenter i Malmö" className='img-fluid'></img>
             </Col>
 
-            <Col md={5}>
-            <h2>Testcenter</h2>
-            <h3>Malmö</h3>
-            <p>
-                På Lexicons mysiga testcenter i centrala Malmö träffar du <strong>Emelie Ahlcrona</strong> som tacksamt tar emot dig.
-                Här kan du skriva certifieringar från:
-            </p>
+            <Col lg={4}>
+            <h2>{t('infoPage.testCenterSection.title')}</h2>
+            <h3>{t('infoPage.testCenterSection.city')}</h3>
+            <p>{t('infoPage.testCenterSection.description')}</p>
             <ul>
-                <li>Pearson Vue</li>
-                <li>PSI</li>
-                <li>Kryterion</li>
-                <li>Certiport</li>
-                <li>CIPS</li>
-                <li>Meazure Learning</li>
+              <li>{t('infoPage.testCenterSection.providers.pearson')}</li>
+              <li>{t('infoPage.testCenterSection.providers.psi')}</li>
+              <li>{t('infoPage.testCenterSection.providers.kryterion')}</li>
+              <li>{t('infoPage.testCenterSection.providers.certiport')}</li>
+              <li>{t('infoPage.testCenterSection.providers.cips')}</li>
+              <li>{t('infoPage.testCenterSection.providers.meazure')}</li>
             </ul>
 
-            <h4>Adress</h4>
-            <p>
-                <strong>Lexicon Malmö</strong><br />
-                Södergatan 24, Malmö<br />
-                Tel: <a href="tel:+46406655650">040–665 56 50</a>
-            </p>
+            <h4>{t('infoPage.testCenterSection.addressTitle')}</h4>
+            <p>{t('infoPage.testCenterSection.address')}</p>
 
-            <h4>Öppettider</h4>
-            <p>Måndag – Fredag: 08.00–17.00</p>
+            <h4>{t('infoPage.testCenterSection.hoursTitle')}</h4>
+            <p>{t('infoPage.testCenterSection.hours')}</p>
+
+
+            <h4>{t('infoPage.testCenterSection.hoursTitle')}</h4>
+            <p>{t('infoPage.testCenterSection.hours')}</p>
+
 
            <div className="map-container mt-4">
-  <h4>Hitta till oss</h4>
+  <h4>{t('infoPage.map.title')}</h4>
+
   <iframe
     title="Lexicon Malmö karta"
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2253.8761975458087!2d12.998680277077886!3d55.60416827302959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4653a3fd19acbf09%3A0x7fb40fa47def1af1!2sLexicon%20Malm%C3%B6!5e0!3m2!1ssv!2sse!4v1757580595564!5m2!1ssv!2sse"
@@ -138,40 +143,43 @@ const InfoPage = () => {
 
 <section className="infoPageSectionContact w-100">
   <Row className="d-flex justify-content-center p-5">
-    <Col md={6}>
-      <h2>Kontakt</h2>
+    <Col lg={4}>
+      <h2>{t('infoPage.contact.title')}</h2>
 
-      <p>
-        Frågor gällande din specifika certifiering eller ditt konto hos Pearson VUE, såsom avbokning eller ändringar av befintlig bokning, hänvisar vi till
-        <strong> Pearson VUE Customer Service</strong> på telefon
-        <a href="tel:+4620798690"> 020–79 86 90</a>.
+            <p>
+        {t('infoPage.contact.pearson')} <strong>{t('infoPage.contact.pearsonService')}</strong> {t('infoPage.contact.pearsonPhone') && 'på telefon'}
+        <a href="tel:+4620798690"> {t('infoPage.contact.pearsonPhone')}</a>.
       </p>
 
       <p>
-        Du kan även hantera din bokning, inklusive avbokning, direkt på <strong>Mina sidor</strong> via vår webbsida eller genom att kontakta
-        <strong> Scandinavian Certification Services</strong> på telefon.
+        {t('infoPage.contact.booking')} <strong>{t('infoPage.contact.bookingPortal')}</strong> {t('infoPage.contact.bookingOrg') && 'via vår webbsida eller genom att kontakta '}
+        <strong>{t('infoPage.contact.bookingOrg')}</strong> på telefon.
       </p>
 
-      <p>
-        Har du övriga frågor kring din kommande vistelse hos oss? Kontakta Lexicon på
-        <a href="mailto:certifiering@lexicon.se"> certifiering@lexicon.se</a>.
+
+    <p>
+        {t('infoPage.contact.other')} <a href="mailto:certifiering@lexicon.se">certifiering@lexicon.se</a>.
       </p>
+
 
       <h3 className="mt-4">Stockholm</h3>
-      <p>
-        <strong>Lexicon IT-Proffs</strong><br />
-        Bolidenvägen 14, 1 tr<br />
-        Tel: <a href="tel:+46851161100">08–511 611 00</a><br />
-        Öppettider: Torsdag – Fredag 09.00–17.00
+     <p>
+        <strong>{t('infoPage.contact.stockholm.name')}</strong><br />
+        {t('infoPage.contact.stockholm.address')}<br />
+        Tel: <a href="tel:+46851161100">{t('infoPage.contact.stockholm.phone')}</a><br />
+        {t('infoPage.contact.stockholm.hours')}
       </p>
 
-      <h3 className="mt-4">Malmö</h3>
+
+      <h3 className="mt-4">{t('infoPage.contact.malmö.title')}</h3>
       <p>
-        <strong>Lexicon</strong><br />
-        Södergatan 24, Malmö<br />
-        Tel: <a href="tel:+46406655650">040–665 56 50</a><br />
-        Öppettider: Måndag – Fredag 08.00–17.00
+        <strong>{t('infoPage.contact.malmö.name')}</strong><br />
+        {t('infoPage.contact.malmö.address')}<br />
+        Tel: <a href="tel:+46406655650">{t('infoPage.contact.malmö.phone')}</a><br />
+        {t('infoPage.contact.malmö.hours')}
       </p>
+
+    
     </Col>
   </Row>
 </section>
