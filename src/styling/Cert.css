@@ -153,3 +153,17 @@ h1 {
   color: #0056b3;           /* Mörkare blå vid hover */
   text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+  .testtider {
+    flex-direction: column !important;
+    
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .certInformation {
+    flex-direction: column;
+  }
+}
+

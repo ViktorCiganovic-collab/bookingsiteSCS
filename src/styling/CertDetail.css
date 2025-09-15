@@ -13,3 +13,29 @@
     list-style: none;
     text-align: center;
 }
+
+
+.responsive-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 📱 Mobilanpassning för skärmar upp till 768px */
+@media (max-width: 768px) {
+  .detailSection h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .detailSection h3 {
+    font-size: 1.0rem;
+    text-align: center;
+    margin-top: 0.8rem;
+  }
+
+  .detailSection p {
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
+}

@@ -41,9 +41,26 @@
     color: var(--white-text) !important;
   }
 
+  @media (max-width: 1199.98px) {
+  .video-overlay h1  {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .video-overlay h1  {
+    font-size: 1.5rem;
+  }
+
+  .video-overlay p {
+  font-size: 0.8rem !important;
+  }
+}
+
   .video-overlay p {
     padding: 1rem;
     font-size: 1rem;
+    text-align: center;
   }
 
   .mainpageSectiontwo {
@@ -60,10 +77,16 @@
     width: 100%;
   }
 
+ @media (max-width: 767.98px) {
+  .mainpageSectionthree h1 {
+    font-size: 2rem;
+  }
+}  
+
   .mainpageImgthree {
   width: 100%;
   height: auto;
-  max-height: 100vh;
+  min-height: 100vh;
   }
 
 .course-card {

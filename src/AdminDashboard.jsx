@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import { Button, Offcanvas, Modal } from 'react-bootstrap';
 import AdminSidebar from './AdminSidebar';
 import { AuthContext } from './services/AuthProvider';
 import './styling/AdminDashboard.css';
@@ -41,9 +40,13 @@ const AdminDashboard = () => {
   const [hoveredCategoryId, setHoveredCategoryId] = useState(null);
   const [bookingId, setBookingId] = useState(1);
   const [discountActive, setDiscountActive] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const handleClose = () => setShow(false);  
   const handleShow = () => setShow(true);
+
+  const handleCloseSidebar = () => setShowSidebar(false);
+  const handleShowSidebar = () => setShowSidebar(true);
 
   const handleLogout = () => {
       setIsAuthenticated(false);
@@ -732,6 +735,7 @@ case 'certificates':
   return (
     <div>  
       <h2>Visa certifikat</h2>
+      <div className="table-responsive">
       <Table striped bordered hover style={{ position: 'relative' }}>
         <thead>
           <tr>
@@ -795,6 +799,7 @@ case 'certificates':
           ))}
         </tbody>
       </Table>
+      </div>
     </div>
   );
 
@@ -983,6 +988,7 @@ case 'testtimes':
       ) : error ? (
         <p style={{ color: 'red' }}>{error}</p>
       ) : (
+        <div className="table-responsive">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -1082,6 +1088,7 @@ case 'testtimes':
 </tbody>
 
         </Table>
+        </div>
       )}
     </div>
   );
@@ -1330,6 +1337,7 @@ case 'categories':
       ) : error ? (
         <p style={{ color: 'red' }}>{error}</p>
       ) : (
+        <div className="table-responsive">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -1387,6 +1395,7 @@ case 'categories':
             ))}
           </tbody>
         </Table>
+        </div>
       )}
     </div>
   );
@@ -1535,32 +1544,65 @@ case 'categories':
 
 
   return (
-    <div style={{ display: 'flex', height: '100vh'}} className="adminDashboard">
-      <AdminSidebar activeSection={activeSection} setActiveSection={setActiveSection} handleShow={handleShow} />
+    <div className="adminDashboard d-flex" style={{ minHeight: '100vh' }}>
+      
+      {/* Fast sidopanel på md och uppåt */}
+      <div className="d-none d-md-block">
+        <AdminSidebar
+          activeSection={activeSection}
+          setActiveSection={setActiveSection}
+          handleShow={handleShow}
+        />
+      </div>
+
+      {/* Offcanvas för små skärmar */}
+      <div className="d-md-none">
+        <Button 
+          variant="primary" 
+          onClick={handleShowSidebar} 
+          className="hamburger-button btn-lg w-100"
+          
+        >
+          ☰
+        </Button>
+
+        <Offcanvas
+          show={showSidebar}
+          onHide={handleCloseSidebar}
+          placement="start"
+        >
+          <Offcanvas.Header closeButton />
+          <Offcanvas.Body>
+            <AdminSidebar
+              activeSection={activeSection}
+              setActiveSection={setActiveSection}
+              handleShow={handleShow}
+              onLinkClick={handleCloseSidebar} // 🔹 TILLAGD
+            />
+          </Offcanvas.Body>
+        </Offcanvas>
+      </div>
+
       <main
-        style={{ 
-          flexGrow: 1, 
-          overflowY: 'auto', 
-          padding: '2rem',         
-        }}
-        className='adminMainpart'
+        className="adminMainpart"
+        style={{ flexGrow: 1, overflowY: 'auto', padding: '2rem' }}
       >
         {renderContent()}
 
-              <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>{t('questionlogout')}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{t('secondquerylogout')}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            {t('cancel')}
-          </Button>
-          <Button variant="danger" onClick={handleLogout}>
-            {t('logout')}
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>{t('questionlogout')}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{t('secondquerylogout')}</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              {t('cancel')}
+            </Button>
+            <Button variant="danger" onClick={handleLogout}>
+              {t('logout')}
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </main>
     </div>
   );

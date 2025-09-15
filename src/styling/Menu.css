@@ -7,7 +7,8 @@
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: var(--white-text) !important;  
+    color: var(--white-text) !important; 
+    
   }
   
   .navbar-light .navbar-brand {

@@ -25,7 +25,7 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow }) => {
 
         <div className="sidebar-group">
           <div className="sidebar-title" onClick={() => toggleSection('bookings')}>
-            📅 Bookings
+            📅 Bokningar
           </div>
           {expanded.bookings && (
             <>
@@ -44,7 +44,7 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow }) => {
 
         <div className="sidebar-group">
           <div className="sidebar-title" onClick={() => toggleSection('certificates')}>
-            🎓 Certificates
+            🎓 Certifieringar
           </div>
           {expanded.certificates && (
             <>
@@ -66,7 +66,7 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow }) => {
 
         <div className="sidebar-group">
           <div className="sidebar-title" onClick={() => toggleSection('testtimes')}>
-            ⏰ Test Times
+            ⏰ Testtider
           </div>
           {expanded.testtimes && (
             <>
@@ -91,7 +91,7 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow }) => {
 
         <div className="sidebar-group">
           <div className="sidebar-title" onClick={() => toggleSection('categories')}>
-            🗂️ Categories
+            🗂️ Kategorier
           </div>
           {expanded.categories && (
             <>

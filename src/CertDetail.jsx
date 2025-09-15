@@ -211,6 +211,7 @@ export default function CertDetail() {
           {toggleTesttimes && !loading && (
             <Row>
               <Col md={12}>
+              <div className="responsive-table-wrapper">
                 <Table striped bordered hover className="mt-4 rounded-5">
                   <thead>
                     <tr>
@@ -237,6 +238,7 @@ export default function CertDetail() {
                     ))}
                   </tbody>
                 </Table>
+                </div>
               </Col>
             </Row>
           )}

@@ -1,26 +1,69 @@
+@media (max-width: 768px) {
+  .adminDashboard {
+    flex-direction: column;
+  }
+  .adminSidebar {
+    width: 100vw;
+    flex: 1;
+  }
+  
+}
 
+@media (max-width: 768px) {
+  .sidebar-title,
+  .sidebar-link {
+    margin: 0.3rem;
+    padding: 0.4rem 0.6rem;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .sidebar-link:hover {
+    background-color: #dee2e6;
+    text-decoration: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .adminSidebar {
+    min-width: 250px;
+    width: 250px;
+    min-height: 100vh;
+  }
+
+}
 
 
 .adminSidebar {
-  width: 250px;
-  min-width: 250px;
-  height: 100vh;
   padding: 1rem;
-  border-right: 1px solid #ddd;
-  background-color: #f8f9fa;
+  background-color: #F5F5F2;
+  color: white !important;
 }
+
+.adminDashboard {
+   background-color: #F5F5F2;
+}
+
+@media (max-width: 767.98px) {
+  .adminDashboard {
+    background-color: black;
+  }
+}
+
 
 .sidebar-title {
   font-weight: bold;
   cursor: pointer;
   padding: 0.5rem 0;
-  color: #333;
+  color: black;
+  text-shadow: 0.5px 0.5px 1px rgba(255, 255, 255, 0.3);
+  text-transform: uppercase; 
 }
 
 .sidebar-link {
   padding: 0.25rem 0;
   cursor: pointer;
-  color: #007bff;
   text-decoration: none;
 }
 
@@ -33,25 +76,25 @@
 }
 
 
-
-.adminDashboard {
-  background-color: var(--secondary-bg);
-
-}
-
 .adminMainpart {
-    background-image: url('../assets/admin_background.jpg');
-      background-size: cover;
-    background-position: center;     
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/pexels-shottrotter-1309766.jpg');
+  background-size: cover;
+  background-position: center;
 }
-
 
 .sidebar-link {
-  color: #333;
+  font-weight: 600;              /* Lite mer än normal, men inte för tjock */
+  font-size: 0.9rem;             /* Lite mindre än huvudmenyn */
+  color: #bbb;                   /* Ljusare/grå text för att skilja från huvudrubriker */
+  padding: 8px 16px;             /* Lagom med padding för att ge luft */
+  text-transform: uppercase;     /* Versaler ger tydlighet och struktur */
+  letter-spacing: 1px;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 1rem;
   padding-left: 10px;
 }
+
+
 
 .sidebar-link:hover {
   color: #0056b3 !important;
@@ -59,18 +102,17 @@
 }
 
 .sidebar-group.logout-group .sidebar-link {
-  padding-left: 1rem !important; 
-  font-weight: bold; 
+  padding-left: 1rem !important;
+  font-weight: bold;
 }
 
-
 .flexelementsBookings {
-  display: flex; 
-  gap: 1rem; 
+  display: flex;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
-.booking {   
+.booking {
   background-color: var(--secondary-bg);
   padding-top: 20px;
   padding-left: 10px;
@@ -119,7 +161,7 @@ table {
 }
 
 td:hover {
-cursor: pointer;
+  cursor: pointer;
 }
 
 tbody tr:hover {
@@ -127,24 +169,17 @@ tbody tr:hover {
   border: 2px solid #007bff;
 }
 
-
 .glow-green {
-  box-shadow:
-    0 0 5px #00ff00,
-    0 0 10px #00ff00,
-    0 0 15px #00ff00;
+  box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
   transition: box-shadow 0.3s ease-in-out;
 }
 
 .glow-red {
-  box-shadow:
-    0 0 5px #ff0000,
-    0 0 10px #ff0000,
-    0 0 15px #ff0000;
+  box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000;
   transition: box-shadow 0.3s ease-in-out;
 }
 
-.booking { 
+.booking {
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -164,20 +199,22 @@ tbody tr:hover {
 .booking .highlight {
   font-size: 1.2rem;
   font-weight: bold;
-    color: #0056b3; }
+  color: #0056b3;
+}
 
-    .passed-row {
+.passed-row {
   color: red !important;
   font-weight: bold;
 }
 
 .heavy-text {
   font-weight: bold;
-  -webkit-text-stroke: 0.15px rgba(0,0,0,0.25); 
+  -webkit-text-stroke: 0.15px rgba(0, 0, 0, 0.25);
   -webkit-text-fill-color: inherit;
-  text-shadow: 0.3px 0.3px 0.3px rgba(0,0,0,0.1); 
+  text-shadow: 0.3px 0.3px 0.3px rgba(0, 0, 0, 0.1);
   margin-left: 5px;
   background-color: black;
   padding: 5px;
   border-radius: 5px;
 }
+

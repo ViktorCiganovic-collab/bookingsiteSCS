@@ -181,7 +181,7 @@ setSelectedcategory(courseName);
       </section>
 
       <section className='py-5 certificatepageSectionthree'>
-        <Row className="mb-4 mx-auto d-flex justify-content-center w-100 text-center">
+        <Row className="mb-4 mx-auto d-flex justify-content-center w-80 text-center">
           <Col md={6}>
             <figure>
               <blockquote className="blockquote">
@@ -199,7 +199,7 @@ setSelectedcategory(courseName);
           <Row>
   {courses.map((course, index) => (
     <Col
-      md={4}
+      md={4}    
       className="course-card my-3"
       key={course.courseName}
       onMouseEnter={() => setHoveredCategory(index)}
@@ -288,7 +288,7 @@ setSelectedcategory(courseName);
       <h5>{t('certifications_for_this_course')}</h5>
       <ul className="list-group">
        {currentCategory.certs.map((cert) => (
-  <li key={cert.id || cert.name} className="list-group-item d-flex justify-content-between align-items-center">
+  <li key={cert.id || cert.name} className="certInformation list-group-item d-flex justify-content-between align-items-center">
     <Link to={`/cert/${encodeURIComponent(cert.name)}/${cert.description}/${cert.price}/${cert.categoryId}`}>
       <span className='certStyling'>{cert.name}</span>
     </Link>
@@ -298,10 +298,10 @@ setSelectedcategory(courseName);
       </ul>
 {selectedTest && (
   <div className="mt-4">
-    <h5>{t('available_exam_times')} for {selectedTest.certname}</h5>
+    <h5>{t('available_exam_times')} {selectedTest.certname}</h5>
     <ul className="list-group">
       {alltesttimes.map((testtime, idx) => (
-        <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
+        <li key={idx} className="testtider list-group-item d-flex justify-content-between align-items-center">
           <span>
             <strong>
               {testtime.formattedStartTime} - {testtime.formattedEndTime}
