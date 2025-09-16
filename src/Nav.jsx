@@ -8,6 +8,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useTranslation } from 'react-i18next'; // Importera useTranslation
 import LanguageSwitcher from './services/LanguageSwitcher'; // Importera LanguageSwitcher här
 import { AuthContext } from './services/AuthProvider';
+import logo from './assets/logotyp.png';
+
 
 function NavComponent() {
   const { t } = useTranslation(); // Använd useTranslation-hooken för att hämta översättningar
@@ -17,7 +19,7 @@ function NavComponent() {
     <Navbar collapseOnSelect expand="lg" className="menu navbar-dark">
       <Container>
         
-        <Navbar.Brand as={Link} to="/">SCS</Navbar.Brand> {/* Länk till start-sidan */}
+        <Navbar.Brand as={Link} to="/"><img src={logo} className='logo img-fluid rounded-1' /></Navbar.Brand> {/* Länk till start-sidan */}
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className="text-white" />
         <Navbar.Collapse id="responsive-navbar-nav" className="menu text-white">

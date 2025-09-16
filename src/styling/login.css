@@ -3,7 +3,7 @@
 width: 100%;
 min-height: 90vh;
 /* background-color: var(--secondary-bg); */
-background-image: url('../assets/office-sitting-room-executive-sitting.jpg');
+background-image: url('../assets/pexels-shottrotter-1309766.jpg');
 background-size:cover;
 background-position: center;
 background-repeat: no-repeat;
@@ -12,4 +12,9 @@ background-repeat: no-repeat;
 .loginSectionOne {
 width: 100%;
 height: 100%;
+}
+
+.loginSectionOne h2 {
+      font-weight: 600;
+  
 }

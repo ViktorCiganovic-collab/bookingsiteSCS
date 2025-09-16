@@ -26,3 +26,15 @@
     align-items: center;
   }
 }
+
+.logo {
+  width: 250px;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    max-width: 160px !important;
+    height: 40px !important;
+  }
+}

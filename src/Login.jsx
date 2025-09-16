@@ -78,10 +78,10 @@ useEffect(() => {
         <Container>
           <Row className="d-flex justify-content-center align-items-center mb-5 width-100">
             <Col md={6}>
-              <h2 className="text-center my-5 mb-4 text-dark">{t('login_title')}</h2>
+              <h2 className="text-center my-5 mb-4 text-white">{t('login_title')}</h2>
               <Form className="my-5" onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
-              <Form.Label className='text-dark'>{t('username_label')}</Form.Label>
+              <Form.Label className='text-white'>{t('username_label')}</Form.Label>
               <Form.Control 
                 type="email" 
                 value={username} 
@@ -91,7 +91,7 @@ useEffect(() => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-            <Form.Label className='text-dark'>{t('password_label')}</Form.Label>
+            <Form.Label className='text-white'>{t('password_label')}</Form.Label>
             <Form.Control 
               type="password" 
               value={password} 

@@ -3,7 +3,10 @@
 width: 100%;
 height: auto;
 /* background-color: var(--secondary-bg); */
-background-image: url('../assets/pexels-junior-teixeira-1064069-2047905.jpg');
+background-image: linear-gradient(
+      rgba(255, 100, 0, 0.3),   /* Orange ton */
+      rgba(140, 0, 255, 0.3)    /* Lila ton */
+    ),url('../assets/photo-1525547719571-a2d4ac8945e2.avif');
 background-size: cover;
 background-position: center;
 }
@@ -11,4 +14,37 @@ background-position: center;
 .signupSectionOne {
 width: 100%;
 min-height: 100vh;
+border-radius: 10px;
+padding: 30px;
+}
+
+/*För mobilanpassning  */
+.signupSectionOne .form-control {
+  background-color: #f5f7ff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.signupSectionOne h2 {
+  color: white;
+    font-weight: 600;
+}
+
+@media (max-width: 576px) {
+  .signupSectionOne {
+    padding: 20px 15px;
+  }
+
+  .signupSectionOne h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-control {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    width: 100%; /* Full width button on mobile */
+  }
 }

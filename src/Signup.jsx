@@ -46,9 +46,9 @@ function Signup() {
   return (
     <div className="signupPage">
       <section className="signupSectionOne">
-        <Container>
+        <Container fluid="md" className='px-3'>
           <Row className="d-flex justify-content-center align-items-center width-100">
-            <Col md={6}>
+            <Col md={6} sm={10} xs={12}>
               <h2 className="text-center my-5 mb-4" data-aos="zoom-out-right">{t('register')}</h2>
 
               <Form onSubmit={handleSubmit} data-aos="zoom-in-left">
