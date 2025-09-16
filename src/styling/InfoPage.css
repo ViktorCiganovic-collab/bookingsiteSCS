@@ -41,3 +41,65 @@ h1 {
 .infoPageSectionContact {
     background-color: var(--main-bg);
 }
+
+/*Mobil responsiveness for page */
+.map-container iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+.infoPage p, .infoPage ul li {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Mobile responsiveness */
+/* Hero background and spacing */
+.infoPageSectionOne {
+  background-color: #f8f9fa; /* Ljusgrå för kontrast */
+}
+
+/* Title styling */
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+/* Subtitle */
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Benefits list */
+.certBenefits .benefits-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.benefits-list li {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Mobile responsiveness */
+.infoPageSectionOne {
+  background-color: #f8f9fa; 
+  padding: 3rem 1rem;
+}
+@media (max-width: 576px) {
+  .infoPageSectionOne h1 {
+    font-size: 1.8rem;
+  }
+
+  .infoPageSectionOne .lead {
+    font-size: 1rem;
+  }
+
+  .infoPageSectionOne ul {
+    padding-left: 1rem;
+  }
+}
+
+

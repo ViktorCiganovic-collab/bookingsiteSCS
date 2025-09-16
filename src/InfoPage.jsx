@@ -32,8 +32,8 @@ return (
 
 
         <section className="infoPageSectionTwo w-100">
-      <Row className="d-flex justify-content-center text-start p-5">
-        <Col lg={5}>
+      <Row className="d-flex justify-content-center text-start px-3 py-4 py-md-5">
+        <Col lg={5} md={10} xs={12}>
           <h2>{t('title')}</h2>
           <h4>{t('intro')}</h4>
 
@@ -86,8 +86,8 @@ return (
 
     <section className='infoPageSectionThree w-100'>
         <Row className="d-flex justify-content-center p-5">
-            <Col lg={4}>
-                <img src={malmö_testcenterImg} alt="Testcenter i Malmö" className='img-fluid'></img>
+            <Col lg={4} xs={12} className='mb-4'> 
+                <img src={malmö_testcenterImg} alt="Testcenter i Malmö" className='img-fluid rounded shadow-sm w-100'></img>
             </Col>
 
             <Col lg={4}>
@@ -130,15 +130,15 @@ return (
     </section>
 
 <section className='faqSection w-100'>
-    <Row className='d-flex justify-content-center p-5'>
-    <Col md={6}>
+    <Row className='d-flex justify-content-center px-2 py-4 py-md-5'>
+    <Col lg={6} md={6} xs={12}>
     <FAQSection />
     </Col>
     </Row>
 </section>
 
 <section className="infoPageSectionContact w-100">
-  <Row className="d-flex justify-content-center p-5">
+  <Row className="d-flex justify-content-center px-3 py-4 py-md-5">
     <Col lg={4}>
       <h2>{t('infoPage.contact.title')}</h2>
 
