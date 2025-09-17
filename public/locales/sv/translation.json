@@ -474,7 +474,12 @@
 "certificationsList4": "Databaser (SQL) – databasdesign och frågor",
 "certificationsList5": "Microsoft Word, Excel, PowerPoint – Office-kompetens",
 "certificationsMoreInfo": "För bokning och fullständig lista över tillgängliga certifieringar, <Link to=\"/cert\">klicka här</Link>.",
-"readMore": "Läs mer här"
+"readMore": "Läs mer här",
+"certiport_link": "🌐 Testresultat & certifikat",
+"certiport_info_p1": "Här kan du logga in på Certiport för att se dina senaste testresultat och certifikat.",
+"certiport_info_p2": "Certiport är den officiella plattformen för att hantera och verifiera dina IT‑certifieringar.",
+"certiport_info_p3": "Klicka på länken ovan för att öppna Certiport i en ny flik och få tillgång till detaljerad information om dina prestationer."
+
 
 
 }

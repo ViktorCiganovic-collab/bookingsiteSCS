@@ -446,7 +446,12 @@
 "certificationsList4": "Databaser (SQL) – databasedesign og spørringer",
 "certificationsList5": "Microsoft Word, Excel, PowerPoint – Office-kompetanse",
 "certificationsMoreInfo": "For bestilling og fullstendig liste over tilgjengelige sertifiseringer, <Link to=\"/cert\">klikk her</Link>.",
-"readMore": "Les mer her"
+"readMore": "Les mer her",
+"certiport_link": "🌐 Testresultater og sertifikater",
+"certiport_info_p1": "Her kan du logge inn på Certiport for å se dine siste testresultater og sertifikater.",
+"certiport_info_p2": "Certiport er den offisielle plattformen for å administrere og verifisere dine IT-sertifiseringer.",
+"certiport_info_p3": "Klikk på lenken ovenfor for å åpne Certiport i en ny fane og få tilgang til detaljert informasjon om dine prestasjoner."
+
 
 
 }

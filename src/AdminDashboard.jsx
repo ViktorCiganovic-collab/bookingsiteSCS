@@ -1577,7 +1577,8 @@ case 'categories':
               activeSection={activeSection}
               setActiveSection={setActiveSection}
               handleShow={handleShow}
-              onLinkClick={handleCloseSidebar} // 🔹 TILLAGD
+              onLinkClick={handleCloseSidebar} 
+              handleCloseSidebar={handleCloseSidebar}
             />
           </Offcanvas.Body>
         </Offcanvas>

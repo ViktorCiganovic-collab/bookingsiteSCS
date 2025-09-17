@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Nav } from 'react-bootstrap';
 import './styling/AdminDashboard.css';
 
-const AdminSidebar = ({ activeSection, setActiveSection, handleShow }) => {
+const AdminSidebar = ({ activeSection, setActiveSection, handleShow, handleCloseSidebar }) => {
 
   const [expanded, setExpanded] = useState({
     bookings: false,
@@ -29,13 +29,13 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow }) => {
           </div>
           {expanded.bookings && (
             <>
-              <Nav.Link onClick={() => setActiveSection('bookings')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('bookings'); handleCloseSidebar(); }} className="sidebar-link">
                 Visa bokningar
               </Nav.Link>
-                <Nav.Link onClick={() => setActiveSection('cancellations')} className="sidebar-link">
+                <Nav.Link onClick={() => {setActiveSection('cancellations'); handleCloseSidebar();}} className="sidebar-link">
                 Visa avbokningar
               </Nav.Link>
-              <Nav.Link onClick={() => setActiveSection('deleteBookings')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('deleteBookings'); handleCloseSidebar();}} className="sidebar-link">
                 Ta bort bokning
               </Nav.Link>
             </>
@@ -48,16 +48,16 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow }) => {
           </div>
           {expanded.certificates && (
             <>
-              <Nav.Link onClick={() => setActiveSection('certificates')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('certificates'); handleCloseSidebar();}} className="sidebar-link">
                 Visa certifikat
               </Nav.Link>
-              <Nav.Link onClick={() => setActiveSection('addCert')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('addCert'); handleCloseSidebar();}} className="sidebar-link">
                 Lägg till certifikat
               </Nav.Link>              
-              <Nav.Link onClick={() => setActiveSection('editCert')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('editCert'); handleCloseSidebar();}} className="sidebar-link">
                 Redigera certifikat
               </Nav.Link>
-              <Nav.Link onClick={() => setActiveSection('deleteCert')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('deleteCert'); handleCloseSidebar();}} className="sidebar-link">
                 Ta bort certifikat
               </Nav.Link>
             </>
@@ -70,19 +70,19 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow }) => {
           </div>
           {expanded.testtimes && (
             <>
-              <Nav.Link onClick={() => setActiveSection('testtimes')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('testtimes'); handleCloseSidebar();}} className="sidebar-link">
                 Visa testtider
               </Nav.Link>
-              <Nav.Link onClick={() => setActiveSection('addTestTime')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('addTestTime'); handleCloseSidebar();}} className="sidebar-link">
                 Lägg till tid
               </Nav.Link>
-              <Nav.Link onClick={() => setActiveSection('addDiscount')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('addDiscount'); handleCloseSidebar();}} className="sidebar-link">
                 Aktivera rabatt
               </Nav.Link>
-              <Nav.Link onClick={() => setActiveSection('editTestTime')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('editTestTime'); handleCloseSidebar();}} className="sidebar-link">
                 Redigera tid
               </Nav.Link>
-              <Nav.Link onClick={() => setActiveSection('deleteTestTime')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('deleteTestTime'); handleCloseSidebar();}} className="sidebar-link">
                 Ta bort tid
               </Nav.Link>
             </>
@@ -95,16 +95,16 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow }) => {
           </div>
           {expanded.categories && (
             <>
-              <Nav.Link onClick={() => setActiveSection('categories')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('categories'); handleCloseSidebar();}} className="sidebar-link">
                 Visa kategorier
               </Nav.Link>
-              <Nav.Link onClick={() => setActiveSection('createCategory')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('createCategory'); handleCloseSidebar();}} className="sidebar-link">
                 Lägg till kategori
               </Nav.Link>
-              <Nav.Link onClick={() => setActiveSection('updateCategory')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('updateCategory'); handleCloseSidebar();}} className="sidebar-link">
                 Redigera kategori
               </Nav.Link>
-              <Nav.Link onClick={() => setActiveSection('deleteCategory')} className="sidebar-link">
+              <Nav.Link onClick={() => {setActiveSection('deleteCategory'); handleCloseSidebar();}} className="sidebar-link">
                 Ta bort kategori
               </Nav.Link>
             </>

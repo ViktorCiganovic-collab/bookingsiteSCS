@@ -25,7 +25,8 @@ function UserDashboard() {
   const [expanded, setExpanded] = useState({
     bookings: false,
     certificates: false,
-    testtimes: false,    
+    testtimes: false,  
+    certiport: false,  
     logout: false,
   });
 
@@ -42,12 +43,30 @@ function UserDashboard() {
   const handleMenuClose = () => setShowMenu(false);
   const handleMenuShow = () => setShowMenu(true); 
 
-  const toggleSection = (section) => {
-    setExpanded(prev => ({
-      ...prev,
-      [section]: !prev[section]
-    }));
-  };
+ const toggleSection = (section) => {
+  setExpanded(prev => {
+    // Om klickad sektion redan är öppen - stäng den (alla stängs)
+    if (prev[section]) {
+      return {
+        bookings: false,
+        certificates: false,
+        testtimes: false,
+        certiport: false,
+        logout: false,
+      };
+    }
+    // Annars öppna bara den valda sektionen och stäng resten
+    return {
+      bookings: false,
+      certificates: false,
+      testtimes: false,
+      certiport: false,
+      logout: false,
+      [section]: true,
+    };
+  });
+};
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -176,6 +195,23 @@ function UserDashboard() {
           
         </div>
 
+                <div className="sidebar-group">
+          <div className="sidebar-title" onClick={() => toggleSection('testtimes')}>
+            ⏰ {t('testtillfallen', 'Testtillfällen')}
+          </div>
+          {expanded.testtimes && (
+            <Nav.Link className="sidebar-link">
+              {t('visaTesttillfallen', 'Visa testtillfällen')}
+            </Nav.Link>
+          )}
+        </div>
+
+        <div className="sidebar-group">
+          <div className="sidebar-title" onClick={() => toggleSection('certiport')}>
+            {t('certiport_link')}
+          </div>         
+        </div>
+
         <div className="sidebar-group">
           <div className="sidebar-title" onClick={() => toggleSection('certificates')}>
             🎓 {t('certificates')}    
@@ -186,17 +222,7 @@ function UserDashboard() {
             </Nav.Link>
           )}
         </div>
-
-        <div className="sidebar-group">
-          <div className="sidebar-title" onClick={() => toggleSection('testtimes')}>
-            ⏰ {t('testtillfallen', 'Testtillfällen')}
-          </div>
-          {expanded.testtimes && (
-            <Nav.Link className="sidebar-link">
-              {t('visaTesttillfallen', 'Visa testtillfällen')}
-            </Nav.Link>
-          )}
-        </div>
+       
 
         <div className="sidebar-group">
           <div className="sidebar-title" onClick={handleShow}>
@@ -216,8 +242,24 @@ function UserDashboard() {
         <div className="sidebar-group">
           <div className="sidebar-title" onClick={() => {toggleSection('bookings'); handleMenuClose(); }}>
             🗂️ {t('my_bookings')} 
+          </div>          
+        </div>
+
+              <div className="sidebar-group">
+          <div className="sidebar-title" onClick={() => {toggleSection('testtimes'); handleMenuClose(); }}>
+            ⏰ {t('testtillfallen', 'Testtillfällen')}
           </div>
-          
+          {expanded.testtimes && (
+            <Nav.Link className="sidebar-link">
+              {t('visaTesttillfallen', 'Visa testtillfällen')}
+            </Nav.Link>
+          )}
+        </div>
+
+            <div className="sidebar-group">
+          <div className="sidebar-title" onClick={() => {toggleSection('certiport'); handleMenuClose(); }}>
+            {t('certiport_link')}
+          </div>         
         </div>
 
         <div className="sidebar-group">
@@ -229,18 +271,7 @@ function UserDashboard() {
              ⏰ {t('test_sessions')}  
             </Nav.Link>
           )}
-        </div>
-
-        <div className="sidebar-group">
-          <div className="sidebar-title" onClick={() => {toggleSection('testtimes'); handleMenuClose(); }}>
-            ⏰ {t('testtillfallen', 'Testtillfällen')}
-          </div>
-          {expanded.testtimes && (
-            <Nav.Link className="sidebar-link">
-              {t('visaTesttillfallen', 'Visa testtillfällen')}
-            </Nav.Link>
-          )}
-        </div>
+        </div>  
 
         <div className="sidebar-group">
           <div className="sidebar-title" onClick={handleShow}>
@@ -312,6 +343,41 @@ function UserDashboard() {
               </div>      
               </div>
         )}    
+
+        {/*Certiport testresultat och certifieringar visas nedanför*/}
+        {expanded.certiport && (
+              <div>
+      <Button
+      as="a"
+      href="https://www.certiport.com/Portal/Pages/Registration.aspx"
+      target="_blank"
+      rel="noopener noreferrer"
+      variant="primary"
+      className='rounded-3'
+    >
+      {t('certiport_link')}
+    </Button>
+
+     
+        <div
+          style={{
+            padding: '12px',            
+            borderRadius: '6px',
+            marginTop: '8px',
+            color: '#fff',
+            fontWeight: 'bold',
+            fontSize: '14px',
+            lineHeight: '1.5',
+          }}
+        >          
+          <p style={{ marginBottom: '8px' }}>{t('certiport_info_p1')}</p>
+          <p style={{ marginBottom: '8px' }}>{t('certiport_info_p2')}</p>
+          <p >{t('certiport_info_p3')}</p>
+        </div>
+        </div>     
+   
+        )}
+
 
                {/* Modal: Bekräfta avbokning */}
         <Modal show={showCancelModal} onHide={() => setShowCancelModal(false)} centered>

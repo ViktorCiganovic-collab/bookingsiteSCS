@@ -444,7 +444,11 @@
 "certificationsList4": "Tietokannat (SQL) – tietokantasunnittelu ja kyselyt",
 "certificationsList5": "Microsoft Word, Excel, PowerPoint – Office-taidot",
 "certificationsMoreInfo": "Varausta ja täydellinen lista saatavilla olevista sertifioinneista, <Link to=\"/cert\">klikkaa tästä</Link>.",
-"readMore": "Lue lisää täältä"
+"readMore": "Lue lisää täältä",
+"certiport_link": "🌐 Testitulokset ja sertifikaatit",
+"certiport_info_p1": "Täällä voit kirjautua Certiportiin nähdäksesi viimeisimmät testituloksesi ja sertifikaattisi.",
+"certiport_info_p2": "Certiport on virallinen alusta IT-sertifikaattiesi hallintaan ja varmentamiseen.",
+"certiport_info_p3": "Napsauta yllä olevaa linkkiä avataksesi Certiportin uuteen välilehteen ja saadaksesi yksityiskohtaisia tietoja suorituksistasi."
 
 }
 
