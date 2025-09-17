@@ -10,6 +10,8 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import Spinner from 'react-bootstrap/Spinner';
 import Table from 'react-bootstrap/Table';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+
 
 
 function UserDashboard() {
@@ -28,12 +30,17 @@ function UserDashboard() {
   });
 
   const [bookings, setBookings] = useState([]);
-   const [showCancelModal, setShowCancelModal] = useState(false);
+  const [showCancelModal, setShowCancelModal] = useState(false);
   const [bookingToCancel, setBookingToCancel] = useState(null);
   const [loadingBookings, setLoadingBookings] = useState(false);
   const [errorBookings, setErrorBookings] = useState(null);  
   const [cancelMessageType, setCancelMessageType] = useState(null);
   const [loadingCancel, setLoadingCancel] = useState(false);
+
+  //meny för mobiltelefoner och tablets
+  const [showMenu, setShowMenu] = useState(false);
+  const handleMenuClose = () => setShowMenu(false);
+  const handleMenuShow = () => setShowMenu(true); 
 
   const toggleSection = (section) => {
     setExpanded(prev => ({
@@ -149,8 +156,19 @@ function UserDashboard() {
 
 
   return (
-    <div className="userDashboard" style={{ display: 'flex', height: '100vh'}}>
-      <Nav className="flex-column sidepanel">
+    <div className="userDashboard" style={{ display: 'flex', minHeight: '100vh', paddingTop: '60px'}}>
+
+      <div className='d-md-none'>
+      <Button
+      variant='primary'
+      className="hamburger-button btn-lg w-100"      
+      onClick={handleMenuShow}
+      >
+      ☰ Meny
+      </Button>
+      </div>
+
+      <Nav className="flex-column sidepanel d-none d-md-flex">
         <div className="sidebar-group">
           <div className="sidebar-title" onClick={() => toggleSection('bookings')}>
             🗂️ {t('my_bookings')} 
@@ -187,6 +205,52 @@ function UserDashboard() {
         </div>
       </Nav>
 
+      <Offcanvas
+          show={showMenu}
+          onHide={handleMenuClose}
+          placement="start"
+        >
+          <Offcanvas.Header closeButton />
+          <Offcanvas.Body>
+             <Nav className="flex-column sidepanel">
+        <div className="sidebar-group">
+          <div className="sidebar-title" onClick={() => {toggleSection('bookings'); handleMenuClose(); }}>
+            🗂️ {t('my_bookings')} 
+          </div>
+          
+        </div>
+
+        <div className="sidebar-group">
+          <div className="sidebar-title" onClick={() => {toggleSection('certificates'); handleMenuClose(); }}>
+            🎓 {t('certificates')}    
+          </div>
+          {expanded.certificates && (
+            <Nav.Link className="sidebar-link">
+             ⏰ {t('test_sessions')}  
+            </Nav.Link>
+          )}
+        </div>
+
+        <div className="sidebar-group">
+          <div className="sidebar-title" onClick={() => {toggleSection('testtimes'); handleMenuClose(); }}>
+            ⏰ {t('testtillfallen', 'Testtillfällen')}
+          </div>
+          {expanded.testtimes && (
+            <Nav.Link className="sidebar-link">
+              {t('visaTesttillfallen', 'Visa testtillfällen')}
+            </Nav.Link>
+          )}
+        </div>
+
+        <div className="sidebar-group">
+          <div className="sidebar-title" onClick={handleShow}>
+            🚪 {t('logout')}
+          </div>
+        </div>
+              </Nav>
+          </Offcanvas.Body>
+        </Offcanvas>
+
       <main
         style={{ 
           flexGrow: 1, 
@@ -218,6 +282,7 @@ function UserDashboard() {
               {!loadingBookings && bookings.length === 0 && <p>{t('ingaBokningar', 'Inga bokningar hittades.')}</p>}
 
               <h5>{t('dinaTestbokningar')}</h5>
+              <div className="table-responsive">
               <Table striped bordered hover style={{ position: 'relative' }}>                
               <thead>
                 <tr>
@@ -243,7 +308,8 @@ function UserDashboard() {
                 )
                 })}                
               </tbody>
-              </Table>         
+              </Table>   
+              </div>      
               </div>
         )}    
 

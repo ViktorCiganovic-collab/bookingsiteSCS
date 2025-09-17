@@ -73,7 +73,7 @@ useEffect(() => {
 })
 
  return (
-    <div className="loginPage">
+    <div className="loginPage" style={{ paddingTop: '70px', minHeight: '100vh' }}>
       <section className="loginSectionOne">
         <Container>
           <Row className="d-flex justify-content-center align-items-center mb-5 width-100">

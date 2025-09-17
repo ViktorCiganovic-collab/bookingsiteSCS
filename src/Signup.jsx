@@ -44,7 +44,7 @@ function Signup() {
   };
 
   return (
-    <div className="signupPage">
+    <div className="signupPage" style={{ paddingTop: '60px' }}>
       <section className="signupSectionOne">
         <Container fluid="md" className='px-3'>
           <Row className="d-flex justify-content-center align-items-center width-100">

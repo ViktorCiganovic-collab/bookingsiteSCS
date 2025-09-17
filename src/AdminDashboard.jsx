@@ -1544,7 +1544,7 @@ case 'categories':
 
 
   return (
-    <div className="adminDashboard d-flex" style={{ minHeight: '100vh' }}>
+    <div className="adminDashboard d-flex" style={{ minHeight: '100vh', paddingTop: '60px' }}>
       
       {/* Fast sidopanel på md och uppåt */}
       <div className="d-none d-md-block">

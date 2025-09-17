@@ -16,7 +16,7 @@ function NavComponent() {
   const { role, isAuthenticated } = useContext(AuthContext);
 
   return (
-    <Navbar collapseOnSelect expand="lg" className="menu navbar-dark">
+    <Navbar collapseOnSelect expand="lg" className="menu navbar-dark" fixed="top">
       <Container>
         
         <Navbar.Brand as={Link} to="/"><img src={logo} className='logo img-fluid rounded-1' /></Navbar.Brand> {/* Länk till start-sidan */}

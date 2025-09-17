@@ -1,8 +1,5 @@
 
-.sidepanel {
-  width: 250px;
-  min-width: 250px;
-  height: 100vh;
+.sidepanel {  
   padding: 1rem;
   border-right: 1px solid #ddd;
   background-color: #f8f9fa;
@@ -12,4 +9,40 @@
   background-image: url('../assets/bookings_bg.jpg');
       background-size: cover;
     background-position: center;
+}
+
+@media (max-width: 768px) {
+  .userDashboard {
+    flex-direction: column;
+  }
+  .sidepanel {
+    width: 100vw;
+    flex: 1;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .sidebar-title,
+  .sidebar-link {
+    margin: 0.3rem;
+    padding: 0.4rem 0.6rem;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .sidebar-link:hover {
+    background-color: #dee2e6;
+    text-decoration: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .sidepanel {
+    min-width: 250px;
+    width: 250px;
+    min-height: 100vh;
+  }
+
 }

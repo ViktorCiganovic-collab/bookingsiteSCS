@@ -12,7 +12,7 @@ const InfoPage = () => {
 const { t } = useTranslation();
 
 return (
-    <div className='infoPage'>
+    <div className='infoPage' style={{ paddingTop: '60px' }}>
    <section className="infoPageSectionOne">
   <h1 data-aos="fade-right" data-aos-duration="1000">{t('infoPage.title')}</h1>
   <p className="lead mt-3">
