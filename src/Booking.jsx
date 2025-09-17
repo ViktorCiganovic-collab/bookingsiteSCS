@@ -201,7 +201,7 @@ const Booking = () => {
 };
 
   return (
-    <div className="bookingSectionone d-flex flex-column justify-content-center align-items-center">
+    <div className="bookingSectionone d-flex flex-column justify-content-center align-items-center" style={{ paddingTop: '80px' }}>
       <h2>{t('booking')}</h2>
       <p><strong>{t('course')}:</strong> {certificatename}</p>
       <p><strong>{t('category')}:</strong> {category.name}</p>
@@ -259,7 +259,7 @@ const Booking = () => {
 
         </div>
 
-        <Button variant="primary" type="submit" disabled={loading}>
+        <Button variant="primary" type="submit" disabled={loading} className='mt-3'>
           {loading ? (
             <>
               <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> {t('pay_and_book_ing')}

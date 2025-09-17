@@ -110,7 +110,7 @@ export default function CertDetail() {
   }, [toggleTesttimes, alltesttimes]);
 
   return (
-    <div>
+    <div style={{ paddingTop: '60px' }}>
       <section className="py-5 detailSection">
         <Container>
           <Row>
