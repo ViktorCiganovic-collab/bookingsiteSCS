@@ -9,6 +9,7 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow, handleClose
     certificates: false,
     testtimes: false,
     categories: false,
+    statistics: false,
     logout: false,
   });
 
@@ -109,6 +110,30 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow, handleClose
               </Nav.Link>
             </>
           )}
+        </div>
+
+        <div className='sidebar-group'>
+          <div>
+            <div className="sidebar-title" onClick={() => toggleSection('statistics')}>
+              📊 Statistik
+            </div>
+            {expanded.statistics && (
+              <>
+              <Nav.Link onClick={() => {setActiveSection('bookingsPerCert'); handleCloseSidebar();}} className="sidebar-link">
+                Bokningar per certifiering
+              </Nav.Link>
+
+               <Nav.Link onClick={() => {setActiveSection('bookingsperweek_month'); handleCloseSidebar();}} className="sidebar-link">
+                Bokningar per vecka/månad
+              </Nav.Link>
+              
+              </>
+            )}        
+            
+          </div>
+
+
+
         </div>
 
         <div className="sidebar-group">

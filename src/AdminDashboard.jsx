@@ -18,6 +18,7 @@ const AdminDashboard = () => {
   const [bookings, setBookings] = useState([]);
   const [cancellations, setCancellations] = useState([]);
   const [certificates, setCertificates] = useState([]);
+  const [popularCertificates, setPopularCertificates] = useState([]);
   const [testtimes, setTesttimes] = useState([]);
   const [category, setCategory] = useState([]);
   const [selectedcategory, setSelectedcategory] = useState('');
@@ -126,6 +127,20 @@ const formatTime = (date) =>
     } catch (error) {
       setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
     } finally { 
+      setLoading(false);
+    }
+  }
+
+  const fetchCertBookings = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get('http://localhost:5011/api/cert/statistics/most_booked_certs');
+      setPopularCertificates(res.data);
+      setError(null);
+      setLoading(false);
+    } catch (error) { 
+      setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+    } finally {
       setLoading(false);
     }
   }
@@ -598,6 +613,9 @@ const DeleteCategory = async (e) => {
     case 'testtimes':
       fetchExamTimes();
       break;   
+    case 'bookingsPerCert':
+      fetchCertBookings();
+      break;
     default:
       // Inga åtgärder eller nollställningar
       break;
@@ -1530,6 +1548,29 @@ case 'categories':
       {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
     </div>
   );
+
+    case 'bookingsPerCert': 
+    return (
+      <div className="table-responsive mt-4">
+        <Table striped bordered hover responsive>
+          <thead>
+            <tr>
+              <th>Certifikat</th>
+              <th>Antal bokningar</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {popularCertificates.map((cert) =>  
+            <tr>
+              <td>{cert.certName}</td>
+              <td>{cert.numberofBookings > 0 ? cert.numberofBookings : 'Inga bokningar'}</td>
+            </tr>
+            )}
+          </tbody>
+        </Table>
+      </div>
+    );
 
     // Fallback
     default:
