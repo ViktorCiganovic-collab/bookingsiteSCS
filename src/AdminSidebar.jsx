@@ -123,8 +123,8 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow, handleClose
                 Bokningar per certifiering
               </Nav.Link>
 
-               <Nav.Link onClick={() => {setActiveSection('bookingsperweek_month'); handleCloseSidebar();}} className="sidebar-link">
-                Bokningar per vecka/månad
+               <Nav.Link onClick={() => {setActiveSection('bookingsQuarterly'); handleCloseSidebar();}} className="sidebar-link">
+                Bokningar per kvartal
               </Nav.Link>
               
               </>

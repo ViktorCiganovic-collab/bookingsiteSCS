@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Offcanvas, Modal } from 'react-bootstrap';
 import AdminSidebar from './AdminSidebar';
+import QuarterlyChart from './services/QuarterlyChart';
+import CertBookingChart from './services/CertBookingChart';
 import { AuthContext } from './services/AuthProvider';
 import './styling/AdminDashboard.css';
 import { useTranslation } from 'react-i18next'; 
@@ -1551,25 +1553,13 @@ case 'categories':
 
     case 'bookingsPerCert': 
     return (
-      <div className="table-responsive mt-4">
-        <Table striped bordered hover responsive>
-          <thead>
-            <tr>
-              <th>Certifikat</th>
-              <th>Antal bokningar</th>
-            </tr>
-          </thead>
+      <CertBookingChart />
+    );
 
-          <tbody>
-            {popularCertificates.map((cert) =>  
-            <tr>
-              <td>{cert.certName}</td>
-              <td>{cert.numberofBookings > 0 ? cert.numberofBookings : 'Inga bokningar'}</td>
-            </tr>
-            )}
-          </tbody>
-        </Table>
-      </div>
+    case 'bookingsQuarterly':
+    return (
+      <QuarterlyChart />
+
     );
 
     // Fallback
