@@ -5,7 +5,7 @@ import './styling/InfoPage.css';
 import malmö_testcenterImg from './assets/malmötestcenter.jpeg'
 import FAQSection from './services/FAQAccordion';
 import { useTranslation, Trans  } from 'react-i18next';
-
+import { BsInfoCircle } from 'react-icons/bs';
 
 const InfoPage = () => {
 
@@ -19,10 +19,16 @@ return (
     {t('infoPage.subtitle')}
   </p>
 
-  <div className="certBenefits mt-4" data-aos="fade-up" data-aos-duration="1000">
+  <div className="certBenefits mt-4 text-center" data-aos="fade-up" data-aos-duration="1000">
     <h3>✅ {t('infoPage.benefits.title')}</h3>
-          <ul>
-            <li><strong>{t('infoPage.benefits.safe')}</strong> {t('infoPage.benefits.safeDesc')}</li>
+          <ul className='list-unstyled'>
+            <li><strong>{t('infoPage.benefits.safe')}</strong> {t('infoPage.benefits.safeDesc')} <a
+            href="https://www.lexicon.se"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-decoration-none d-inline-flex align-items-center"
+          >  <BsInfoCircle className="me-2 text-white" /> </a></li>
+
             <li><strong>{t('infoPage.benefits.fast')}</strong> {t('infoPage.benefits.fastDesc')}</li>
             <li><strong>{t('infoPage.benefits.variety')}</strong> {t('infoPage.benefits.varietyDesc')}</li>
             <li><strong>{t('infoPage.benefits.support')}</strong> {t('infoPage.benefits.supportDesc')}</li>
@@ -46,13 +52,7 @@ return (
           <p>{t('paragraph3')}</p>
 
           <h3 className="mt-4">{t('testCenterTitle')}</h3>
-          <p>{t('testCenterDescription')}</p>
-          <ul>
-            <li>{t('testCenterList1')}</li>
-            <li>{t('testCenterList2')}</li>
-            <li>{t('testCenterList3')}</li>
-            <li>{t('testCenterList4')}</li>
-          </ul>
+          <p>{t('malmo_testcenter_hint')}</p>       
 
           <p>
             <Trans
