@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Container, Row, Col, Button, Table, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import './styling/CertDetail.css';
-import { FaCheck } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import { translationKeys } from './translationMap';
 
-
 export default function CertDetail() {
-  const { certname, description, certtestprice, certcategory } = useParams();
+  const { certname, description, certcategory } = useParams();
   const decodedCertName = decodeURIComponent(certname);
   const { t } = useTranslation();
 
@@ -33,12 +30,8 @@ export default function CertDetail() {
     };
     fetchCategories();
   }, []);
-  
+
   const descriptionKey = translationKeys[description] || description;
-
-  console.log('descriptionKey:', descriptionKey, description);
-
-  console.log('Description:', t(descriptionKey));
 
   // Hitta vald kategori
   useEffect(() => {
@@ -49,7 +42,7 @@ export default function CertDetail() {
     }
   }, [category, certcategory]);
 
-  // Hämta testtider direkt när sidan laddas
+  // Hämta testtider
   useEffect(() => {
     const fetchTestTimes = async () => {
       try {
@@ -102,7 +95,7 @@ export default function CertDetail() {
     setToggleTesttimes((prev) => !prev);
   };
 
-  // Inaktivera loading när data är laddad och listan visas
+  // Inaktivera loading när data är laddad
   useEffect(() => {
     if (toggleTesttimes && alltesttimes.length > 0) {
       setLoading(false);
@@ -117,62 +110,58 @@ export default function CertDetail() {
             <Col md={5} className="text-center">
               <h1>{decodedCertName}</h1>
               <h3>
-                {t('course_category')}:{' '}
-                {selectedCategory ? selectedCategory.name : t('loading_category')}
+                {t('course_category')}: {selectedCategory ? selectedCategory.name : t('loading_category')}
               </h3>
               <p>{t(descriptionKey)}</p>
             </Col>
 
             <Col md={5}>
-              <div className="bg-light p-4 rounded shadow-sm">
-                <h5 className="mb-4 text-dark">{t('course_facts')}  </h5>
+              <div className="bg-light p-4 rounded courseFacts">
+                <h5 className="mb-4 text-dark">{t('course_facts')}</h5>
                 <table className="table table-borderless table-sm mb-4">
                   <tbody>
                     <tr>
-                      <td><strong>{t('type')}  </strong></td>
+                      <td><strong>{t('type')}</strong></td>
                       <td>Online</td>
                     </tr>
                     <tr>
-                      <td><strong>{t('length')} </strong></td>
+                      <td><strong>{t('length')}</strong></td>
                       <td>1 {t('session')}, 01:15 h</td>
                     </tr>
-           <tr>
-  <td><strong>{t('regular_price')}  </strong></td>
-  <td>
-    {alltesttimes.length === 0 ? (
-      <Spinner animation="border" size="sm" />
-    ) : alltesttimes[0].price ? (
-      `${alltesttimes[0].price} kr exkl. moms`
-    ) : (
-      'Pris ej tillgängligt'
-    )}
-  </td>
-</tr>
-
-<tr>
-  <td><strong>{t('discount')}</strong></td>
-  <td>
-    {alltesttimes.length === 0 ? (
-      <Spinner animation="border" size="sm" />
-    ) : alltesttimes.some((test) => test.discountActive) ? (
-      t('campaign_info')
-    ) : (
-      'Nej'
-    )}
-  </td>
-</tr>
-
-<tr>
-  <td><strong>{t('number_of_sessions')}  </strong></td>
-  <td>
-    {alltesttimes.length === 0 ? (
-      <Spinner animation="border" size="sm" />
-    ) : (
-      `${alltesttimes.length} ${alltesttimes.length > 1 ? t('sessions') : t('session')}`
-    )}
-  </td>
-</tr>
-
+                    <tr>
+                      <td><strong>{t('regular_price')}</strong></td>
+                      <td>
+                        {alltesttimes.length === 0 ? (
+                          <Spinner animation="border" size="sm" />
+                        ) : alltesttimes[0].price ? (
+                          `${alltesttimes[0].price} kr exkl. moms`
+                        ) : (
+                          'Pris ej tillgängligt'
+                        )}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>{t('discount')}</strong></td>
+                      <td>
+                        {alltesttimes.length === 0 ? (
+                          <Spinner animation="border" size="sm" />
+                        ) : alltesttimes.some((test) => test.discountActive) ? (
+                          t('campaign_info')
+                        ) : (
+                          'Nej'
+                        )}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>{t('number_of_sessions')}</strong></td>
+                      <td>
+                        {alltesttimes.length === 0 ? (
+                          <Spinner animation="border" size="sm" />
+                        ) : (
+                          `${alltesttimes.length} ${alltesttimes.length > 1 ? t('sessions') : t('session')}`
+                        )}
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
 
@@ -181,16 +170,11 @@ export default function CertDetail() {
                   className="w-100"
                   onClick={handleToggleBooking}
                   disabled={loading}
+                  style={{ padding: '10px 20px', borderRadius: '12px', fontSize: '1rem' }}
                 >
                   {loading ? (
                     <>
-                      <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                      />{' '}
+                      <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />{' '}
                       {t('loading_cert', 'Laddar certifikat...')}
                     </>
                   ) : (
@@ -211,33 +195,72 @@ export default function CertDetail() {
           {toggleTesttimes && !loading && (
             <Row>
               <Col md={12}>
-              <div className="responsive-table-wrapper">
-                <Table striped bordered hover className="mt-4 rounded-5">
-                  <thead>
-                    <tr>
-                      <th> {t('test_date')}</th>
-                      <th>{t('slots')}</th>
-                      <th>{t('your_price')}</th>
-                      <th>{t('book_header')}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {alltesttimes.map((testtime) => (
-                      <tr key={testtime.id}>
-                        <td>{testtime.formattedStartTime} - {testtime.formattedEndTime}</td>
-                        <td>{testtime.slots}</td>
-                        <td>{testtime.finalPrice} SEK</td>
-                        <td>
-                          <Link to={`/booking/${certcategory}/${encodeURIComponent(certname)}/${testtime.id}/${testtime.finalPrice}`}>
-                          <button className="btn btn-primary" style={{ padding: '5px', borderRadius: '5px' }}>
-                            {t('book_time')}
-                          </button>
-                          </Link>
-                        </td>
+                {/* Desktop/tabell-layout */}
+                <div className="responsive-table-wrapper d-none d-md-block">
+                  <Table striped bordered hover className="mt-4 rounded-5">
+                    <thead>
+                      <tr>
+                        <th>{t('test_date')}</th>
+                        <th>{t('slots_left')}</th>
+                        <th>{t('your_price')}</th>
+                        <th>{t('book_header')}</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </Table>
+                    </thead>
+                    <tbody>
+                      {alltesttimes.map((testtime) => (
+                        <tr key={testtime.id}>
+                          <td>{testtime.formattedStartTime} - {testtime.formattedEndTime}</td>
+                          <td>
+                            <span className={`slots-badge ${testtime.slots === 0 ? "full" : ""}`}>
+  {testtime.slots > 0 ? `${testtime.slots} ${t('slots_left')}` : t('fully_booked')}
+</span>
+                          </td>
+                          <td>
+                            {testtime.finalPrice} SEK{' '}
+                            {testtime.discountActive && (
+                              <span className="discount-badge">
+                                -{50}%
+                              </span>
+                            )}
+                          </td>
+                          <td>
+                            <Link to={`/booking/${certcategory}/${encodeURIComponent(certname)}/${testtime.id}/${testtime.finalPrice}`}>
+                              <button className="btn btn-primary" style={{ padding: '5px', borderRadius: '5px' }}>
+                                {t('book_time')}
+                              </button>
+                            </Link>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </div>
+
+                {/* Mobil/kort-layout */}
+                <div className="d-md-none">
+                  {alltesttimes.map((testtime) => (
+                    <div className="mobile-card" key={testtime.id}>
+                      <h5>{testtime.formattedStartTime} - {testtime.formattedEndTime}</h5>
+                      <div className='slotsDIv'>
+                        <span className={`slots-badge ${testtime.slots === 0 ? "full" : ""}`}>
+                        {testtime.slots > 0 ? `${testtime.slots} ${t('slots_left')}` : t('fully_booked')}
+                      </span>
+                      </div>
+                      <p className="price">
+                        {testtime.finalPrice} SEK{' '}
+                        {testtime.discountActive && (
+                          <span className="discount-badge">
+                            -{50}%
+                          </span>
+                        )}
+                      </p>
+                      <Link to={`/booking/${certcategory}/${encodeURIComponent(certname)}/${testtime.id}/${testtime.finalPrice}`}>
+                        <button className="btn btn-primary w-100 mt-2">
+                          {t('book_time')}
+                        </button>
+                      </Link>
+                    </div>
+                  ))}
                 </div>
               </Col>
             </Row>

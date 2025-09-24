@@ -449,8 +449,10 @@
 "certiport_link": "🌐 Testresultater og certifikater",
 "certiport_info_p1": "Her kan du logge ind på Certiport for at se dine seneste testresultater og certifikater.",
 "certiport_info_p2": "Certiport er den officielle platform til at administrere og verificere dine IT-certificeringer.",
-"certiport_info_p3": "Klik på linket ovenfor for at åbne Certiport i en ny fane og få adgang til detaljerede oplysninger om dine præstationer."
+"certiport_info_p3": "Klik på linket ovenfor for at åbne Certiport i en ny fane og få adgang til detaljerede oplysninger om dine præstationer.",
 
+"slots_left": "Pladser tilbage",
+"fully_booked": "Fuldt booket"
 
 
 }
