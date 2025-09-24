@@ -8,7 +8,7 @@ Here are some screenshots of the project:
 
 ![Booking page](./Project_images/Bookingpage.png)
 
-![Login page](./Project_images/Login_page.png)
+![Login page](./Project_images/login_page.png)
 
 ![Info page](./Project_images/Info_sida.png)
 
