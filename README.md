@@ -6,13 +6,13 @@ I am currently developing a full-stack online booking platform tailored for IT c
 
 Here are some screenshots of the project:
 
-![Booking page](./Project_images/booking_page.png)
+![Booking page](./Project_images/Bookingpage.png)
 
-![Admin panel](./Project_images/Image_of_project2.png)
+![Login page](./Project_images/Login_page.png)
 
-![Login page](./Project_images/login_page.png)
+![Info page](./Project_images/Info_sida.png)
 
-![Info page](./Project_images/Info_page.png)
+![Signup page](./Project_images/Signup_page.png)
 
 ---
 
