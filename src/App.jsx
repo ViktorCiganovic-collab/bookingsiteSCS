@@ -1,11 +1,12 @@
 import './styling/App.css';
-import backgroundVideo from './assets/background_landingpage_.mp4';
 import './styling/Main.css';
 import Itcourses from './services/ITcertificates'; 
 import { Container, Row, Col } from 'react-bootstrap';
 import thirdImg from './assets/testworkingenvironment.png';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+
 
 function App() {
   const { t } = useTranslation();
@@ -18,12 +19,15 @@ function App() {
     <>
       <div className="video-container">
         <video autoPlay muted loop playsInline className="bg-video">
-          <source src={backgroundVideo} type="video/mp4" />
+          
           {t('video_not_supported')}
         </video>
         <div className="video-overlay">
-          <h1 data-aos="zoom-in" data-aos-duration="1000">{t('welcome_message')} Scandinavian Certification Services</h1>
-          <p data-aos="fade-up">{t('subheadline')}</p>          
+          <div className="hero-content" data-aos="zoom-in" data-aos-duration="1000">
+          <h1>{t('welcome_message')} Scandinavian Certification Services</h1>
+          <p>{t('subheadline')}</p>      
+          <button className='cta-btn'>Boka nu</button>     
+          </div>   
         </div>        
       </div>
 

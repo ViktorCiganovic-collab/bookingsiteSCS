@@ -6,6 +6,8 @@ I am currently developing a full-stack online booking platform tailored for IT c
 
 Here are some screenshots of the project:
 
+![Main page](./Project_images/MainPage.png)
+
 ![Booking page](./Project_images/Bookingpage.png)
 
 ![Login page](./Project_images/login_page.png)

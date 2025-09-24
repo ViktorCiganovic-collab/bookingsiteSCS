@@ -3,65 +3,203 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-
-  background-image: url('https://images.pexels.com/photos/1714205/pexels-photo-1714205.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920');
+  background-image: url('../assets/pexels-danbuilds-633409.jpg');
+  /* https://images.pexels.com/photos/1714205/pexels-photo-1714205.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920 */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-  
-  .bg-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    z-index: -1;
-  }
-  
-  .video-overlay {
-    position: relative;
-    z-index: 1;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    font-size: 2rem;
-    font-family: var(--font-family-base);
-  }
-  
-    .video-overlay h1 {
-    color: var(--white-text) !important;
-  }
+.bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+   z-index: 1;
+}
 
-  @media (max-width: 1199.98px) {
-  .video-overlay h1  {
+.video-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;  
+
+  z-index: 0; 
+}
+
+.video-overlay-content {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+
+.video-overlay {
+  position: relative;
+  z-index: 1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 0 1rem;
+  font-family: var(--font-family-base);
+
+}
+
+.video-overlay h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--white-text) !important;
+  margin-bottom: 1rem;
+    text-shadow: 0 3px 8px rgba(0,0,0,0.7);
+
+}
+
+.video-overlay h1,
+.video-overlay p {
+ 
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  display: inline-block;
+
+}
+
+.video-overlay p {
+  padding: 1rem;
+  font-size: 1.25rem;
+  text-align: center;
+  color: #f0f0f0;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  margin-bottom: 2rem;
+}
+
+/* CTA-knapp */
+
+.video-overlay .cta-btn {
+  display: inline-block;
+  min-width: 180px;
+  padding: 12px 28px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #0066ff, #0044cc);  color: #fff;
+  text-decoration: none;
+  border: none;                  
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+transition: transform 0.15s ease, opacity 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.video-overlay .cta-btn:hover,
+.video-overlay .cta-btn:focus {
+    transform: scale(1.03);
+  opacity: 0.9;
+  outline: none;
+}
+
+
+
+.hero-content {
+  background: rgba(0, 0, 0, 0.55); /* halvtransparent svart */
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Rubrik */
+.hero-content h1 {
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* Underrubrik */
+.hero-content p {
+  color: #ddd;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* CTA-knapp */
+.cta-btn {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+background: linear-gradient(135deg, #007bff, #0056b3);  border: none;
+}
+
+/* Hover-effekt */
+.cta-btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* Responsiv anpassning */
+@media (max-width: 767px) {
+  .hero-content {
+    padding: 1.5rem;
+  }
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+}
+
+
+
+/* mobil: knappen centrerad och lite bredare */
+@media (max-width: 767.98px) {
+  .video-overlay .cta-btn {
+    min-width: 60%;
+    padding: 12px 18px;
+  }
+}
+
+
+
+
+
+/* Responsivitet */
+@media (max-width: 1199.98px) {
+  .video-overlay h1 {
     font-size: 2.5rem;
   }
 }
 
 @media (max-width: 767.98px) {
-  .video-overlay h1  {
-    font-size: 1.5rem;
+  .video-overlay h1 {
+    font-size: 1.8rem;
   }
 
   .video-overlay p {
-  font-size: 0.8rem !important;
+    font-size: 1rem;
+    padding: 0.5rem;
   }
 }
 
-  .video-overlay p {
-    padding: 1rem;
-    font-size: 1rem;
-    text-align: center;
-  }
+
 
   .mainpageSectiontwo {
     width: 100%;    
