@@ -46,3 +46,18 @@
   }
 
 }
+
+.headtitle {
+  max-width: 100%;
+  background: rgba(0, 0, 0, 0.5); /* mörk overlay */
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+}
+
+  .svarsMeddelande {
+  background: rgba(0, 0, 0, 0.9); /* mörk overlay */
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  }

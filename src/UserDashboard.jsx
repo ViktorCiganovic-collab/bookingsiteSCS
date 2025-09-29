@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
 import './styling/UserDashboard.css';
 import { useNavigate } from "react-router-dom";
@@ -11,14 +12,26 @@ import { jwtDecode } from 'jwt-decode';
 import Spinner from 'react-bootstrap/Spinner';
 import Table from 'react-bootstrap/Table';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import Toast from "react-bootstrap/Toast";
+import ToastContainer from "react-bootstrap/ToastContainer";
 
 
 function UserDashboard() {
   const { role, setRole, isAuthenticated, setIsAuthenticated, token, email } = useContext(AuthContext);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);  
   const navigate = useNavigate();
-  const { t } = useTranslation();  
+  const { t } = useTranslation();    
+  const [oldPassword, setOldPassword] = useState();
+  const [newPassword, setNewPassword] = useState();
+  const [error, setError] = useState();
+  const [response, setResponse] = useState();
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+  const [showOldPassword, setShowOldPassword] = useState(false);  
+  const [showNewPassword, setShowNewPassword] = useState(false); 
+  const [showToast, setShowToast] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [userData, setUserData] = useState({});
 
   console.log(`Email extracted from the token: ${email}`);
   
@@ -27,8 +40,29 @@ function UserDashboard() {
     certificates: false,
     testtimes: false,  
     certiport: false,  
+    myInfo: false,
     logout: false,
   });
+
+  const [expandedNavlink, SetexpandedNavlink] = useState({
+    changePassword: false,
+  });
+
+  const toggleNavLink = (section) => {
+    SetexpandedNavlink(prev => {
+      // Om klickad sektion redan är öppen - stäng den (alla stängs)
+      if(prev[section]) {
+        return {
+          myDetails: false,
+          changePassword: false,
+        };
+      }
+      // Annars öppna bara den valda sektionen och stäng resten
+      return {
+        [section]: true,
+      };
+    })
+  }
 
   const [bookings, setBookings] = useState([]);
   const [showCancelModal, setShowCancelModal] = useState(false);
@@ -52,6 +86,7 @@ function UserDashboard() {
         certificates: false,
         testtimes: false,
         certiport: false,
+        myInfo: false,
         logout: false,
       };
     }
@@ -61,9 +96,13 @@ function UserDashboard() {
       certificates: false,
       testtimes: false,
       certiport: false,
+      myInfo: false,
       logout: false,
       [section]: true,
     };
+  });
+    SetexpandedNavlink({
+    changePassword: false,
   });
 };
 
@@ -97,6 +136,24 @@ function UserDashboard() {
       });
     }
   }, [expanded.bookings, isAuthenticated, token]);
+
+  //Hämta användardata vid inloggning
+  useEffect(() => {
+    if (!token) return;    
+
+    axios.get('http://localhost:5011/api/account/get-my-data', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+      setUserData(res.data)
+    }).catch(err => {
+      console.error("Fel vid hämtning:", err);
+      setError(err.response?.data || "Något gick fel");
+    })
+
+  }, [token]);
 
   const formatDate = (date) =>
     new Intl.DateTimeFormat('sv-SE', {
@@ -173,6 +230,58 @@ function UserDashboard() {
 
 };
 
+const changePassword = async (event) => {
+  event.preventDefault();
+  
+  if (!email || !oldPassword || !newPassword) {
+    setError('Vänligen fyll i alla uppgifter');
+    return;
+  }
+
+  // Eventuell validering av lösenordet 
+   const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/; // Exempel: Minst 8 tecken, 1 bokstav, 1 siffra
+  if (!regex.test(newPassword)) {
+    setError('Lösenordet måste vara minst 8 tecken och innehålla minst 1 siffra, minst ett specialtecken och en stor bokstav.');
+    return;
+  }
+
+  if (newPassword !== confirmPassword) {
+     setError("❌ Lösenorden matchar inte.");
+      return;
+  }
+
+  let newData = {
+    Email: email,
+    OldPassword: oldPassword,
+    NewPassword: newPassword
+  };
+
+  setIsChangingPassword(true); 
+
+  try {
+    const res = await axios.post('http://localhost:5011/api/account/change-password', newData);
+
+    console.log('Serverns svar:', res.data);
+    if (typeof res.data === 'string' && res.data.includes("uppdaterats")) {
+      setResponse('Lösenordet har ändrats!');
+      setShowToast(true);      
+      setError(null); 
+      setOldPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    } else {
+      setError('Något gick fel, vänligen försök igen.');
+      setResponse(null); 
+    }
+  } catch (error) {
+    setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+    setResponse(null); 
+  } finally {
+    setIsChangingPassword(false);
+  }
+};
+
+
 
   return (
     <div className="userDashboard" style={{ display: 'flex', minHeight: '100vh', paddingTop: '60px'}}>
@@ -222,6 +331,39 @@ function UserDashboard() {
             </Nav.Link>
           )}
         </div>
+
+         <div className='sidebar-group'>
+  <div className='sidebar-title' onClick={() => { toggleSection('myInfo') }}>
+    👤 {t('my_data')}
+    
+    {expanded.myInfo && (
+      <>
+        <Nav.Link
+          className="sidebar-link"
+          onClick={(e) => {
+            e.stopPropagation(); 
+            toggleNavLink('myDetails');
+            handleMenuClose();
+          }}
+        >
+          📄 {t('my_personal_data', 'Mina uppgifter')}
+        </Nav.Link>
+
+        <Nav.Link
+          className="sidebar-link"
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleNavLink('changePassword');
+            handleMenuClose();
+          }}
+        >
+          🔐 {t('change_password_title')}
+        </Nav.Link>
+      </>
+    )}
+  </div>
+</div>
+
        
 
         <div className="sidebar-group">
@@ -273,6 +415,37 @@ function UserDashboard() {
           )}
         </div>  
 
+                 <div className="sidebar-group">
+        <div className="sidebar-title" onClick={() => toggleSection('myInfo')}>
+          👤 {t('my_data')}
+        </div>
+        {expanded.myInfo && (
+          <>
+            <Nav.Link
+              className="sidebar-link"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleNavLink('myDetails');
+                handleMenuClose();
+              }}
+            >
+              📄 {t('my_personal_data', 'Mina uppgifter')}
+            </Nav.Link>
+
+            <Nav.Link
+              className="sidebar-link"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleNavLink('changePassword');
+                handleMenuClose();
+              }}
+            >
+              🔐 {t('change_password_title')}
+            </Nav.Link>
+          </>
+        )}
+      </div>
+
         <div className="sidebar-group">
           <div className="sidebar-title" onClick={handleShow}>
             🚪 {t('logout')}
@@ -290,7 +463,7 @@ function UserDashboard() {
         }}
         className='userdashboard_mainpart'
       >
-        <h2 data-aos="fade-down" data-aos-duration="700">{t('welcomeUserDashboard', 'Välkommen till din dashboard')}!</h2>
+        <h2 data-aos="fade-down" data-aos-duration="700" className='headtitle'>{t('welcomeUserDashboard', 'Välkommen till din dashboard')}!</h2>
 
                 {cancelMessageType && (
           <div
@@ -376,6 +549,113 @@ function UserDashboard() {
         </div>
         </div>     
    
+        )}
+
+        {expandedNavlink.myDetails && (
+        <Container className="mt-3">
+          <Row className="justify-content-center">
+            <Col xs={12} sm={10} md={8} lg={6}>
+              <Card className="shadow-sm">
+                <Card.Body>
+                  <Card.Title className="text-center mb-3">Mina uppgifter</Card.Title>
+                  <Card.Text><strong>Förnamn:</strong> {userData.firstName}</Card.Text>
+                  <Card.Text><strong>Efternamn:</strong> {userData.lastName}</Card.Text>
+                  <Card.Text><strong>Email:</strong> {userData.email}</Card.Text>
+                  <Card.Text><strong>Adress:</strong> {userData.address}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      )}
+
+        {expandedNavlink.changePassword && (
+          <div className='d-flex flex-column align-items-center mt-4' style={{ maxWidth: "400px", margin: "0 auto" }}>
+            <h3 className='headtitle'>{t('change_your_password')}</h3>
+            <form onSubmit={changePassword} className="w-100">
+
+              <div className='mb-3'> 
+                <label className="form-label">{t('your_email_address')}</label>
+                <input type="email" className='form-control text-center' value={email} required></input>
+              </div>
+
+                   {/* Nuvarande lösenord */}
+        <div className="mb-3 position-relative">
+          <label className="form-label">{t('current_password')}</label>
+          <input
+            type={showOldPassword ? 'text' : 'password'}
+            className="form-control text-center"
+            value={oldPassword}
+            onChange={(e) => setOldPassword(e.target.value)}
+          />
+          {/* Ögonikon för att visa/dölja lösenord */}
+          <div
+            className="position-absolute"
+            style={{ top: '70%', right: '10px', transform: 'translateY(-50%)', cursor: 'pointer', color: 'black' }}
+            onClick={() => setShowOldPassword(!showOldPassword)}
+          >
+            {showOldPassword ? <FaEyeSlash /> : <FaEye />}
+          </div>
+        </div>
+
+              <div className='mb-3 position-relative'>
+                  <label className="form-label">{t('new_password')}</label>
+                <input type={showNewPassword ? 'text' : 'password'} className='form-control text-center' value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
+
+                <div
+            className="position-absolute"
+            style={{ top: '70%', right: '10px', transform: 'translateY(-50%)', cursor: 'pointer', color: 'black' }}
+            onClick={() => setShowNewPassword(!showNewPassword)}
+          >
+            {showNewPassword ? <FaEyeSlash /> : <FaEye />}
+          </div>
+              </div>
+
+                    {/* Bekräfta nytt lösenord */}
+              <div className="mb-3">
+                <label className="form-label">{t('confirm_new_password')}</label>
+                <input
+                  type="password"
+                  className="form-control text-center"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
+
+               <div className="d-grid">
+          <button type="submit" className="btn btn-danger" disabled={isChangingPassword}>
+            {isChangingPassword ? (
+              <>
+               <Spinner animation="border" size="sm" variant="light" /> {t('changing_password')}
+              </>
+            ) : (
+              t('change_button')
+            )
+          }
+
+          </button>
+        </div>
+
+            </form>
+
+                  {/* Toast för feedback */}
+      <ToastContainer position="top-center" className="p-3">
+        <Toast
+          onClose={() => setShowToast(false)}
+          show={showToast}
+          delay={4000}
+          autohide
+          bg="success"
+        >
+          <Toast.Header>
+            <strong className="me-auto">Klart!</strong>
+          </Toast.Header>
+          <Toast.Body className="text-white">{response}</Toast.Body>
+        </Toast>
+      </ToastContainer>
+             {error && <p className="svarsMeddelande mt-3 text-danger text-center">❌ {error}</p>}
+
+          </div>
         )}
 
 

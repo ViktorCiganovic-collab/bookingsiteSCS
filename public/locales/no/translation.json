@@ -452,8 +452,16 @@
 "certiport_info_p3": "Klikk på lenken ovenfor for å åpne Certiport i en ny fane og få tilgang til detaljert informasjon om dine prestasjoner.",
 
 "slots_left": "Plasser igjen",
-"fully_booked": "Fullbooket"
-
+"fully_booked": "Fullbooket",
+"my_data": "Mine opplysninger",
+"change_your_password": "Endre passordet ditt",
+"your_email_address": "Din e-postadresse",
+"current_password": "Nåværende passord",
+"new_password": "Nytt passord",
+"confirm_new_password": "Bekreft nytt passord",
+"change_button": "Endre",
+"change_password_title": "Endre passord",
+"changing_password": "Endrer..."
 
 
 

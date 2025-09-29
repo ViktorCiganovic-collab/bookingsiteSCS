@@ -452,7 +452,16 @@
 "certiport_info_p3": "Klik på linket ovenfor for at åbne Certiport i en ny fane og få adgang til detaljerede oplysninger om dine præstationer.",
 
 "slots_left": "Pladser tilbage",
-"fully_booked": "Fuldt booket"
+"fully_booked": "Fuldt booket",
+"my_data": "Mine oplysninger",
+"change_your_password": "Skift din adgangskode",
+"your_email_address": "Din e-mailadresse",
+"current_password": "Nuværende adgangskode",
+"new_password": "Ny adgangskode",
+"confirm_new_password": "Bekræft ny adgangskode",
+"change_button": "Skift",
+"change_password_title": "Skift adgangskode",
+"changing_password": "Skifter..."
 
 
 }

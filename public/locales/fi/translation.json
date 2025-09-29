@@ -450,7 +450,16 @@
 "certiport_info_p3": "Napsauta yllä olevaa linkkiä avataksesi Certiportin uuteen välilehteen ja saadaksesi yksityiskohtaisia tietoja suorituksistasi.",
 
 "slots_left": "Paikkaa jäljellä",
-"fully_booked": "Täynnä"
+"fully_booked": "Täynnä",
+"my_data": "Omat tiedot",
+"change_your_password": "Vaihda salasanasi",
+"your_email_address": "Sähköpostiosoitteesi",
+"current_password": "Nykyinen salasana",
+"new_password": "Uusi salasana",
+"confirm_new_password": "Vahvista uusi salasana",
+"change_button": "Vaihda",
+"change_password_title": "Vaihda salasana",
+"changing_password": "Vaihdetaan..."
 
 
 }
