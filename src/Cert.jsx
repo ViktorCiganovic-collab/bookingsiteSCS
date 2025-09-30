@@ -145,13 +145,20 @@ setSelectedcategory(courseName);
   return (
     <div>
       <section className='certificatesPage'>
+        <div className='introducingSection'>
         <h1 data-aos="fade-down">{t('certifications')}</h1>
+        <p className="lead text-white" data-aos="fade-up">
+          {t('explore_certifications')}
+        </p>
+        <p className="scroll-indicator">⬇️</p>
+        </div>
       </section>
 
       <section className='certificatesPageSectionTwo py-5'>
         <Container>
+          <div className="cert-card mb-5">
           <Row className='align-items-center mb-5'>
-            <Col md={6} data-aos="fade-left" data-aos-duration="1000">
+            <Col md={6} data-aos="fade-left" data-aos-duration="1000" className="cert-card">
               <h2>{t('IT_certification')}</h2>
               <p>{t('IT_certification_description')}</p>
             </Col>
@@ -163,6 +170,7 @@ setSelectedcategory(courseName);
               />
             </Col>
           </Row>
+          
 
           <Row className='align-items-center mb-5'>
             <Col md={6} data-aos="zoom-in" data-aos-duration="1000">
@@ -172,11 +180,12 @@ setSelectedcategory(courseName);
                 className="img-fluid rounded shadow"
               />
             </Col>
-            <Col md={6} data-aos="fade-right" data-aos-duration="1000">
+            <Col md={6} data-aos="fade-right" data-aos-duration="1000" className="cert-card">
               <h2>{t('Webdesign_UX')}</h2>
               <p>{t('Webdesign_UX_description')}</p>
             </Col>
           </Row>
+          </div>
         </Container>
       </section>
 

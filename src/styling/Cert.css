@@ -6,10 +6,23 @@
   height: 100vh;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white; 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+}
+
+.introducingSection {
+    background: linear-gradient(
+    rgba(0, 0, 0, 0.6), 
+    rgba(0, 0, 0, 0.3)
+  );
+  backdrop-filter: blur(6px);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0, 150, 255, 0.4);
 }
 
 h1 {
@@ -19,11 +32,43 @@ h1 {
   text-align: center; /* Center the title */
 }
 
+.scroll-indicator {
+  margin-top: 2rem;
+  font-size: 2rem;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+
 .certificatesPageSectionTwo,
 .certificatepageSectionfour {
   width: 100%;
   background-color: var(--main-bg);
   padding: 50px 0; /* Add padding for vertical spacing */
+}
+
+.cert-card {
+  background: #1e1e1e;     
+  border-radius: 12px;     
+  padding: 1.5rem;         
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); 
+}
+
+/* Textanpassning */
+.cert-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #fff; /* vit text för kontrast */
+}
+
+.cert-card p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ddd; /* lite ljusare grå för mjuk kontrast */
 }
 
 .certificatepageSectionthree {
