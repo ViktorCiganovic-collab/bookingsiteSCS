@@ -491,7 +491,20 @@
 "change_button": "Ändra",
 "change_password_title": "Ändra lösenord",
 "changing_password": "Ändrar...",
-"explore_certifications": "Utforska våra certifieringar och ta nästa steg i din karriär."
+"explore_certifications": "Utforska våra certifieringar och ta nästa steg i din karriär.",
+  "emailSent": "Om adressen finns registrerad skickas ett mejl. Länken gäller i 3 timmar",
+  "forgotPassword": "Glömt lösenord",
+  "error": "Något gick fel, försök igen.",
+  "emailPlaceholder": "Din e-post",
+  "sendResetLink": "Skicka återställningslänk",
+  "backToLogin": "👉 Tillbaka till login",
+    "passwordsDontMatch": "Lösenorden matchar inte.",
+  "passwordUpdated": "Lösenordet har uppdaterats! Du skickas till login...",
+  "saveNewPassword": "Spara nytt lösenord",
+  "confirmNewPassword": "Bekräfta nytt lösenord",
+  "newPassword": "Nytt lösenord",
+  "resetPassword": "Återställ lösenord"
+
 
 }
 

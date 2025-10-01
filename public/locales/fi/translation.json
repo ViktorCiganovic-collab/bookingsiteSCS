@@ -460,9 +460,19 @@
 "change_button": "Vaihda",
 "change_password_title": "Vaihda salasana",
 "changing_password": "Vaihdetaan...",
-"explore_certifications": "Tutustu sertifiointeihimme ja ota seuraava askel urallasi."
-
-
+"explore_certifications": "Tutustu sertifiointeihimme ja ota seuraava askel urallasi.",
+  "emailSent": "Jos osoite löytyy, sähköposti lähetetään. Linkki on voimassa 3 tuntia",
+  "forgotPassword": "Unohtunut salasana",
+  "error": "Jotain meni pieleen, yritä uudelleen.",
+  "emailPlaceholder": "Sähköpostiosoitteesi",
+  "sendResetLink": "Lähetä palautuslinkki",
+  "backToLogin": "👉 Takaisin kirjautumiseen",
+    "passwordsDontMatch": "Salasanat eivät täsmää.",
+  "passwordUpdated": "Salasana on päivitetty! Uudelleenohjataan kirjautumiseen...",
+  "saveNewPassword": "Tallenna uusi salasana",
+  "confirmNewPassword": "Vahvista uusi salasana",
+  "newPassword": "Uusi salasana",
+  "resetPassword": "Palauta salasana"
 }
 
 

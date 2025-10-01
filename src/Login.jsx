@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from 'jwt-decode';
 import { AuthContext } from './services/AuthProvider';
+import { Link } from 'react-router-dom';
+
 
 function Login() {
   const [username, setUsername] = useState('');  
@@ -105,6 +107,7 @@ useEffect(() => {
                 <Button variant="primary" type="submit">
                     {t('login_button')}
                 </Button>
+                <Link to="/forgot_password" className='text-decoration-none forgot-password text-white'>Glömt lösenord?</Link>
               </Form>
             </Col>
           </Row>

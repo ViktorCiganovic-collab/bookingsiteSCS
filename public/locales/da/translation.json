@@ -462,7 +462,19 @@
 "change_button": "Skift",
 "change_password_title": "Skift adgangskode",
 "changing_password": "Skifter...",
-"explore_certifications": "Udforsk vores certificeringer og tag det næste skridt i din karriere."
+"explore_certifications": "Udforsk vores certificeringer og tag det næste skridt i din karriere.",
+  "emailSent": "Hvis adressen findes, sendes en mail. Linket gælder i 3 timer",
+  "forgotPassword": "Glemt adgangskode",
+  "error": "Noget gik galt, prøv igen.",
+  "emailPlaceholder": "Din e-mail",
+  "sendResetLink": "Send nulstillingslink",
+  "backToLogin": "👉 Tilbage til login",
+    "passwordsDontMatch": "Adgangskoderne stemmer ikke overens.",
+  "passwordUpdated": "Adgangskoden er opdateret! Du videresendes til login...",
+  "saveNewPassword": "Gem ny adgangskode",
+  "confirmNewPassword": "Bekræft ny adgangskode",
+  "newPassword": "Ny adgangskode",
+  "resetPassword": "Nulstil adgangskode"
 
 
 }

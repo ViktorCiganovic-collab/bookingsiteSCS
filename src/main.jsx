@@ -15,6 +15,8 @@ import './styling/App.css';
 import CertDetail from './CertDetail.jsx';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
+import ForgotPasswordPage from './ForgotPasswordPage.jsx';
+import ResetPasswordPage from './ResetPasswordPage.jsx';
 import About from './About.jsx';
 import AdminDashboard from './AdminDashboard.jsx';
 import UserDashboard from './UserDashboard.jsx';
@@ -55,6 +57,14 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'forgot_password',
+        element: <ForgotPasswordPage />,
+      },
+      {
+        path: 'reset-password',
+        element: <ResetPasswordPage />,
       },
       {
         path: 'about',

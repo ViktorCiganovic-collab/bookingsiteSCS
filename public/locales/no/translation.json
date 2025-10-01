@@ -462,7 +462,19 @@
 "change_button": "Endre",
 "change_password_title": "Endre passord",
 "changing_password": "Endrer...",
-"explore_certifications": "Utforsk våre sertifiseringer og ta neste steg i din karriere."
+"explore_certifications": "Utforsk våre sertifiseringer og ta neste steg i din karriere.",
+  "emailSent": "Hvis adressen finnes, sendes en e-post. Lenken gjelder i 3 timer",
+  "forgotPassword": "Glemt passord",
+  "error": "Noe gikk galt, prøv igjen.",
+  "emailPlaceholder": "Din e-post",
+  "sendResetLink": "Send tilbakestillingslink",
+  "backToLogin": "👉 Tilbake til login",
+    "passwordsDontMatch": "Passordene samsvarer ikke.",
+  "passwordUpdated": "Passordet er oppdatert! Du sendes til innlogging...",
+  "saveNewPassword": "Lagre nytt passord",
+  "confirmNewPassword": "Bekreft nytt passord",
+  "newPassword": "Nytt passord",
+  "resetPassword": "Tilbakestill passord"
 
 
 

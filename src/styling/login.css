@@ -90,3 +90,17 @@ height: 100%;
   transform: scale(1.03);
   background-color: #0056b3;
 }
+
+
+.forgot-password {
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+  background: transparent;
+  backdrop-filter: blur(10px);
+}
+
+.forgot-password:hover {
+    color: #2563eb; /* mörkare blå för hover */  
+
+}
