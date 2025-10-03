@@ -3,8 +3,7 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-image: url('../assets/pexels-danbuilds-633409.jpg');
-  /* https://images.pexels.com/photos/1714205/pexels-photo-1714205.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920 */
+  background-image: url('../assets/backgroundimg.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
