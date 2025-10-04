@@ -144,6 +144,7 @@
   left: 10;
   transform: translateY(-50%);
   display: flex;
+  width: 100%;
   gap: 5px;
   opacity: 0;
   pointer-events: none;
@@ -153,6 +154,14 @@
 .button-container.show-buttons {
   opacity: 1;
   pointer-events: auto;
+}
+
+.button-container {
+  display: none;
+}
+
+tr:hover .button-container {
+  display: flex !important;
 }
 
 table {
@@ -217,4 +226,10 @@ tbody tr:hover {
   padding: 5px;
   border-radius: 5px;
 }
+
+
+
+
+
+
 

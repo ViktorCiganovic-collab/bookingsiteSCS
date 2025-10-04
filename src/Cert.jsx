@@ -21,6 +21,7 @@ export default function Cert() {
   const [error, setError] = useState(false);  
   const categorySectionRef = useRef(null); 
   const [selectedTest, setSelectedTest] = useState('');
+  const [cert, setCert] = useState();
 
   // Get translated course array
   const courses = Itcourses(); // ✅ Function call to get data  
@@ -104,11 +105,19 @@ useEffect(() => {
   : '';
 
  
-  const seeTestTimes = (certName, categoryId) => {
+const seeTestTimes = async (certName, categoryId, certId) => {
+  try {
     console.log("Clicked on:", certName);
     setSelectedCertificate(certName);
-    setSelectedTest({certname: certName, categoryID: categoryId});
-  };
+    setSelectedTest({ certname: certName, categoryID: categoryId, certid: certId });
+
+    const res = await axios.get(`http://localhost:5011/api/cert/${certId}`);
+    setCert(res.data);
+  } catch (error) {
+    console.error('Kunde inte hämta certifikatsdetaljer:', error);
+  }
+};
+
 
  
   function formatCurrency(price) {
@@ -129,6 +138,8 @@ useEffect(() => {
 useEffect(() => {
   localStorage.setItem('selectedcategory', selectedcategory);
 }, [selectedcategory]);
+
+
 
 const handleCourseClick = (courseName) => {
 
@@ -298,10 +309,16 @@ setSelectedcategory(courseName);
       <ul className="list-group">
        {currentCategory.certs.map((cert) => (
   <li key={cert.id || cert.name} className="certInformation list-group-item d-flex justify-content-between align-items-center">
-    <Link to={`/cert/${encodeURIComponent(cert.name)}/${cert.description}/${cert.price}/${cert.categoryId}`}>
+    <Link to={`/cert/${encodeURIComponent(cert.name)}/${cert.description}/${cert.price}/${cert.categoryId}/${cert.id}`}>
       <span className='certStyling'>{cert.name}</span>
     </Link>
-    <button className='btn btn-primary' onClick={() => seeTestTimes(cert.name, cert.categoryId)}>{t('view_available_timeslots')}</button>
+    <button
+  className='btn btn-primary'
+  onClick={() => seeTestTimes(cert.name, cert.categoryId, cert.id)}
+>
+  {t('view_available_timeslots')}
+</button>
+
   </li>
 ))}
       </ul>
@@ -318,7 +335,7 @@ setSelectedcategory(courseName);
           </span>
           <span><strong>{t('slots')}:</strong> {testtime.slots}</span>
           {/* {t('Price')} ({formatCurrency(testtime.price)}) */}
-        <Link to={`/booking/${selectedTest.categoryID}/${encodeURIComponent(selectedTest.certname)}/${testtime.id}/${testtime.finalPrice}`}>
+        <Link to={`/booking/${selectedTest.categoryID}/${encodeURIComponent(selectedTest.certname)}/${testtime.id}/${cert?.isDiscount ? cert.price * 0.5 : cert?.price}`}>
         <button className='btn btn-primary' style={{ padding: "5px", borderRadius: "5px" }}>
           {t('book_time')}
         </button>

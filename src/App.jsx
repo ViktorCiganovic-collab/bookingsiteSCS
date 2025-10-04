@@ -38,7 +38,7 @@ function App() {
             {threeCourses.map((course, index) => (
               <Col key={index} md={4}>
                 <div className="course-card" data-aos="slide-up">
-                  <Link to={`/cert/${encodeURIComponent(course.certs[0].name)}/${encodeURIComponent(course.certs[0].description)}/1500/${course.categoryId}`}>
+                  <Link to={`/cert/${encodeURIComponent(course.certs[0].name)}/${encodeURIComponent(course.certs[0].description)}/1500/${course.categoryId}/${course.certs[0].certId}`}>
 
                   <img
                     src={course.image}

@@ -480,42 +480,95 @@ const changePassword = async (event) => {
 
         {/*Bokningarna ska visas här nedanför*/}
         {expanded.bookings && (
-            <div className='booking-list'>
-              {loadingBookings && <div><Spinner animation="border" variant="primary" /><p>{t('laddarBokningar', 'Laddar bokningar...')}</p></div> }
-              {errorBookings && <p style={{ color: 'red' }}>{errorBookings}</p>}
-              {!loadingBookings && bookings.length === 0 && <p>{t('ingaBokningar', 'Inga bokningar hittades.')}</p>}
+  <div className='booking-list'>
+    {loadingBookings && (
+      <div>
+        <Spinner animation="border" variant="primary" />
+        <p>{t('laddarBokningar', 'Laddar bokningar...')}</p>
+      </div>
+    )}
+    {errorBookings && <p style={{ color: 'red' }}>{errorBookings}</p>}
+    {!loadingBookings && bookings.length === 0 && (
+      <p>{t('ingaBokningar', 'Inga bokningar hittades.')}</p>
+    )}
 
-              <h5>{t('dinaTestbokningar')}</h5>
-              <div className="table-responsive">
-              <Table striped bordered hover style={{ position: 'relative' }}>                
-              <thead>
-                <tr>
-                  <th>{t('certifiering')}</th>
-                  <th>{t('bokningsId')}</th>
-                  <th>{t('testtid')}</th> 
-                  <th>{t('avboka')}</th>                
-                </tr>
-              </thead>
+    <h5>{t('dinaTestbokningar')}</h5>
 
-              <tbody>
-                {bookings.map((booking) => {
-                const startingTime = new Date(booking.examStartingTime);
-                const endingTime = new Date(booking.examEndingTime);
+    {/* Desktop tabellvisning */}
+    <div className="table-responsive d-none d-md-block">
+      <Table striped bordered hover style={{ position: 'relative' }}>
+        <thead>
+          <tr>
+            <th>{t('certifiering')}</th>
+            <th>{t('bokningsId')}</th>
+            <th>{t('testtid')}</th>
+            <th>{t('avboka')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {bookings.map((booking) => {
+            const startingTime = new Date(booking.examStartingTime);
+            const endingTime = new Date(booking.examEndingTime);
 
-                return (
-                  <tr key={booking.id}>
-                    <td>{booking.certName}</td>
-                    <td>{booking.id}</td>
-                    <td>{formatDate(startingTime)} kl. {formatTime(startingTime)} - {formatTime(endingTime)}</td>
-                    <td><button onClick={() => confirmCancelBooking(booking.id)} disabled={loadingCancel} style={{ cursor: loadingCancel ? 'not-allowed' : 'pointer', background: 'none', border: 'none', fontSize: '1.2rem' }}>🗑️</button></td>
-                  </tr>
-                )
-                })}                
-              </tbody>
-              </Table>   
-              </div>      
-              </div>
-        )}    
+            return (
+              <tr key={booking.id}>
+                <td>{booking.certName}</td>
+                <td>{booking.id}</td>
+                <td>
+                  {formatDate(startingTime)} kl. {formatTime(startingTime)} - {formatTime(endingTime)}
+                </td>
+                <td>
+                  <button
+                    onClick={() => confirmCancelBooking(booking.id)}
+                    disabled={loadingCancel}
+                    style={{
+                      cursor: loadingCancel ? 'not-allowed' : 'pointer',
+                      background: 'none',
+                      border: 'none',
+                      fontSize: '1.2rem',
+                    }}
+                  >
+                    🗑️
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+    </div>
+
+    {/* Mobil kortvisning */}
+    <div className="d-block d-md-none">
+      {bookings.map((booking) => {
+        const startingTime = new Date(booking.examStartingTime);
+        const endingTime = new Date(booking.examEndingTime);
+
+        return (
+          <div key={booking.id} className="booking-card border rounded p-3 mb-3 shadow-sm bg-light">
+            <p><strong>{t('certifiering')}:</strong> {booking.certName}</p>
+            <p><strong>{t('bokningsId')}:</strong> {booking.id}</p>
+            <p>
+              <strong>{t('testtid')}:</strong><br />
+              {formatDate(startingTime)}<br />
+              {formatTime(startingTime)} - {formatTime(endingTime)}
+            </p>
+            <div className="text-end">
+              <button
+                className="btn btn-danger btn-sm"
+                onClick={() => confirmCancelBooking(booking.id)}
+                disabled={loadingCancel}
+              >
+                {t('avboka')}
+              </button>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+)}
+   
 
         {/*Certiport testresultat och certifieringar visas nedanför*/}
         {expanded.certiport && (

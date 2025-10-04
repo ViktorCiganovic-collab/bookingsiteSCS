@@ -23,7 +23,7 @@ return (
     <h3>✅ {t('infoPage.benefits.title')}</h3>
           <ul className='list-unstyled'>
             <li><strong>{t('infoPage.benefits.safe')}</strong> {t('infoPage.benefits.safeDesc')} <a
-            href="https://www.lexicon.se"
+            href="https://www.lexicon.se/Utbildningar/IT/IT-proffs-utbildning/certifieringar/?gad_source=1&gad_campaignid=23053720699&gclid=CjwKCAjw6P3GBhBVEiwAJPjmLiOQ2UI07VSYHodmL8wI282W427H7W2gIPruq269AXRzEiBE50PxghoCd48QAvD_BwE"
             target="_blank"
             rel="noopener noreferrer"
             className="text-decoration-none d-inline-flex align-items-center"

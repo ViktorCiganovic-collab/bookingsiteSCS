@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import Spinner from 'react-bootstrap/Spinner';
 import Table from 'react-bootstrap/Table';
 
+
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('');
   const { role, setRole, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
@@ -521,11 +522,12 @@ const UpdateTesttime = async (event) => {
     setError('');
     setResponse('');
 
-    // Exempel på URL med testTimeId, du måste ha testTimeId i scope
-    const url = `http://localhost:5011/api/ExamDate/discount/${testTimeId}`;
+    
+    const url = `http://localhost:5011/api/cert/discount/${certId}`;    
+    await axios.put(url, { isDiscount: activate });
 
-    // PUT-request med isDiscount i body
-    const res = await axios.put(url, { isDiscount: activate });
+    const res = await axios.get('http://localhost:5011/api/cert');
+    setCertificates(res.data);
 
     setDiscountActive(activate);
 
@@ -755,7 +757,7 @@ case 'certificates':
   return (
     <div>  
       <h2>Visa certifikat</h2>
-      <div className="table-responsive">
+      <div className="table-responsive d-none d-md-block">
       <Table striped bordered hover style={{ position: 'relative' }}>
         <thead>
           <tr>
@@ -780,7 +782,7 @@ case 'certificates':
                   {certificate.certName}
                 </span>
 
-                <div className={`button-container ${hoveredCertId === certificate.id ? 'show-buttons' : ''}`}>
+                <div className={`button-container text-center d-flex justify-content-center ${hoveredCertId === certificate.id ? 'show-buttons' : ''}`}>
                   <button className='btn btn-primary'
                   onClick={() => {
                     const categoryObj = category.find(x => x.name === certificate.category);
@@ -805,6 +807,15 @@ case 'certificates':
                   Redigera
                 </button>
 
+                <button className='btn btn-primary'
+              onClick={() => {
+                setCertId(certificate.id);
+                setActiveSection('addDiscount');
+              }}
+            >
+              Aktivera rabatt
+            </button>
+
                   <button className='btn btn-danger' onClick={() => {
                     setCertId(certificate.id);
                     setActiveSection('deleteCert')
@@ -813,13 +824,107 @@ case 'certificates':
               </td>
 
 
-              <td>{certificate.price} kr</td>
+              <td>
+              {certificate.isDiscount ? certificate.price * 0.5 : certificate.price} kr
+              <span
+                style={{
+                  backgroundColor: certificate.isDiscount ? '#00FF00' : '#FF4D4D',
+                  color: 'white',
+                  padding: '2px 8px',
+                  borderRadius: '12px',
+                  fontSize: '0.85rem',
+                  fontWeight: 'bold',
+                  marginLeft: '8px'
+                }}
+              >
+                {certificate.isDiscount ? 'Rabatt' : 'Ingen rabatt'}
+              </span>
+            </td>
 
             </tr>          
           ))}
         </tbody>
       </Table>
       </div>
+
+      {/* --- Cards for mobile --- */}
+<div className="d-md-none">
+  {certificates.map((certificate) => (
+    <div key={certificate.id} className="card mb-3 p-3">
+      <p><strong>Certifikat ID:</strong> {certificate.id}</p>
+      <p><strong>Kategori:</strong> {certificate.category}</p>
+      <p><strong>Certifikat:</strong> {certificate.certName}</p>
+      <p>
+        <strong>Pris:</strong> {certificate.isDiscount ? certificate.price * 0.5 : certificate.price} kr
+        <span
+          style={{
+            backgroundColor: certificate.isDiscount ? '#00FF00' : '#FF4D4D',
+            color: 'white',
+            padding: '2px 8px',
+            borderRadius: '12px',
+            fontSize: '0.85rem',
+            fontWeight: 'bold',
+            marginLeft: '8px'
+          }}
+        >
+          {certificate.isDiscount ? 'Rabatt' : 'Ingen rabatt'}
+        </span>
+      </p>
+
+      <div className="d-flex gap-3 flex-column justify-content-center mt-3">
+        {/* Samma knappar som i tabellen, t.ex: */}
+        <button
+  className="btn btn-primary me-2"
+  onClick={() => {
+    const categoryObj = category.find(x => x.name === certificate.category);
+    const certDescription = categoryObj ? categoryObj.certs.find(x => x.name === certificate.certName) : null;
+    setSelectedcategory(categoryObj ? categoryObj.id : '');
+    setName(certificate.certName);
+    setCertDesc(certDescription ? certDescription.description : '');
+    setPrice(certificate.price);
+    setActiveSection('addCert');
+  }}
+>
+  Duplicera
+</button>
+
+<button
+  className="btn btn-secondary me-2"
+  onClick={() => {
+    setCertId(certificate.id);
+    const catObj = category.find(c => c.name === certificate.category);
+    setSelectedcategory(catObj ? catObj.id : '');
+    setActiveSection('editCert');
+  }}
+>
+  Redigera
+</button>
+
+<button
+  className="btn btn-primary me-2"
+  onClick={() => {
+    setCertId(certificate.id);
+    setActiveSection('addDiscount');
+  }}
+>
+  Aktivera rabatt
+</button>
+
+<button
+  className="btn btn-danger"
+  onClick={() => {
+    setCertId(certificate.id);
+    setActiveSection('deleteCert');
+  }}
+>
+  Radera
+</button>
+
+      </div>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 
@@ -961,6 +1066,43 @@ case 'certificates':
     </form>
   );
 
+    case 'addDiscount':
+  return (
+    <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: '400px', margin: '0 auto' }}>
+      <h3 className="text-center mb-3">Aktivera rabatt med 50% på certifiering</h3>
+
+      <div className="mb-3 w-100">
+        <label className="form-label">Certifieringens Id</label>
+        <input
+          type="number"
+          className="form-control text-center"
+          value={certId}
+          onChange={(e) => setCertId(e.target.value)}
+          required
+        />
+      </div>
+
+      <div className="d-grid w-100">
+        <button
+          className={`btn mb-2 ${discountActive ? 'btn-success glow-green' : 'btn-secondary'}`}
+          onClick={() => updateDiscount(true)}
+          disabled={!certId}
+        >
+          Aktivera
+        </button>
+        <button className={`btn btn-danger ${!discountActive ? 'glow-red' : ''}`}
+          onClick={() => updateDiscount(false)}
+          disabled={!certId}
+        >
+          🗑 Avaktivera
+        </button>
+      </div>
+
+      {response && <p className="mt-3 text-success text-center">✅ {response}</p>}
+      {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
+    </div>
+  );
+
     case 'deleteCert':
   return (
     <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
@@ -1008,110 +1150,135 @@ case 'testtimes':
       ) : error ? (
         <p style={{ color: 'red' }}>{error}</p>
       ) : (
-        <div className="table-responsive">
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              
-              <th>Testtid</th>
-              <th>Pris</th>
-              <th>Platser kvar</th>
-              <th>Testtid-ID</th>
-            </tr>
-          </thead>
-          <tbody>
-  {testtimes.map((testtime) => {
-   
-
-    return (
-      <tr
-        key={testtime.id}
-        onMouseEnter={() => setHoveredTesttimeId(testtime.id)}
-        onMouseLeave={() => setHoveredTesttimeId(null)}        
-        >
-        <td className={testtime.isPassed ? 'passed-row cert-name-cell' : 'cert-name-cell'}>
-          <span className={hoveredTesttimeId === testtime.id ? 'hidden' : ''}>
-            {testtime.formattedStartTime} - {testtime.formattedEndTime}            
-          </span>
-           {testtime.isPassed && <span className={testtime.isPassed ? 'heavy-text' : ''}>Datum passerat</span>}
-
-          <div className={`button-container ${hoveredTesttimeId === testtime.id ? 'show-buttons' : ''}`}>
-            <button className='btn btn-primary'
-              onClick={() => {
-                setTestDate(testtime.testDate.split('T')[0]);
-                setStarttime(testtime.examStartingTime);
-                setEndtime(testtime.examEndingTime);
-                setSlots(testtime.slots);
-                setPrice(testtime.finalPrice);
-                setActiveSection('addTestTime');
-              }}
-            >
-              Duplicera
-            </button>
-
-            <button className='btn btn-secondary'
-              onClick={() => {
-                setTestTimeId(testtime.id);
-                setTestDate(testtime.testDate.split('T')[0]);
-                setStarttime(testtime.examStartingTime);
-                setEndtime(testtime.examEndingTime);
-                setSlots(testtime.slots);
-                setPrice(testtime.finalPrice);
-                setActiveSection('editTestTime');
-              }}
-            >
-              Redigera
-            </button>
-
-            <button className='btn btn-danger'
-              onClick={() => {
-                setTestTimeId(testtime.id);
-                setActiveSection('deleteTestTime');
-              }}
-            >
-              Radera
-            </button>
-
-            <button className='btn btn-primary'
-              onClick={() => {
-                setTestTimeId(testtime.id);
-                setActiveSection('addDiscount');
-              }}
-            >
-              Aktivera rabatt
-            </button>
-          </div>
-        </td>
-
-        <td>
-          {testtime.finalPrice} kr
-          <span
-            style={{
-              backgroundColor: testtime.discountActive ? '#00FF00' : '#FF4D4D',
-              color: 'white',
-              padding: '2px 8px',
-              borderRadius: '12px',
-              fontSize: '0.85rem',
-              fontWeight: 'bold',
-              marginLeft: '8px'
-            }}
-          >
-            {testtime.discountActive ? 'Rabatt' : 'Ingen rabatt'}
-          </span>
-        </td>
-
-        <td>{testtime.slots}</td>
-        <td>{testtime.id}</td>
-      </tr>
-    );
-  })}
-</tbody>
-
-        </Table>
+        <div className="table-responsive d-none d-md-block">
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Testtid</th>
+                <th>Platser kvar</th>
+                <th>Testtid-ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              {testtimes.map((testtime) => {
+                return (
+                  <tr
+                    key={testtime.id}
+                    onMouseEnter={() => setHoveredTesttimeId(testtime.id)}
+                    onMouseLeave={() => setHoveredTesttimeId(null)}
+                  >
+                    <td className={testtime.isPassed ? 'passed-row cert-name-cell' : 'cert-name-cell'}>
+                      <span className={hoveredTesttimeId === testtime.id ? 'hidden' : ''}>
+                        {testtime.formattedStartTime} - {testtime.formattedEndTime}
+                      </span>
+                      {testtime.isPassed && <span className="heavy-text">Datum passerat</span>}
+                      <div className={`button-container d-flex justify-content-center ${hoveredTesttimeId === testtime.id ? 'show-buttons' : ''}`}>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => {
+                            setTestDate(testtime.testDate.split('T')[0]);
+                            setStarttime(testtime.examStartingTime);
+                            setEndtime(testtime.examEndingTime);
+                            setSlots(testtime.slots);
+                            setPrice(testtime.finalPrice);
+                            setActiveSection('addTestTime');
+                          }}
+                        >
+                          Duplicera
+                        </button>
+                        <button
+                          className="btn btn-secondary"
+                          onClick={() => {
+                            setTestTimeId(testtime.id);
+                            setTestDate(testtime.testDate.split('T')[0]);
+                            setStarttime(testtime.examStartingTime);
+                            setEndtime(testtime.examEndingTime);
+                            setSlots(testtime.slots);
+                            setPrice(testtime.finalPrice);
+                            setActiveSection('editTestTime');
+                          }}
+                        >
+                          Redigera
+                        </button>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => {
+                            setTestTimeId(testtime.id);
+                            setActiveSection('deleteTestTime');
+                          }}
+                        >
+                          Radera
+                        </button>
+                      </div>
+                    </td>
+                    <td>{testtime.slots}</td>
+                    <td>{testtime.id}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
         </div>
       )}
+
+      {/* --- Cards for mobile --- */}
+<div className="d-md-none">
+  {testtimes.map((testtime) => (
+    <div key={testtime.id} className={`card mb-3 p-3 ${testtime.isPassed ? 'border-secondary' : ''}`}>
+      <h5 className={testtime.isPassed ? 'text-muted' : ''}>
+        {testtime.formattedStartTime} - {testtime.formattedEndTime}
+      </h5>
+      {testtime.isPassed && <p className="text-danger fw-bold">Datum passerat</p>}
+
+      <p><strong>Platser kvar:</strong> {testtime.slots}</p>
+      <p><strong>Testtid-ID:</strong> {testtime.id}</p>
+
+      <div className="d-flex flex-column gap-3 justify-content-center mt-3">
+        <button
+          className="btn btn-primary me-2"
+          onClick={() => {
+            setTestDate(testtime.testDate.split('T')[0]);
+            setStarttime(testtime.examStartingTime);
+            setEndtime(testtime.examEndingTime);
+            setSlots(testtime.slots);
+            setPrice(testtime.finalPrice);
+            setActiveSection('addTestTime');
+          }}
+        >
+          Duplicera
+        </button>
+        <button
+          className="btn btn-secondary me-2"
+          onClick={() => {
+            setTestTimeId(testtime.id);
+            setTestDate(testtime.testDate.split('T')[0]);
+            setStarttime(testtime.examStartingTime);
+            setEndtime(testtime.examEndingTime);
+            setSlots(testtime.slots);
+            setPrice(testtime.finalPrice);
+            setActiveSection('editTestTime');
+          }}
+        >
+          Redigera
+        </button>
+        <button
+          className="btn btn-danger"
+          onClick={() => {
+            setTestTimeId(testtime.id);
+            setActiveSection('deleteTestTime');
+          }}
+        >
+          Radera
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
+
     </div>
   );
+
+
    case 'addTestTime':
   return (
     <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
@@ -1192,44 +1359,6 @@ case 'testtimes':
     </div>
     
   );
-
-  case 'addDiscount':
-  return (
-    <div className="d-flex flex-column align-items-center mt-4" style={{ maxWidth: '400px', margin: '0 auto' }}>
-      <h3 className="text-center mb-3">Aktivera rabatt med 50% på testtillfälle</h3>
-
-      <div className="mb-3 w-100">
-        <label className="form-label">Testtidens ID</label>
-        <input
-          type="number"
-          className="form-control text-center"
-          value={testTimeId}
-          onChange={(e) => setTestTimeId(e.target.value)}
-          required
-        />
-      </div>
-
-      <div className="d-grid w-100">
-        <button
-          className={`btn mb-2 ${discountActive ? 'btn-success glow-green' : 'btn-secondary'}`}
-          onClick={() => updateDiscount(true)}
-          disabled={!testTimeId}
-        >
-          Aktivera
-        </button>
-        <button className={`btn btn-danger ${!discountActive ? 'glow-red' : ''}`}
-          onClick={() => updateDiscount(false)}
-          disabled={!testTimeId}
-        >
-          🗑 Avaktivera
-        </button>
-      </div>
-
-      {response && <p className="mt-3 text-success text-center">✅ {response}</p>}
-      {error && <p className="mt-3 text-danger text-center">❌ {error}</p>}
-    </div>
-  );
-
 
     case 'editTestTime':
   return (
@@ -1357,7 +1486,7 @@ case 'categories':
       ) : error ? (
         <p style={{ color: 'red' }}>{error}</p>
       ) : (
-        <div className="table-responsive">
+        <div className="table-responsive d-none d-md-block">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -1417,6 +1546,55 @@ case 'categories':
         </Table>
         </div>
       )}
+
+      {/* --- Cards for mobile --- */}
+<div className="d-md-none">
+  {category.map((x) => (
+    <div key={x.id} className="card mb-3 p-3">
+      <p><strong>Kategori ID:</strong> {x.id}</p>
+      <p><strong>Kategori:</strong> {x.name}</p>
+      <p><strong>Beskrivning:</strong> {x.description}</p>
+
+      <div className="d-flex flex-column gap-3 justify-content-center mt-3">
+        <button
+          className="btn btn-primary me-2"
+          onClick={() => {
+            setName(x.name);
+            setDescription(x.description);
+            setImage(x.image);
+            setActiveSection('createCategory');
+          }}
+        >
+          Duplicera
+        </button>
+
+        <button
+          className="btn btn-secondary me-2"
+          onClick={() => {
+            setSelectedcategory(x.id);
+            setName(x.name);
+            setDescription(x.description);
+            setImage(x.image);
+            setActiveSection('updateCategory');
+          }}
+        >
+          Redigera
+        </button>
+
+        <button
+          className="btn btn-danger"
+          onClick={() => {
+            setSelectedcategory(x.id);
+            setActiveSection('deleteCategory');
+          }}
+        >
+          Radera
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
+
     </div>
   );
     case 'createCategory':

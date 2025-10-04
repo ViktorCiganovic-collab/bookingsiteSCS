@@ -7,7 +7,7 @@ import './styling/CertDetail.css';
 import { translationKeys } from './translationMap';
 
 export default function CertDetail() {
-  const { certname, description, certcategory } = useParams();
+  const { certname, description, certcategory, certtestprice, certid } = useParams();
   const decodedCertName = decodeURIComponent(certname);
   const { t } = useTranslation();
 
@@ -15,6 +15,7 @@ export default function CertDetail() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [alltesttimes, setAlltesttimes] = useState([]);
   const [toggleTesttimes, setToggleTesttimes] = useState(false);
+  const [cert, setCert] = useState();
   const [loading, setLoading] = useState(false);
 
   // Hämta kategorier
@@ -30,6 +31,18 @@ export default function CertDetail() {
     };
     fetchCategories();
   }, []);
+
+  useEffect(() => {
+    const fetchCert = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5011/api/cert/${certid}`);
+      setCert(res.data);
+    } catch (err) {
+      console.error('Fel vid hämtning av certifikat:', err);
+    }
+  };
+    fetchCert();
+  }, [certid]);
 
   const descriptionKey = translationKeys[description] || description;
 
@@ -129,29 +142,45 @@ export default function CertDetail() {
                       <td>1 {t('session')}, 01:15 h</td>
                     </tr>
                     <tr>
-                      <td><strong>{t('regular_price')}</strong></td>
-                      <td>
-                        {alltesttimes.length === 0 ? (
-                          <Spinner animation="border" size="sm" />
-                        ) : alltesttimes[0].price ? (
-                          `${alltesttimes[0].price} kr exkl. moms`
-                        ) : (
-                          'Pris ej tillgängligt'
-                        )}
-                      </td>
-                    </tr>
+                    <td><strong>{t('regular_price')}</strong></td>
+                    <td>
+                      {cert ? (
+                        <>
+                          {cert.isDiscount ? (
+                            <>
+                              <span style={{ textDecoration: 'line-through', color: 'gray' }}>
+                                {cert.price} kr
+                              </span>{' '}
+                              <span className="badge bg-success ms-2">-50%</span>{' '}
+                              <strong>{cert.price * 0.5} kr</strong> exkl. moms
+                            </>
+                          ) : (
+                            <>
+                              {cert.price} kr exkl. moms
+                            </>
+                          )}
+                        </>
+                      ) : (
+                        <Spinner animation="border" size="sm" />
+                      )}
+                    </td>
+                  </tr>
+
                     <tr>
-                      <td><strong>{t('discount')}</strong></td>
-                      <td>
-                        {alltesttimes.length === 0 ? (
-                          <Spinner animation="border" size="sm" />
-                        ) : alltesttimes.some((test) => test.discountActive) ? (
-                          t('campaign_info')
+                    <td><strong>{t('discount')}</strong></td>
+                    <td>
+                      {cert ? (
+                        cert.isDiscount ? (
+                          <span className="badge bg-success">{t('campaign_info')}</span>
                         ) : (
-                          'Nej'
-                        )}
-                      </td>
-                    </tr>
+                          <span className="text-muted">Nej</span>
+                        )
+                      ) : (
+                        <Spinner animation="border" size="sm" />
+                      )}
+                    </td>
+                  </tr>
+
                     <tr>
                       <td><strong>{t('number_of_sessions')}</strong></td>
                       <td>
@@ -216,15 +245,15 @@ export default function CertDetail() {
 </span>
                           </td>
                           <td>
-                            {testtime.finalPrice} SEK{' '}
-                            {testtime.discountActive && (
+                            {cert.isDiscount ? cert.price * 0.5 : cert.price} SEK{' '}
+                            {cert.isDiscount && (
                               <span className="discount-badge">
                                 -{50}%
                               </span>
                             )}
                           </td>
                           <td>
-                            <Link to={`/booking/${certcategory}/${encodeURIComponent(certname)}/${testtime.id}/${testtime.finalPrice}`}>
+                            <Link to={`/booking/${certcategory}/${encodeURIComponent(certname)}/${testtime.id}/${cert.isDiscount ? cert.price * 0.5 : cert.price}`}>
                               <button className="btn btn-primary" style={{ padding: '5px', borderRadius: '5px' }}>
                                 {t('book_time')}
                               </button>
@@ -247,14 +276,14 @@ export default function CertDetail() {
                       </span>
                       </div>
                       <p className="price">
-                        {testtime.finalPrice} SEK{' '}
-                        {testtime.discountActive && (
+                        {cert.isDiscount ? cert.price * 0.5 : cert.price} SEK{' '}
+                        {cert.isDiscount && (
                           <span className="discount-badge">
                             -{50}%
                           </span>
                         )}
                       </p>
-                      <Link to={`/booking/${certcategory}/${encodeURIComponent(certname)}/${testtime.id}/${testtime.finalPrice}`}>
+                      <Link to={`/booking/${certcategory}/${encodeURIComponent(certname)}/${testtime.id}/${cert.isDiscount ? cert.price * 0.5 : cert.price}`}>
                         <button className="btn btn-primary w-100 mt-2">
                           {t('book_time')}
                         </button>

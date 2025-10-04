@@ -19,34 +19,13 @@ const Itcourses = () => {
       description: t("mos_description"),
       image: scriptingImg,
       certs: [
-        {
-          name: "Word 365/2019 Associate",
-          description: t("categories.microsoft_office_specialist.certs.word_associate.description")
-        },
-        {
-          name: "Excel 365/2019 Associate",
-          description: t("categories.microsoft_office_specialist.certs.excel_associate.description")
-        },
-        {
-          name: "Outlook 365/2019 Associate",
-          description: t("categories.microsoft_office_specialist.certs.outlook_associate.description")
-        },
-        {
-          name: "PowerPoint 365/2019 Associate",
-          description: t("categories.microsoft_office_specialist.certs.powerpoint_associate.description")
-        },
-        {
-          name: "Word 365/2019 Expert",
-          description: t("categories.microsoft_office_specialist.certs.word_expert.description")
-        },
-        {
-          name: "Excel 365/2019 Expert",
-          description: t("categories.microsoft_office_specialist.certs.excel_expert.description")
-        },
-        {
-          name: "Access 365/2019 Expert",
-          description: t("categories.microsoft_office_specialist.certs.access_expert.description")
-        }
+        { certId: 1, name: "Word 365/2019 Associate", description: t("categories.microsoft_office_specialist.certs.word_associate.description") },
+        { certId: 2, name: "Excel 365/2019 Associate", description: t("categories.microsoft_office_specialist.certs.excel_associate.description") },
+        { certId: 3, name: "Outlook 365/2019 Associate", description: t("categories.microsoft_office_specialist.certs.outlook_associate.description") },
+        { certId: 4, name: "PowerPoint 365/2019 Associate", description: t("categories.microsoft_office_specialist.certs.powerpoint_associate.description") },
+        { certId: 5, name: "Word 365/2019 Expert", description: t("categories.microsoft_office_specialist.certs.word_expert.description") },
+        { certId: 6, name: "Excel 365/2019 Expert", description: t("categories.microsoft_office_specialist.certs.excel_expert.description") },
+        { certId: 7, name: "Access 365/2019 Expert", description: t("categories.microsoft_office_specialist.certs.access_expert.description") }
       ]
     },
     {
@@ -56,38 +35,14 @@ const Itcourses = () => {
       description: t("fundamentals_description"),
       image: cloudImg,
       certs: [
-        {
-          name: "Azure Fundamentals (AZ-900)",
-          description: t("categories.microsoft_fundamentals.certs.azure_fundamentals.description")
-        },
-        {
-          name: "Azure AI Fundamentals (AI-900)",
-          description: t("categories.microsoft_fundamentals.certs.azure_ai_fundamentals.description")
-        },
-        {
-          name: "Azure Data Fundamentals (DP-900)",
-          description: t("categories.microsoft_fundamentals.certs.azure_data_fundamentals.description")
-        },
-        {
-          name: "Security, Compliance, and Identity Fundamentals (SC-900)",
-          description: t("categories.microsoft_fundamentals.certs.security_compliance_identity.description")
-        },
-        {
-          name: "Power Platform Fundamentals (PL-900)",
-          description: t("categories.microsoft_fundamentals.certs.power_platform.description")
-        },
-        {
-          name: "Microsoft 365 Fundamentals (MS-900)",
-          description: t("categories.microsoft_fundamentals.certs.microsoft_365.description")
-        },
-        {
-          name: "Dynamics 365 Fundamentals (CRM)",
-          description: t("categories.microsoft_fundamentals.certs.dynamics_crm.description")
-        },
-        {
-          name: "Dynamics 365 Fundamentals (ERP)",
-          description: t("categories.microsoft_fundamentals.certs.dynamics_erp.description")
-        }
+        { certId: 8, name: "Azure Fundamentals (AZ-900)", description: t("categories.microsoft_fundamentals.certs.azure_fundamentals.description") },
+        { certId: 9, name: "Azure AI Fundamentals (AI-900)", description: t("categories.microsoft_fundamentals.certs.azure_ai_fundamentals.description") },
+        { certId: 10, name: "Azure Data Fundamentals (DP-900)", description: t("categories.microsoft_fundamentals.certs.azure_data_fundamentals.description") },
+        { certId: 11, name: "Security, Compliance, and Identity Fundamentals (SC-900)", description: t("categories.microsoft_fundamentals.certs.security_compliance_identity.description") },
+        { certId: 12, name: "Power Platform Fundamentals (PL-900)", description: t("categories.microsoft_fundamentals.certs.power_platform.description") },
+        { certId: 13, name: "Microsoft 365 Fundamentals (MS-900)", description: t("categories.microsoft_fundamentals.certs.microsoft_365.description") },
+        { certId: 14, name: "Dynamics 365 Fundamentals (CRM)", description: t("categories.microsoft_fundamentals.certs.dynamics_crm.description") },
+        { certId: 15, name: "Dynamics 365 Fundamentals (ERP)", description: t("categories.microsoft_fundamentals.certs.dynamics_erp.description") }
       ]
     },
     {
@@ -97,22 +52,10 @@ const Itcourses = () => {
       description: t("unity_description"),
       image: aiImg,
       certs: [
-        {
-          name: "Unity Certified User: Programmering",
-          description: t("categories.unity_certified_user.certs.programmering.description")
-        },
-        {
-          name: "Unity Certified User: Artist",
-          description: t("categories.unity_certified_user.certs.artist.description")
-        },
-        {
-          name: "Unity Certified User: VR/AR Design",
-          description: t("categories.unity_certified_user.certs.vr_ar.description")
-        },
-        {
-          name: "Unity Certified User: Game Development",
-          description: t("categories.unity_certified_user.certs.game_dev.description")
-        }
+        { certId: 16, name: "Unity Certified User: Programmering", description: t("categories.unity_certified_user.certs.programmering.description") },
+        { certId: 17, name: "Unity Certified User: Artist", description: t("categories.unity_certified_user.certs.artist.description") },
+        { certId: 18, name: "Unity Certified User: VR/AR Design", description: t("categories.unity_certified_user.certs.vr_ar.description") },
+        { certId: 19, name: "Unity Certified User: Game Development", description: t("categories.unity_certified_user.certs.game_dev.description") }
       ]
     },
     {
@@ -122,34 +65,13 @@ const Itcourses = () => {
       description: t("adobe_description"),
       image: webDevImg,
       certs: [
-        {
-          name: "Adobe After Effects",
-          description: t("categories.adobe_certified_professional.certs.after_effects.description")
-        },
-        {
-          name: "Adobe Animate",
-          description: t("categories.adobe_certified_professional.certs.animate.description")
-        },
-        {
-          name: "Adobe Dreamweaver",
-          description: t("categories.adobe_certified_professional.certs.dreamweaver.description")
-        },
-        {
-          name: "Adobe Illustrator",
-          description: t("categories.adobe_certified_professional.certs.illustrator.description")
-        },
-        {
-          name: "Adobe InDesign",
-          description: t("categories.adobe_certified_professional.certs.indesign.description")
-        },
-        {
-          name: "Adobe Photoshop",
-          description: t("categories.adobe_certified_professional.certs.photoshop.description")
-        },
-        {
-          name: "Adobe Premiere Pro",
-          description: t("categories.adobe_certified_professional.certs.premiere_pro.description")
-        }
+        { certId: 20, name: "Adobe After Effects", description: t("categories.adobe_certified_professional.certs.after_effects.description") },
+        { certId: 21, name: "Adobe Animate", description: t("categories.adobe_certified_professional.certs.animate.description") },
+        { certId: 22, name: "Adobe Dreamweaver", description: t("categories.adobe_certified_professional.certs.dreamweaver.description") },
+        { certId: 23, name: "Adobe Illustrator", description: t("categories.adobe_certified_professional.certs.illustrator.description") },
+        { certId: 24, name: "Adobe InDesign", description: t("categories.adobe_certified_professional.certs.indesign.description") },
+        { certId: 25, name: "Adobe Photoshop", description: t("categories.adobe_certified_professional.certs.photoshop.description") },
+        { certId: 26, name: "Adobe Premiere Pro", description: t("categories.adobe_certified_professional.certs.premiere_pro.description") }
       ]
     },
     {
@@ -159,14 +81,8 @@ const Itcourses = () => {
       description: t("ccst_description"),
       image: networkingImg,
       certs: [
-        {
-          name: "CCST Networking",
-          description: t("categories.cisco_certified_support_technician.certs.networking.description")
-        },
-        {
-          name: "CCST Cybersecurity",
-          description: t("categories.cisco_certified_support_technician.certs.cybersecurity.description")
-        }
+        { certId: 27, name: "CCST Networking", description: t("categories.cisco_certified_support_technician.certs.networking.description") },
+        { certId: 28, name: "CCST Cybersecurity", description: t("categories.cisco_certified_support_technician.certs.cybersecurity.description") }
       ]
     },
     {
@@ -176,69 +92,25 @@ const Itcourses = () => {
       description: t("it_specialist_description"),
       image: dataAnalysisImg,
       certs: [
-        {
-          name: t("ai"),
-          description: t("categories.it_specialist.certs.ai.description")
-        },
-        {
-          name: t("cloud_computing"),
-          description: t("categories.it_specialist.certs.cloud_computing.description")
-        },
-        {
-          name: t("computational_thinking"),
-          description: t("categories.it_specialist.certs.computational_thinking.description")
-        },
-        {
-          name: t("cybersecurity"),
-          description: t("categories.it_specialist.certs.cybersecurity.description")
-        },
-        {
-          name: t("data_analysis"),
-          description: t("categories.it_specialist.certs.data_analysis.description")
-        },
-        {
-          name: t("databases"),
-          description: t("categories.it_specialist.certs.databases.description")
-        },
-        {
-          name: t("device_configuration"),
-          description: t("categories.it_specialist.certs.device_configuration.description")
-        },
-        {
-          name: t("html_css"),
-          description: t("categories.it_specialist.certs.html_css.description")
-        },
-        {
-          name: t("html5_app"),
-          description: t("categories.it_specialist.certs.html5_app.description")
-        },
-        {
-          name: t("java"),
-          description: t("categories.it_specialist.certs.java.description")
-        },
-        {
-          name: t("javascript"),
-          description: t("categories.it_specialist.certs.javascript.description")
-        },
-        {
-          name: t("networking"),
-          description: t("categories.it_specialist.certs.networking.description")
-        },
-        {
-          name: t("network_security"),
-          description: t("categories.it_specialist.certs.network_security.description")
-        },
-        {
-          name: t("python"),
-          description: t("categories.it_specialist.certs.python.description")
-        },
-        {
-          name: t("software_development"),
-          description: t("categories.it_specialist.certs.software_development.description")
-        }
+        { certId: 29, name: t("ai"), description: t("categories.it_specialist.certs.ai.description") },
+        { certId: 30, name: t("cloud_computing"), description: t("categories.it_specialist.certs.cloud_computing.description") },
+        { certId: 31, name: t("computational_thinking"), description: t("categories.it_specialist.certs.computational_thinking.description") },
+        { certId: 32, name: t("cybersecurity"), description: t("categories.it_specialist.certs.cybersecurity.description") },
+        { certId: 33, name: t("data_analysis"), description: t("categories.it_specialist.certs.data_analysis.description") },
+        { certId: 34, name: t("databases"), description: t("categories.it_specialist.certs.databases.description") },
+        { certId: 35, name: t("device_configuration"), description: t("categories.it_specialist.certs.device_configuration.description") },
+        { certId: 36, name: t("html_css"), description: t("categories.it_specialist.certs.html_css.description") },
+        { certId: 37, name: t("html5_app"), description: t("categories.it_specialist.certs.html5_app.description") },
+        { certId: 38, name: t("java"), description: t("categories.it_specialist.certs.java.description") },
+        { certId: 39, name: t("javascript"), description: t("categories.it_specialist.certs.javascript.description") },
+        { certId: 40, name: t("networking"), description: t("categories.it_specialist.certs.networking.description") },
+        { certId: 41, name: t("network_security"), description: t("categories.it_specialist.certs.network_security.description") },
+        { certId: 42, name: t("python"), description: t("categories.it_specialist.certs.python.description") },
+        { certId: 43, name: t("software_development"), description: t("categories.it_specialist.certs.software_development.description") }
       ]
     }
   ];
 };
+
 
 export default Itcourses;

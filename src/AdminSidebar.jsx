@@ -58,6 +58,9 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow, handleClose
               <Nav.Link onClick={() => {setActiveSection('editCert'); handleCloseSidebar();}} className="sidebar-link">
                 Redigera certifikat
               </Nav.Link>
+               <Nav.Link onClick={() => {setActiveSection('addDiscount'); handleCloseSidebar();}} className="sidebar-link">
+                Aktivera rabatt
+              </Nav.Link>
               <Nav.Link onClick={() => {setActiveSection('deleteCert'); handleCloseSidebar();}} className="sidebar-link">
                 Ta bort certifikat
               </Nav.Link>
@@ -77,9 +80,7 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow, handleClose
               <Nav.Link onClick={() => {setActiveSection('addTestTime'); handleCloseSidebar();}} className="sidebar-link">
                 Lägg till tid
               </Nav.Link>
-              <Nav.Link onClick={() => {setActiveSection('addDiscount'); handleCloseSidebar();}} className="sidebar-link">
-                Aktivera rabatt
-              </Nav.Link>
+             
               <Nav.Link onClick={() => {setActiveSection('editTestTime'); handleCloseSidebar();}} className="sidebar-link">
                 Redigera tid
               </Nav.Link>
