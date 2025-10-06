@@ -4,8 +4,8 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-
   background-image: url('../assets/testworkingenvironment.png') !important;
+  /* background-image: url('../assets/backgroundimg.webp'); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -97,4 +97,12 @@
   .overlayContent p {
     font-size: 1.2rem;
   }
+}
+
+.overlayContent {
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    padding: 2rem;
+    border-radius: 12px;
 }

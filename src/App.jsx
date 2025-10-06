@@ -26,7 +26,7 @@ function App() {
           <div className="hero-content" data-aos="zoom-in" data-aos-duration="1000">
           <h1>{t('welcome_message')} Scandinavian Certification Services</h1>
           <p>{t('subheadline')}</p>      
-          <button className='cta-btn'>Boka nu</button>     
+          <Link to="/cert"><button className='cta-btn'>Boka nu</button></Link>
           </div>   
         </div>        
       </div>

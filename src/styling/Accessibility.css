@@ -1,0 +1,53 @@
+.accessibilityPage {
+  background-color: var(--main-bg);
+  padding: 40px 16px;
+}
+
+.partOne {
+  margin-top: 80px;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+}
+
+.sectionWrapper {
+  margin-top: 40px;
+  max-width: 700px;
+  width: 100%;
+  text-align: left;
+}
+
+.sectionWrapper span,
+.sectionWrapper p,
+.sectionWrapper li {
+  display: block;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.sectionWrapper ul {
+  padding-left: 20px;
+}
+
+@media (max-width: 768px) {
+  .partOne, .sectionWrapper {
+    
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .accessibilityPage {
+    padding: 20px 8px;    
+  }
+}
+
+.partOne h1 {
+  font-size: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .partOne h1 {
+    font-size: 1.8rem;
+    text-align: left;
+  }
+}

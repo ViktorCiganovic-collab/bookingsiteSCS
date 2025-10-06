@@ -161,7 +161,7 @@ setSelectedcategory(courseName);
         <p className="lead text-white" data-aos="fade-up">
           {t('explore_certifications')}
         </p>
-        <p className="scroll-indicator">⬇️</p>
+        <a href="#certifications" style={{ textDecoration: 'none', color: 'inherit'}}><p className="scroll-indicator">⬇️</p></a>
         </div>
       </section>
 
@@ -268,7 +268,7 @@ setSelectedcategory(courseName);
         </Container>
       </section>
 
-   <section className='py-5 certificatepageSectionfour' ref={categorySectionRef}>
+   <section id="certifications" className='py-5 certificatepageSectionfour' ref={categorySectionRef}>
   <Container>
     <h2 className="text-center mb-4">{t('search_for_certificates')}</h2>
 

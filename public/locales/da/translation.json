@@ -474,8 +474,45 @@
   "saveNewPassword": "Gem ny adgangskode",
   "confirmNewPassword": "Bekræft ny adgangskode",
   "newPassword": "Ny adgangskode",
-  "resetPassword": "Nulstil adgangskode"
-
-
+  "resetPassword": "Nulstil adgangskode",
+   "accessibilityStatement": "Tilgængelighedserklæring",
+     "privacyPolicy": "Privatlivspolitik",
+  "bookingTerms": "Vilkår for booking",
+  
+  "accessibilityTitle": "Tilgængelighedserklæring for Scandinavian Certification Services",
+  "accessibilityLastUpdated": "Senest opdateret: {{date}}",
+  "accessibilityAboutTitle": "Om denne webside",
+  "accessibilityAboutText": "Denne hjemmeside drives af Scandinavian Certification Services. Vi ønsker, at så mange som muligt kan bruge vores hjemmeside, uanset funktionsnedsættelse, og arbejder løbende på at forbedre tilgængeligheden i overensstemmelse med Web Content Accessibility Guidelines (WCAG) 2.1 niveau AA.",
+  "accessibilityHowAccessibleTitle": "Hvor tilgængelig er hjemmesiden?",
+  "accessibilityHowAccessibleText": "Vi er opmærksomme på, at dele af hjemmesiden ikke er fuldt tilgængelige, men vi arbejder aktivt på at rette mangler.",
+  "accessibilityImprovementsPlannedTitle": "Eksempler på områder, vi planlægger at forbedre:",
+  "accessibilityImprovementContrast": "Farvekontraster i visse dele af brugerfladen.",
+  "accessibilityImprovementAltText": "Alternative tekster (alt-tekster) på alle billeder.",
+  "accessibilityImprovementFocus": "Klarere fokusmarkering ved tastaturnavigation.",
+  "accessibilityImprovementAria": "Tilpasning til skærmlæsere og ARIA-etiketter.",
+  "accessibilityComplianceTitle": "Sådan opfylder vi kravene",
+  "accessibilityComplianceText": "Hjemmesiden følger primært retningslinjerne i WCAG 2.1 niveau AA. Vi har gennemført manuelle og automatiserede tests for at identificere tilgængelighedsproblemer, og forbedringsarbejdet sker løbende i takt med udviklingscyklusser.",
+  "accessibilityReportTitle": "Rapportér mangler i tilgængeligheden",
+  "accessibilityReportText": "Hvis du opdager problemer, der ikke er nævnt her, eller mener, at vi ikke overholder tilgængelighedskravene, kan du kontakte os:",
+  "accessibilityReportEmail": "📧 E-mail: {{email}}",
+  "accessibilityReportPhone": "📞 Telefon: {{phone}}",
+  "accessibilityReportThanks": "Vi værdsætter al feedback, der hjælper os med at gøre hjemmesiden mere tilgængelig.",
+  "accessibilityOversightTitle": "Tilsyn",
+  "accessibilityOversightText": "Hvis du ikke er tilfreds med håndteringen af dine synspunkter, kan du henvende dig til:",
+  "accessibilityOversightAgency": "Myndigheden for digital forvaltning (DIGG)",
+  "accessibilityOversightLink": "📍 www.digg.se/tillsyn",
+  "accessibilityTechTitle": "Teknisk information",
+  "accessibilityTechBuiltWith": "Hjemmesiden er bygget med moderne webteknologier:",
+  "accessibilityTechFrontend": "Frontend: React.js",
+  "accessibilityTechBackend": "Backend: .NET / API-integration",
+  "accessibilityTechPublished": "Udgivelsesdato: {{publishedDate}}",
+  "accessibilityTechLastTested": "Seneste testning: {{lastTestDate}}",
+  "accessibilityPlansTitle": "Planlagte forbedringer 2025",
+  "accessibilityPlanWcag": "Implementering af fuld WCAG 2.1 AA-kompatibilitet.",
+  "accessibilityPlanAutoTesting": "Automatisk kontrast- og tilgængelighedstest ved hver release.",
+  "accessibilityPlanBookingSupport": "Bedre tilgængelighedsstøtte i bookingflow og brugerkonti.",
+  "accessibilityPlanTraining": "Uddannelse af udviklere i universel design og tilgængelighedsprincipper.",
+  "accessibilityClosing": "Vi stræber efter, at alle brugere – uanset forudsætninger – kan booke certificeringer og bruge vores tjenester på en enkel, sikker og tilgængelig måde."
 }
+
 

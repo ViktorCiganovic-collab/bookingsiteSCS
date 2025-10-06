@@ -2,6 +2,8 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import './styling/Footer.css'; 
 import { useTranslation } from 'react-i18next'; // i18n hook
+import { Link } from 'react-router-dom';
+
 
 function Footer() {
 
@@ -15,8 +17,9 @@ function Footer() {
             <p>&copy; {new Date().getFullYear()} SCS</p>
           </Col>
           <Col md={6} className="text-md-end">
-            <a href="/privacy" className="text-white me-3">{t('privacy')}</a>
-            <a href="/terms" className="text-white">{t('terms')}</a>
+             <Link to="/integritetspolicy" style={{textDecoration: 'none', color: '#fff'}}>{t('privacyPolicy')}</Link> &nbsp;|&nbsp; 
+    <Link to="/bookingterms" style={{textDecoration: 'none', color: '#fff'}}>{t('bookingTerms')}</Link> &nbsp;|&nbsp; 
+    <Link to="/accessibility" style={{textDecoration: 'none', color: '#fff'}}>{t('accessibilityStatement')}</Link>
           </Col>
         </Row>
       </Container>

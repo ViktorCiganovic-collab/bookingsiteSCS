@@ -2,7 +2,15 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import './styling/About.css';
 import backgroundVideoAbout from './assets/mainpageSectionthree.jpg';
-import { useTranslation } from 'react-i18next'; // Importera useTranslation
+import aiImage from './assets/ai_lexicon.jpg';
+import datacenter from './assets/datacenter.jpg';
+import distansochdigitalisering from './assets/distans-och-digitalisering.jpg';
+import security from './assets/security.jpg';
+import { useTranslation } from 'react-i18next'; 
+import test_center from './assets/annie-spratt-sggw4-qDD54-unsplash.jpg';
+import bildkontor from './assets/affarsutbildning2.jpg';
+import yh from './assets/arbetsmarknadsutbildning.jpg';
+import generellUtb from './assets/generell-utbildning.jpg'
 
 const About = () => {
   const { t } = useTranslation(); // translation hook
@@ -38,7 +46,7 @@ const About = () => {
             </Col>
             <Col md={6} data-aos="zoom-in" data-aos-duration="1000">
               <img
-                src="https://images.pexels.com/photos/574069/pexels-photo-574069.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                src={aiImage}
                 alt="Team"
                 className="img-fluid rounded shadow"
               />
@@ -54,7 +62,7 @@ const About = () => {
     <Row className="text-center">
       <Col md={6} data-aos="flip-left" data-aos-duration="1000">
         <div className="feature-list">
-          <img style={{maxWidth: "100%", borderRadius: "8px"}} src="https://images.pexels.com/photos/57007/pexels-photo-57007.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"></img>
+          <img style={{maxWidth: "100%", borderRadius: "8px"}} src={yh}></img>
           <div className="feature-item">{t('booking_certifications')}</div>
           <div className="feature-item">{t('cert_info')}</div>
           <div className="feature-item">{t('reminders_and_support')}</div>
@@ -63,7 +71,7 @@ const About = () => {
       </Col>
       <Col md={6} data-aos="zoom-in-up" data-aos-duration="1000">
         <div className="feature-list">
-          <img style={{maxWidth: "100%", borderRadius: "8px"}} src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"></img>
+          <img style={{maxWidth: "100%", borderRadius: "8px"}} src={generellUtb}></img>
           <div className="feature-item">{t('remote_and_on_site')}</div>
           <div className="feature-item">{t('integration_partners')}</div>
           <div className="feature-item">{t('certification_tracking')}</div>
@@ -82,17 +90,17 @@ const About = () => {
             <Col md={4}>
               <h5 data-aos="zoom-in" data-aos-duration="1000">{t('easy_booking')}</h5>
               <p>{t('easy_booking_desc')}</p>
-              <img data-aos="fade-right" data-aos-duration="1000" style={{maxWidth: "100%", borderRadius: "8px"}} src='https://images.pexels.com/photos/17828687/pexels-photo-17828687/free-photo-of-tra-natur-rymden-skrivbord.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'></img>
+              <img data-aos="fade-right" data-aos-duration="1000" style={{maxWidth: "100%", borderRadius: "8px"}} src={bildkontor}></img>
             </Col>
             <Col md={4}>
               <h5 data-aos="zoom-in" data-aos-duration="1000">{t('secure_data')}</h5>
               <p>{t('secure_data_desc')}</p>
-              <img data-aos="zoom-in" data-aos-duration="1000" style={{maxWidth: "100%", borderRadius: "8px"}} src='https://images.pexels.com/photos/3747486/pexels-photo-3747486.jpeg?auto=compress&cs=tinysrgb&w=1200'></img>
+              <img data-aos="zoom-in" data-aos-duration="1000" style={{maxWidth: "100%", borderRadius: "8px"}} src={security}></img>
             </Col>
             <Col md={4}>
               <h5 data-aos="zoom-in" data-aos-duration="1000">{t('expert_support')}</h5>
               <p>{t('expert_support_desc')}</p>
-              <img data-aos="fade-left" data-aos-duration="1000" style={{maxWidth: "100%", borderRadius: "8px"}} src='https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'></img>
+              <img data-aos="fade-left" data-aos-duration="1000" style={{maxWidth: "100%", borderRadius: "8px"}} src={distansochdigitalisering}></img>
             </Col>
           </Row>
         </Container>
