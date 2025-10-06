@@ -16,55 +16,55 @@ const AccessibilityPage = () => {
 
       <div className='partOne'>
         <h1>{t('accessibilityTitle')}</h1>
-        <span><em>{t('accessibilityLastUpdated', { date: updatedDate })}</em></span>
+        <p><em>{t('accessibilityLastUpdated', { date: updatedDate })}</em></p>
       </div>
 
       <div className="sectionWrapper">
         <section aria-labelledby="about-title">
           <h2 id="about-title">{t('accessibilityAboutTitle')}</h2>
-          <span>{t('accessibilityAboutText')}</span>
+          <p>{t('accessibilityAboutText')}</p>
         </section>
       </div>
 
       <div className="sectionWrapper">
         <section aria-labelledby="how-accessible-title">
           <h2 id="how-accessible-title">{t('accessibilityHowAccessibleTitle')}</h2>
-          <span>{t('accessibilityHowAccessibleText')}</span>
+          <p>{t('accessibilityHowAccessibleText')}</p>
 
           <h3>{t('accessibilityImprovementsPlannedTitle')}</h3>
-          <span>
-            {t('accessibilityImprovementContrast')}<br/>
-            {t('accessibilityImprovementAltText')}<br/>
-            {t('accessibilityImprovementFocus')}<br/>
-            {t('accessibilityImprovementAria')}
-          </span>
+          <ul>
+            <li>{t('accessibilityImprovementContrast')}</li>
+            <li>{t('accessibilityImprovementAltText')}</li>
+            <li>{t('accessibilityImprovementFocus')}</li>
+            <li>{t('accessibilityImprovementAria')}</li>
+          </ul>
         </section>
       </div>
 
       <div className="sectionWrapper">
         <section aria-labelledby="compliance-title">
           <h2 id="compliance-title">{t('accessibilityComplianceTitle')}</h2>
-          <span>{t('accessibilityComplianceText')}</span>
+          <p>{t('accessibilityComplianceText')}</p>
         </section>
       </div>
 
       <div className="sectionWrapper">
         <section aria-labelledby="report-title">
           <h2 id="report-title">{t('accessibilityReportTitle')}</h2>
-          <span>{t('accessibilityReportText')}</span>
+          <p>{t('accessibilityReportText')}</p>
           <address>
-            <span>{t('accessibilityReportEmail', { email: contactEmail })}</span><br />
-            <span>{t('accessibilityReportPhone', { phone: contactPhone })}</span>
+            <p>{t('accessibilityReportEmail', { email: contactEmail })}</p>
+            <p>{t('accessibilityReportPhone', { phone: contactPhone })}</p>
           </address>
-          <span>{t('accessibilityReportThanks')}</span>
+          <p>{t('accessibilityReportThanks')}</p>
         </section>
       </div>
 
       <div className="sectionWrapper">
         <section aria-labelledby="oversight-title">
           <h2 id="oversight-title">{t('accessibilityOversightTitle')}</h2>
-          <span>{t('accessibilityOversightText')}</span><br/>
-          <span>{t('accessibilityOversightAgency')}</span><br/>
+          <p>{t('accessibilityOversightText')}</p>
+          <p>{t('accessibilityOversightAgency')}</p>
           <a href="https://www.digg.se/tillsyn" target="_blank" rel="noopener noreferrer">
             {t('accessibilityOversightLink')}
           </a>
@@ -74,29 +74,30 @@ const AccessibilityPage = () => {
       <div className="sectionWrapper">
         <section aria-labelledby="tech-info-title">
           <h2 id="tech-info-title">{t('accessibilityTechTitle')}</h2>
-          <span>{t('accessibilityTechBuiltWith')}</span><br/>
-          <span>{t('accessibilityTechFrontend')}</span><br/>
-          <span>{t('accessibilityTechBackend')}</span><br/>
-          <span>{t('accessibilityTechPublished', { publishedDate })}</span><br/>
-          <span>{t('accessibilityTechLastTested', { lastTestDate })}</span>
+          <p>{t('accessibilityTechBuiltWith')}</p>
+          <p>{t('accessibilityTechFrontend')}</p>
+          <p>{t('accessibilityTechBackend')}</p>
+          <p>{t('accessibilityTechPublished', { publishedDate })}</p>
+          <p>{t('accessibilityTechLastTested', { lastTestDate })}</p>
         </section>
       </div>
 
       <div className="sectionWrapper">
         <section aria-labelledby="plans-title">
           <h2 id="plans-title">{t('accessibilityPlansTitle')}</h2>
-          <span>
-            {t('accessibilityPlanWcag')}<br/>
-            {t('accessibilityPlanAutoTesting')}<br/>
-            {t('accessibilityPlanBookingSupport')}<br/>
-            {t('accessibilityPlanTraining')}
-          </span>
+          <ul>
+            <li>{t('accessibilityPlanWcag')}</li>
+            <li>{t('accessibilityPlanAutoTesting')}</li>
+            <li>{t('accessibilityPlanBookingSupport')}</li>
+            <li>{t('accessibilityPlanTraining')}</li>
+          </ul>
         </section>
       </div>
 
       <div className="sectionWrapper">
-        <section aria-label="Avslutande text">
-          <span><strong>{t('accessibilityClosing')}</strong></span>
+        <section aria-labelledby="closing-title">
+          <h2 id="closing-title">Avslutande text</h2>
+          <p><strong>{t('accessibilityClosing')}</strong></p>
         </section>
       </div>
 

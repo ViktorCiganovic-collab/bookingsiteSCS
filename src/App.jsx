@@ -16,7 +16,7 @@ function App() {
   const threeCourses = courses.slice(3, 6); 
 
   return (
-    <>
+    <div className='mainPage'>
       <div className="video-container">
         <video autoPlay muted loop playsInline className="bg-video">
           
@@ -75,7 +75,7 @@ function App() {
           </Col>
         </Row>
       </section>
-    </>
+    </div>
   );
 }
 

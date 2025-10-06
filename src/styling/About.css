@@ -1,4 +1,9 @@
-/* Bakgrundsvideo-sektion */
+
+.aboutPage {
+  max-width: 100vw !important;
+  overflow-x:hidden
+}
+
 .aboutSectionOne {
   position: relative;
   width: 100%;

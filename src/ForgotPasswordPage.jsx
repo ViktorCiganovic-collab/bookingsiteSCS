@@ -25,7 +25,9 @@ export default function ForgotPasswordPage() {
     <section className="forgotpasswordSection rounded-3 shadow-sm">
        <form onSubmit={handleSubmit}>
         <h2 className="text-xl font-bold mb-4 text-center">{t('forgotPassword')}</h2>
+        <label htmlFor="forgotEmail" className="form-label text-white">{t('email')}</label>
         <input
+          id="forgotEmail"
           type="email"
           placeholder={t('emailPlaceholder')}
           value={email}
@@ -36,7 +38,7 @@ export default function ForgotPasswordPage() {
         <button type="submit" className="btn btn-primary w-100 text-white py-2 rounded">
           {t('sendResetLink')}
         </button>
-         {message && <p className="mt-4 text-sm text-gray-600">{message}</p>}     
+         {message && <p className="mt-4 text-sm text-gray-600" role="alert" aria-live="polite">{message}</p>}     
       <Link to="/login" className="text-decoration-none mt-3 text-center text-white text-shadow-lg">{t('backToLogin')}</Link>
       </form>
      

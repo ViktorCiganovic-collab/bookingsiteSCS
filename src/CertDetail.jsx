@@ -253,11 +253,13 @@ export default function CertDetail() {
                             )}
                           </td>
                           <td>
-                            <Link to={`/booking/${certcategory}/${encodeURIComponent(certname)}/${testtime.id}/${cert.isDiscount ? cert.price * 0.5 : cert.price}`}>
-                              <button className="btn btn-primary" style={{ padding: '5px', borderRadius: '5px' }}>
-                                {t('book_time')}
-                              </button>
-                            </Link>
+                          <Link
+                          to={`/booking/${certcategory}/${encodeURIComponent(certname)}/${testtime.id}/${cert.isDiscount ? cert.price * 0.5 : cert.price}`}
+                          className="btn btn-primary"
+                          role="button"
+                        >
+                          {t('book_time')}
+                        </Link>
                           </td>
                         </tr>
                       ))}
@@ -283,10 +285,12 @@ export default function CertDetail() {
                           </span>
                         )}
                       </p>
-                      <Link to={`/booking/${certcategory}/${encodeURIComponent(certname)}/${testtime.id}/${cert.isDiscount ? cert.price * 0.5 : cert.price}`}>
-                        <button className="btn btn-primary w-100 mt-2">
-                          {t('book_time')}
-                        </button>
+                           <Link
+                        to={`/booking/${certcategory}/${encodeURIComponent(certname)}/${testtime.id}/${cert.isDiscount ? cert.price * 0.5 : cert.price}`}
+                        className="btn btn-primary w-100 mt-2"
+                        role="button"
+                      >
+                        {t('book_time')}
                       </Link>
                     </div>
                   ))}

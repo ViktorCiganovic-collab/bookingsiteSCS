@@ -270,9 +270,11 @@ const Booking = () => {
         </Button>
       </Form>
 
-      {confirmed && <p style={{ color: 'green' }}>✅ {t('booking_complete')}</p>}
-
+          <div aria-live="polite" role="alert">
       {error && <p style={{ color: 'red' }}>{error}</p>}
+      {confirmed && <p style={{ color: 'green' }}>✅ {t('booking_complete')}</p>}
+    </div>
+
 
       {/* Stripe informations- och betalmodal */}
       <Modal show={showStripeInfoModal} onHide={() => setShowStripeInfoModal(false)} centered>
@@ -301,7 +303,7 @@ const Booking = () => {
           <Button variant="secondary" onClick={() => setShowStripeInfoModal(false)}>
               {t('cancel')}
           </Button>
-          <Button variant="primary" onClick={handleBooking} disabled={loading}>
+          <Button id="payment-button" variant="primary" onClick={handleBooking} disabled={loading} autoFocus>
            {loading ? t('processing') : t('continue_and_pay')}
           </Button>
         </Modal.Footer>

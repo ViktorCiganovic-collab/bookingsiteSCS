@@ -18,9 +18,14 @@ function Signup() {
   const [lastName, setLastName] = useState('');  
   const [address, setAddress] = useState('');
   const [registered, setRegistered] = useState(false);    
+  const [emailError, setEmailError] = useState(null);
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setEmailError(null);
+    setError(null);
+    setRegistered(false);
+
 
     try {
       const res = await axios.post('http://localhost:5011/api/account/register/', {
@@ -35,21 +40,26 @@ function Signup() {
       console.log(res.data.username + " är registererad som ny användare. Hashed password är " + res.data.password);
 
     } catch (error) {
-      // Hantera eventuella fel - servern hanterar inte förfrågan
-      console.error("Error during registration:", error);
-      setError(t('registration_failed'));
+    console.error("Error during registration:", error);
 
+    const backendMessage = error.response?.data?.message?.toLowerCase() || '';
+
+    if (backendMessage.includes('användarnamnet') || backendMessage.includes('email')) {
+      setEmailError('Registreringen misslyckades. Användarnamnet kan redan vara taget.');
+    } else {
+      setError(t('registration_failed')); // Generellt felmeddelande
     }
+  }
   
   };
 
   return (
     <div className="signupPage" style={{ paddingTop: '60px' }}>
-      <section className="signupSectionOne">
+      <section className="signupSectionOne" aria-labelledby="register-heading">
         <Container fluid="md" className='px-3'>
           <Row className="d-flex justify-content-center align-items-center width-100">
             <Col md={6} sm={10} xs={12}>
-              <h2 className="text-center my-5 mb-4" data-aos="zoom-out-right">{t('register')}</h2>
+              <h2 className="text-center my-5 mb-4" data-aos="zoom-out-right" id="register-heading">{t('register')}</h2>
 
               <Form onSubmit={handleSubmit} data-aos="zoom-in-left">
 
@@ -94,7 +104,13 @@ function Signup() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t('enterEmail')}
                     required
+                    aria-describedby={emailError ? "emailError" : undefined}
                   />
+                    {emailError && (
+                <Form.Text id="emailError" style={{ color: 'red' }} role="alert" aria-live="assertive">
+                  {emailError}
+                </Form.Text>
+                )}
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formPassword">
@@ -106,9 +122,10 @@ function Signup() {
                     placeholder={t('enterPassword')}
                     required
                   />
+                 
                 </Form.Group>
 
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {error && <p id="errorMessage" style={{ color: 'red' }} role="alert" aria-live="assertive">{error}</p>}
 
                 <Button variant="primary" type="submit">
                   {t('register')}
@@ -117,7 +134,7 @@ function Signup() {
               </Form>
 
               {registered && (
-                <div className="mt-3">
+                <div className="mt-3" role="alert" aria-live="polite">
                     <p style={{ color: 'green' }}>{t('membership_registered')}</p>
                     <p style={{ color: 'white' }}>{t('want_to_login')}</p>
                   <Link to="/login" className="btn btn-primary">{t('login_button')}</Link>

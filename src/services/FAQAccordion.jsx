@@ -6,7 +6,7 @@ const FAQSection = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="faq-section p-5">
+    <div id="faq" className="faq-section p-5" aria-label={t('faq_title')}>
       <h2>{t('faq_title')}</h2>
       <Accordion>
         <Accordion.Item eventKey="0">

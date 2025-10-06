@@ -47,19 +47,26 @@ const handleSubmit = async (e) => {
     <section className="resetPasswordSection rounded-3 shadow-sm">
        <form onSubmit={handleSubmit}>
         <h2 className="text-xl font-bold mb-4 text-center">{t('resetPassword')}</h2>
+        <label htmlFor="newPassword" className="form-label text-white">
+          {t('newPassword')}
+        </label>
         <input
+          id="newPassword"
           type="password"
-          placeholder={t('newPassword')}
+          placeholder={t('passwordRequirements')}
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           className="w-full p-2 border rounded mb-3 form-control"
           required
         />
-
+        <label htmlFor="confirmPassword" className="form-label text-white mt-3">
+          {t('confirmNewPassword')}
+        </label>
         <input
+        id="confirmPassword"
         type="password"
         className="form-control"
-        placeholder={t('confirmNewPassword')}
+        placeholder={t('confirmPasswordPlaceholder')}
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
         required
@@ -69,7 +76,7 @@ const handleSubmit = async (e) => {
           {t('saveNewPassword')}
         </button>
 
-         {message && <p className="mt-4 text-sm text-gray-600">{message}</p>}     
+         {message && <p role="alert" aria-live="assertive" className="mt-4 text-sm text-gray-600">{message}</p>}     
       <Link to="/login" className="text-decoration-none mt-3 text-center text-white text-shadow-lg">{t('backToLogin')}</Link>
 
       </form>

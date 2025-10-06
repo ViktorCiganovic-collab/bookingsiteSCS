@@ -510,7 +510,10 @@
   "accessibilityPlanAutoTesting": "Automaattinen kontrasti- ja saavutettavuustestaus jokaisessa julkaisussa.",
   "accessibilityPlanBookingSupport": "Parempi saavutettavuustuki varausprosessissa ja käyttäjätilien hallinnassa.",
   "accessibilityPlanTraining": "Kehittäjien koulutus yleispätevässä suunnittelussa ja saavutettavuusperiaatteissa.",
-  "accessibilityClosing": "Pyrimme siihen, että kaikki käyttäjät – riippumatta edellytyksistään – pystyvät varaamaan sertifikaatteja ja käyttämään palveluitamme helposti, turvallisesti ja saavutettavasti."
+  "accessibilityClosing": "Pyrimme siihen, että kaikki käyttäjät – riippumatta edellytyksistään – pystyvät varaamaan sertifikaatteja ja käyttämään palveluitamme helposti, turvallisesti ja saavutettavasti.",
+
+    "passwordRequirements": "Vähintään 8 merkkiä, mieluiten numero",
+  "confirmPasswordPlaceholder": "Kirjoita salasana uudelleen"
 }
 
 

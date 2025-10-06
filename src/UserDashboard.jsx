@@ -289,8 +289,11 @@ const changePassword = async (event) => {
       <div className='d-md-none'>
       <Button
       variant='primary'
-      className="hamburger-button btn-lg w-100"      
+      className="hamburger-button btn-lg w-100"    
       onClick={handleMenuShow}
+      aria-label={t('open_menu', 'Öppna meny')}
+      aria-haspopup="true"
+      aria-expanded={showMenu}
       >
       ☰ Meny
       </Button>
@@ -298,67 +301,138 @@ const changePassword = async (event) => {
 
       <Nav className="flex-column sidepanel d-none d-md-flex">
         <div className="sidebar-group">
-          <div className="sidebar-title" onClick={() => toggleSection('bookings')}>
-            🗂️ {t('my_bookings')} 
-          </div>
+              <div
+        role="button"
+        tabIndex={0}
+        aria-expanded={expanded.bookings}
+        aria-controls="bookings-submenu"
+        onClick={() => toggleSection('bookings')}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') toggleSection('bookings'); }}
+        className="sidebar-title"
+      >
+        🗂️ {t('my_bookings')}
+      </div>
           
         </div>
 
                 <div className="sidebar-group">
-          <div className="sidebar-title" onClick={() => toggleSection('testtimes')}>
+          <div
+            role="button"
+            tabIndex={0}
+            aria-expanded={expanded.testtimes ? 'true' : 'false'}
+            aria-controls="section-testtimes"
+            onClick={() => toggleSection('testtimes')}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') toggleSection('testtimes');
+            }}
+            className="sidebar-title"
+          >
             ⏰ {t('testtillfallen', 'Testtillfällen')}
           </div>
           {expanded.testtimes && (
-            <Nav.Link className="sidebar-link">
+            <Nav.Link className="sidebar-link" tabIndex={0} aria-label={t('visaTesttillfallen', 'Visa testtillfällen')}>
               {t('visaTesttillfallen', 'Visa testtillfällen')}
             </Nav.Link>
           )}
         </div>
 
-        <div className="sidebar-group">
-          <div className="sidebar-title" onClick={() => toggleSection('certiport')}>
-            {t('certiport_link')}
-          </div>         
-        </div>
 
         <div className="sidebar-group">
-          <div className="sidebar-title" onClick={() => toggleSection('certificates')}>
-            🎓 {t('certificates')}    
-          </div>
-          {expanded.certificates && (
-            <Nav.Link className="sidebar-link">
-             ⏰ {t('test_sessions')}  
-            </Nav.Link>
-          )}
-        </div>
+        <div
+          role="button"
+          tabIndex={0}
+          aria-expanded={expanded.certiport ? 'true' : 'false'}
+           aria-controls="section-certiport"
+          onClick={() => toggleSection('certiport')}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') toggleSection('certiport');
+          }}
+          className="sidebar-title"
+        >
+          {t('certiport_link')}
+        </div>         
+      </div>
 
-         <div className='sidebar-group'>
-  <div className='sidebar-title' onClick={() => { toggleSection('myInfo') }}>
+          <div className="sidebar-group">
+      <div
+        role="button"
+        tabIndex={0}
+        aria-expanded={expanded.certificates ? 'true' : 'false'}
+        aria-controls="section-certificates"
+        onClick={() => toggleSection('certificates')}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') toggleSection('certificates');
+        }}
+        className="sidebar-title"
+      >
+        🎓 {t('certificates')}    
+      </div>
+      {expanded.certificates && (
+        <Nav.Link className="sidebar-link" tabIndex={0}
+              aria-label={t('test_sessions', 'Testsessioner')}>
+          ⏰ {t('test_sessions')}  
+        </Nav.Link>
+      )}
+    </div>
+
+     <div className='sidebar-group'>
+  <div
+    role="button"
+    tabIndex={0}
+     aria-expanded={expanded.myInfo ? 'true' : 'false'}
+            aria-controls="section-myInfo"
+    onClick={() => toggleSection('myInfo')}
+    onKeyDown={(e) => {
+      if (e.key === 'Enter' || e.key === ' ') toggleSection('myInfo');
+    }}
+    className='sidebar-title'
+  >
     👤 {t('my_data')}
     
     {expanded.myInfo && (
       <>
         <Nav.Link
-          className="sidebar-link"
-          onClick={(e) => {
-            e.stopPropagation(); 
-            toggleNavLink('myDetails');
-            handleMenuClose();
-          }}
-        >
-          📄 {t('my_personal_data', 'Mina uppgifter')}
-        </Nav.Link>
+  className="sidebar-link"
+  tabIndex={0}
+  onClick={(e) => {
+    e.stopPropagation();
+    toggleNavLink('myDetails');
+    handleMenuClose();
+  }}
+  onKeyDown={(e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault(); // förhindra scroll vid space
+      e.stopPropagation();
+      toggleNavLink('myDetails');
+      handleMenuClose();
+    }
+  }}
+  aria-label={t('my_personal_data', 'Mina uppgifter')}
+>
+  📄 {t('my_personal_data', 'Mina uppgifter')}
+</Nav.Link>
 
-        <Nav.Link
-          className="sidebar-link"
-          onClick={(e) => {
+              <Nav.Link
+        className="sidebar-link"
+        tabIndex={0}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleNavLink('changePassword');
+          handleMenuClose();
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
             e.stopPropagation();
             toggleNavLink('changePassword');
             handleMenuClose();
-          }}
-        >
-          🔐 {t('change_password_title')}
-        </Nav.Link>
+          }
+        }}
+         aria-label={t('change_password_title', 'Byt lösenord')}
+      >
+        🔐 {t('change_password_title')}
+      </Nav.Link>
+
       </>
     )}
   </div>
@@ -367,56 +441,68 @@ const changePassword = async (event) => {
        
 
         <div className="sidebar-group">
-          <div className="sidebar-title" onClick={handleShow}>
-            🚪 {t('logout')}
-          </div>
-        </div>
+  <div
+    role="button"
+    tabIndex={0}
+    onClick={handleShow}
+    onKeyDown={(e) => {
+      if (e.key === 'Enter' || e.key === ' ') handleShow();
+    }}
+    className="sidebar-title"
+    aria-label={t('logout', 'Logga ut')}
+  >
+    🚪 {t('logout')}
+  </div>
+</div>
       </Nav>
 
       <Offcanvas
           show={showMenu}
           onHide={handleMenuClose}
           placement="start"
+          aria-label={t('mobile_menu', 'Mobilmeny')}
         >
           <Offcanvas.Header closeButton />
           <Offcanvas.Body>
-             <Nav className="flex-column sidepanel">
+             <Nav className="flex-column sidepanel" role="navigation" aria-label={t('sidebar_navigation', 'Sidomeny navigation')}>
         <div className="sidebar-group">
-          <div className="sidebar-title" onClick={() => {toggleSection('bookings'); handleMenuClose(); }}>
+          <div className="sidebar-title" onClick={() => {toggleSection('bookings'); handleMenuClose(); }} aria-expanded={expanded.bookings ? 'true' : 'false'}
+                aria-controls="section-bookings">
             🗂️ {t('my_bookings')} 
           </div>          
         </div>
 
               <div className="sidebar-group">
-          <div className="sidebar-title" onClick={() => {toggleSection('testtimes'); handleMenuClose(); }}>
+          <div className="sidebar-title" onClick={() => {toggleSection('testtimes'); handleMenuClose(); }} aria-expanded={expanded.testtimes ? 'true' : 'false'}
+                aria-controls="section-testtimes">
             ⏰ {t('testtillfallen', 'Testtillfällen')}
           </div>
           {expanded.testtimes && (
-            <Nav.Link className="sidebar-link">
+            <Nav.Link className="sidebar-link" tabIndex={0} aria-label={t('visaTesttillfallen', 'Visa testtillfällen')}>
               {t('visaTesttillfallen', 'Visa testtillfällen')}
             </Nav.Link>
           )}
         </div>
 
             <div className="sidebar-group">
-          <div className="sidebar-title" onClick={() => {toggleSection('certiport'); handleMenuClose(); }}>
+          <div className="sidebar-title" onClick={() => {toggleSection('certiport'); handleMenuClose(); }} aria-expanded={expanded.certiport ? 'true' : 'false'} aria-controls="section-certiport">
             {t('certiport_link')}
           </div>         
         </div>
 
         <div className="sidebar-group">
-          <div className="sidebar-title" onClick={() => {toggleSection('certificates'); handleMenuClose(); }}>
+          <div className="sidebar-title" onClick={() => {toggleSection('certificates'); handleMenuClose(); }} aria-expanded={expanded.certificates ? 'true' : 'false'} aria-controls="section-certificates">
             🎓 {t('certificates')}    
           </div>
           {expanded.certificates && (
-            <Nav.Link className="sidebar-link">
+            <Nav.Link className="sidebar-link"  tabIndex={0} aria-label={t('test_sessions', 'Testsessioner')}>
              ⏰ {t('test_sessions')}  
             </Nav.Link>
           )}
         </div>  
 
                  <div className="sidebar-group">
-        <div className="sidebar-title" onClick={() => toggleSection('myInfo')}>
+        <div className="sidebar-title" onClick={() => toggleSection('myInfo')} aria-expanded={expanded.myInfo ? 'true' : 'false'} aria-controls="section-myInfo">
           👤 {t('my_data')}
         </div>
         {expanded.myInfo && (
@@ -428,6 +514,7 @@ const changePassword = async (event) => {
                 toggleNavLink('myDetails');
                 handleMenuClose();
               }}
+              aria-label={t('my_personal_data', 'Mina uppgifter')}
             >
               📄 {t('my_personal_data', 'Mina uppgifter')}
             </Nav.Link>
@@ -439,6 +526,7 @@ const changePassword = async (event) => {
                 toggleNavLink('changePassword');
                 handleMenuClose();
               }}
+              aria-label={t('change_password_title', 'Byt lösenord')}
             >
               🔐 {t('change_password_title')}
             </Nav.Link>
@@ -447,7 +535,7 @@ const changePassword = async (event) => {
       </div>
 
         <div className="sidebar-group">
-          <div className="sidebar-title" onClick={handleShow}>
+          <div className="sidebar-title" onClick={handleShow} aria-label={t('logout', 'Logga ut')}>
             🚪 {t('logout')}
           </div>
         </div>
@@ -471,6 +559,7 @@ const changePassword = async (event) => {
               cancelMessageType === 'success' ? 'alert-success' : 'alert-danger'
             }`}
             role="alert"
+            aria-live="assertive"
           >
             {cancelMessageType === 'success'
               ? t('booking_cancelled_success', 'Bokning avbokad och återbetalning genomförd.')
@@ -480,10 +569,11 @@ const changePassword = async (event) => {
 
         {/*Bokningarna ska visas här nedanför*/}
         {expanded.bookings && (
+          <section id="section-bookings" aria-labelledby="bookings-heading">
   <div className='booking-list'>
     {loadingBookings && (
       <div>
-        <Spinner animation="border" variant="primary" />
+        <Spinner animation="border" variant="primary" role="status" aria-live="polite" aria-busy="true" />
         <p>{t('laddarBokningar', 'Laddar bokningar...')}</p>
       </div>
     )}
@@ -492,10 +582,10 @@ const changePassword = async (event) => {
       <p>{t('ingaBokningar', 'Inga bokningar hittades.')}</p>
     )}
 
-    <h5>{t('dinaTestbokningar')}</h5>
+    <h5 id="bookings-heading">{t('dinaTestbokningar')}</h5>
 
     {/* Desktop tabellvisning */}
-    <div className="table-responsive d-none d-md-block">
+    <div className="table-responsive d-none d-md-block" role="region" aria-label={t('dinaTestbokningar')}>
       <Table striped bordered hover style={{ position: 'relative' }}>
         <thead>
           <tr>
@@ -527,6 +617,7 @@ const changePassword = async (event) => {
                       border: 'none',
                       fontSize: '1.2rem',
                     }}
+                    aria-label={t('avboka_test', 'Avboka test') + ` ${booking.examName} ${formatDate(booking.bookingDate)}`}
                   >
                     🗑️
                   </button>
@@ -539,13 +630,13 @@ const changePassword = async (event) => {
     </div>
 
     {/* Mobil kortvisning */}
-    <div className="d-block d-md-none">
+    <div className="d-block d-md-none" role="region" aria-label={t('dinaTestbokningar_mobil')}>
       {bookings.map((booking) => {
         const startingTime = new Date(booking.examStartingTime);
         const endingTime = new Date(booking.examEndingTime);
 
         return (
-          <div key={booking.id} className="booking-card border rounded p-3 mb-3 shadow-sm bg-light">
+          <div key={booking.id} className="booking-card border rounded p-3 mb-3 shadow-sm bg-light" role="group" aria-label={`${booking.examName} ${formatDate(booking.bookingDate)}`}>
             <p><strong>{t('certifiering')}:</strong> {booking.certName}</p>
             <p><strong>{t('bokningsId')}:</strong> {booking.id}</p>
             <p>
@@ -558,6 +649,7 @@ const changePassword = async (event) => {
                 className="btn btn-danger btn-sm"
                 onClick={() => confirmCancelBooking(booking.id)}
                 disabled={loadingCancel}
+                aria-label={t('avboka_test', 'Avboka test') + ` ${booking.examName} ${formatDate(booking.bookingDate)}`}
               >
                 {t('avboka')}
               </button>
@@ -567,6 +659,7 @@ const changePassword = async (event) => {
       })}
     </div>
   </div>
+  </section>
 )}
    
 
@@ -605,12 +698,12 @@ const changePassword = async (event) => {
         )}
 
         {expandedNavlink.myDetails && (
-        <Container className="mt-3">
+        <Container className="mt-3" aria-labelledby="my-details-heading">
           <Row className="justify-content-center">
             <Col xs={12} sm={10} md={8} lg={6}>
               <Card className="shadow-sm">
                 <Card.Body>
-                  <Card.Title className="text-center mb-3">Mina uppgifter</Card.Title>
+                  <Card.Title className="text-center mb-3" id="my-details-heading">Mina uppgifter</Card.Title>
                   <Card.Text><strong>Förnamn:</strong> {userData.firstName}</Card.Text>
                   <Card.Text><strong>Efternamn:</strong> {userData.lastName}</Card.Text>
                   <Card.Text><strong>Email:</strong> {userData.email}</Card.Text>
@@ -623,37 +716,42 @@ const changePassword = async (event) => {
       )}
 
         {expandedNavlink.changePassword && (
-          <div className='d-flex flex-column align-items-center mt-4' style={{ maxWidth: "400px", margin: "0 auto" }}>
-            <h3 className='headtitle'>{t('change_your_password')}</h3>
+          <div className='d-flex flex-column align-items-center mt-4' style={{ maxWidth: "400px", margin: "0 auto" }} aria-labelledby="change-password-heading">
+            <h3 id="change-password-heading" className='headtitle'>{t('change_your_password')}</h3>
             <form onSubmit={changePassword} className="w-100">
 
               <div className='mb-3'> 
-                <label className="form-label">{t('your_email_address')}</label>
-                <input type="email" className='form-control text-center' value={email} required></input>
+                <label htmlFor="email" className="form-label">{t('your_email_address')}</label>
+                <input id="email" type="email" className='form-control text-center' value={email} required></input>
               </div>
 
                    {/* Nuvarande lösenord */}
         <div className="mb-3 position-relative">
-          <label className="form-label">{t('current_password')}</label>
+          <label htmlFor="oldPassword" className="form-label">{t('current_password')}</label>
           <input
+            id="oldPassword"
             type={showOldPassword ? 'text' : 'password'}
             className="form-control text-center"
             value={oldPassword}
             onChange={(e) => setOldPassword(e.target.value)}
+            aria-required="true"
+            required
           />
           {/* Ögonikon för att visa/dölja lösenord */}
           <div
             className="position-absolute"
             style={{ top: '70%', right: '10px', transform: 'translateY(-50%)', cursor: 'pointer', color: 'black' }}
             onClick={() => setShowOldPassword(!showOldPassword)}
+            aria-label={showOldPassword ? t('hide_password', 'Dölj lösenord') : t('show_password', 'Visa lösenord')}
           >
             {showOldPassword ? <FaEyeSlash /> : <FaEye />}
+            
           </div>
         </div>
 
               <div className='mb-3 position-relative'>
-                  <label className="form-label">{t('new_password')}</label>
-                <input type={showNewPassword ? 'text' : 'password'} className='form-control text-center' value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
+                  <label htmlFor="newPassword" className="form-label">{t('new_password')}</label>
+                <input required id="newPassword" type={showNewPassword ? 'text' : 'password'} className='form-control text-center' value={newPassword} onChange={(e) => setNewPassword(e.target.value)} aria-required="true"></input>
 
                 <div
             className="position-absolute"
@@ -666,17 +764,20 @@ const changePassword = async (event) => {
 
                     {/* Bekräfta nytt lösenord */}
               <div className="mb-3">
-                <label className="form-label">{t('confirm_new_password')}</label>
+                <label htmlFor="confirmPassword" className="form-label">{t('confirm_new_password')}</label>
                 <input
+                  id="confirmPassword"
                   type="password"
                   className="form-control text-center"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  aria-required="true"
                 />
               </div>
 
                <div className="d-grid">
-          <button type="submit" className="btn btn-danger" disabled={isChangingPassword}>
+          <button type="submit" className="btn btn-danger" disabled={isChangingPassword} aria-disabled={isChangingPassword}>
             {isChangingPassword ? (
               <>
                <Spinner animation="border" size="sm" variant="light" /> {t('changing_password')}
@@ -692,7 +793,7 @@ const changePassword = async (event) => {
             </form>
 
                   {/* Toast för feedback */}
-      <ToastContainer position="top-center" className="p-3">
+      <ToastContainer position="top-center" className="p-3" aria-live="polite" aria-atomic="true">
         <Toast
           onClose={() => setShowToast(false)}
           show={showToast}
@@ -713,9 +814,9 @@ const changePassword = async (event) => {
 
 
                {/* Modal: Bekräfta avbokning */}
-        <Modal show={showCancelModal} onHide={() => setShowCancelModal(false)} centered>
+        <Modal show={showCancelModal} onHide={() => setShowCancelModal(false)} aria-labelledby="cancel-modal-label" centered>
           <Modal.Header closeButton>
-            <Modal.Title>{t('bekräftaAvbokning')}</Modal.Title>
+            <Modal.Title id="cancel-modal-label">{t('bekräftaAvbokning')}</Modal.Title>
           </Modal.Header>
           <Modal.Body>{t('säkerAvbokaFråga')} </Modal.Body>
           <Modal.Footer>
@@ -730,9 +831,9 @@ const changePassword = async (event) => {
 
 
 
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} aria-labelledby="logout-modal-label" centered>
           <Modal.Header closeButton>
-            <Modal.Title>{t('questionlogout', 'Vill du logga ut?')}</Modal.Title>
+            <Modal.Title  id="logout-modal-label">{t('questionlogout', 'Vill du logga ut?')}</Modal.Title>
           </Modal.Header>
           <Modal.Body>{t('secondquerylogoutusers', 'Är du säker på att du vill logga ut?')}</Modal.Body>
           <Modal.Footer>

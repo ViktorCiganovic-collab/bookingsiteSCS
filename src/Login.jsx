@@ -76,11 +76,11 @@ useEffect(() => {
 
  return (
     <div className="loginPage" style={{ paddingTop: '70px', minHeight: '100vh' }}>
-      <section className="loginSectionOne">
+      <section className="loginSectionOne" aria-labelledby="login-heading">
         <Container>
           <Row className="d-flex justify-content-center align-items-center mb-5 width-100">
             <Col md={6}>
-              <h2 className="text-center my-5 mb-4 text-white">{t('login_title')}</h2>
+              <h2 id="login-heading" className="text-center my-5 mb-4 text-white">{t('login_title')}</h2>
               <Form className="my-5" onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label className='text-white'>{t('username_label')}</Form.Label>
@@ -89,6 +89,7 @@ useEffect(() => {
                 value={username} 
                 onChange={(e) => setUsername(e.target.value)} 
                 placeholder={t('username_placeholder')}
+                aria-describedby={error ? 'loginError' : undefined}
               />
             </Form.Group>
 
@@ -99,10 +100,15 @@ useEffect(() => {
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
               placeholder={t('password_placeholder')} 
+              aria-describedby={error ? 'loginError' : undefined}
             />
           </Form.Group>
 
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {error && (
+                <p id="loginError" style={{ color: 'red' }} role="alert" aria-live="assertive">
+                  {error}
+                </p>
+              )}
 
                 <Button variant="primary" type="submit">
                     {t('login_button')}

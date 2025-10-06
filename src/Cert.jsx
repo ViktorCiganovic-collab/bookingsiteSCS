@@ -154,8 +154,8 @@ setSelectedcategory(courseName);
 
   
   return (
-    <div>
-      <section className='certificatesPage'>
+    <div className='certificatesSite'>
+      <section className='certificatesPageSectionOne'>
         <div className='introducingSection'>
         <h1 data-aos="fade-down">{t('certifications')}</h1>
         <p className="lead text-white" data-aos="fade-up">
@@ -225,6 +225,13 @@ setSelectedcategory(courseName);
       onMouseEnter={() => setHoveredCategory(index)}
       onMouseLeave={() => setHoveredCategory(null)}    
       style={{ position: 'relative', overflow: 'hidden' }}
+      tabIndex="0"
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleCourseClick(course.courseName);
+        }
+      }}
       onClick={() => handleCourseClick(course.courseName)}
     >
       <div className="card-base" style={{ height: '100%' }} data-aos="zoom-in-up" data-aos-duration="1000">

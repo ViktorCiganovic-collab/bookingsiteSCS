@@ -512,7 +512,9 @@
   "accessibilityPlanAutoTesting": "Automatisk kontrast- og tilgængelighedstest ved hver release.",
   "accessibilityPlanBookingSupport": "Bedre tilgængelighedsstøtte i bookingflow og brugerkonti.",
   "accessibilityPlanTraining": "Uddannelse af udviklere i universel design og tilgængelighedsprincipper.",
-  "accessibilityClosing": "Vi stræber efter, at alle brugere – uanset forudsætninger – kan booke certificeringer og bruge vores tjenester på en enkel, sikker og tilgængelig måde."
+  "accessibilityClosing": "Vi stræber efter, at alle brugere – uanset forudsætninger – kan booke certificeringer og bruge vores tjenester på en enkel, sikker og tilgængelig måde.",
+   "passwordRequirements": "Mindst 8 tegn, helst et tal",
+  "confirmPasswordPlaceholder": "Skriv adgangskoden igen"
 }
 
 

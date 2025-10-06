@@ -1799,7 +1799,7 @@ case 'categories':
       >
         {renderContent()}
 
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} centered>
           <Modal.Header closeButton>
             <Modal.Title>{t('questionlogout')}</Modal.Title>
           </Modal.Header>

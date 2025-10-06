@@ -16,19 +16,10 @@ const About = () => {
   const { t } = useTranslation(); // translation hook
 
   return (
-    <>
+    <div className="aboutPage">
       {/* SEKTION 1 – Bakgrundsvideo och intro */}
-      <section className='aboutSectionOne'>
-        <video
-          className="backgroundVideo"
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src={backgroundVideoAbout} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <section className='aboutSectionOne' aria-label="about-section-intro">
+     
 
         <div className="overlayContent">
           <h1 data-aos="fade-down-right" data-aos-duration="1000">{t('about')}</h1>
@@ -37,11 +28,11 @@ const About = () => {
       </section>
 
       {/* SEKTION 2 – Vilka vi är */}
-      <section className="aboutSectionTwo py-5">
+      <section className="aboutSectionTwo py-5" aria-labelledby="who-we-are-heading">
         <Container>
           <Row className="align-items-center">
             <Col md={6} className='text-center' data-aos="flip-right" data-aos-duration="1000">
-              <h2>{t('who_we_are')}</h2>
+              <h2 id="who-we-are-heading">{t('who_we_are')}</h2>
               <p>{t('about_team_description')}</p>
             </Col>
             <Col md={6} data-aos="zoom-in" data-aos-duration="1000">
@@ -56,13 +47,13 @@ const About = () => {
       </section>
 
 {/* SEKTION 3 – Vad vi gör */}
-<section className="aboutSectionTwo d-flex justify-content-center">
+<section className="aboutSectionTwo d-flex justify-content-center" aria-labelledby="what-we-do-heading">
   <Container>
-    <h2 className="text-center mb-4">{t('what_we_do')}</h2>
+    <h2 id="what-we-do-heading" className="text-center mb-4">{t('what_we_do')}</h2>
     <Row className="text-center">
       <Col md={6} data-aos="flip-left" data-aos-duration="1000">
         <div className="feature-list">
-          <img style={{maxWidth: "100%", borderRadius: "8px"}} src={yh}></img>
+          <img style={{maxWidth: "100%", borderRadius: "8px"}} src={yh} alt={t('booking_certifications')}></img>
           <div className="feature-item">{t('booking_certifications')}</div>
           <div className="feature-item">{t('cert_info')}</div>
           <div className="feature-item">{t('reminders_and_support')}</div>
@@ -71,7 +62,7 @@ const About = () => {
       </Col>
       <Col md={6} data-aos="zoom-in-up" data-aos-duration="1000">
         <div className="feature-list">
-          <img style={{maxWidth: "100%", borderRadius: "8px"}} src={generellUtb}></img>
+          <img style={{maxWidth: "100%", borderRadius: "8px"}} src={generellUtb} alt={t('remote_and_on_site')}></img>
           <div className="feature-item">{t('remote_and_on_site')}</div>
           <div className="feature-item">{t('integration_partners')}</div>
           <div className="feature-item">{t('certification_tracking')}</div>
@@ -83,24 +74,24 @@ const About = () => {
 
 
       {/* SEKTION 4 – Varför välja oss */}
-      <section className="aboutSectionTwo py-5">
+      <section className="aboutSectionTwo py-5" aria-labelledby="why-choose-us-heading">
         <Container>
-          <h2 className="text-center mb-4">{t('why_choose_us')}</h2>
+          <h2 id="why-choose-us-heading" className="text-center mb-4">{t('why_choose_us')}</h2>
           <Row className="text-center">
             <Col md={4}>
               <h5 data-aos="zoom-in" data-aos-duration="1000">{t('easy_booking')}</h5>
               <p>{t('easy_booking_desc')}</p>
-              <img data-aos="fade-right" data-aos-duration="1000" style={{maxWidth: "100%", borderRadius: "8px"}} src={bildkontor}></img>
+              <img aria-labelledby="easy-booking-heading" data-aos="fade-right" data-aos-duration="1000" style={{maxWidth: "100%", borderRadius: "8px"}} src={bildkontor} alt={t('easy_booking')} ></img>
             </Col>
             <Col md={4}>
               <h5 data-aos="zoom-in" data-aos-duration="1000">{t('secure_data')}</h5>
               <p>{t('secure_data_desc')}</p>
-              <img data-aos="zoom-in" data-aos-duration="1000" style={{maxWidth: "100%", borderRadius: "8px"}} src={security}></img>
+              <img aria-labelledby="secure-data-heading" data-aos="zoom-in" data-aos-duration="1000" style={{maxWidth: "100%", borderRadius: "8px"}} src={security} alt={t('secure_data')} ></img>
             </Col>
             <Col md={4}>
-              <h5 data-aos="zoom-in" data-aos-duration="1000">{t('expert_support')}</h5>
+              <h5 data-aos="zoom-in" data-aos-duration="1000" id="expert-support-heading">{t('expert_support')}</h5>
               <p>{t('expert_support_desc')}</p>
-              <img data-aos="fade-left" data-aos-duration="1000" style={{maxWidth: "100%", borderRadius: "8px"}} src={distansochdigitalisering}></img>
+              <img  aria-labelledby="expert-support-heading" data-aos="fade-left" data-aos-duration="1000" style={{maxWidth: "100%", borderRadius: "8px"}} src={distansochdigitalisering} alt={t('expert_support')} ></img>
             </Col>
           </Row>
         </Container>
@@ -115,7 +106,7 @@ const About = () => {
           <p>📍 Malmö | Landskrona | Online</p>
         </Container>
       </section>
-    </>
+    </div>
   );
 };
 

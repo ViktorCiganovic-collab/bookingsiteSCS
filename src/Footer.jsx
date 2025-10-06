@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './styling/Footer.css'; 
 import { useTranslation } from 'react-i18next'; // i18n hook
 import { Link } from 'react-router-dom';
+import logo from "./assets/logotyp_störreikon.png";
 
 
 function Footer() {
@@ -14,7 +15,7 @@ function Footer() {
       <Container>
         <Row>
           <Col md={6}>
-            <p>&copy; {new Date().getFullYear()} SCS</p>
+            <p>&copy; {new Date().getFullYear()} Scandinavian Certification Services AB</p>
           </Col>
           <Col md={6} className="text-md-end">
              <Link to="/integritetspolicy" style={{textDecoration: 'none', color: '#fff'}}>{t('privacyPolicy')}</Link> &nbsp;|&nbsp; 
