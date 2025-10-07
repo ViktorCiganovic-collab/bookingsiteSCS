@@ -68,6 +68,11 @@ export default function CertDetail() {
           const startTime = new Date(startTimeString);
           const endTime = new Date(endTimeString);
 
+          const now  = Date.now();
+          const examStart = startTime.getTime();
+
+          if (now < examStart) {
+
           const formattedStartTime = startTime.toLocaleString('sv-SE', {
             weekday: 'long',
             year: 'numeric',
@@ -89,7 +94,8 @@ export default function CertDetail() {
             formattedStartTime,
             formattedEndTime,
           };
-        });
+        } return null;
+        }).filter(times => times != null)
 
         setAlltesttimes(formattedTestTimes);
       } catch (error) {

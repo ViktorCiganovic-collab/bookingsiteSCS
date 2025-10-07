@@ -49,6 +49,12 @@ useEffect(() => {
           console.error("Invalid end time:", endTimeString);
         }
 
+        const timeNow = Date.now();
+        const startingTime = startTime.getTime();
+
+        // Check if examtime has passed and filter out passed examtimes
+        if (startingTime > timeNow) {
+
         // Format the start and end times if valid
         const formattedStartTime = startTime.toLocaleString('sv-SE', {
           weekday: 'long',
@@ -72,7 +78,11 @@ useEffect(() => {
           formattedStartTime,
           formattedEndTime,
         };
-      });
+        }
+
+        return null;
+
+      }).filter(times => times != null); //filter out falsy values: null, undefined, false
 
       setAlltesttimes(formattedTestTimes);  // Store the formatted times in state
     })
