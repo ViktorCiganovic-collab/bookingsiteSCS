@@ -284,9 +284,9 @@ const changePassword = async (event) => {
 
 
   return (
-    <div className="userDashboard" style={{ display: 'flex', minHeight: '100vh', paddingTop: '60px'}}>
+    <div className="userDashboard" style={{ display: 'flex', minHeight: '100vh'}}>
 
-      <div className='d-md-none'>
+      <div className='d-md-none bg-dark'>
       <Button
       variant='primary'
       className="hamburger-button btn-lg w-100"    
@@ -299,7 +299,7 @@ const changePassword = async (event) => {
       </Button>
       </div>
 
-      <Nav className="flex-column sidepanel d-none d-md-flex">
+      <Nav className="flex-column sidepanel d-none d-md-flex" style={{marginTop: '80px'}} >
         <div className="sidebar-group">
               <div
         role="button"
@@ -456,11 +456,14 @@ const changePassword = async (event) => {
 </div>
       </Nav>
 
+      
+
       <Offcanvas
           show={showMenu}
           onHide={handleMenuClose}
           placement="start"
           aria-label={t('mobile_menu', 'Mobilmeny')}
+           className="custom-offcanvas"
         >
           <Offcanvas.Header closeButton />
           <Offcanvas.Body>
@@ -548,6 +551,7 @@ const changePassword = async (event) => {
           flexGrow: 1, 
           overflowY: 'auto', 
           padding: '2rem',
+          paddingTop: '100px'
         }}
         className='userdashboard_mainpart'
       >

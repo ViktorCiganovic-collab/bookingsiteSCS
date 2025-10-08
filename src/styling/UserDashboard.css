@@ -1,14 +1,29 @@
 
+
+
+
+@media (max-width: 767.98px) {
+  
+
+  body {
+    padding-top: 60px;
+  }
+
+  main {    
+     padding-top: 10px !important;
+  }
+}
+
+
 .sidepanel {  
-  padding: 1rem;
-  border-right: 1px solid #ddd;
-  background-color: #f8f9fa;
+  padding: 1rem;  
 }
 
 .userdashboard_mainpart {
   background-image: url('../assets/bookings_bg.jpg');
-      background-size: cover;
-    background-position: center;
+    background-size: cover;
+    background-position: fixed; 
+    background-repeat: no-repeat;   
 }
 
 @media (max-width: 768px) {
@@ -27,8 +42,8 @@
   .sidebar-link {
     margin: 0.3rem;
     padding: 0.4rem 0.6rem;
-    background-color: #e9ecef;
-    border-radius: 5px;
+    border-radius: 5px;      
+
     font-size: 0.85rem;
     white-space: nowrap;
   }
@@ -72,4 +87,26 @@
 
 .booking-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Anpassad offcanvas som fyller hela höjden och har rätt bakgrund */
+.custom-offcanvas {
+  background-color: #f8f9fa !important; /* Samma som .sidepanel eller valfri */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Gör att innehållet fyller resten av ytan och scrollar vid behov */
+.custom-offcanvas .offcanvas-body {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/* Mobilanpassning: Ta bort onödig kant på .sidepanel inuti offcanvas */
+@media (max-width: 768px) {
+  .sidepanel {
+    border-right: none;
+  }
 }

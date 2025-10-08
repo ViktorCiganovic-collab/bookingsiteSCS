@@ -10,10 +10,12 @@ import LanguageSwitcher from './services/LanguageSwitcher'; // Importera Languag
 import { AuthContext } from './services/AuthProvider';
 import logo from './assets/logotyp.png';
 
-
 function NavComponent() {
   const { t } = useTranslation(); // Använd useTranslation-hooken för att hämta översättningar
   const { role, isAuthenticated } = useContext(AuthContext);
+
+  
+
 
   return (
     <Navbar collapseOnSelect expand="lg" className="menu navbar-dark" fixed="top">
@@ -25,7 +27,7 @@ function NavComponent() {
         <Navbar.Collapse id="responsive-navbar-nav" className="menu text-white">
           <Nav className="me-auto">
             {/* Länk till Certifieringar med översättning */}
-            <Nav.Link as={Link} to="/cert">{t('certifications')}</Nav.Link> 
+            <Nav.Link as={Link} to="/cert" className='nav-custom'>{t('certifications')}</Nav.Link> 
 
             
             <Nav.Link as={Link} to="/about">{t('about')}</Nav.Link>

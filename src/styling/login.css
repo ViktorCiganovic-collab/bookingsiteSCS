@@ -104,3 +104,12 @@ height: 100%;
     color: #2563eb; /* mörkare blå för hover */  
 
 }
+
+#loginError {
+    background: rgba(0, 0, 0, 0.55); /* halvtransparent svart */
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;  
+  margin: 10px auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);  
+}

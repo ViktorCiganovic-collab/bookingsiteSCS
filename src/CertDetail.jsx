@@ -122,10 +122,10 @@ export default function CertDetail() {
   }, [toggleTesttimes, alltesttimes]);
 
   return (
-    <div style={{ paddingTop: '60px' }}>
+    <div>
       <section className="py-5 detailSection">
         <Container>
-          <Row>
+          <Row className='content'>
             <Col md={5} className="text-center">
               <h1>{decodedCertName}</h1>
               <h3>

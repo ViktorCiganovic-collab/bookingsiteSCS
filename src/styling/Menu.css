@@ -1,23 +1,38 @@
 
 .menu {
-       
-    width: 100%;
-    background-color: var(--main-bg);    
-    color: white;    
+background: rgba(0, 0, 0, 0.605);
+  /* background-color: rgba(14, 8, 8, 0.929); */
+  color: white;
+  z-index: 10;
+}
+
+@media (max-width: 767.98px) {
+
+  .menu {
+    background-color: var(--main-bg);   
+  }
+}
+
+.navbar-collapse,
+.nav,
+.container {
+  background: transparent !important;
+}
+
+
+.navbar-toggler {
+  background-color: transparent !important;
+  border: none;
+  box-shadow: none;
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: var(--white-text) !important; 
-    
-  }
-  
-  .navbar-light .navbar-brand {
-    color: var(--white-text) !important; 
-  }
+  color: #f8f9fa !important
+}
   
   /* Hover-effekt för länkar */
   .navbar-light .navbar-nav .nav-link:hover {
-    color: #f8f9fa !important; 
+    color: rgba(255, 81, 0, 0.801) !important; 
   }
 
   @media (min-width: 992px) {
@@ -38,3 +53,4 @@
     height: 40px !important;
   }
 }
+

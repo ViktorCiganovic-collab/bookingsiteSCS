@@ -18,6 +18,7 @@ export default function ResetPasswordPage() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,8 +39,14 @@ const handleSubmit = async (e) => {
         setMessage(t('passwordUpdated'));
         setTimeout(() => navigate("/login"), 2000);
       }
-    } catch (err) {
-      setMessage(t('error'));
+    } catch (error) {
+      const err = error.response?.data;
+
+      if (err?.field && err?.message) {
+        setErrorMessage(err.message);
+      } else {
+        setErrorMessage("Ett fel uppstod. Försök igen.");
+      }
     }
   };
 
@@ -76,8 +83,17 @@ const handleSubmit = async (e) => {
           {t('saveNewPassword')}
         </button>
 
-         {message && <p role="alert" aria-live="assertive" className="mt-4 text-sm text-gray-600">{message}</p>}     
-      <Link to="/login" className="text-decoration-none mt-3 text-center text-white text-shadow-lg">{t('backToLogin')}</Link>
+ {errorMessage && (
+          <p role="alert" aria-live="assertive" className="mt-4 text-sm text-danger">
+            {errorMessage}
+          </p>
+        )}
+        {message && (
+          <p role="alert" aria-live="assertive" className="mt-4 text-sm text-success">
+            {message}
+          </p>
+        )}
+              <Link to="/login" className="text-decoration-none mt-3 text-center text-white text-shadow-lg">{t('backToLogin')}</Link>
 
       </form>
      

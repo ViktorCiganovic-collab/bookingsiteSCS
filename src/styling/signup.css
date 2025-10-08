@@ -144,3 +144,10 @@ padding-bottom: 30px;
   margin: 10px auto;
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);  
 }
+
+.responseMsg {
+    background: rgba(0, 0, 0, 0.5); /* mörk overlay */
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+}

@@ -12,7 +12,7 @@ Here are some screenshots of the project:
 
 ![Login page](./Project_images/login_page.png)
 
-![Info page](./Project_images/Info_sida.png)
+![Certificates page](./Project_images/Certificates.png)
 
 ![Signup page](./Project_images/Signup_page.png)
 

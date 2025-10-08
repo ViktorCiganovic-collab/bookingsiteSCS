@@ -19,13 +19,16 @@ function Signup() {
   const [address, setAddress] = useState('');
   const [registered, setRegistered] = useState(false);    
   const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
+  const [generalError, setGeneralError] = useState(null);
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setEmailError(null);
     setError(null);
     setRegistered(false);
-
+    setEmailError(null);
+    setPasswordError(null);
+    setGeneralError(null);
 
     try {
       const res = await axios.post('http://localhost:5011/api/account/register/', {
@@ -40,17 +43,31 @@ function Signup() {
       console.log(res.data.username + " är registererad som ny användare. Hashed password är " + res.data.password);
 
     } catch (error) {
-    console.error("Error during registration:", error);
+  const err = error.response?.data;
+  console.log("Raw error:", err);
 
-    const backendMessage = error.response?.data?.message?.toLowerCase() || '';
-
-    if (backendMessage.includes('användarnamnet') || backendMessage.includes('email')) {
-      setEmailError('Registreringen misslyckades. Användarnamnet kan redan vara taget.');
-    } else {
-      setError(t('registration_failed')); // Generellt felmeddelande
-    }
+  // Handle ASP.NET Core default validation format
+  if (err?.errors && typeof err.errors === "object") {
+    Object.entries(err.errors).forEach(([field, messages]) => {
+      const message = Array.isArray(messages) ? messages[0] : messages;
+      if (field.toLowerCase() === "email") setEmailError(message);
+      else if (field.toLowerCase() === "password") setPasswordError(message);
+      else setGeneralError(message);
+    });
   }
-  
+  // Handle custom single error format
+  else if (err?.field && err?.message) {
+    if (err.field === "email") setEmailError(err.message);
+    else if (err.field === "password") setPasswordError(err.message);
+    else if (err.field === "password_complexity") setPasswordError(err.message);
+    else setGeneralError(err.message);
+  }
+  // Fallback
+  else {
+    setGeneralError("Registreringen misslyckades. Försök igen.");
+  }
+}
+
   };
 
   return (
@@ -103,14 +120,8 @@ function Signup() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t('enterEmail')}
-                    required
-                    aria-describedby={emailError ? "emailError" : undefined}
-                  />
-                    {emailError && (
-                <Form.Text id="emailError" style={{ color: 'red' }} role="alert" aria-live="assertive">
-                  {emailError}
-                </Form.Text>
-                )}
+                    required                    
+                  />                    
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formPassword">
@@ -125,7 +136,9 @@ function Signup() {
                  
                 </Form.Group>
 
-                {error && <p id="errorMessage" style={{ color: 'red' }} role="alert" aria-live="assertive">{error}</p>}
+                {emailError && <p id="errorMessage" style={{ color: 'red' }} role="alert" aria-live="assertive">{emailError}</p>}
+                {passwordError && <p id="errorMessage" style={{ color: 'red' }} role="alert" aria-live="assertive">{passwordError}</p>}
+                {generalError && <p id="errorMessage" style={{ color: 'red' }} role="alert" aria-live="assertive">{generalError}</p>}
 
                 <Button variant="primary" type="submit">
                   {t('register')}
@@ -134,9 +147,9 @@ function Signup() {
               </Form>
 
               {registered && (
-                <div className="mt-3" role="alert" aria-live="polite">
-                    <p style={{ color: 'green' }}>{t('membership_registered')}</p>
-                    <p style={{ color: 'white' }}>{t('want_to_login')}</p>
+                <div className="mt-3">
+                    <p  className="responseMsg" style={{ color: 'green' }}>{t('membership_registered')}</p>
+                    <p className="responseMsg" style={{ color: 'white' }}>{t('want_to_login')}</p>
                   <Link to="/login" className="btn btn-primary">{t('login_button')}</Link>
                 </div>
               )}
