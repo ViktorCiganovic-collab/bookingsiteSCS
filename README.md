@@ -16,7 +16,7 @@ Here are some screenshots of the project:
 
 ![Signup page](./Project_images/Signup_page.png)
 
----
+----
 
 Key features include:
 
