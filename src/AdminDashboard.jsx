@@ -1753,10 +1753,10 @@ case 'categories':
 
 
   return (
-    <div className="adminDashboard d-flex" style={{ minHeight: '100vh', paddingTop: '60px' }}>
+    <div className="adminDashboard d-flex" style={{ minHeight: '100vh' }}>
       
       {/* Fast sidopanel på md och uppåt */}
-      <div className="d-none d-md-block">
+      <div className="d-none d-md-block" style={{marginTop: '70px'}}>
         <AdminSidebar
           activeSection={activeSection}
           setActiveSection={setActiveSection}
@@ -1795,7 +1795,7 @@ case 'categories':
 
       <main
         className="adminMainpart"
-        style={{ flexGrow: 1, overflowY: 'auto', padding: '2rem' }}
+        style={{ flexGrow: 1, overflowY: 'auto', padding: '2rem', paddingTop: '100px' }}
       >
         {renderContent()}
 

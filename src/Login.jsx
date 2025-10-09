@@ -1,4 +1,4 @@
-import Button from 'react-bootstrap/Button';
+import {Button, Spinner} from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 function Login() {
   const [username, setUsername] = useState('');  
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -21,6 +22,9 @@ function Login() {
 
   const handleSubmit = async (event) => {
   event.preventDefault();
+  setUsername('');
+  setPassword('');
+  setLoading(true);
 
   try {
     const response = await axios.post('http://localhost:5011/api/account/login', {
@@ -59,6 +63,8 @@ function Login() {
   } catch (error) {
     console.error("Fel vid login:", error);
     setError(t('error_invalid_login'));
+  } finally {
+    setLoading(false);
   }
 };
 
@@ -111,7 +117,17 @@ useEffect(() => {
               )}
 
                 <Button variant="primary" type="submit">
-                    {t('login_button')}
+                                    {loading ? (<>
+                                    <Spinner
+                                    as="span"
+                                    animation='border'
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                    />
+                                    {' '}Loading...
+                                    </>) : t('login_button')
+                                    }    
                 </Button>
                 <Link to="/forgot_password" className='text-decoration-none forgot-password text-white'>Glömt lösenord?</Link>
               </Form>

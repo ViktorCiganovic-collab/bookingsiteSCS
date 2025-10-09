@@ -1,4 +1,4 @@
-import Button from 'react-bootstrap/Button';
+import {Button, Spinner} from 'react-bootstrap';
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -21,6 +21,7 @@ function Signup() {
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
   const [generalError, setGeneralError] = useState(null);
+  const [loading, setLoading] = useState(false);
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,6 +30,7 @@ function Signup() {
     setEmailError(null);
     setPasswordError(null);
     setGeneralError(null);
+    setLoading(true);
 
     try {
       const res = await axios.post('http://localhost:5011/api/account/register/', {
@@ -66,6 +68,8 @@ function Signup() {
   else {
     setGeneralError("Registreringen misslyckades. Försök igen.");
   }
+} finally {
+  setLoading(false);
 }
 
   };
@@ -141,7 +145,18 @@ function Signup() {
                 {generalError && <p id="errorMessage" style={{ color: 'red' }} role="alert" aria-live="assertive">{generalError}</p>}
 
                 <Button variant="primary" type="submit">
-                  {t('register')}
+                  {loading ? (
+                    <>
+                    <Spinner
+                    as="span"
+                    animation='border'
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    />
+                    {' '}Loading...
+                    </>
+                  ) : ( t('register'))}
                 </Button>
 
               </Form>
