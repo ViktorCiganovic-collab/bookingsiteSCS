@@ -33,7 +33,7 @@ function App() {
 
       <section className="mainpageSectiontwo py-5">
         <Container>
-          <h2 className="text-center mb-4">{t('popular_certifications')}</h2>
+          <h2 data-aos="zoom-in" className="text-center mb-4">{t('popular_certifications')}</h2>
           <Row>
             {threeCourses.map((course, index) => (
               <Col key={index} md={4}>
@@ -50,9 +50,9 @@ function App() {
                     }}
                   />    
                   </Link>        
-                 
+                  <p className='text-white mb-1'><strong>Kategori:</strong> <span className="badge bg-primary mb-2">{course.courseName}</span></p>
+
                   <h3 className='text-white'>{course.certs[0].name}</h3>
-                  <p className='text-white'><strong>{t('category')}:</strong> {course.courseName} </p>
                   <p className='text-white'>{course.certs[0].description}</p>
                 </div>
               </Col>

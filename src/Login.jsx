@@ -9,11 +9,13 @@ import axios from "axios";
 import { jwtDecode } from 'jwt-decode';
 import { AuthContext } from './services/AuthProvider';
 import { Link } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 
 function Login() {
   const [username, setUsername] = useState('');  
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { t } = useTranslation();
@@ -99,15 +101,22 @@ useEffect(() => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3 position-relative">
             <Form.Label className='text-white'>{t('password_label')}</Form.Label>
             <Form.Control 
-              type="password" 
+              type={showPassword ? "text" : "password"} 
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
               placeholder={t('password_placeholder')} 
               aria-describedby={error ? 'loginError' : undefined}
             />
+              <div
+                        className="position-absolute"
+                        style={{ top: '70%', right: '10px', transform: 'translateY(-50%)', cursor: 'pointer', color: 'black' }}
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </div>
           </Form.Group>
 
                 {error && (

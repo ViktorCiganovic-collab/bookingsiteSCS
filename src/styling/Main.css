@@ -208,10 +208,48 @@ background: linear-gradient(135deg, #007bff, #0056b3);  border: none;
 
 
   .mainpageSectiontwo {
-    width: 100%;    
-    height: auto;
-    background-color: var(--main-bg);
+  width: 100%;    
+  height: auto;
+  padding: 60px 20px !important;
+  position: relative;
+  background-image: url('../assets/photo-1525547719571-a2d4ac8945e2.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+.mainpageSectiontwo::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.6); /* tamni overlay */
+  z-index: 0;
+}
+
+.mainpageSectiontwo > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+  .mainpageSectiontwo h2 {
+  color: #fff; /* kontrast na tamnoj pozadini */
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  letter-spacing: 0.05em;
+ text-decoration: overline;
+  text-decoration-color: #00aaff; /* boja linije */
+  text-decoration-thickness: 2px; /* debljina linije */
+  text-transform: uppercase;
   }
+
+.mainpageSectiontwo p,
+.mainpageSectiontwo .text-white {
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+}
 
   .mainpageSectionthree {
     width: 100%;
@@ -241,6 +279,9 @@ background: linear-gradient(135deg, #007bff, #0056b3);  border: none;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.05) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3) !important;
 }
 
 .course-card img {
@@ -249,10 +290,37 @@ background: linear-gradient(135deg, #007bff, #0056b3);  border: none;
   object-fit: cover;   
   border-radius: 6px;
   margin-bottom: 1rem;
-  cursor: pointer;     /* ako želiš klik */
+  cursor: pointer;    
   transition: transform 0.3s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-5px) !important;
 }
 
 .course-card img:hover {
   transform: scale(1.05); /* blago uvećanje na hover */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.course-card h3 {
+  color: #fff;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  
+}
+
+.course-card p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
 }
