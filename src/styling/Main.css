@@ -212,7 +212,8 @@ background: linear-gradient(135deg, #007bff, #0056b3);  border: none;
   height: auto;
   padding: 60px 20px !important;
   position: relative;
-  background-image: url('../assets/photo-1525547719571-a2d4ac8945e2.avif');
+  /* background-image: url('../assets/adminbg.jpg'); */
+  background-color: var(--secondary-bg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -263,6 +264,13 @@ background: linear-gradient(135deg, #007bff, #0056b3);  border: none;
   .mainpageSectionthree h1 {
     font-size: 2rem;
   }
+
+  .mainpageSectiontwo h2 {
+    text-align: center !important;
+    font-size: 1.5rem !important;
+  }
+
+
 }  
 
   .mainpageImgthree {
@@ -323,4 +331,25 @@ background: linear-gradient(135deg, #007bff, #0056b3);  border: none;
   padding: 4px 10px;
   border-radius: 12px;
   font-size: 0.75rem;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(200%);
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: -40px !important; 
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: #4B0082; 
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.carousel-indicators .active {
+  background-color: #1E90FF; 
 }
