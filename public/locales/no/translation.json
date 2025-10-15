@@ -477,7 +477,7 @@
   "resetPassword": "Tilbakestill passord",
   "accessibilityStatement": "Tilgjengelighetserklæring",
     "privacyPolicy": "Personvernerklæring",
-  "bookingTerms": "Bestillingsvilkår",
+  "bookingTerms": "Booking- og betalingsvilkår",
   
   "accessibilityTitle": "Tilgjengelighetserklæring for Scandinavian Certification Services",
   "accessibilityLastUpdated": "Sist oppdatert: {{date}}",
@@ -514,7 +514,28 @@
   "accessibilityPlanTraining": "Opplæring av utviklere i universell design og tilgjengelighetsprinsipper.",
   "accessibilityClosing": "Vi streber etter at alle brukere – uansett forutsetninger – kan booke sertifiseringer og bruke våre tjenester på en enkel, trygg og tilgjengelig måte.",
     "passwordRequirements": "Minst 8 tegn, gjerne et tall",
-  "confirmPasswordPlaceholder": "Skriv inn passordet på nytt"
+  "confirmPasswordPlaceholder": "Skriv inn passordet på nytt",
+   "cancel_exam_too_late": "Du kan ikke avbestille prøven mindre enn 48 timer før start.",   
+  "bookingTermsTitle": "Bokningsvilkår",
+  "bookingTermsLastUpdated": "Sist oppdatert {{date}}",
+  "bookingTermsCancellationTitle": "Avbestillingspolicy",
+  "bookingTermsCancellationText": "Avbestilling må skje senest 48 timer før prøvestart. Avbestillinger mindre enn 48 timer før prøven godtas ikke.",
+  "bookingTermsBookingDeadlineTitle": "Bestillingsfrist",
+  "bookingTermsBookingDeadlineText": "Bestilling må gjøres minst 24 timer før prøvestart.",
+  "bookingTermsTransactionFeeTitle": "Transaksjonsgebyr ved refusjon",
+  "bookingTermsTransactionFeeText": "Ved avbestilling trekkes et transaksjonsgebyr fra refusjonen. Dette dekker kostnader for betalingsbehandling via Stripe, vanligvis rundt 3 % + 3 NOK av bestillingsbeløpet.",
+  "bookingTermsAdditionalInfoTitle": "Tilleggsinformasjon",
+  "bookingTermsAdditionalInfoItem1": "Hvis vi utsetter prøven, blir du informert i god tid og kan booke på nytt uten ekstra kostnad.",
+  "bookingTermsAdditionalInfoItem2": "Ingen avbestilling og uteblivelse faktureres fullt beløp.",
+  "bookingTermsAdditionalInfoItem3": "Vennligst sjekk bookingbekreftelsen nøye for å sikre at all informasjon er korrekt.",
+  "bookingTermsContactTitle": "Kontakt oss",
+  "bookingTermsContactText": "Har du spørsmål om booking eller avbestilling, vennligst kontakt oss:",
+  "bookingTermsContactEmail": "E-post: {{email}}",
+  "bookingTermsContactPhone": "Telefon: {{phone}}",
+  "bookingPaymentTermsTitle": "Betalingsvilkår",
+"bookingPaymentTermsText": "Betaling skjer sikkert via Stripe. Transaksjonsgebyrer kan bli trukket ved refusjon."
+
+
 }
 
 

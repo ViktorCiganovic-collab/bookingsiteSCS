@@ -1,4 +1,4 @@
-.accessibilityPage {
+.accessibilityPage, .bookingTermsPage {
   background-color: var(--main-bg);
   padding: 40px 16px;
 }

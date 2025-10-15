@@ -475,7 +475,7 @@
   "resetPassword": "Palauta salasana",
   "accessibilityStatement": "Saavutettavuusseloste",
     "privacyPolicy": "Tietosuojaseloste",
-  "bookingTerms": "Varaus- ja käyttöehdot",
+  "bookingTerms": "Varaus- ja maksuehdot",
   
   "accessibilityTitle": "Saavutettavuusseloste Scandinavian Certification Servicesille",
   "accessibilityLastUpdated": "Viimeksi päivitetty: {{date}}",
@@ -513,7 +513,28 @@
   "accessibilityClosing": "Pyrimme siihen, että kaikki käyttäjät – riippumatta edellytyksistään – pystyvät varaamaan sertifikaatteja ja käyttämään palveluitamme helposti, turvallisesti ja saavutettavasti.",
 
     "passwordRequirements": "Vähintään 8 merkkiä, mieluiten numero",
-  "confirmPasswordPlaceholder": "Kirjoita salasana uudelleen"
+  "confirmPasswordPlaceholder": "Kirjoita salasana uudelleen",
+    "cancel_exam_too_late": "Et voi peruuttaa koetta alle 48 tuntia ennen alkamista.",
+    
+  "bookingTermsTitle": "Varaus- ja peruutusehdot",
+  "bookingTermsLastUpdated": "Viimeksi päivitetty {{date}}",
+  "bookingTermsCancellationTitle": "Peruutusehdot",
+  "bookingTermsCancellationText": "Peruutus on tehtävä viimeistään 48 tuntia ennen testin alkamista. Peruutuksia, jotka tehdään alle 48 tuntia ennen testiä, ei hyväksytä.",
+  "bookingTermsBookingDeadlineTitle": "Varauksen viimeinen hetki",
+  "bookingTermsBookingDeadlineText": "Varaus on tehtävä vähintään 24 tuntia ennen testin alkamista.",
+  "bookingTermsTransactionFeeTitle": "Käsittelymaksu hyvityksissä",
+  "bookingTermsTransactionFeeText": "Peruutuksen yhteydessä hyvityksestä vähennetään käsittelymaksu. Tämä kattaa maksujen käsittelykulut Stripe-palvelun kautta, yleensä noin 3 % + 3 € varauksen summasta.",
+  "bookingTermsAdditionalInfoTitle": "Lisätietoja",
+  "bookingTermsAdditionalInfoItem1": "Jos testi siirtyy, sinulle ilmoitetaan hyvissä ajoin ja voit tehdä uuden varauksen ilman lisäkustannuksia.",
+  "bookingTermsAdditionalInfoItem2": "Ilmoittautumatta jäämisestä tai peruutuksetta jäämisestä veloitetaan koko hinta.",
+  "bookingTermsAdditionalInfoItem3": "Tarkista varausvahvistus huolellisesti varmistaaksesi, että kaikki tiedot ovat oikein.",
+  "bookingTermsContactTitle": "Ota yhteyttä",
+  "bookingTermsContactText": "Jos sinulla on kysyttävää varauksesta tai peruutuksesta, ota yhteyttä:",
+  "bookingTermsContactEmail": "Sähköposti: {{email}}",
+  "bookingTermsContactPhone": "Puhelin: {{phone}}",
+  "bookingPaymentTermsTitle": "Maksuehdot",
+"bookingPaymentTermsText": "Maksu suoritetaan turvallisesti Stripen kautta. Palautuksen yhteydessä voidaan periä transaktiomaksu."
+
 }
 
 

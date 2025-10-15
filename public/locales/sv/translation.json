@@ -506,7 +506,7 @@
   "resetPassword": "Återställ lösenord",
   "accessibilityStatement": "Tillgänglighetsredogörelse",
   "privacyPolicy": "Integritetspolicy",
-"bookingTerms": "Bokningsvillkor",
+"bookingTerms": "Boknings- och betalvillkor",
 
 "accessibilityTitle": "Tillgänglighetsredogörelse för Scandinavian Certification Services",
 "accessibilityLastUpdated": "Senast uppdaterad: {{date}}",
@@ -544,8 +544,26 @@
 "accessibilityClosing": "Vi strävar efter att alla användare – oavsett förutsättningar – ska kunna boka certifieringar och använda våra tjänster på ett enkelt, säkert och tillgängligt sätt.",
 
   "passwordRequirements": "Minst 8 tecken, gärna en siffra",
-  "confirmPasswordPlaceholder": "Skriv lösenordet igen"
-
+  "confirmPasswordPlaceholder": "Skriv lösenordet igen",
+    "cancel_exam_too_late": "Du kan inte avboka provet mindre än 48 timmar innan start.",    
+  "bookingTermsTitle": "Bokningsvillkor",
+  "bookingTermsLastUpdated": "Senast uppdaterad {{date}}",
+  "bookingTermsCancellationTitle": "Avbokningspolicy",
+  "bookingTermsCancellationText": "Avbokning måste ske senast 48 timmar före provstart. Avbokningar mindre än 48 timmar innan test accepteras inte.",
+  "bookingTermsBookingDeadlineTitle": "Bokningsdeadline",
+  "bookingTermsBookingDeadlineText": "Bokning måste göras minst 24 timmar före provstart.",
+  "bookingTermsTransactionFeeTitle": "Transaktionsavgift vid återbetalning",
+  "bookingTermsTransactionFeeText": "Vid avbokning dras en transaktionsavgift från återbetalningen. Den täcker kostnader för betalningshantering via Stripe, vanligtvis cirka 3 % + 3 kr av bokningsbeloppet.",
+  "bookingTermsAdditionalInfoTitle": "Ytterligare information",
+  "bookingTermsAdditionalInfoItem1": "Om vi skjuter upp provet meddelas du i god tid och kan boka om utan extra kostnad.",
+  "bookingTermsAdditionalInfoItem2": "Ingen avbokning och uteblivet prov debiteras fullt pris.",
+  "bookingTermsAdditionalInfoItem3": "Kontrollera noga din bokningsbekräftelse för att säkerställa att alla uppgifter är korrekta.",
+  "bookingTermsContactTitle": "Kontakta oss",
+  "bookingTermsContactText": "Har du frågor om bokning eller avbokning, vänligen kontakta oss:",
+  "bookingTermsContactEmail": "E-post: {{email}}",
+  "bookingTermsContactPhone": "Telefon: {{phone}}",
+  "bookingPaymentTermsTitle": "Betalningsvillkor",
+"bookingPaymentTermsText": "Betalning sker säkert via Stripe. Transaktionsavgifter kan tillkomma vid återbetalning."
 
 }
 

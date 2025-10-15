@@ -15,7 +15,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
-
+import dayjs from "dayjs";
 
 function UserDashboard() {
   const { role, setRole, isAuthenticated, setIsAuthenticated, token, email } = useContext(AuthContext);
@@ -30,6 +30,7 @@ function UserDashboard() {
   const [showOldPassword, setShowOldPassword] = useState(false);  
   const [showNewPassword, setShowNewPassword] = useState(false); 
   const [showToast, setShowToast] = useState(false);
+  const [tooLateToCancel, setTooLateToCancel] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userData, setUserData] = useState({});
 
@@ -177,13 +178,29 @@ function UserDashboard() {
 
  const cancelTesttime = async (bookingId) => {
   const token = localStorage.getItem("token");
+  const now = dayjs();
 
   const cancelledBooking = bookings.find(booking => booking.id === bookingId);  
-
+   
   if (!cancelledBooking) {
     console.error("Bokning hittades inte.");
     return;
   }  
+
+  const examStart = dayjs(cancelledBooking.examDate);
+  const hoursDiff = examStart.diff(now, "hour");
+
+  if (hoursDiff < 48) {
+    setError(t('cancel_exam_too_late'));
+    setCancelMessageType("failed");
+    setShowToast(true); // Visa toast
+    setTimeout(() => {
+      setShowToast(false);
+      setCancelMessageType(null);
+      setError(null);
+    }, 5000);
+    return;
+  }
 
       setLoadingCancel(true); // Starta loading
     setShowCancelModal(false); // Stäng modal direkt när man trycker "Ja"
@@ -558,18 +575,23 @@ const changePassword = async (event) => {
         <h2 data-aos="fade-down" data-aos-duration="700" className='headtitle'>{t('welcomeUserDashboard', 'Välkommen till din dashboard')}!</h2>
 
                 {cancelMessageType && (
-          <div
-            className={`alert ${
-              cancelMessageType === 'success' ? 'alert-success' : 'alert-danger'
-            }`}
-            role="alert"
-            aria-live="assertive"
-          >
-            {cancelMessageType === 'success'
-              ? t('booking_cancelled_success', 'Bokning avbokad och återbetalning genomförd.')
-              : t('booking_cancelled_error', 'Något gick fel. Kontakta Scandinavian Certification Services AB på support@scandinavian-cert.se.')}
-          </div>
-        )}
+  <div
+    className={`alert ${
+      cancelMessageType === 'success'
+        ? 'alert-success'
+        : cancelMessageType === 'failed'
+        ? 'alert-warning'
+        : 'alert-danger'
+    }`}
+    role="alert"
+    aria-live="assertive"
+  >
+    {cancelMessageType === 'success' && t('booking_cancelled_success', 'Bokning avbokad och återbetalning genomförd.')}
+    {cancelMessageType === 'failed' && error /* Visa t.ex. "Du kan inte avboka..." */}
+    {cancelMessageType === 'error' && t('booking_cancelled_error', 'Något gick fel. Kontakta Scandinavian Certification Services AB på support@scandinavian-cert.se.')}
+  </div>
+)}
+
 
         {/*Bokningarna ska visas här nedanför*/}
         {expanded.bookings && (
@@ -794,28 +816,12 @@ const changePassword = async (event) => {
           </button>
         </div>
 
-            </form>
+            </form>              
 
-                  {/* Toast för feedback */}
-      <ToastContainer position="top-center" className="p-3" aria-live="polite" aria-atomic="true">
-        <Toast
-          onClose={() => setShowToast(false)}
-          show={showToast}
-          delay={4000}
-          autohide
-          bg="success"
-        >
-          <Toast.Header>
-            <strong className="me-auto">Klart!</strong>
-          </Toast.Header>
-          <Toast.Body className="text-white">{response}</Toast.Body>
-        </Toast>
-      </ToastContainer>
              {error && <p className="svarsMeddelande mt-3 text-danger text-center">❌ {error}</p>}
 
           </div>
         )}
-
 
                {/* Modal: Bekräfta avbokning */}
         <Modal show={showCancelModal} onHide={() => setShowCancelModal(false)} aria-labelledby="cancel-modal-label" centered>

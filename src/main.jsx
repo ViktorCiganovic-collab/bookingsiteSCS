@@ -23,6 +23,7 @@ import UserDashboard from './UserDashboard.jsx';
 import Booking from './Booking.jsx';
 import InfoPage from './InfoPage.jsx';
 import Accessibility from './Accessibility.jsx';
+import BookingTermsPage from './BookingTerms.jsx';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
       {
         path: 'accessibility',
         element: <Accessibility />
+      },
+      {
+        path: 'booking-terms',
+        element: <BookingTermsPage />
       }
     ],
   },

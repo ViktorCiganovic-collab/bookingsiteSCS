@@ -8,6 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 import Spinner from 'react-bootstrap/Spinner';
 import { useTranslation } from 'react-i18next';
 import axios from "axios";
+import dayjs from "dayjs";
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -97,7 +98,12 @@ const Booking = () => {
     setAccprice((prev) => prev + (checked ? 100 : -100));
   };
 
-  const handleBooking = async () => {
+  const handleBooking = async () => {   
+
+  const now = dayjs();
+  const examStart = dayjs(`${testTime.testDate}T${testTime.examStartingTime}`);
+  const hoursDiff = examStart.diff(now, "hour");  
+
   if (!stripe || !elements) {
     setError(t('stripe_not_ready'));
     return;
@@ -106,6 +112,11 @@ const Booking = () => {
   const token = localStorage.getItem("token");
   if (!token) {
     setError(t('not_logged_in'));
+    return;
+  }
+
+  if (hoursDiff < 24) {
+    setError("Bokning stängd. Du måste boka minst 24 timmar före testtstart.");
     return;
   }
 

@@ -19,7 +19,7 @@ function Footer() {
           </Col>
           <Col md={6} className="text-md-end">
              <Link to="/integritetspolicy" style={{textDecoration: 'none', color: '#fff'}}>{t('privacyPolicy')}</Link> &nbsp;|&nbsp; 
-    <Link to="/bookingterms" style={{textDecoration: 'none', color: '#fff'}}>{t('bookingTerms')}</Link> &nbsp;|&nbsp; 
+    <Link to="/booking-terms" style={{textDecoration: 'none', color: '#fff'}}>{t('bookingTerms')}</Link> &nbsp;|&nbsp; 
     <Link to="/accessibility" style={{textDecoration: 'none', color: '#fff'}}>{t('accessibilityStatement')}</Link>
           </Col>
         </Row>

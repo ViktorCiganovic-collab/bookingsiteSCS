@@ -477,7 +477,7 @@
   "resetPassword": "Nulstil adgangskode",
    "accessibilityStatement": "Tilgængelighedserklæring",
      "privacyPolicy": "Privatlivspolitik",
-  "bookingTerms": "Vilkår for booking",
+  "bookingTerms": "Booking- og betalingsbetingelser",
   
   "accessibilityTitle": "Tilgængelighedserklæring for Scandinavian Certification Services",
   "accessibilityLastUpdated": "Senest opdateret: {{date}}",
@@ -514,7 +514,28 @@
   "accessibilityPlanTraining": "Uddannelse af udviklere i universel design og tilgængelighedsprincipper.",
   "accessibilityClosing": "Vi stræber efter, at alle brugere – uanset forudsætninger – kan booke certificeringer og bruge vores tjenester på en enkel, sikker og tilgængelig måde.",
    "passwordRequirements": "Mindst 8 tegn, helst et tal",
-  "confirmPasswordPlaceholder": "Skriv adgangskoden igen"
+  "confirmPasswordPlaceholder": "Skriv adgangskoden igen",
+    "cancel_exam_too_late": "Du kan ikke aflyse prøven mindre end 48 timer før start.",
+    
+  "bookingTermsTitle": "Bookingbetingelser",
+  "bookingTermsLastUpdated": "Sidst opdateret {{date}}",
+  "bookingTermsCancellationTitle": "Afbestillingspolitik",
+  "bookingTermsCancellationText": "Afbestilling skal ske senest 48 timer før prøvens start. Afbestillinger mindre end 48 timer før prøven accepteres ikke.",
+  "bookingTermsBookingDeadlineTitle": "Bookingfrist",
+  "bookingTermsBookingDeadlineText": "Booking skal foretages mindst 24 timer før prøvens start.",
+  "bookingTermsTransactionFeeTitle": "Transaktionsgebyr ved refundering",
+  "bookingTermsTransactionFeeText": "Ved afbestilling trækkes et transaktionsgebyr fra refusionen. Det dækker omkostninger til betalingsbehandling via Stripe, normalt omkring 3 % + 3 DKK af bookingbeløbet.",
+  "bookingTermsAdditionalInfoTitle": "Yderligere information",
+  "bookingTermsAdditionalInfoItem1": "Hvis vi udskyder prøven, informeres du i god tid og kan ombooke uden ekstra omkostninger.",
+  "bookingTermsAdditionalInfoItem2": "Ingen afbestilling og udeblivelse faktureres til fuld pris.",
+  "bookingTermsAdditionalInfoItem3": "Kontroller venligst din bookingbekræftelse for at sikre, at alle oplysninger er korrekte.",
+  "bookingTermsContactTitle": "Kontakt os",
+  "bookingTermsContactText": "Har du spørgsmål om booking eller afbestilling, kontakt os venligst:",
+  "bookingTermsContactEmail": "E-mail: {{email}}",
+  "bookingTermsContactPhone": "Telefon: {{phone}}",
+  "bookingPaymentTermsTitle": "Betalingsbetingelser",
+"bookingPaymentTermsText": "Betaling sker sikkert via Stripe. Transaktionsgebyrer kan blive trukket ved refundering."
+
 }
 
 
