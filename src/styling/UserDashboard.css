@@ -71,6 +71,14 @@
   border-radius: 8px;
 }
 
+.errorMsg {
+   background: rgba(0, 0, 0, 0.5); /* mörk overlay */
+   max-width: 400px;
+   padding: 0.3rem 0.6rem;
+   border-radius: 8px;
+   text-align: center;
+}
+
   .svarsMeddelande {
   background: rgba(0, 0, 0, 0.9); /* mörk overlay */
   color: #fff;

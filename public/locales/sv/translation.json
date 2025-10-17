@@ -563,7 +563,11 @@
   "bookingTermsContactEmail": "E-post: {{email}}",
   "bookingTermsContactPhone": "Telefon: {{phone}}",
   "bookingPaymentTermsTitle": "Betalningsvillkor",
-"bookingPaymentTermsText": "Betalning sker säkert via Stripe. Transaktionsavgifter kan tillkomma vid återbetalning."
+"bookingPaymentTermsText": "Betalning sker säkert via Stripe. Transaktionsavgifter kan tillkomma vid återbetalning.",
+  "error_unauthorized": "Du är inte inloggad.",
+  "error_server": "Ett serverfel uppstod. Försök igen senare.",
+  "error_unknown": "Ett okänt fel uppstod vid hämtning.",
+  "error_network": "Kunde inte kontakta servern. Kontrollera din internetanslutning."
 
 }
 

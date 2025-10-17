@@ -533,7 +533,12 @@
   "bookingTermsContactEmail": "Sähköposti: {{email}}",
   "bookingTermsContactPhone": "Puhelin: {{phone}}",
   "bookingPaymentTermsTitle": "Maksuehdot",
-"bookingPaymentTermsText": "Maksu suoritetaan turvallisesti Stripen kautta. Palautuksen yhteydessä voidaan periä transaktiomaksu."
+"bookingPaymentTermsText": "Maksu suoritetaan turvallisesti Stripen kautta. Palautuksen yhteydessä voidaan periä transaktiomaksu.",
+"ingaBokningar": "Varauksia ei löytynyt.",
+  "error_unauthorized": "Et ole kirjautunut sisään.",
+  "error_server": "Palvelimella tapahtui virhe. Yritä myöhemmin uudelleen.",
+  "error_unknown": "Tuntematon virhe tapahtui haun aikana.",
+  "error_network": "Palvelimeen ei saatu yhteyttä. Tarkista internet-yhteytesi."
 
 }
 

@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import './styling/signup.css';
+import ReCAPTCHA from "react-google-recaptcha";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 function Signup() {
   const { t } = useTranslation();
@@ -14,6 +16,8 @@ function Signup() {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState('');
+  const [captchaToken, setCaptchaToken] = useState("");
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');  
   const [address, setAddress] = useState('');
@@ -32,13 +36,21 @@ function Signup() {
     setGeneralError(null);
     setLoading(true);
 
+        if (!captchaToken) {
+      alert("Verifiera att du inte är en robot!");
+      return;
+    }
+
+    console.log("Captcha token before submit:", captchaToken);       
+
     try {
       const res = await axios.post('http://localhost:5011/api/account/register/', {
         email,
         password,
         firstName,
         lastName,        
-        address
+        address,
+        captchaToken
       }); 
       setRegistered(true);
       setError(null);
@@ -128,17 +140,32 @@ function Signup() {
                   />                    
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formPassword">
-                  <Form.Label>{t('password')}</Form.Label>
+                <Form.Group className="mb-3 position-relative" controlId="formPassword">
+                  <Form.Label className='text-white'>{t('password')}</Form.Label>
                   <Form.Control
-                    type="password"
+                    type={showPassword ? "text" : "password"} 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder={t('enterPassword')}
                     required
                   />
+                   <div
+                        className="position-absolute"
+                        style={{ top: '70%', right: '10px', transform: 'translateY(-50%)', cursor: 'pointer', color: 'black' }}
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </div>
                  
                 </Form.Group>
+
+                <div className="recaptcha-wrapper w-100 mb-2">
+                <ReCAPTCHA
+                  sitekey="6LdwVu0rAAAAAPqnYSZIX5tt6fQpzW1x1oEFLS2U"
+                  onChange={(token) => setCaptchaToken(token)}
+                  className='mb-3 g-recaptcha'
+                />
+                </div>
 
                 {emailError && <p id="errorMessage" style={{ color: 'red' }} role="alert" aria-live="assertive">{emailError}</p>}
                 {passwordError && <p id="errorMessage" style={{ color: 'red' }} role="alert" aria-live="assertive">{passwordError}</p>}

@@ -119,24 +119,51 @@ function UserDashboard() {
   };
 
   useEffect(() => {
-    if (expanded.bookings && isAuthenticated) {
-      setLoadingBookings(true);
-      setErrorBookings(null);
-      axios.get(`http://localhost:5011/api/booking/mybookings?email=${email}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
+  if (expanded.bookings && isAuthenticated) {
+    setLoadingBookings(true);
+    setErrorBookings(null);
+
+    axios.get(`http://localhost:5011/api/booking/mybookings?email=${email}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(res => {
+      console.log('Svar från server:', res); // Logga hela response-objektet
+      setBookings(res.data || []);
+      setLoadingBookings(false);
+    })
+    .catch(err => {
+      console.error("Fel vid hämtning av bokningar:", err);
+
+      if (err.response) {
+        const status = err.response.status;
+        console.log('Statuskod:', status);
+        console.log('Felmeddelande från server:', err.response.data);
+
+        if (status === 401) {
+          setErrorBookings(t('error_unauthorized', 'Du är inte inloggad.'));
+        } else if (status >= 500) {
+          setErrorBookings(t('error_server', 'Ett serverfel uppstod. Försök igen senare.'));
+        } else {
+          setErrorBookings(t('error_unknown', 'Ett okänt fel uppstod vid hämtning.'));
         }
-      })
-      .then(res => {
-        setBookings(res.data);
-        setLoadingBookings(false);        
-      })
-      .catch(err => {
-        setErrorBookings(t('error_could_not_fetch_bookings'));
-        setLoadingBookings(false);
-      });
-    }
-  }, [expanded.bookings, isAuthenticated, token]);
+
+      } else if (err.request) {
+        // Nätverksfel – servern svarar inte alls
+        console.log('Request gjord men inget svar från server');
+        setErrorBookings(t('error_network', 'Kunde inte kontakta servern. Kontrollera din internetanslutning.'));
+      } else {
+        console.log('Fel vid konfiguration av request:', err.message);
+        setErrorBookings(t('error_unknown', 'Ett okänt fel uppstod vid hämtning.'));
+      }
+
+      setBookings([]);
+      setLoadingBookings(false);
+    });
+  }
+}, [expanded.bookings, isAuthenticated, token, email, t]);
+
 
   //Hämta användardata vid inloggning
   useEffect(() => {
@@ -603,9 +630,12 @@ const changePassword = async (event) => {
         <p>{t('laddarBokningar', 'Laddar bokningar...')}</p>
       </div>
     )}
-    {errorBookings && <p style={{ color: 'red' }}>{errorBookings}</p>}
-    {!loadingBookings && bookings.length === 0 && (
-      <p>{t('ingaBokningar', 'Inga bokningar hittades.')}</p>
+    {!loadingBookings && errorBookings && (
+  <p style={{ color: 'red' }} className="errorMsg">{errorBookings}</p>
+    )}
+
+    {!loadingBookings && !errorBookings && bookings.length === 0 && (
+      <p style={{color: 'red'}} className="errorMsg">{t('ingaBokningar', 'Inga bokningar hittades.')}</p>
     )}
 
     <h5 id="bookings-heading">{t('dinaTestbokningar')}</h5>

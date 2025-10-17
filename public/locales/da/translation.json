@@ -534,7 +534,12 @@
   "bookingTermsContactEmail": "E-mail: {{email}}",
   "bookingTermsContactPhone": "Telefon: {{phone}}",
   "bookingPaymentTermsTitle": "Betalingsbetingelser",
-"bookingPaymentTermsText": "Betaling sker sikkert via Stripe. Transaktionsgebyrer kan blive trukket ved refundering."
+"bookingPaymentTermsText": "Betaling sker sikkert via Stripe. Transaktionsgebyrer kan blive trukket ved refundering.",
+"ingaBokningar": "Ingen reservationer blev fundet.",
+  "error_unauthorized": "Du er ikke logget ind.",
+  "error_server": "Der opstod en serverfejl. Prøv igen senere.",
+  "error_unknown": "Der opstod en ukendt fejl ved hentning.",
+  "error_network": "Kunne ikke kontakte serveren. Kontroller din internetforbindelse."
 
 }
 

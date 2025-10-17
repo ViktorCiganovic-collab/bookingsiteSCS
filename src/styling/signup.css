@@ -151,3 +151,16 @@ padding-bottom: 30px;
   padding: 0.3rem 0.6rem;
   border-radius: 8px;
 }
+
+/* För att skala ner reCAPTCHA på mindre skärmar */
+@media (max-width: 480px) {
+  .g-recaptcha {
+    transform: scale(0.85); /* Justera till mindre om det behövs */
+    transform-origin: 0 0;
+  }
+}
+
+.recaptcha-wrapper {
+  max-width: 100%;
+  overflow: hidden;
+}
