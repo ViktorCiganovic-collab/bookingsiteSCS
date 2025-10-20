@@ -4,27 +4,37 @@ import './styling/ForgotPasswordPage.css';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {Spinner} from 'react-bootstrap';
-
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+    const [captchaToken, setCaptchaToken] = useState("");  
   const { t } = useTranslation();
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setEmail('');
+    e.preventDefault();    
     setMessage('');
     setLoading(true);
 
+         if (!captchaToken) {
+      setMessage(t("pleaseVerifyCaptcha") || "Vänligen verifiera att du inte är en robot.");
+      setLoading(false);
+      return;
+    }
+
     try {
-      await axios.post("http://localhost:5011/api/account/forgot_password", { email });
+      await axios.post("http://localhost:5011/api/account/forgot_password", { email, captchaToken });
       setMessage(t('emailSent'));
+      setEmail('');
+      setCaptchaToken(""); 
     } catch (err) {
+      console.error("Fel vid återställningsbegäran:", err);
       setMessage(t('error'));
+      setCaptchaToken("");
     } finally {
       setLoading(false);
     }
@@ -44,6 +54,14 @@ export default function ForgotPasswordPage() {
           className="w-full p-2 border rounded mb-4"
           required
         />
+
+            <div className="recaptcha-wrapper w-100 mb-2">
+                <ReCAPTCHA
+                  sitekey="6LdwVu0rAAAAAPqnYSZIX5tt6fQpzW1x1oEFLS2U"
+                  onChange={(token) => setCaptchaToken(token)}
+                  className='mb-3 g-recaptcha'
+                />
+                </div>
         <button type="submit" className="btn btn-primary w-100 text-white py-2 rounded">
                                              {loading ? (<>
                                     <Spinner

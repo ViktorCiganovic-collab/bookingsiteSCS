@@ -538,7 +538,9 @@
   "error_unauthorized": "Et ole kirjautunut sisään.",
   "error_server": "Palvelimella tapahtui virhe. Yritä myöhemmin uudelleen.",
   "error_unknown": "Tuntematon virhe tapahtui haun aikana.",
-  "error_network": "Palvelimeen ei saatu yhteyttä. Tarkista internet-yhteytesi."
+  "error_network": "Palvelimeen ei saatu yhteyttä. Tarkista internet-yhteytesi.",
+  "pleaseVerifyCaptcha": "Vahvista, ettet ole robotti.",  
+  "error_account_locked": "Tilisi on tilapäisesti lukittu. Yritä uudelleen 15 minuutin kuluttua.",
 
 }
 

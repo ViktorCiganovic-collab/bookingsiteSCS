@@ -538,7 +538,9 @@
   "error_unauthorized": "Du er ikke logget inn.",
   "error_server": "Det oppstod en serverfeil. Prøv igjen senere.",
   "error_unknown": "Det oppstod en ukjent feil ved henting.",
-  "error_network": "Kunne ikke kontakte serveren. Sjekk internettforbindelsen din."
+  "error_network": "Kunne ikke kontakte serveren. Sjekk internettforbindelsen din.",  
+  "error_account_locked": "Kontoen din er midlertidig låst. Vennligst prøv igjen om 15 minutter.",
+  "pleaseVerifyCaptcha": "Vennligst bekreft at du ikke er en robot."
 
 
 }

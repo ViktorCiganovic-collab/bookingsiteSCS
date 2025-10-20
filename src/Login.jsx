@@ -23,9 +23,7 @@ function Login() {
   const { role, setRole, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
   const handleSubmit = async (event) => {
-  event.preventDefault();
-  setUsername('');
-  setPassword('');
+  event.preventDefault();  
   setLoading(true);
 
   try {
@@ -53,6 +51,9 @@ function Login() {
         setIsAuthenticated(true);
         console.log("Admin-access bekräftad:");
         navigate('/admin');  
+
+        setUsername('');
+        setPassword('');
       }
 
     // Om vi har en token men inte admin, gå till user
@@ -60,11 +61,26 @@ function Login() {
       setRole('User');
       setIsAuthenticated(true);
       navigate('/user');
+
+      setUsername('');
+      setPassword('');
     }
 
   } catch (error) {
     console.error("Fel vid login:", error);
-    setError(t('error_invalid_login'));
+    if (error.response && error.response.data) {
+  const { error: apiError, message } = error.response.data;
+
+  if (apiError === "account_locked") {
+    setError(t('error_account_locked') || message);
+  } else if (apiError === "invalid_credentials") {
+    setError(t('error_invalid_login') || message);
+  } else {
+    setError(t('error_unknown') || "Ett okänt fel uppstod.");
+  }
+} else {
+  setError(t('error_network') || "Kunde inte kontakta servern.");
+}
   } finally {
     setLoading(false);
   }
