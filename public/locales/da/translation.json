@@ -542,6 +542,7 @@
   "error_network": "Kunne ikke kontakte serveren. Kontroller din internetforbindelse.",
   "pleaseVerifyCaptcha": "Bekræft venligst, at du ikke er en robot.",  
   "error_account_locked": "Din konto er midlertidigt låst. Prøv igen om 15 minutter.",
+    "support": "Hjælp"
 
 
 

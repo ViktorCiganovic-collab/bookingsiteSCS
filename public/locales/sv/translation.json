@@ -569,6 +569,7 @@
   "error_unknown": "Ett okänt fel uppstod vid hämtning.",
   "error_network": "Kunde inte kontakta servern. Kontrollera din internetanslutning.",
   "pleaseVerifyCaptcha": "Vänligen verifiera att du inte är en robot.",  
-  "error_account_locked": "Ditt konto är tillfälligt låst. Försök igen om 15 minuter."
+  "error_account_locked": "Ditt konto är tillfälligt låst. Försök igen om 15 minuter.",
+  "support": "Hjälp"
 }
 

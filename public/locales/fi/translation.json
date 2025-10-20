@@ -541,6 +541,7 @@
   "error_network": "Palvelimeen ei saatu yhteyttä. Tarkista internet-yhteytesi.",
   "pleaseVerifyCaptcha": "Vahvista, ettet ole robotti.",  
   "error_account_locked": "Tilisi on tilapäisesti lukittu. Yritä uudelleen 15 minuutin kuluttua.",
+  "support": "Apua"
 
 }
 

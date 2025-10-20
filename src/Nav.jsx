@@ -34,7 +34,7 @@ function NavComponent() {
           </Nav>
           <Nav>
             
-            <Nav.Link as={Link} to="/signup">{t('sign_up')}</Nav.Link>
+            {isAuthenticated ? <Nav.Link as={Link} to="/info">{t('support')}</Nav.Link> : <Nav.Link as={Link} to="/signup">{t('sign_up')}</Nav.Link>}
 
             {isAuthenticated && role === 'Admin' &&
             ( 
