@@ -129,8 +129,15 @@ function UserDashboard() {
       }
     })
     .then(res => {
-      console.log('Svar från server:', res); // Logga hela response-objektet
-      setBookings(res.data || []);
+      console.log('Svar från server:', res.status); // Logga hela response-objektet  
+      
+      if (res.status === 204 || !res.data || res.data.length === 0) {
+        setBookings([]);
+        setErrorBookings("Inga bokningar hittades")
+      } 
+      else {
+        setBookings(res.data || []);
+      }
       setLoadingBookings(false);
     })
     .catch(err => {
