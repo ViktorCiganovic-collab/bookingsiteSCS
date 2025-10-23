@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Button, Offcanvas, Modal } from 'react-bootstrap';
+import { Button, Offcanvas, Modal, Form } from 'react-bootstrap';
 import AdminSidebar from './AdminSidebar';
 import QuarterlyChart from './services/QuarterlyChart';
 import CertBookingChart from './services/CertBookingChart';
@@ -29,6 +29,8 @@ const AdminDashboard = () => {
   const [certDesc, setCertDesc] = useState('');
   const [price, setPrice] = useState('');
   const [certId, setCertId] = useState('');
+  const [sortOrder, setSortOrder] = useState('descending');
+  const [sortedTests, setSortedTests] = useState([]);
   const [starttime, setStarttime] = useState('');
   const [endtime, setEndtime] = useState(''); 
   const [testTimeId, setTestTimeId] = useState('');
@@ -371,6 +373,24 @@ console.log('isPassed:', testDateOnly < today);
   }
 }; 
 
+ useEffect(() => {
+  if (!testtimes || testtimes.length === 0) return;
+
+  const sorted = [...testtimes].sort((a, b) => {
+    const dateA = new Date(`${a.testDate.split('T')[0]}T${a.examStartingTime}`);
+    const dateB = new Date(`${b.testDate.split('T')[0]}T${b.examStartingTime}`);
+
+    return sortOrder === 'ascending' ? dateA - dateB : dateB - dateA;
+  });
+
+  setSortedTests(sorted);
+}, [testtimes, sortOrder]);
+
+
+  const handleSortChange = (e) => {
+    setSortOrder(e.target.value);
+  };
+
   const Addnewtesttime = async (event) => {
       event.preventDefault();
 
@@ -522,9 +542,17 @@ const UpdateTesttime = async (event) => {
     setError('');
     setResponse('');
 
-    
+    const token = localStorage.getItem('token');
+        if (!token) {
+      setError("Ingen token hittades. Du är inte inloggad.");
+      return;
+    }    
     const url = `http://localhost:5011/api/cert/discount/${certId}`;    
-    await axios.put(url, { isDiscount: activate });
+    await axios.put(url, { isDiscount: activate }, 
+      {
+        headers: {Authorization: `Bearer ${token}`}
+      }
+    );
 
     const res = await axios.get('http://localhost:5011/api/cert');
     setCertificates(res.data);
@@ -1150,7 +1178,15 @@ case 'testtimes':
       ) : error ? (
         <p style={{ color: 'red' }}>{error}</p>
       ) : (
+       
         <div className="table-responsive d-none d-md-block">
+               <Form.Group controlId="sortSelect" className="mb-3 w-50">
+      <Form.Label>Sortering</Form.Label>
+      <Form.Select value={sortOrder} onChange={handleSortChange }>
+        <option value="ascending">Tidigare testtider först</option>
+        <option value="descending">Senare testtider först</option>
+      </Form.Select>
+    </Form.Group>
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -1160,7 +1196,7 @@ case 'testtimes':
               </tr>
             </thead>
             <tbody>
-              {testtimes.map((testtime) => {
+              {sortedTests.map((testtime) => {
                 return (
                   <tr
                     key={testtime.id}
@@ -1223,7 +1259,14 @@ case 'testtimes':
 
       {/* --- Cards for mobile --- */}
 <div className="d-md-none">
-  {testtimes.map((testtime) => (
+  <Form.Group controlId="sortSelect" className="mb-3 w-50">
+      <Form.Label>Sortering</Form.Label>
+      <Form.Select value={sortOrder} onChange={handleSortChange }>
+        <option value="ascending">Tidigare testtider först</option>
+        <option value="descending">Senare testtider först</option>
+      </Form.Select>
+    </Form.Group>
+  {sortedTests.map((testtime) => (
     <div key={testtime.id} className={`card mb-3 p-3 ${testtime.isPassed ? 'border-secondary' : ''}`}>
       <h5 className={testtime.isPassed ? 'text-muted' : ''}>
         {testtime.formattedStartTime} - {testtime.formattedEndTime}
