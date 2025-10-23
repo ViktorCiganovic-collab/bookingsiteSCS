@@ -366,26 +366,7 @@ const changePassword = async (event) => {
           
         </div>
 
-                <div className="sidebar-group">
-          <div
-            role="button"
-            tabIndex={0}
-            aria-expanded={expanded.testtimes ? 'true' : 'false'}
-            aria-controls="section-testtimes"
-            onClick={() => toggleSection('testtimes')}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') toggleSection('testtimes');
-            }}
-            className="sidebar-title"
-          >
-            ⏰ {t('testtillfallen', 'Testtillfällen')}
-          </div>
-          {expanded.testtimes && (
-            <Nav.Link className="sidebar-link" tabIndex={0} aria-label={t('visaTesttillfallen', 'Visa testtillfällen')}>
-              {t('visaTesttillfallen', 'Visa testtillfällen')}
-            </Nav.Link>
-          )}
-        </div>
+               
 
 
         <div className="sidebar-group">
@@ -404,27 +385,7 @@ const changePassword = async (event) => {
         </div>         
       </div>
 
-          <div className="sidebar-group">
-      <div
-        role="button"
-        tabIndex={0}
-        aria-expanded={expanded.certificates ? 'true' : 'false'}
-        aria-controls="section-certificates"
-        onClick={() => toggleSection('certificates')}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') toggleSection('certificates');
-        }}
-        className="sidebar-title"
-      >
-        🎓 {t('certificates')}    
-      </div>
-      {expanded.certificates && (
-        <Nav.Link className="sidebar-link" tabIndex={0}
-              aria-label={t('test_sessions', 'Testsessioner')}>
-          ⏰ {t('test_sessions')}  
-        </Nav.Link>
-      )}
-    </div>
+       
 
      <div className='sidebar-group'>
   <div
@@ -526,17 +487,7 @@ const changePassword = async (event) => {
           </div>          
         </div>
 
-              <div className="sidebar-group">
-          <div className="sidebar-title" onClick={() => {toggleSection('testtimes'); handleMenuClose(); }} aria-expanded={expanded.testtimes ? 'true' : 'false'}
-                aria-controls="section-testtimes">
-            ⏰ {t('testtillfallen', 'Testtillfällen')}
-          </div>
-          {expanded.testtimes && (
-            <Nav.Link className="sidebar-link" tabIndex={0} aria-label={t('visaTesttillfallen', 'Visa testtillfällen')}>
-              {t('visaTesttillfallen', 'Visa testtillfällen')}
-            </Nav.Link>
-          )}
-        </div>
+        
 
             <div className="sidebar-group">
           <div className="sidebar-title" onClick={() => {toggleSection('certiport'); handleMenuClose(); }} aria-expanded={expanded.certiport ? 'true' : 'false'} aria-controls="section-certiport">
@@ -544,16 +495,7 @@ const changePassword = async (event) => {
           </div>         
         </div>
 
-        <div className="sidebar-group">
-          <div className="sidebar-title" onClick={() => {toggleSection('certificates'); handleMenuClose(); }} aria-expanded={expanded.certificates ? 'true' : 'false'} aria-controls="section-certificates">
-            🎓 {t('certificates')}    
-          </div>
-          {expanded.certificates && (
-            <Nav.Link className="sidebar-link"  tabIndex={0} aria-label={t('test_sessions', 'Testsessioner')}>
-             ⏰ {t('test_sessions')}  
-            </Nav.Link>
-          )}
-        </div>  
+    
 
                  <div className="sidebar-group">
         <div className="sidebar-title" onClick={() => toggleSection('myInfo')} aria-expanded={expanded.myInfo ? 'true' : 'false'} aria-controls="section-myInfo">
