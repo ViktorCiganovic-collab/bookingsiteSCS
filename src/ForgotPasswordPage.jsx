@@ -27,7 +27,7 @@ export default function ForgotPasswordPage() {
     }
 
     try {
-      await axios.post("http://localhost:5011/api/account/forgot_password", { email, captchaToken });
+      await axios.post("https://scservices.se/api/account/forgot_password", { email, captchaToken });
       setMessage(t('emailSent'));
       setEmail('');
       setCaptchaToken(""); 

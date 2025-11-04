@@ -44,7 +44,7 @@ function Signup() {
     console.log("Captcha token before submit:", captchaToken);       
 
     try {
-      const res = await axios.post('http://localhost:5011/api/account/register/', {
+      const res = await axios.post('https://scservices.se/api/account/register/', {
         email,
         password,
         firstName,

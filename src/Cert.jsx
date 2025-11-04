@@ -27,7 +27,7 @@ export default function Cert() {
   const courses = Itcourses(); // ✅ Function call to get data  
 
 useEffect(() => {
-  axios.get('http://localhost:5011/api/examdate')
+  axios.get('https://scservices.se/api/examdate')
     .then((res) => {
       const formattedTestTimes = res.data.map((testtime) => {
         // Combine testDate (YYYY-MM-DD) with time (HH:mm:ss)
@@ -96,7 +96,7 @@ useEffect(() => {
   const fetchCategories = async () => {
 
     try {
-      const res = await axios.get('http://localhost:5011/api/category');
+      const res = await axios.get('https://scservices.se/api/category');
       setCategory(res.data);
       console.log(res.data);
     }
@@ -121,7 +121,7 @@ const seeTestTimes = async (certName, categoryId, certId) => {
     setSelectedCertificate(certName);
     setSelectedTest({ certname: certName, categoryID: categoryId, certid: certId });
 
-    const res = await axios.get(`http://localhost:5011/api/cert/${certId}`);
+    const res = await axios.get(`https://scservices.se/api/cert/${certId}`);
     setCert(res.data);
   } catch (error) {
     console.error('Kunde inte hämta certifikatsdetaljer:', error);

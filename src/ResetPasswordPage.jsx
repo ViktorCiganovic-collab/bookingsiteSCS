@@ -29,7 +29,7 @@ const handleSubmit = async (e) => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5011/api/account/reset_password', {
+      const res = await axios.post('https://scservices.se/api/account/reset_password', {
         email,
         token,
         newPassword

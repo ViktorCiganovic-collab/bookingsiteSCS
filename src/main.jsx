@@ -27,7 +27,7 @@ import BookingTermsPage from './BookingTerms.jsx';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe('pk_test_51QezsBKfpgfUfOSHUfaVmdDwoStl2MTjNGBLi0awJSe1C6kDGYj9QLNy2t4ROEbZmqMhb4IAnw8JVyxv5W6JQHfk00VEPGhTGe'); 
+const stripePromise = loadStripe('pk_live_51NXMZwLnaujgTgslmIML1du0820qvljj86C62VIQQcEhTE1c5vhVA7E7xzaauwCBt4O1101PnVYRYE07MAIJjnjj00Fzk4o2q2'); 
 
 
 const router = createBrowserRouter([

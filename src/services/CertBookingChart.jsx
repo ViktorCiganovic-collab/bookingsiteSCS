@@ -21,7 +21,7 @@ const token = localStorage.getItem('token');
 useEffect(() => {
     const fetchData = async () => {
         try {
-            const res = await axios.get('http://localhost:5011/api/Cert/statistics/most_booked_certs', {
+            const res = await axios.get('https://scservices.se/api/Cert/statistics/most_booked_certs', {
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',

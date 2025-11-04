@@ -123,7 +123,7 @@ function UserDashboard() {
     setLoadingBookings(true);
     setErrorBookings(null);
 
-    axios.get(`http://localhost:5011/api/booking/mybookings?email=${email}`, {
+    axios.get(`https://scservices.se/api/booking/mybookings?email=${email}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -176,7 +176,7 @@ function UserDashboard() {
   useEffect(() => {
     if (!token) return;    
 
-    axios.get('http://localhost:5011/api/account/get-my-data', {
+    axios.get('https://scservices.se/api/account/get-my-data', {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json"
@@ -242,7 +242,7 @@ function UserDashboard() {
   try {
     // 1. Skicka refund-begäran och låt backend hantera borttagning av bokningen
     const refundResponse = await axios.post(
-      "http://localhost:5011/api/refund",
+      "https://scservices.se/api/refund",
       {
         paymentIntentId: cancelledBooking.paymentIntentId,
         reason: "Jag kan inte delta", // Valfritt
@@ -310,7 +310,7 @@ const changePassword = async (event) => {
   setIsChangingPassword(true); 
 
   try {
-    const res = await axios.post('http://localhost:5011/api/account/change-password', newData);
+    const res = await axios.post('https://scservices.se/api/account/change-password', newData);
 
     console.log('Serverns svar:', res.data);
     if (typeof res.data === 'string' && res.data.includes("uppdaterats")) {
