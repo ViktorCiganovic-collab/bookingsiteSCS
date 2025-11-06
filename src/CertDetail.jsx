@@ -22,7 +22,7 @@ export default function CertDetail() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('https://scservices.se/api/category');
+        const res = await axios.get('https://certbe-backend.onrender.com/api/category');
         setCategory(res.data);
       } catch (error) {
         console.error('Kunde inte hämta kurser:', error);
@@ -35,7 +35,7 @@ export default function CertDetail() {
   useEffect(() => {
     const fetchCert = async () => {
     try {
-      const res = await axios.get(`https://scservices.se/api/cert/${certid}`);
+      const res = await axios.get(`https://certbe-backend.onrender.com/api/cert/${certid}`);
       setCert(res.data);
     } catch (err) {
       console.error('Fel vid hämtning av certifikat:', err);
@@ -59,7 +59,7 @@ export default function CertDetail() {
   useEffect(() => {
     const fetchTestTimes = async () => {
       try {
-        const res = await axios.get('https://scservices.se/api/examdate');
+        const res = await axios.get('https://certbe-backend.onrender.com/api/examdate');
 
         const formattedTestTimes = res.data.map((testtime) => {
           const startTimeString = `${testtime.testDate.split('T')[0]}T${testtime.examStartingTime}`;

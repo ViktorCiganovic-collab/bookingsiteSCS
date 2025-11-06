@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './styling/Footer.css'; 
 import { useTranslation } from 'react-i18next'; // i18n hook
 import { Link } from 'react-router-dom';
-import logo from "./assets/logotyp_störreikon.png";
+import logo from "./media/logotyp_störreikon.png";
 
 
 function Footer() {

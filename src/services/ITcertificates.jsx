@@ -1,10 +1,10 @@
-import dataAnalysisImg from '../assets/ITspecialist__.png';
-import aiImg from '../assets/pexels-photo-2007647.jpeg';
-import cybersecurityImg from '../assets/cybersecurity.jpg';
-import cloudImg from '../assets/microsoftfundamentals.png';
-import webDevImg from '../assets/adobe_img.png'
-import networkingImg from '../assets/cisco_certified.jpg'
-import scriptingImg from '../assets/MOS-Bundle-800x800.jpg.webp';
+import dataAnalysisImg from '../media/ITspecialist__.png';
+import aiImg from '../media/pexels-photo-2007647.jpeg';
+import cybersecurityImg from '../media/cybersecurity.jpg';
+import cloudImg from '../media/microsoftfundamentals.png';
+import webDevImg from '../media/adobe_img.png'
+import networkingImg from '../media/cisco_certified.jpg'
+import scriptingImg from '../media/microsoftofficespecialist.png';
 
 import { useTranslation } from 'react-i18next';
 

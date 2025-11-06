@@ -2,7 +2,7 @@
 .bookingSectionone {
 width: 100%;
 min-height: 100vh;
-background-image: url('../assets/admin_background.jpg');
+background-image: url('../media/admin_background.jpg');
 background-size: cover;
 background-position: center;
 }

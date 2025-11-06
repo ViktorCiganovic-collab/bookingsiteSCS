@@ -1,11 +1,13 @@
 
+
+
 .signupPage {
 width: 100%;
 height: auto;
 background-image: linear-gradient(
       rgba(255, 100, 0, 0.3),   /* Orange ton */
       rgba(140, 0, 255, 0.3)    /* Lila ton */
-    ),url('../assets/photo-1525547719571-a2d4ac8945e2.avif');
+    ),url('../media/signupimg.jpg');
 background-size: cover;
 background-position: center;
 }

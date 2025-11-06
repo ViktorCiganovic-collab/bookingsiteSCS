@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from "axios";
 import './styling/Cert.css';
 import { Container, Row, Col } from 'react-bootstrap';
-import certImage from './assets/networkSecurityImage.webp';
-import certImage2 from './assets/webdev_img.webp';
+import certImage from './media/networkSecurityImage.png';
+import certImage2 from './media/webdev_img.png';
 import Itcourses from './services/ITcertificates'; 
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; 
@@ -27,7 +27,7 @@ export default function Cert() {
   const courses = Itcourses(); // ✅ Function call to get data  
 
 useEffect(() => {
-  axios.get('https://scservices.se/api/examdate')
+  axios.get('https://certbe-backend.onrender.com/api/examdate')
     .then((res) => {
       const formattedTestTimes = res.data.map((testtime) => {
         // Combine testDate (YYYY-MM-DD) with time (HH:mm:ss)
@@ -96,7 +96,7 @@ useEffect(() => {
   const fetchCategories = async () => {
 
     try {
-      const res = await axios.get('https://scservices.se/api/category');
+      const res = await axios.get('https://certbe-backend.onrender.com/api/category');
       setCategory(res.data);
       console.log(res.data);
     }
@@ -121,7 +121,7 @@ const seeTestTimes = async (certName, categoryId, certId) => {
     setSelectedCertificate(certName);
     setSelectedTest({ certname: certName, categoryID: categoryId, certid: certId });
 
-    const res = await axios.get(`https://scservices.se/api/cert/${certId}`);
+    const res = await axios.get(`https://certbe-backend.onrender.com/api/cert/${certId}`);
     setCert(res.data);
   } catch (error) {
     console.error('Kunde inte hämta certifikatsdetaljer:', error);

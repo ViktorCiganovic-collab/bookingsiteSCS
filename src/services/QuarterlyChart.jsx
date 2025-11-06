@@ -18,7 +18,7 @@ const QuarterlyChart = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    axios.get('https://scservices.se/api/booking/statistics/quarterly',       {headers: {
+    axios.get('https://certbe-backend.onrender.com/api/booking/statistics/quarterly',       {headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`

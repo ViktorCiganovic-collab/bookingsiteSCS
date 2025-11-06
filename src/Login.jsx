@@ -27,7 +27,7 @@ function Login() {
   setLoading(true);
 
   try {
-    const response = await axios.post('https://scservices.se/api/account/login', {
+    const response = await axios.post('https://certbe-backend.onrender.com/api/account/login', {
       email: username,
       password
     }

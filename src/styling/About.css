@@ -9,7 +9,7 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-image: url('../assets/testworkingenvironment.png') !important;
+  background-image: url('../media/testworkingenvironment.png') !important;
   /* background-image: url('../assets/backgroundimg.webp'); */
   background-size: cover;
   background-repeat: no-repeat;

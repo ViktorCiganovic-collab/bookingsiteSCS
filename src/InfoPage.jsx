@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import './styling/InfoPage.css';
-import malmö_testcenterImg from './assets/malmötestcenter.jpeg'
+import malmö_testcenterImg from './media/malmötestcenter.jpeg'
 import FAQSection from './services/FAQAccordion';
 import { useTranslation, Trans  } from 'react-i18next';
 import { BsInfoCircle } from 'react-icons/bs';

@@ -2,7 +2,7 @@ import './styling/App.css';
 import './styling/Main.css';
 import Itcourses from './services/ITcertificates'; 
 import { Container, Row, Col } from 'react-bootstrap';
-import thirdImg from './assets/testworkingenvironment.png';
+import thirdImg from './media/testworkingenvironment.png';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';

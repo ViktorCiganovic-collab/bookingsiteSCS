@@ -1,16 +1,16 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import './styling/About.css';
-import backgroundVideoAbout from './assets/mainpageSectionthree.jpg';
-import aiImage from './assets/ai_lexicon.jpg';
-import datacenter from './assets/datacenter.jpg';
-import distansochdigitalisering from './assets/distans-och-digitalisering.jpg';
-import security from './assets/security.jpg';
+import backgroundVideoAbout from './media/mainpageSectionthree.jpg';
+import aiImage from './media/ai_lexicon.jpg';
+import datacenter from './media/datacenter.jpg';
+import distansochdigitalisering from './media/distans-och-digitalisering.jpg';
+import security from './media/security.jpg';
 import { useTranslation } from 'react-i18next'; 
-import test_center from './assets/annie-spratt-sggw4-qDD54-unsplash.jpg';
-import bildkontor from './assets/affarsutbildning2.jpg';
-import yh from './assets/arbetsmarknadsutbildning.jpg';
-import generellUtb from './assets/generell-utbildning.jpg'
+import test_center from './media/annie-spratt-sggw4-qDD54-unsplash.jpg';
+import bildkontor from './media/affarsutbildning2.jpg';
+import yh from './media/arbetsmarknadsutbildning.jpg';
+import generellUtb from './media/generell-utbildning.jpg'
 
 const About = () => {
   const { t } = useTranslation(); // translation hook

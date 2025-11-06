@@ -1,6 +1,6 @@
 .detailSection {
   /* background-color: var(--secondary-bg); */
-  background-image: url('../assets/bookings_bg.jpg');
+  background-image: url('../media/bookings_bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

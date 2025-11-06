@@ -8,7 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useTranslation } from 'react-i18next'; // Importera useTranslation
 import LanguageSwitcher from './services/LanguageSwitcher'; // Importera LanguageSwitcher här
 import { AuthContext } from './services/AuthProvider';
-import logo from './assets/logotyp.png';
+import logo from './media/logotyp.png';
 
 function NavComponent() {
   const { t } = useTranslation(); // Använd useTranslation-hooken för att hämta översättningar

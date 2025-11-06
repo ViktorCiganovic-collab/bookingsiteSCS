@@ -64,7 +64,7 @@ const AdminDashboard = () => {
   useEffect(() => {
       const fetchCourses = async () => {
         try {
-          const res = await axios.get('https://scservices.se/api/category');
+          const res = await axios.get('https://certbe-backend.onrender.com/api/category');
           setCategory(res.data);
           console.log(res.data);
         } catch (error) {
@@ -95,7 +95,7 @@ const formatTime = (date) =>
     const token = localStorage.getItem('token');
 
     try {
-    const res = await axios.get('https://scservices.se/api/booking', {
+    const res = await axios.get('https://certbe-backend.onrender.com/api/booking', {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ const formatTime = (date) =>
     setLoading(true);
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.get('https://scservices.se/api/refund', {headers: {
+      const res = await axios.get('https://certbe-backend.onrender.com/api/refund', {headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`}
@@ -138,8 +138,14 @@ const formatTime = (date) =>
 
   const fetchCertBookings = async () => {
     setLoading(true);
+    const token = localStorage.getItem('token');
+
     try {
-      const res = await axios.get('https://scservices.se/api/cert/statistics/most_booked_certs');
+      const res = await axios.get('https://certbe-backend.onrender.com/cert/statistics/most_booked_certs', {headers: {
+         'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }});
       setPopularCertificates(res.data);
       setError(null);
       setLoading(false);
@@ -153,7 +159,7 @@ const formatTime = (date) =>
   const fetchCertificates = async () => {
     setLoading(true);
       try {
-      const res = await axios.get('https://scservices.se/api/cert');
+      const res = await axios.get('https://certbe-backend.onrender.com/api/cert');
       setCertificates(res.data);      
       setError(null);
       setLoading(false);
@@ -169,6 +175,7 @@ const formatTime = (date) =>
 
   const addCertificate = async (event) => {
   event.preventDefault();
+  const token = localStorage.getItem('token');
 
   if (!name || !selectedcategory || !price) {
     setError('Vänligen fyll i alla fält och ladda upp en bild!');
@@ -183,10 +190,11 @@ const formatTime = (date) =>
   };
 
   try {
-    const res = await axios.post('https://scservices.se/api/cert', certificate, {
+    const res = await axios.post('https://certbe-backend.onrender.com/api/cert', certificate, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
     });
 
@@ -220,7 +228,7 @@ const Editcertificate = async (e) => {
   };
 
   try {
-    const res = await axios.put(`https://scservices.se/api/cert/${updatedCertificate.Id}`, updatedCertificate, {
+    const res = await axios.put(`https://certbe-backend.onrender.com/api/cert/${updatedCertificate.Id}`, updatedCertificate, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -244,15 +252,19 @@ const Editcertificate = async (e) => {
 
     const DeleteCertificate = async (event) => {
       event.preventDefault();
+      const token = localStorage.getItem('token');
+
       if (!certId) {    
     setError('Vänligen fyll i certifikatets ID.');
     return;}
 
     try {
-      const res = await axios.delete(`https://scservices.se/api/cert/${Number(certId)}`, {
+      const res = await axios.delete(`https://certbe-backend.onrender.com/api/cert/${Number(certId)}`, {
         headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`    
+
       }
       });
       setCertId('');
@@ -278,7 +290,7 @@ const Editcertificate = async (e) => {
 
   try {
     const res = await axios.delete(
-  `https://scservices.se/api/Booking/${Number(bookingId)}`,
+  `https://certbe-backend.onrender.com/api/booking/${Number(bookingId)}`,
   {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -307,7 +319,7 @@ const Editcertificate = async (e) => {
 
   try {
     // Hämta data från backend
-    const res = await axios.get('https://scservices.se/api/examdate');
+    const res = await axios.get('https://certbe-backend.onrender.com/api/examdate');
     
     // Formatera testtider när datan är hämtad
     const formattedTestTimes = res.data.map((testtime) => {
@@ -395,24 +407,28 @@ console.log('isPassed:', testDateOnly < today);
 
   const Addnewtesttime = async (event) => {
       event.preventDefault();
+      const token = localStorage.getItem('token');
 
   if (!testDate || !starttime || !endtime || !price || !slots) {
   setError('Vänligen fyll i alla fält!');
   return;}
 
+ const toTimeSpan = (t) => t.length === 5 ? `${t}:00` : t;
+
  const testTime = {
   testDate,
-  examStartingTime: starttime,
-  examEndingTime: endtime,
+  examStartingTime: toTimeSpan(starttime),
+  examEndingTime: toTimeSpan(endtime),
   slots: Number(slots),
   price: Number(price)
 };
 
       try {
-        const res = await axios.post('https://scservices.se/api/ExamDate', testTime, {
+        const res = await axios.post('https://certbe-backend.onrender.com/api/ExamDate', testTime, {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
           }
         });
         setResponse(res.data);
@@ -428,6 +444,7 @@ console.log('isPassed:', testDateOnly < today);
 
 const UpdateTesttime = async (event) => {
   event.preventDefault();
+  const token = localStorage.getItem('token');
 
   if (!testTimeId || !testDate || !starttime || !endtime || !slots || !price) {
     setError('Vänligen fyll i alla fält!');
@@ -459,12 +476,13 @@ const UpdateTesttime = async (event) => {
 
   try {
     const res = await axios.put(
-      `https://scservices.se/api/ExamDate/${updatedTestTime.id}`,
+      `https://certbe-backend.onrender.com/api/ExamDate/${updatedTestTime.id}`,
       updatedTestTime,
       {
         headers: {
           'Content-Type': 'application/json',
-          Accept: 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
       }
     );
@@ -486,6 +504,7 @@ const UpdateTesttime = async (event) => {
 
   const DeleteTesttime = async (event) => {
       event.preventDefault();
+      const token = localStorage.getItem('token');
 
       if (!testTimeId) {
         setError('Vänligen fyll i testidens ID!');
@@ -493,7 +512,11 @@ const UpdateTesttime = async (event) => {
       }    
 
       try {
-        const res = await axios.delete(`https://scservices.se/api/ExamDate/${testTimeId}`);
+        const res = await axios.delete(`https://certbe-backend.onrender.com/api/ExamDate/${testTimeId}`, {headers: {
+           'Content-Type': 'application/json',
+          'Accept': 'application/json',
+           'Authorization': `Bearer ${token}`
+        }});
         setResponse('Testtiden har raderats!');
         setError(null);
       }   
@@ -504,7 +527,8 @@ const UpdateTesttime = async (event) => {
 
  
   const CreateCategory = async (e) => {
-  e.preventDefault();
+  e.preventDefault(); 
+  const token = localStorage.getItem('token');
 
         if (!name || !description || !image) {
         setError('Vänligen fyll i alla fält!');
@@ -519,10 +543,11 @@ const UpdateTesttime = async (event) => {
       };
 
       try {
-        const res = await axios.post('https://scservices.se/api/category', newCategory, {
+        const res = await axios.post('https://certbe-backend.onrender.com/api/category', newCategory, {
           headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
           }
         });
     setResponse('Kategori skapad!');
@@ -549,14 +574,14 @@ const UpdateTesttime = async (event) => {
       setError("Ingen token hittades. Du är inte inloggad.");
       return;
     }    
-    const url = `http://localhost:5011/api/cert/discount/${certId}`;    
+    const url = `https://certbe-backend.onrender.com/api/cert/discount/${certId}`;    
     await axios.put(url, { isDiscount: activate }, 
       {
         headers: {Authorization: `Bearer ${token}`}
       }
     );
 
-    const res = await axios.get('https://scservices.se/api/cert');
+    const res = await axios.get('https://certbe-backend.onrender.com/api/cert');
     setCertificates(res.data);
 
     setDiscountActive(activate);
@@ -573,6 +598,7 @@ const UpdateTesttime = async (event) => {
 
  const UpdateCategory = async (e) => {
   e.preventDefault();
+  const token = localStorage.getItem('token');
 
   if (!selectedcategory || !name || !description || !image) {
     setError('Vänligen fyll i alla fält!');
@@ -587,10 +613,11 @@ const UpdateTesttime = async (event) => {
   }; //uppdatera en kategori 
 
   try {
-    const res = await axios.put(`https://scservices.se/api/category/${selectedcategory}`, updatedCategory, {
+    const res = await axios.put(`https://certbe-backend.onrender.com/api/category/${selectedcategory}`, updatedCategory, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
     });
     setResponse('Kategori uppdaterad!');
@@ -608,6 +635,7 @@ const UpdateTesttime = async (event) => {
 
 const DeleteCategory = async (e) => {
   e.preventDefault();
+  const token = localStorage.getItem('token');
 
   if (!selectedcategory) {
     setError('Vänligen ange ett kategori-ID!');
@@ -616,10 +644,11 @@ const DeleteCategory = async (e) => {
   }
 
   try {
-    const res = await axios.delete(`https://scservices.se/api/category/${selectedcategory}`, {
+    const res = await axios.delete(`https://certbe-backend.onrender.com/api/category/${selectedcategory}`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
     });
     setResponse('Kategori raderad!');

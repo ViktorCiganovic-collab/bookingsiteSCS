@@ -53,7 +53,7 @@ const Booking = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('https://scservices.se/api/category');
+        const res = await axios.get('https://certbe-backend.onrender.com/api/category');
         const categories = res.data;
         const selectedCategory = categories.find((c) => c.id === parseInt(categoryid));
         if (selectedCategory) setCategory(selectedCategory);
@@ -66,7 +66,7 @@ const Booking = () => {
   }, [categoryid]);
 
   useEffect(() => {
-    axios.get('https://scservices.se/api/examdate')
+    axios.get('https://certbe-backend.onrender.com/api/examdate')
       .then((res) => {
         const formattedTestTimes = res.data.map((testtime) => {
           const startTime = new Date(`${testtime.testDate.split('T')[0]}T${testtime.examStartingTime}`);
@@ -126,7 +126,7 @@ const Booking = () => {
 
   try {
     // ✅ Steg 1: Validera tillgänglighet
-    await axios.post('https://scservices.se/api/booking/validate', {
+    await axios.post('https://certbe-backend.onrender.com/api/booking/validate', {
       examId: examid,
       customerEmail: email,
     }, {
@@ -153,7 +153,7 @@ const Booking = () => {
 
   try {
     // 💳 Steg 2: Skapa betalning
-    const paymentIntentResponse = await axios.post('https://scservices.se/payment/create-payment-intent', {
+    const paymentIntentResponse = await axios.post('https://certbe-backend.onrender.com/payment/create-payment-intent', {
       amount: parseInt(accprice) * 100,
       testId: examid,
     }, {
@@ -193,7 +193,7 @@ const Booking = () => {
         PaymentIntentId: paymentIntentId
       };
 
-      await axios.post('https://scservices.se/api/booking', customerBooking, {
+      await axios.post('https://certbe-backend.onrender.com/api/booking', customerBooking, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
