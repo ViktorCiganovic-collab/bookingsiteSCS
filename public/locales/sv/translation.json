@@ -570,6 +570,10 @@
   "error_network": "Kunde inte kontakta servern. Kontrollera din internetanslutning.",
   "pleaseVerifyCaptcha": "Vänligen verifiera att du inte är en robot.",  
   "error_account_locked": "Ditt konto är tillfälligt låst. Försök igen om 15 minuter.",
-  "support": "Hjälp"
+  "support": "Hjälp",  
+  "booking_info": "För att boka en testtid måste du vara registrerad och logga in med din e-postadress och lösenord.",
+  "no_account": "Har du inget konto?",
+  "register_here": "Registrera dig här"
+
 }
 

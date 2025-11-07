@@ -541,7 +541,13 @@
   "error_network": "Kunne ikke kontakte serveren. Sjekk internettforbindelsen din.",  
   "error_account_locked": "Kontoen din er midlertidig låst. Vennligst prøv igjen om 15 minutter.",
   "pleaseVerifyCaptcha": "Vennligst bekreft at du ikke er en robot.",
-  "support": "Hjelp"
+  "support": "Hjelp",
+  
+  "booking_info": "For å bestille en testtid må du være registrert og logge inn med e-postadresse og passord.",
+  "no_account": "Har du ikke en konto?",
+  "register_here": "Registrer deg her"
+
+
 
 
 }

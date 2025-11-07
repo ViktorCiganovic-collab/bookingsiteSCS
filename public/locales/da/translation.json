@@ -542,10 +542,10 @@
   "error_network": "Kunne ikke kontakte serveren. Kontroller din internetforbindelse.",
   "pleaseVerifyCaptcha": "Bekræft venligst, at du ikke er en robot.",  
   "error_account_locked": "Din konto er midlertidigt låst. Prøv igen om 15 minutter.",
-    "support": "Hjælp"
-
-
-
+    "support": "Hjælp",    
+  "booking_info": "For at booke en testtid skal du være registreret og logge ind med din e-mailadresse og adgangskode.",
+  "no_account": "Har du ikke en konto?",
+  "register_here": "Registrer dig her"
 }
 
 

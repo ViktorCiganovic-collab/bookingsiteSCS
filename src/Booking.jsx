@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import './styling/Booking.css';
 import Button from 'react-bootstrap/Button';
@@ -220,6 +220,11 @@ const Booking = () => {
       {testTime && (
         <p>{testTime.formattedStartTime} - {testTime.formattedEndTime}</p>
       )}
+
+      <p className="mustbeloggedin text-dark text-bold text-center mb-4" style={{ maxWidth: '600px' }}>
+      {t('booking_info')}<br />
+      {t('no_account')} <Link to="/signup">{t('register_here')}</Link>.
+    </p>
 
       <Form className="text-center" onSubmit={(e) => {
         e.preventDefault();
