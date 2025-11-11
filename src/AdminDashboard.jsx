@@ -334,10 +334,7 @@ const Editcertificate = async (e) => {
     } else {
       setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
     }
-  } finally {
-    // Eventuellt avslutande logik (t.ex. stäng modal, återställ state)
-    // Exempel: setLoading(false); (om du har loading state)
-  }
+  } 
 };
 
 
