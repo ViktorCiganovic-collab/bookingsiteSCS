@@ -33,7 +33,7 @@ useEffect(() => {
     if (token) {
       try {
         const decoded = jwtDecode(token);
-        setEmail(decoded.sub || '');
+        setEmail(decoded.email || '');
         console.log(email);
       } catch (error) {
         console.error('Failed to decode token:', error);
@@ -42,7 +42,7 @@ useEffect(() => {
     } else {
       setEmail('');
     }
-  }, [token, email]);
+  }, [token]);
 
 return (
 <AuthContext.Provider value={{ role, setRole, isAuthenticated, setIsAuthenticated, token, setToken, email }}>

@@ -22,10 +22,7 @@ function App() {
   return (
     <div className='mainPage'>
       <div className="video-container">
-        <video autoPlay muted loop playsInline className="bg-video">
-          
-          {t('video_not_supported')}
-        </video>
+     
         <div className="video-overlay">
           <div className="hero-content" data-aos="zoom-in" data-aos-duration="1000">
           <h1>{t('welcome_message')} Scandinavian Certification Services</h1>
@@ -43,7 +40,7 @@ function App() {
         <Carousel slide={false}>
           {threeCourses.map((course, index) => (
           <Carousel.Item key={index}>
-  <Link to={`/cert/...`}>
+  <Link to={`/cert/${encodeURIComponent(course.certs[0].name)}/${encodeURIComponent(course.certs[0].description)}/1500/${course.categoryId}/${course.certs[0].certId}`}>
     <img
       className="d-block w-100"
       src={course.image}

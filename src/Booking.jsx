@@ -99,7 +99,6 @@ const Booking = () => {
   };
 
   const handleBooking = async () => {   
-
   const now = dayjs();
   const examStart = dayjs(`${testTime.testDate}T${testTime.examStartingTime}`);
   const hoursDiff = examStart.diff(now, "hour");  
@@ -124,8 +123,8 @@ const Booking = () => {
   setConfirmed(false);
   setLoading(true);
 
+  // 🔹 Steg 1: Validera bokning på backend
   try {
-    // ✅ Steg 1: Validera tillgänglighet
     await axios.post('https://certbe-backend.onrender.com/api/booking/validate', {
       examId: examid,
       customerEmail: email,
@@ -135,40 +134,37 @@ const Booking = () => {
         'Content-Type': 'application/json',
       }
     });
+    // Om valideringen lyckas fortsätter vi här
   } catch (err) {
-    // ✅ Visa direkt feedback om något gick fel vid validering
-    if (err.response?.status === 400 && err.response.data === "Det finns inte platser kvar på det här testdatumet.") {
-      setError(t('no_slots_left'));
-    } else if (err.response?.status === 400 && err.response.data === "Kunden har redan en bokning på detta testdatum.") {
-      setError(t('already_booking'));
+    console.error("Validation error:", err);
+    if (err.response?.status === 400) {
+      if (err.response.data === "Det finns inte platser kvar på det här testdatumet.") {
+        setError(t('no_slots_left'));
+      } else if (err.response.data === "Kunden har redan en bokning på detta testdatum.") {
+        setError(t('already_booking'));
+      } else {
+        setError(t('validation_error'));
+      }
     } else if (err.response?.status === 404) {
       setError(t('date_not_found'));
     } else {
       setError(t('validation_error'));
     }
-
     setLoading(false);
-    return; // 🛑 Stoppa flödet här – gå inte vidare till betalning
+    return; // ❌ Stoppar här – ingen betalning sker
   }
 
+  // 🔹 Steg 2: Skapa betalning och slutför bokning
   try {
-    // 💳 Steg 2: Skapa betalning
-    const paymentIntentResponse = await axios.post('https://certbe-backend.onrender.com/payment/create-payment-intent', {
-      amount: parseInt(accprice) * 100,
-      testId: examid,
-    }, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      }
-    });
+    const paymentIntentResponse = await axios.post(
+      'https://certbe-backend.onrender.com/payment/create-payment-intent',
+      { amount: parseInt(accprice) * 100, testId: examid },
+      { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } }
+    );
 
     const clientSecret = paymentIntentResponse.data.clientSecret;
-
     const result = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardElement),
-      },
+      payment_method: { card: elements.getElement(CardElement) },
     });
 
     if (result.error) {
@@ -176,10 +172,7 @@ const Booking = () => {
       return;
     }
 
-    // ✅ Steg 3: Slutför bokning efter betalning
     if (result.paymentIntent.status === 'succeeded') {
-      const paymentIntentId = result.paymentIntent.id;
-
       const customerBooking = {
         ExamId: examid,
         Category: categoryid,
@@ -190,26 +183,24 @@ const Booking = () => {
         CustomerPassword: password,
         PracticeMaterial: includeMaterial,
         PracticeTest: includeTest,
-        PaymentIntentId: paymentIntentId
+        PaymentIntentId: result.paymentIntent.id
       };
 
       await axios.post('https://certbe-backend.onrender.com/api/booking', customerBooking, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        }
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
       });
 
       setConfirmed(true);
       setShowStripeInfoModal(false);
     }
   } catch (err) {
-    console.error(err);
+    console.error("Payment or booking error:", err);
     setError(t('payment_or_booking_error'));
   } finally {
     setLoading(false);
   }
 };
+
 
   return (
     <div className="bookingSectionone d-flex flex-column justify-content-center align-items-center" style={{ paddingTop: '80px' }}>

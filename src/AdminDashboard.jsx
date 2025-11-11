@@ -279,38 +279,67 @@ const Editcertificate = async (e) => {
 
   const DeleteBooking = async (event) => {
   event.preventDefault();
-  setError(null);
-  setResponse(null);
+  setError(null);  // Återställ felmeddelande
+  setResponse(null);  // Återställ svar
+
   const token = localStorage.getItem("token");
 
+  // Kontrollera om bookingId finns
   if (!bookingId) {
     setError('Vänligen fyll i bokningens ID.');
     return;
   }
 
+  let response;
+
+  // Första GET-anropet för att hämta bokningen
   try {
-    const res = await axios.delete(
-  `https://certbe-backend.onrender.com/api/booking/${Number(bookingId)}`,
-  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    response = await axios.get(`https://certbe-backend.onrender.com/api/booking/${bookingId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  } catch (error) {
+    setError("Det gick inte att hämta bokningen.");
+    return; // Om GET-anropet misslyckas, stoppa vidare kodexecution
   }
-);
-    if (res.status === 204) {
+
+  // Andra POST-anropet för att radera bokningen
+  try {
+    const res = await axios.post(
+      `https://certbe-backend.onrender.com/api/refund`,
+      {
+        paymentIntentId: response.data.paymentIntentId,
+        reason: "Admin avbokar bokning för testtid",
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    // Kontrollera om raderingen lyckades (204 No Content)
+    if (res.status === 200) {
       setResponse("Bokningen har raderats.");
+      setBookings((prevBookings) => prevBookings.filter((booking) => booking.id !== bookingId));
       setBookingId(""); // Töm inputfält
     } else {
       setError("Bokningen kunde inte raderas.");
     }
   } catch (error) {
+    // Hantera olika fel för POST-anropet
     if (error.response && error.response.status === 404) {
       setError("Ingen bokning hittades med det ID:t.");
     } else {
       setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
     }
+  } finally {
+    // Eventuellt avslutande logik (t.ex. stäng modal, återställ state)
+    // Exempel: setLoading(false); (om du har loading state)
   }
 };
+
 
  
     const fetchExamTimes = async () => {
