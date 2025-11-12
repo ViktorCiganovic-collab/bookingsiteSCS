@@ -544,7 +544,8 @@
   "support": "Apua",  
   "booking_info": "Testiajan varaamiseksi sinun täytyy olla rekisteröitynyt ja kirjautua sisään sähköpostiosoitteella ja salasanalla.",
   "no_account": "Eikö sinulla ole tiliä?",
-  "register_here": "Rekisteröidy tästä"
+  "register_here": "Rekisteröidy tästä",
+      "paragraph4": "Hyväksytyn testin jälkeen saat sertifiointidiplomin, joka vahvistaa osaamisesi."
 
 }
 

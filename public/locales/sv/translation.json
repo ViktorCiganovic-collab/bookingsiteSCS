@@ -573,7 +573,10 @@
   "support": "Hjälp",  
   "booking_info": "För att boka en testtid måste du vara registrerad och logga in med din e-postadress och lösenord.",
   "no_account": "Har du inget konto?",
-  "register_here": "Registrera dig här"
+  "register_here": "Registrera dig här",
+  "paragraph4": "Efter godkänt test erhåller du ett certifieringsdiplom som bekräftar din kompetens."
+  
+
 
 }
 

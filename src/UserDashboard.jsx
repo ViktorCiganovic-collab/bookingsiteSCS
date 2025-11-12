@@ -149,7 +149,7 @@ function UserDashboard() {
         console.log('Felmeddelande från server:', err.response.data);
 
         if (status === 401) {
-          setErrorBookings(t('error_unauthorized', 'Du är inte inloggad.'));
+          setErrorBookings(t('error_unauthorized', 'Åtkomst nekad. Kontakta support om du tror detta är ett misstag.'));
         } else if (status >= 500) {
           setErrorBookings(t('error_server', 'Ett serverfel uppstod. Försök igen senare.'));
         } else {

@@ -1,0 +1,25 @@
+#root_c {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav_c {
+  flex-shrink: 0; /* navbar alltid på toppen */
+}
+
+footer {
+  flex-shrink: 0; /* footer alltid längst ner */
+}
+
+main {
+  flex: 1; /* innehållet tar upp resterande höjd */
+}
+
+html, body, #root {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overscroll-behavior-y: contain;
+}

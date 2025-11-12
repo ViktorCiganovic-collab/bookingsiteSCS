@@ -545,7 +545,8 @@
     "support": "Hjælp",    
   "booking_info": "For at booke en testtid skal du være registreret og logge ind med din e-mailadresse og adgangskode.",
   "no_account": "Har du ikke en konto?",
-  "register_here": "Registrer dig her"
+  "register_here": "Registrer dig her",
+      "paragraph4": "Efter bestået test modtager du et certificeringsdiplom, der bekræfter dine kompetencer."
 }
 
 

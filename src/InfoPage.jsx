@@ -14,6 +14,8 @@ const { t } = useTranslation();
 return (
     <div className='infoPage'>
    <section className="infoPageSectionOne">
+
+    <div className='textInfo'>
   <h1 data-aos="fade-right" data-aos-duration="1000">{t('infoPage.title')}</h1>
   <p className="lead mt-3">
     {t('infoPage.subtitle')}
@@ -34,6 +36,7 @@ return (
             <li><strong>{t('infoPage.benefits.support')}</strong> {t('infoPage.benefits.supportDesc')}</li>
           </ul>
   </div>
+  </div>
 </section>
 
 
@@ -50,6 +53,8 @@ return (
           <p>{t('paragraph2')}</p>
 
           <p>{t('paragraph3')}</p>
+
+          <p>{t('paragraph4')}</p>
 
           <h3 className="mt-4">{t('testCenterTitle')}</h3>
           <p>{t('malmo_testcenter_hint')}</p>       
