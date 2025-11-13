@@ -29,6 +29,10 @@ export default function Cert() {
 useEffect(() => {
   axios.get('https://certbe-backend.onrender.com/api/examdate')
     .then((res) => {
+
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); 
+
       const formattedTestTimes = res.data.map((testtime) => {
         // Combine testDate (YYYY-MM-DD) with time (HH:mm:ss)
         const startTimeString = `${testtime.testDate.split('T')[0]}T${testtime.examStartingTime}`;
@@ -41,6 +45,12 @@ useEffect(() => {
         const startTime = new Date(startTimeString);  // Parse the combined string
         const endTime = new Date(endTimeString);      // Parse the combined string
 
+          const testDay = new Date(
+          startTime.getFullYear(),
+          startTime.getMonth(),
+          startTime.getDate()
+        );
+
         // Check if parsing was successful
         if (isNaN(startTime)) {
           console.error("Invalid start time:", startTimeString);
@@ -49,11 +59,9 @@ useEffect(() => {
           console.error("Invalid end time:", endTimeString);
         }
 
-        const timeNow = Date.now();
-        const startingTime = startTime.getTime();
-
-        // Check if examtime has passed and filter out passed examtimes
-        if (startingTime > timeNow) {
+       
+        // Show only future examtimes
+        if (testDay <= today) {
 
         // Format the start and end times if valid
         const formattedStartTime = startTime.toLocaleString('sv-SE', {
@@ -225,7 +233,7 @@ setSelectedcategory(courseName);
           </Col>
         </Row>
 
-        <Container>
+       <Container>
           <Row>
   {courses.map((course, index) => (
     <Col
@@ -249,7 +257,7 @@ setSelectedcategory(courseName);
         <img
           src={course.image}
           alt={course.courseName}
-          style={{ width: '100%', height: 'auto', objectFit: 'cover' }} className='mx-2'
+          style={{ width: '80%', height: 'auto', objectFit: 'cover' }} className='mx-2'
         />
       </div>
 
@@ -281,8 +289,8 @@ setSelectedcategory(courseName);
   ))}
 </Row>
 
-
-        </Container>
+</Container>
+        
       </section>
 
    <section id="certifications" className='py-5 certificatepageSectionfour' ref={categorySectionRef}>

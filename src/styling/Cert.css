@@ -87,7 +87,7 @@ h1 {
 .cert-card {
   background: #1e1e1e;     
   border-radius: 12px;     
-  padding: 1.5rem;         
+  padding: 1.5rem;          
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); 
 }
 
@@ -148,6 +148,10 @@ h1 {
 .course-card button {
   font-size: 0.9rem;
   margin-top: 10px;
+}
+
+.course-card {
+  background-color: transparent !important;
 }
 
 .course-card .btn-primary {
