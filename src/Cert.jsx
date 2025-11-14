@@ -61,7 +61,7 @@ useEffect(() => {
 
        
         // Show only future examtimes
-        if (testDay <= today) {
+        if (testDay > today) {
 
         // Format the start and end times if valid
         const formattedStartTime = startTime.toLocaleString('sv-SE', {
@@ -358,7 +358,15 @@ setSelectedcategory(courseName);
               {testtime.formattedStartTime} - {testtime.formattedEndTime}
             </strong>
           </span>
-          <span><strong>{t('slots')}:</strong> {testtime.slots}</span>
+          <span>
+  <strong>{t('slots')}: </strong> 
+   {Number(testtime.slots) === 0 
+    ? t('fully_booked') 
+    : Number(testtime.slots) > 5 
+      ? t('slotsMoreThanFive') 
+      : `${Number(testtime.slots)} ${t('slots_left')}`}
+</span>
+
           {/* {t('Price')} ({formatCurrency(testtime.price)}) */}
         <Link to={`/booking/${selectedTest.categoryID}/${encodeURIComponent(selectedTest.certname)}/${testtime.id}/${cert?.isDiscount ? cert.price * 0.5 : cert?.price}`}>
         <button className='btn btn-primary' style={{ padding: "5px", borderRadius: "5px" }}>

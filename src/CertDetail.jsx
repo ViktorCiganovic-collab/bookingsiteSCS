@@ -246,10 +246,15 @@ export default function CertDetail() {
                         <tr key={testtime.id}>
                           <td>{testtime.formattedStartTime} - {testtime.formattedEndTime}</td>
                           <td>
-                            <span className={`slots-badge ${testtime.slots === 0 ? "full" : ""}`}>
-  {testtime.slots > 0 ? `${testtime.slots} ${t('slots_left')}` : t('fully_booked')}
-</span>
-                          </td>
+                          <span className={`slots-badge ${testtime.slots === 0 ? "full" : ""}`}>
+                            {testtime.slots === 0 
+                              ? t('fully_booked') 
+                              : testtime.slots > 5 
+                                ? t('slotsMoreThanFive') 
+                                : `${testtime.slots} ${t('slots_left')}`}
+                          </span>
+                        </td>
+
                           <td>
                             {cert.isDiscount ? cert.price * 0.5 : cert.price} SEK{' '}
                             {cert.isDiscount && (

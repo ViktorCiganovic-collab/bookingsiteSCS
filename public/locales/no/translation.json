@@ -546,7 +546,8 @@
   "booking_info": "For å bestille en testtid må du være registrert og logge inn med e-postadresse og passord.",
   "no_account": "Har du ikke en konto?",
   "register_here": "Registrer deg her",
-  "paragraph4": "Etter bestått test mottar du et sertifiseringsdiplom som bekrefter din kompetanse."
+  "paragraph4": "Etter bestått test mottar du et sertifiseringsdiplom som bekrefter din kompetanse.",
+  "slotsMoreThanFive": "Flere enn 5"
 
 
 
