@@ -109,16 +109,41 @@
     text-align: center;
     padding: 0 1rem;
   }
+
+  .detailSection a {
+     font-size: 0.8rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
 }
 
 .detailSection h1,
 .detailSection h3,
-.detailSection p {
+.detailSection p,
+.detailSection h4
+ {
   background: rgba(0, 0, 0, 0.5); /* mörk overlay */
   color: #fff;
   padding: 0.3rem 0.6rem;
   border-radius: 8px;
 }
+
+.detailSection a {
+  /* color: #fff; */
+  text-decoration: none;
+}
+
+.certiport-link {
+  color: #00FF99;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.certiport-link:hover {
+  color: #ADFF2F; 
+  text-decoration: none;
+}
+
 
 .table thead th {
   background-color: #f8f9fa;

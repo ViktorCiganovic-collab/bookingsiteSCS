@@ -6,8 +6,8 @@ const BookingTermsPage = () => {
   const { t } = useTranslation();
 
   const updatedDate = '15 oktober 2025'; // uppdatera efter behov
-  const contactEmail = 'support@scandinavian-cert.se';
-  const contactPhone = '040-665 56 68';
+  const contactEmail = 'malmo@lexicon.se';
+  const contactPhone = '+46 40 665 56 50';
 
   return (
     <div className="bookingTermsPage d-flex flex-column align-items-center justify-content-center mx-auto me-auto w-100">

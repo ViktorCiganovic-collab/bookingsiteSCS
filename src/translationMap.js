@@ -93,36 +93,36 @@ export const translationKeys = {
   "CCST Cybersecurity": "categories.cisco_certified_support_technician.certs.ccst_cybersecurity.name",
   "Förbered dig för en karriär inom cybersäkerhet med detta certifikat. Som CCST Cybersecurity-certifierad har du de nödvändiga färdigheterna för att hantera säkerhetsincidenter och skydda organisationers digitala tillgångar.": "categories.cisco_certified_support_technician.certs.cybersecurity.description",
 
-    // IT Specialist
+    // IT Specialist   
   "IT Specialist": "categories.it_specialist.name",
   "Dessa certifieringar är ett sätt för deltagare att validera grundläggande IT-kompetenser eftertraktade av arbetsgivare. IT Specialist-programmet är riktat mot individer som överväger eller precis börjat en karriär inom IT.": "categories.it_specialist.description",
 
-  "Artificiell Intelligens": "categories.it_specialist.certs.artificiell_intelligens.name",
-  "Deltagare för denna certifiering är AI-aktiverade elever som är förberedda för professionellt bruk av AI genom att förstå hur AI kan användas för att lösa problem.": "categories.it_specialist.certs.artificiell_intelligens.description",
+  "Artificial Intelligence": "categories.it_specialist.certs.ai.name",
+  "Deltagare för denna certifiering är AI-aktiverade elever som är förberedda för professionellt bruk av AI genom att förstå hur AI kan användas för att lösa problem.": "categories.it_specialist.certs.ai.description",
 
-  "Molnberäkning": "categories.it_specialist.certs.molnberakning.name",
-  "Deltagare för denna certifiering kommer att kunna identifiera och beskriva slutlösningar som utnyttjar molnteknologier.": "categories.it_specialist.certs.molnberakning.description",
+  "Cloud Computing": "categories.it_specialist.certs.cloud_computing.name",
+  "Deltagare för denna certifiering kommer att kunna identifiera och beskriva slutlösningar som utnyttjar molnteknologier.": "categories.it_specialist.certs.cloud_computing.description",
 
-  "Beräkningstänkande": "categories.it_specialist.certs.berakningstankande.name",
-  "Deltagare för denna certifiering dekomponerar problem, samlar in och analyserar data, känner igen mönster i data, representerar data genom abstraktioner och automatiserar lösningar genom algoritmiskt tänkande.": "categories.it_specialist.certs.berakningstankande.description",
+  "Computational Thinking": "categories.it_specialist.certs.computational_thinking.name",
+  "Deltagare för denna certifiering dekomponerar problem, samlar in och analyserar data, känner igen mönster i data, representerar data genom abstraktioner och automatiserar lösningar genom algoritmiskt tänkande.": "categories.it_specialist.certs.computational_thinking.description",
 
-  "Cybersäkerhet": "categories.it_specialist.certs.cybersakerhet.name",
-  "Deltagare för denna certifiering inleder sin resa inom cybersäkerhetsområdet. Denna certifiering bedömer deras förståelse för nyckelsäkerhetsparadigm, terminologi och tankesätt.": "categories.it_specialist.certs.cybersakerhet.description",
+  "Cybersecurity": "categories.it_specialist.certs.cybersecurity.name",
+  "Deltagare för denna certifiering inleder sin resa inom cybersäkerhetsområdet. Denna certifiering bedömer deras förståelse för nyckelsäkerhetsparadigm, terminologi och tankesätt.": "categories.it_specialist.certs.cybersecurity.description",
 
-  "Dataanalys": "categories.it_specialist.certs.dataanalys.name",
-  "Deltagare för denna certifiering söker att bevisa grundläggande kunskap om hur man ansvarsfullt manipulerar, analyserar och kommunicerar resultat av dataanalys.": "categories.it_specialist.certs.dataanalys.description",
+  "Data Analytics": "categories.it_specialist.certs.data_analysis.name",
+  "Deltagare för denna certifiering söker att bevisa grundläggande kunskap om hur man ansvarsfullt manipulerar, analyserar och kommunicerar resultat av dataanalys.": "categories.it_specialist.certs.data_analysis.description",
 
-  "Databaser": "categories.it_specialist.certs.databaser.name",
-  "Deltagare för denna certifiering kommer att visa grundläggande kunskap om hur man designar och frågar relationsdatabaser.": "categories.it_specialist.certs.databaser.description",
+  "Databases": "categories.it_specialist.certs.databases.name",
+  "Deltagare för denna certifiering kommer att visa grundläggande kunskap om hur man designar och frågar relationsdatabaser.": "categories.it_specialist.certs.databases.description",
 
-  "Enhetkonfiguration och -hantering": "categories.it_specialist.certs.enhetkonfiguration_och_hantering.name",
-  "Deltagare för denna certifiering kommer att visa grundläggande färdigheter och kunskap om Windows-enheter och mobilitet.": "categories.it_specialist.certs.enhetkonfiguration_och_hantering.description",
+  "Device Configuration and Management": "categories.it_specialist.certs.device_configuration.name",
+  "Deltagare för denna certifiering kommer att visa grundläggande färdigheter och kunskap om Windows-enheter och mobilitet.": "categories.it_specialist.certs.device_configuration.description",
 
-  "HTML och CSS": "categories.it_specialist.certs.html_och_css.name",
-  "Deltagare för denna certifiering kommer att visa att de kan strukturera en webbsida med HTML-element och skapa och tillämpa stilar med CSS.": "categories.it_specialist.certs.html_och_css.description",
+  "HTML and CSS": "categories.it_specialist.certs.html_css.name",
+  "Deltagare för denna certifiering kommer att visa att de kan strukturera en webbsida med HTML-element och skapa och tillämpa stilar med CSS.": "categories.it_specialist.certs.html_css.description",
 
-  "HTML5 Application Development": "categories.it_specialist.certs.html5_application_development.name",
-  "Deltagare för denna certifiering kommer att demonstrera sin förmåga att använda HTML5, CSS och JavaScript för att bygga responsiva webbapplikationer som fungerar på olika pekutrustade enheter, inklusive datorer, surfplattor och telefoner.": "categories.it_specialist.certs.html5_application_development.description",
+  "HTML5 Application Development": "categories.it_specialist.certs.html5_app.name",
+  "Deltagare för denna certifiering kommer att demonstrera sin förmåga att använda HTML5, CSS och JavaScript för att bygga responsiva webbapplikationer som fungerar på olika pekutrustade enheter, inklusive datorer, surfplattor och telefoner.": "categories.it_specialist.certs.html5_app.description",
 
   "Java": "categories.it_specialist.certs.java.name",
   "Deltagare för denna certifiering kommer att visa att de kan känna igen, skriva och felsöka Java-kod som logiskt löser ett problem.": "categories.it_specialist.certs.java.description",
@@ -130,15 +130,16 @@ export const translationKeys = {
   "JavaScript": "categories.it_specialist.certs.javascript.name",
   "Deltagare för denna certifiering kommer att visa att de kan känna igen, skriva och felsöka JavaScript-kod som logiskt löser ett problem.": "categories.it_specialist.certs.javascript.description",
 
-  "Nätverk": "categories.it_specialist.certs.natverk.name",
-  "Deltagare för denna certifiering kommer att visa grundläggande nätverkskunskaper och färdigheter, inklusive TCP/IP, nätverkstjänster, nätverkstopologier och felsökning i trådbundna och trådlösa miljöer.": "categories.it_specialist.certs.natverk.description",
+  "Networking": "categories.it_specialist.certs.networking.name",
+  "Deltagare för denna certifiering kommer att visa grundläggande nätverkskunskaper och färdigheter, inklusive TCP/IP, nätverkstjänster, nätverkstopologier och felsökning i trådbundna och trådlösa miljöer.": "categories.it_specialist.certs.networking.description",
 
-  "Nätverkssäkerhet": "categories.it_specialist.certs.natverkssakerhet.name",
-  "Deltagare för denna certifiering kommer att visa grundläggande säkerhetskunskaper och färdigheter, inklusive förståelse för core säkerhetsprinciper, operativsystemets säkerhet, nätverks- och enhetssäkerhet samt säkra datorpraxis.": "categories.it_specialist.certs.natverkssakerhet.description",
+  "Network Security": "categories.it_specialist.certs.network_security.name",
+  "Deltagare för denna certifiering kommer att visa grundläggande säkerhetskunskaper och färdigheter, inklusive förståelse för core säkerhetsprinciper, operativsystemets säkerhet, nätverks- och enhetssäkerhet samt säkra datorpraxis.": "categories.it_specialist.certs.network_security.description",
 
   "Python": "categories.it_specialist.certs.python.name",
   "Deltagare för denna certifiering kommer att visa att de kan känna igen, skriva och felsöka Python-kod som logiskt löser ett problem.": "categories.it_specialist.certs.python.description",
 
-  "Programvaruutveckling": "categories.it_specialist.certs.programvaruutveckling.name",
-  "Deltagare för denna certifiering kommer att visa kärnkompetenser inom programvaruutveckling, inklusive objektorienterad programmering, webbapplikationer och databaser. Deltagare förväntas ha viss erfarenhet av C# och ANSI SQL.": "categories.it_specialist.certs.programvaruutveckling.description"
+  "Software Development": "categories.it_specialist.certs.software_development.name",
+  "Deltagare för denna certifiering kommer att visa kärnkompetenser inom programvaruutveckling, inklusive objektorienterad programmering, webbapplikationer och databaser. Deltagare förväntas ha viss erfarenhet av C# och ANSI SQL.": "categories.it_specialist.certs.software_development.description"
+  
 };

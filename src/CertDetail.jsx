@@ -15,7 +15,8 @@ export default function CertDetail() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [alltesttimes, setAlltesttimes] = useState([]);
   const [toggleTesttimes, setToggleTesttimes] = useState(false);
-  const [cert, setCert] = useState();
+  const [cert, setCert] = useState(null);
+  const [certs, setCerts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   // Hämta kategorier
@@ -32,17 +33,43 @@ export default function CertDetail() {
     fetchCategories();
   }, []);
 
-  useEffect(() => {
-    const fetchCert = async () => {
+useEffect(() => {
+  const fetchCert = async () => {
+    setLoading(true);
     try {
-      const res = await axios.get(`https://certbe-backend.onrender.com/api/cert/${certid}`);
-      setCert(res.data);
+      
+      const resAll = await axios.get('https://certbe-backend.onrender.com/api/cert');
+      const allCerts = resAll.data;
+      setCerts(allCerts);
+     
+      const certificate = allCerts.find(c => c.certName === decodedCertName);
+
+      if (!certificate) {
+        console.error("Certifikatet hittades inte:", decodedCertName);
+        setLoading(false);
+        return;
+      }
+      
+      const resDetail = await axios.get(
+        `https://certbe-backend.onrender.com/api/cert/${certificate.id}`
+      );
+      setCert(resDetail.data);
+      
     } catch (err) {
       console.error('Fel vid hämtning av certifikat:', err);
+    } finally {
+      setLoading(false);
     }
   };
-    fetchCert();
-  }, [certid]);
+
+  fetchCert();
+}, [decodedCertName]);
+
+
+  useEffect(() => {
+  if (cert) console.log(cert.linkToCertInfo);
+}, [cert]);
+
 
   const descriptionKey = translationKeys[description] || description;
 
@@ -132,6 +159,21 @@ export default function CertDetail() {
                 {t('course_category')}: {selectedCategory ? selectedCategory.name : t('loading_category')}
               </h3>
               <p>{t(descriptionKey)}</p>
+            <h4>
+            {cert ? (
+              <a
+                href={cert.pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="certiport-link"
+              >
+                {t('link_to_certiport', { certName: decodedCertName })}
+              </a>
+            ) : (
+              <Spinner animation="border" size="sm" />
+            )}
+          </h4>
+
             </Col>
 
             <Col md={5}>

@@ -282,7 +282,6 @@
   "categories.it_specialist.description": "Certificeringer inden for programmering, dataanalyse, cybersikkerhed og meget mere.",
 
   "categories.it_specialist.certs.ai.name": "Kunstig Intelligens",
-  "categories.it_specialist.certs.ai.description": "Forstå det grundlæggende i kunstig intelligens.",
 
   "categories.it_specialist.certs.cloud_computing.name": "Cloud Computing",
   "categories.it_specialist.certs.molnberakning.description": "Lær om cloud-tjenester og deres anvendelse.",  
@@ -306,22 +305,17 @@
   "categories.it_specialist.certs.html_och_css.description": "Byg websites med HTML og CSS.",
 
   "categories.it_specialist.certs.html5_app.name": "HTML5 Appudvikling",
-  "categories.it_specialist.certs.html5_app.description": "Udvikl apps med HTML5-teknologi.",
 
   "categories.it_specialist.certs.java.name": "Java",
-  "categories.it_specialist.certs.java.description": "Programmer med Java til forskellige applikationer.",
 
   "categories.it_specialist.certs.javascript.name": "JavaScript",
-  "categories.it_specialist.certs.javascript.description": "Skab interaktivitet på webben med JavaScript.",
 
   "categories.it_specialist.certs.networking.name": "Netværk",
   "categories.it_specialist.certs.natverk.description": "Forstå netværksstrukturer og protokoller.",
 
   "categories.it_specialist.certs.network_security.name": "Netværkssikkerhed",
-  "categories.it_specialist.certs.network_security.description": "Sikr netværk mod angreb og indtrængen.",
 
   "categories.it_specialist.certs.python.name": "Python",
-  "categories.it_specialist.certs.python.description": "Programmer med Python til automatisering",
 
   "infoPage.testCenterSection.title": "Testcenter",
 "infoPage.testCenterSection.city": "Malmö",
@@ -547,7 +541,62 @@
   "no_account": "Har du ikke en konto?",
   "register_here": "Registrer dig her",
       "paragraph4": "Efter bestået test modtager du et certificeringsdiplom, der bekræfter dine kompetencer.",
-      "slotsMoreThanFive": "Flere end 5"
+      "slotsMoreThanFive": "Flere end 5",
+      
+  "categories.it_specialist.certs.ai.description": "Udforsk kunstig intelligens og lær at bruge det til at skabe innovative løsninger, der gør en forskel.",
+  "categories.it_specialist.certs.cloud_computing.description": "Bliv ekspert i cloud-teknologi og lær at bygge og administrere effektive cloud-løsninger.",
+  "categories.it_specialist.certs.computational_thinking.description": "Udvikl problemløsningsevner med computational thinking og styrk dine analytiske færdigheder.",
+  "categories.it_specialist.certs.cybersecurity.description": "Beskyt digitale systemer og bliv en nøglespiller inden for cybersikkerhed.",
+  "categories.it_specialist.certs.data_analysis.description": "Lær at analysere data og skabe værdifulde indsigter, der driver resultater.",
+  "categories.it_specialist.certs.databases.description": "Fordyb dig i databaser og bliv ekspert i organisering og håndtering af kritisk information.",
+  "categories.it_specialist.certs.device_configuration.description": "Lær at konfigurere og optimere enheder for maksimal effektivitet i moderne IT-miljøer.",
+  "categories.it_specialist.certs.html_css.description": "Skab flotte og responsive websites med HTML og CSS – bliv webudviklingsekspert.",
+  "categories.it_specialist.certs.html5_app.description": "Byg moderne webapplikationer med HTML5 og imponer med dine færdigheder.",
+  "categories.it_specialist.certs.java.description": "Behersk Java-programmering og udvikl robuste, skalerbare applikationer.",
+  "categories.it_specialist.certs.javascript.description": "Bliv ekspert i dynamiske webløsninger med JavaScript og løft dine projekter til næste niveau.",
+  "categories.it_specialist.certs.networking.description": "Lær netværksteknologi og sikr hurtige og pålidelige systemer.",
+  "categories.it_specialist.certs.network_security.description": "Beskyt virksomhedens netværk og bliv eftertragtet som sikkerhedsspecialist.",
+  "categories.it_specialist.certs.python.description": "Fordyb dig i Python for dataanalyse, automatisering og smarte løsninger.",
+  "categories.it_specialist.certs.software_development.description": "Lær hele softwareudviklingsprocessen og skab programmer, der gør en forskel.",  
+  "link_to_certiport": "Læs mere på Certiport om {{certName}}",
+  
+  "privacy_title": "Privatlivspolitik",
+  "privacy_intro": "Hos Scandinavian Certification Services (SCS) værner vi om dit privatliv. Denne politik forklarer, hvordan vi indsamler, bruger og beskytter dine personoplysninger i forbindelse med booking af certificeringer og gennemførelse af tests.",
+  "privacy_data_collected_title": "Hvilke oplysninger vi indsamler",
+  "privacy_data_collected_1": "Navn, e‑mailadresse og kontaktoplysninger ved registrering og login.",
+  "privacy_data_collected_2": "Bookinginformation (valgt certificering, dato, tid).",
+  "privacy_data_collected_3": "Tekniske oplysninger såsom IP‑adresse og cookies ved brug af vores hjemmeside.",
+  "privacy_usage_title": "Hvordan vi bruger oplysningerne",
+  "privacy_usage_1": "Til at håndtere bookinger og bekræftelser via SCS’s hjemmeside.",
+  "privacy_usage_2": "Til at muliggøre certificeringstest via Certiports platform.",
+  "privacy_usage_3": "Til at kommunikere med dig om bookinger, ændringer eller tekniske problemer.",
+  "privacy_usage_4": "Til at forbedre vores tjenester og brugeroplevelse.",
+  "privacy_sharing_title": "Deling af oplysninger",
+  "privacy_sharing_text": "Dine bookingoplysninger deles med Certiport, da selve testen gennemføres på deres platform. Certiport behandler disse oplysninger i henhold til deres egen privatlivspolitik. Vi sælger aldrig dine oplysninger til tredjeparter.",
+  "privacy_legal_title": "Retsgrundlag",
+  "privacy_legal_1": "Behandling sker for at kunne opfylde aftaler (booking og certificering).",
+  "privacy_legal_2": "Visse oplysninger behandles for at opfylde lovkrav (fx bogføring).",
+  "privacy_storage_title": "Hvor længe vi gemmer oplysningerne",
+  "privacy_storage_text": "Personoplysninger gemmes så længe det er nødvendigt for at opfylde formålet med bookingen og certificeringen. Derefter slettes eller anonymiseres oplysningerne.",
+  "privacy_security_title": "Sikkerhed",
+  "privacy_security_text": "Vi anvender tekniske og organisatoriske tiltag for at beskytte dine oplysninger mod uautoriseret adgang, tab eller misbrug.",
+  "privacy_rights_title": "Dine rettigheder",
+  "privacy_rights_1": "Anmode om adgang til dine personoplysninger.",
+  "privacy_rights_2": "Anmode om rettelse eller sletning.",
+  "privacy_rights_3": "Gøre indsigelse mod behandling.",
+  "privacy_rights_4": "Indgive klage til Datatilsynet.",
+  "privacy_contact_title": "Kontakt",
+  "privacy_contact_1": "Scandinavian Certification Services (SCS)",
+  "privacy_contact_2": "📧 malmo@lexicon.se",
+  "privacy_contact_3": "📞 [Lexicons telefonnummer]",
+  "privacy_contact_4": "📍 Malmö | Landskrona | Online",
+  "privacy_contact_5": "CVR-nr: [indsæt organisationsnummer]",
+
+    "privacyLastUpdated": "Sidst opdateret: {{date}}",
+  "privacy_intro_title": "Indledning",
+    "privacyTechPublished": "Offentliggjort: {{publishedDate}}"
+ 
+  
 }
 
 

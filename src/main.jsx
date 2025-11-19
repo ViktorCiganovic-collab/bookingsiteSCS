@@ -22,6 +22,7 @@ import AdminDashboard from './AdminDashboard.jsx';
 import UserDashboard from './UserDashboard.jsx';
 import Booking from './Booking.jsx';
 import InfoPage from './InfoPage.jsx';
+import IntegrityPolicy from './IntegrityPolicy.jsx';
 import Accessibility from './Accessibility.jsx';
 import BookingTermsPage from './BookingTerms.jsx';
 import { Elements } from '@stripe/react-stripe-js';
@@ -84,9 +85,20 @@ const router = createBrowserRouter([
        
       },
       {
-        path: 'booking/:categoryid/:certificatename/:examid/:price',
-        element: <Booking />
+        path: 'booking',
+        element: <ProtectedRoute />,   // skyddar allt under /booking
+        children: [
+          {
+            path: ':categoryid/:certificatename/:examid/:price',
+            element: <Booking />
+          }
+        ]
       },
+      {
+        path: 'integrity-policy',
+        element: <IntegrityPolicy />
+      },
+
       {
         path: 'accessibility',
         element: <Accessibility />

@@ -15,10 +15,10 @@ function Footer() {
       <Container>
         <Row>
           <Col md={6}>
-            <p>&copy; {new Date().getFullYear()} Scandinavian Certification Services AB</p>
+            <p>&copy; {new Date().getFullYear()} Scandinavian Certification Services AB | Org.nr: 559389-0592</p>
           </Col>
           <Col md={6} className="text-md-end">
-             <Link to="/integritetspolicy" style={{textDecoration: 'none', color: '#fff'}}>{t('privacyPolicy')}</Link> &nbsp;|&nbsp; 
+             <Link to="/integrity-policy" style={{textDecoration: 'none', color: '#fff'}}>{t('privacyPolicy')}</Link> &nbsp;|&nbsp; 
     <Link to="/booking-terms" style={{textDecoration: 'none', color: '#fff'}}>{t('bookingTerms')}</Link> &nbsp;|&nbsp; 
     <Link to="/accessibility" style={{textDecoration: 'none', color: '#fff'}}>{t('accessibilityStatement')}</Link>
           </Col>

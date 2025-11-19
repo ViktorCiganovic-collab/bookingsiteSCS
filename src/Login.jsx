@@ -15,12 +15,12 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 function Login() {
   const [username, setUsername] = useState('');  
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { role, setRole, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const { role, setRole, isAuthenticated, setIsAuthenticated, user, setUser } = useContext(AuthContext);
 
   const handleSubmit = async (event) => {
   event.preventDefault();  
@@ -33,8 +33,11 @@ function Login() {
     }
   );
 
-    const token = response.data.token;
+    const { token, user } = response.data;
     localStorage.setItem('token', token);  
+    localStorage.setItem('user', JSON.stringify(user));
+
+    setUser(user);
 
     // const parsedToken = parseJwt(token);
     // let isAdmin = parsedToken.role == "Admin";

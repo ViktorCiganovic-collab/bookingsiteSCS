@@ -72,12 +72,24 @@ function App() {
         // 🖥️ DESKTOPVY: visa 3 kolumner
         <Row>
           {threeCourses.map((course, index) => (
+            
             <Col key={index} md={4}>
               <div className="course-card" data-aos="fade-up">
-                <Link
-                  to={`/cert/${encodeURIComponent(course.certs[0].name)}/${encodeURIComponent(course.certs[0].description)}/1500/${course.categoryId}/${course.certs[0].certId}`}
-                >
-                  <img
+               <Link
+              to={`/cert/${
+                6 < course.certs.length
+                  ? encodeURIComponent(course.certs[6].name)
+                  : encodeURIComponent(course.certs[course.certs.length - 1].name)
+              }/${
+                6 < course.certs.length
+                  ? encodeURIComponent(course.certs[6].description)
+                  : encodeURIComponent(course.certs[course.certs.length - 1].description)
+              }/1500/${course.categoryId}/${
+                6 < course.certs.length
+                  ? course.certs[6].certId
+                  : course.certs[course.certs.length - 1].certId
+              }`}
+            >       <img
                     src={course.image}
                     alt={course.courseName}
                     className="mb-3 w-100"
@@ -93,8 +105,14 @@ function App() {
                     {course.courseName}
                   </span>
                 </p>
-                <h3 className="text-white">{course.certs[0].name}</h3>
-                <p className="text-white">{course.certs[0].description}</p>
+                <h3 className="text-white">
+                {4 < course.certs.length
+                  ? course.certs[6].name
+                  : course.certs[course.certs.length - 1].name}
+                </h3>
+                <p className="text-white">{6 < course.certs.length
+                  ? course.certs[6].description
+                  : course.certs[course.certs.length - 1].description}</p>
               </div>
             </Col>
           ))}

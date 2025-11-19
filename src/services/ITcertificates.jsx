@@ -1,4 +1,4 @@
-import dataAnalysisImg from '../media/ITspecialist__.png';
+import dataAnalysisImg from '../media/it_specialist.png';
 import aiImg from '../media/pexels-photo-2007647.jpeg';
 import cybersecurityImg from '../media/cybersecurity.jpg';
 import cloudImg from '../media/microsoftfundamentals.png';
@@ -91,23 +91,23 @@ const Itcourses = () => {
       category: t('it_pros'),
       description: t("it_specialist_description"),
       image: dataAnalysisImg,
-      certs: [
-        { certId: 29, name: t("ai"), description: t("categories.it_specialist.certs.ai.description") },
-        { certId: 30, name: t("cloud_computing"), description: t("categories.it_specialist.certs.cloud_computing.description") },
-        { certId: 31, name: t("computational_thinking"), description: t("categories.it_specialist.certs.computational_thinking.description") },
-        { certId: 32, name: t("cybersecurity"), description: t("categories.it_specialist.certs.cybersecurity.description") },
-        { certId: 33, name: t("data_analysis"), description: t("categories.it_specialist.certs.data_analysis.description") },
-        { certId: 34, name: t("databases"), description: t("categories.it_specialist.certs.databases.description") },
-        { certId: 35, name: t("device_configuration"), description: t("categories.it_specialist.certs.device_configuration.description") },
-        { certId: 36, name: t("html_css"), description: t("categories.it_specialist.certs.html_css.description") },
-        { certId: 37, name: t("html5_app"), description: t("categories.it_specialist.certs.html5_app.description") },
-        { certId: 38, name: t("java"), description: t("categories.it_specialist.certs.java.description") },
-        { certId: 39, name: t("javascript"), description: t("categories.it_specialist.certs.javascript.description") },
-        { certId: 40, name: t("networking"), description: t("categories.it_specialist.certs.networking.description") },
-        { certId: 41, name: t("network_security"), description: t("categories.it_specialist.certs.network_security.description") },
-        { certId: 42, name: t("python"), description: t("categories.it_specialist.certs.python.description") },
-        { certId: 43, name: t("software_development"), description: t("categories.it_specialist.certs.software_development.description") }
-      ]
+     certs: [
+  { certId: 29, name: "Artificial Intelligence", description: t("categories.it_specialist.certs.ai.description") },
+  { certId: 30, name: "Cloud Computing", description: t("categories.it_specialist.certs.cloud_computing.description") },
+  { certId: 31, name: "Computational Thinking", description: t("categories.it_specialist.certs.computational_thinking.description") },
+  { certId: 32, name: "Cybersecurity", description: t("categories.it_specialist.certs.cybersecurity.description") },
+  { certId: 33, name: "Data Analytics", description: t("categories.it_specialist.certs.data_analysis.description") },
+  { certId: 34, name: "Databases", description: t("categories.it_specialist.certs.databases.description") },
+  { certId: 35, name: "Device Configuration and Management", description: t("categories.it_specialist.certs.device_configuration.description") },
+  { certId: 36, name: "HTML and CSS", description: t("categories.it_specialist.certs.html_css.description") },
+  { certId: 37, name: "HTML5 Application Development", description: t("categories.it_specialist.certs.html5_app.description") },
+  { certId: 38, name: "Java", description: t("categories.it_specialist.certs.java.description") },
+  { certId: 39, name: "JavaScript", description: t("categories.it_specialist.certs.javascript.description") },
+  { certId: 40, name: "Networking", description: t("categories.it_specialist.certs.networking.description") },
+  { certId: 41, name: "Network Security", description: t("categories.it_specialist.certs.network_security.description") },
+  { certId: 42, name: "Python", description: t("categories.it_specialist.certs.python.description") },
+  { certId: 43, name: "Software Development", description: t("categories.it_specialist.certs.software_development.description") }
+]
     }
   ];
 };

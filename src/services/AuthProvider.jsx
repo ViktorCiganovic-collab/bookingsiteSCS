@@ -10,6 +10,11 @@ const [role, setRole] = useState(() => {
 return localStorage.getItem('role') || '';
 });
 
+const [user, setUser] = useState(() => {
+  const savedUser = localStorage.getItem('user');
+  return savedUser ? JSON.parse(savedUser) : null;
+});
+
 const [isAuthenticated, setIsAuthenticated] = useState(() => {
   const savedData = localStorage.getItem('authenticationData');
   return savedData === 'true' ? true : false;
@@ -22,6 +27,10 @@ const [isAuthenticated, setIsAuthenticated] = useState(() => {
 useEffect(() => {
     localStorage.setItem('role', role);
 }, [role]);
+
+useEffect(() => {
+  localStorage.setItem('user', JSON.stringify(user));
+}, [user]);
 
 //uppdatera localstorage varje gång användare är verifierad
 useEffect(() => {
@@ -45,7 +54,7 @@ useEffect(() => {
   }, [token]);
 
 return (
-<AuthContext.Provider value={{ role, setRole, isAuthenticated, setIsAuthenticated, token, setToken, email }}>
+<AuthContext.Provider value={{ role, setRole, user, setUser, isAuthenticated, setIsAuthenticated, token, setToken, email }}>
     {children}
 </AuthContext.Provider>
 )

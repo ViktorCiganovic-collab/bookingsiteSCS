@@ -29,6 +29,7 @@ const AdminDashboard = () => {
   const [certDesc, setCertDesc] = useState('');
   const [price, setPrice] = useState('');
   const [certId, setCertId] = useState('');
+  const [certUrl, setCertUrl] = useState('');
   const [sortOrder, setSortOrder] = useState('descending');
   const [sortedTests, setSortedTests] = useState([]);
   const [starttime, setStarttime] = useState('');
@@ -160,6 +161,7 @@ const formatTime = (date) =>
     setLoading(true);
       try {
       const res = await axios.get('https://certbe-backend.onrender.com/api/cert');
+      console.log(res.data);
       setCertificates(res.data);      
       setError(null);
       setLoading(false);
@@ -177,7 +179,7 @@ const formatTime = (date) =>
   event.preventDefault();
   const token = localStorage.getItem('token');
 
-  if (!name || !selectedcategory || !price) {
+  if (!name || !selectedcategory || !price || !certUrl) {
     setError('Vänligen fyll i alla fält och ladda upp en bild!');
     return;
   }  
@@ -187,6 +189,7 @@ const formatTime = (date) =>
     CertName: name,
     CertDescription: certDesc,
     Price: price, 
+    PdfUrl: certUrl
   };
 
   try {
@@ -224,7 +227,8 @@ const Editcertificate = async (e) => {
     CategoryId: Number(selectedcategory),
     CertName: name,
     CertDescription: certDesc,
-    price: Number(price)
+    price: Number(price),
+    LinkToCertInfo: certUrl
   };
 
   try {
@@ -243,6 +247,7 @@ const Editcertificate = async (e) => {
     setName('');
     setSelectedcategory('');
     setPrice(999); 
+    setCertUrl('');
 
   } catch (error) {
     setError(`Något gick fel: ${error.message || 'Vänligen försök igen senare.'}`);
@@ -877,6 +882,7 @@ case 'certificates':
                     setCertDesc(certDescription.description);       
                     setPrice(certificate.price);
                     setActiveSection('addCert');
+                    setCertUrl(certificate.linkToCertInfo);
                   }}
                   >Duplicera</button>
 
@@ -889,6 +895,7 @@ case 'certificates':
                     setActiveSection('editCert');
                     setName(certificate.certName);
                     setPrice(certificate.price);
+                    setCertUrl(certificate.linkToCertInfo);
                   }}
                 >
                   Redigera
@@ -969,6 +976,7 @@ case 'certificates':
     setName(certificate.certName);
     setCertDesc(certDescription ? certDescription.description : '');
     setPrice(certificate.price);
+    setCertUrl(certificate.linkToCertInfo);
     setActiveSection('addCert');
   }}
 >
@@ -981,6 +989,7 @@ case 'certificates':
     setCertId(certificate.id);
     const catObj = category.find(c => c.name === certificate.category);
     setSelectedcategory(catObj ? catObj.id : '');
+    setCertUrl(certificate.linkToCertInfo);
     setActiveSection('editCert');
   }}
 >
@@ -1070,6 +1079,17 @@ case 'certificates':
       />
     </div>
 
+      <div className="mb-3">
+      <label className="form-label">Länk till mer info</label>
+      <input
+        type="text"
+        className="form-control text-center"
+        value={certUrl}
+        onChange={(e) => setCertUrl(e.target.value)}
+        required
+      />
+    </div>
+
     <div className="d-grid">
       <button type="submit" className="btn btn-primary">Skicka</button>
     </div>
@@ -1136,6 +1156,17 @@ case 'certificates':
           className="form-control text-center"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+          required
+        />
+      </div>
+
+        <div className="mb-3 w-100">
+        <label className="form-label">Ny länk till mer info</label>
+        <input
+          type="text"
+          className="form-control text-center"
+          value={certUrl}
+          onChange={(e) => setCertUrl(e.target.value)}
           required
         />
       </div>

@@ -282,7 +282,6 @@
   "categories.it_specialist.description": "Sertifikaatit ohjelmoinnista, data-analytiikasta, kyberturvallisuudesta ja muusta.",
 
   "categories.it_specialist.certs.ai.name": "Tekoäly",
-  "categories.it_specialist.certs.ai.description": "Ymmärrä tekoälyn perusteet.",
 
   "categories.it_specialist.certs.cloud_computing.name": "Pilvipalvelut",
   "categories.it_specialist.certs.molnberakning.description": "Opi pilvipalveluista ja niiden käytöstä.",
@@ -306,19 +305,15 @@
   "categories.it_specialist.certs.html_och_css.description": "Luo ja muotoile verkkosivuja HTML:llä ja CSS:llä.",
 
   "categories.it_specialist.certs.javascript.name": "JavaScript",
-  "categories.it_specialist.certs.javascript.description": "Ohjelmoi interaktiivisia toimintoja verkkosivuille.",
 
   "categories.it_specialist.certs.networking.name": "Verkko",
   "categories.it_specialist.certs.natverk.description": "Ymmärrä verkkorakenteet, protokollat ja vianmääritys.",
 
   "categories.it_specialist.certs.network_security.name": "Verkkoturvallisuus",
-  "categories.it_specialist.certs.network_security.description": "Suojaa verkot luvattomalta käytöltä ja hyökkäyksiltä.",
 
   "categories.it_specialist.certs.python.name": "Python",
-  "categories.it_specialist.certs.python.description": "Ohjelmoi Pythonilla automaatioon ja data-analyysiin.",
 
   "categories.it_specialist.certs.software_development.name": "Ohjelmistokehitys",
-  "categories.it_specialist.certs.software_development.description": "Kehitä sovelluksia ja ymmärrä ohjelmiston elinkaari.",
 
   "categories.it_specialist.certs.database_administration.name": "Tietokannan hallinta",
   "categories.it_specialist.certs.database_administration.description": "Hallinnoi ja optimoi tietokantoja suorituskyvyn ja turvallisuuden takaamiseksi.",
@@ -546,7 +541,61 @@
   "no_account": "Eikö sinulla ole tiliä?",
   "register_here": "Rekisteröidy tästä",
   "paragraph4": "Hyväksytyn testin jälkeen saat sertifiointidiplomin, joka vahvistaa osaamisesi.",
-  "slotsMoreThanFive": "Yli 5"
+  "slotsMoreThanFive": "Yli 5",
+  
+  "categories.it_specialist.certs.ai.description": "Tutustu tekoälyyn ja opi käyttämään sitä innovatiivisten ratkaisujen luomiseen, jotka erottuvat työelämässä.",
+  "categories.it_specialist.certs.cloud_computing.description": "Hallitse pilviteknologia ja opi rakentamaan sekä hallitsemaan tehokkaita pilviratkaisuja.",
+  "categories.it_specialist.certs.computational_thinking.description": "Kehitä ongelmanratkaisutaitoja computational thinking -menetelmällä ja vahvista analyyttisiä kykyjäsi.",
+  "categories.it_specialist.certs.cybersecurity.description": "Suojaa digitaaliset järjestelmät ja tule avainhenkilöksi kyberturvallisuudessa.",
+  "categories.it_specialist.certs.data_analysis.description": "Opettele analysoimaan dataa ja luomaan arvokkaita oivalluksia, jotka tuottavat tulosta.",
+  "categories.it_specialist.certs.databases.description": "Syvenny tietokantoihin ja tule asiantuntijaksi kriittisen tiedon organisoinnissa.",
+  "categories.it_specialist.certs.device_configuration.description": "Opettele konfiguroimaan ja optimoimaan laitteita nykyaikaisessa IT-ympäristössä.",
+  "categories.it_specialist.certs.html_css.description": "Luo näyttäviä ja responsiivisia verkkosivuja HTML:llä ja CSS:llä – tule web-kehityksen ammattilaiseksi.",
+  "categories.it_specialist.certs.html5_app.description": "Rakenna moderneja web-sovelluksia HTML5:llä ja tee vaikutus taidoillasi.",
+  "categories.it_specialist.certs.java.description": "Hallitse Java-ohjelmointi ja kehitä kestäviä, skaalautuvia sovelluksia.",
+  "categories.it_specialist.certs.javascript.description": "Tule asiantuntijaksi dynaamisessa web-kehityksessä JavaScriptillä ja nosta projektisi seuraavalle tasolle.",
+  "categories.it_specialist.certs.networking.description": "Opettele verkkotekniikka ja varmista nopeat sekä luotettavat järjestelmät.",
+  "categories.it_specialist.certs.network_security.description": "Suojaa yrityksen verkot ja tule kysytyksi turvallisuusasiantuntijaksi.",
+  "categories.it_specialist.certs.python.description": "Syvenny Pythonin käyttöön data-analytiikassa, automaatiossa ja älykkäissä ratkaisuissa.",
+  "categories.it_specialist.certs.software_development.description": "Opettele koko ohjelmistokehitysprosessi ja luo ohjelmia, jotka tekevät vaikutuksen.",
+
+  "link_to_certiport": "Lue lisää Certiportista kohteesta {{certName}}",
+  
+  "privacy_title": "Tietosuojakäytäntö",
+  "privacy_intro": "Scandinavian Certification Services (SCS) arvostaa yksityisyyttäsi. Tämä käytäntö selittää, miten keräämme, käytämme ja suojaamme henkilötietojasi sertifiointien varaamisen ja testien suorittamisen yhteydessä.",
+  "privacy_data_collected_title": "Kerättävät tiedot",
+  "privacy_data_collected_1": "Nimi, sähköpostiosoite ja yhteystiedot rekisteröinnin ja kirjautumisen yhteydessä.",
+  "privacy_data_collected_2": "Varaustiedot (valittu sertifiointi, päivämäärä, aika).",
+  "privacy_data_collected_3": "Tekniset tiedot, kuten IP‑osoite ja evästeet verkkosivuston käytön yhteydessä.",
+  "privacy_usage_title": "Tietojen käyttö",
+  "privacy_usage_1": "Varausten ja vahvistusten hallintaan SCS:n verkkosivustolla.",
+  "privacy_usage_2": "Sertifiointitestien mahdollistamiseen Certiportin alustalla.",
+  "privacy_usage_3": "Viestintään kanssasi varauksista, muutoksista tai teknisistä ongelmista.",
+  "privacy_usage_4": "Palvelujemme ja käyttökokemuksen parantamiseen.",
+  "privacy_sharing_title": "Tietojen jakaminen",
+  "privacy_sharing_text": "Varaustietosi jaetaan Certiportin kanssa, koska testi suoritetaan heidän alustallaan. Certiport käsittelee tietoja oman tietosuojakäytäntönsä mukaisesti. Emme koskaan myy tietojasi kolmansille osapuolille.",
+  "privacy_legal_title": "Oikeusperusta",
+  "privacy_legal_1": "Tietojen käsittely on tarpeen sopimuksen täyttämiseksi (varaus ja sertifiointi).",
+  "privacy_legal_2": "Joidenkin tietojen käsittely on tarpeen lakisääteisten velvoitteiden täyttämiseksi (esim. kirjanpito).",
+  "privacy_storage_title": "Tietojen säilytys",
+  "privacy_storage_text": "Henkilötietoja säilytetään niin kauan kuin on tarpeen varauksen ja sertifioinnin toteuttamiseksi. Tämän jälkeen tiedot poistetaan tai anonymisoidaan.",
+  "privacy_security_title": "Turvallisuus",
+  "privacy_security_text": "Käytämme teknisiä ja organisatorisia toimenpiteitä suojataksemme tietosi luvattomalta käytöltä, menetykseltä tai väärinkäytöltä.",
+  "privacy_rights_title": "Oikeutesi",
+  "privacy_rights_1": "Pyytää pääsyä omiin henkilötietoihisi.",
+  "privacy_rights_2": "Pyytää tietojen oikaisua tai poistamista.",
+  "privacy_rights_3": "Vastustaa tietojen käsittelyä.",
+  "privacy_rights_4": "Tehdä valitus Tietosuojavaltuutetulle.",
+  "privacy_contact_title": "Yhteystiedot",
+  "privacy_contact_1": "Scandinavian Certification Services (SCS)",
+  "privacy_contact_2": "📧 malmo@lexicon.se",
+  "privacy_contact_3": "📞 [Lexiconin puhelinnumero]",
+  "privacy_contact_4": "📍 Malmö | Landskrona | Online",
+  "privacy_contact_5": "Y‑tunnus: [lisää yrityksen numero]",
+
+  "privacyLastUpdated": "Viimeksi päivitetty: {{date}}",
+  "privacy_intro_title": "Johdanto",
+    "privacyTechPublished": "Julkaistu: {{publishedDate}}"
 
 }
 
