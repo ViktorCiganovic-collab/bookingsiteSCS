@@ -88,6 +88,9 @@ useEffect(() => {
       try {
         const res = await axios.get('https://certbe-backend.onrender.com/api/examdate');
 
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); 
+
         const formattedTestTimes = res.data.map((testtime) => {
           const startTimeString = `${testtime.testDate.split('T')[0]}T${testtime.examStartingTime}`;
           const endTimeString = `${testtime.testDate.split('T')[0]}T${testtime.examEndingTime}`;
@@ -95,10 +98,21 @@ useEffect(() => {
           const startTime = new Date(startTimeString);
           const endTime = new Date(endTimeString);
 
-          const now  = Date.now();
-          const examStart = startTime.getTime();
+          const testDay = new Date(
+          startTime.getFullYear(),
+          startTime.getMonth(),
+          startTime.getDate()
+        );          
 
-          if (now < examStart) {
+          // Check if parsing was successful
+        if (isNaN(startTime)) {
+          console.error("Invalid start time:", startTimeString);
+        }
+        if (isNaN(endTime)) {
+          console.error("Invalid end time:", endTimeString);
+        }          
+
+          if (testDay > today) {
 
           const formattedStartTime = startTime.toLocaleString('sv-SE', {
             weekday: 'long',
