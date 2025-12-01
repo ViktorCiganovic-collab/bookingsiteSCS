@@ -26,6 +26,16 @@ export default function Cert() {
   // Get translated course array
   const courses = Itcourses(); // ✅ Function call to get data  
 
+const testSectionRef = useRef(null);
+
+
+useEffect(() => {
+  if (selectedTest && testSectionRef.current) {
+    testSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
+}, [selectedTest]); // when selectedTest is rendered and there is a reference to currentsection scroll it into view smooth
+
+
 useEffect(() => {
   axios.get('https://certbe-backend.onrender.com/api/examdate')
     .then((res) => {
@@ -348,7 +358,7 @@ setSelectedcategory(courseName);
 ))}
       </ul>
 {selectedTest && (
-  <div className="mt-4">
+  <div className="mt-4" ref={testSectionRef}>
     <h5>{t('available_exam_times')} {selectedTest.certname}</h5>
     <ul className="list-group">
       {alltesttimes.map((testtime, idx) => (
