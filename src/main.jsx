@@ -46,7 +46,7 @@ const router = createBrowserRouter([
       },
   
       {
-        path: 'cert/:certname/:description/:certtestprice/:certcategory/:certid',
+        path:"cert/:id/:categoryId",
         element: <CertDetail />,
       },
       {

@@ -712,7 +712,7 @@ const changePassword = async (event) => {
                   <Card.Text><strong>Förnamn:</strong> {userData.firstName}</Card.Text>
                   <Card.Text><strong>Efternamn:</strong> {userData.lastName}</Card.Text>
                   <Card.Text><strong>Email:</strong> {userData.email}</Card.Text>
-                  <Card.Text><strong>Adress:</strong> {userData.address}</Card.Text>
+                  <Card.Text><strong>Land:</strong> {userData.country}</Card.Text>
                 </Card.Body>
               </Card>
             </Col>

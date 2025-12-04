@@ -20,7 +20,7 @@ function Signup() {
   const [captchaToken, setCaptchaToken] = useState("");
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');  
-  const [address, setAddress] = useState('');
+  const [country, setCountry] = useState('');
   const [registered, setRegistered] = useState(false);    
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
@@ -49,7 +49,7 @@ function Signup() {
         password,
         firstName,
         lastName,        
-        address,
+        country,
         captchaToken
       }); 
       setRegistered(true);
@@ -118,13 +118,13 @@ function Signup() {
                   />
                 </Form.Group>               
 
-                <Form.Group className="mb-3" controlId="formAddress">
-                  <Form.Label>{t('address')}</Form.Label>
+                <Form.Group className="mb-3" controlId="formCountry">
+                  <Form.Label>{t('country')}</Form.Label>
                   <Form.Control
                     type="text"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    placeholder={t('address_placeholder')}
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                    placeholder={t('country_placeholder')}
                     required
                   />
                 </Form.Group>

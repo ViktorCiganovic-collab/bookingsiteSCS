@@ -93,13 +93,13 @@
   "enterLastName": "Syötä sukunimi",
   "phoneNumber": "Puhelinnumero",
   "enterPhoneNumber": "Syötä puhelinnumero",
-  "address": "Osoite",
+  "country": "Land",
   "enterAddress": "Syötä osoite",
   "enterPassword": "Syötä salasana",
   "register": "Rekisteröidy",
   "testTime": "Valitse testi aika",
   "about": "Ota yhteyttä",
-  "about_tagline": "Koulutamme tulevaisuuden IT-asiantuntijoita.",
+  "about_tagline": "Me sertifioimme tulevaisuuden IT‑asiantuntijat",
     "who_we_are": "Kuka me olemme",
   "about_team_description": "Olemme intohimoinen IT-asiantuntijoiden ja kouluttajien tiimi, joka on luonut tämän alustan auttaakseen yksilöitä ja yrityksiä ottamaan seuraavan askeleen IT-urallaan.",
   "what_we_do": "Mitä me teemme",
@@ -197,7 +197,7 @@
       "registration_failed": "Rekisteröinti epäonnistui. Käyttäjänimi voi olla jo käytössä.",
   "your_firstname": "Etunimesi",
   "your_lastname_placeholder": "Sukunimesi",
-  "address_placeholder": "Anna osoite",
+  "country_placeholder": "Valitse maa",
   "email_username": "Sähköposti - Käyttäjätunnus",
   "error_could_not_fetch_bookings": "Varauksia ei voitu hakea.",
   "sectionThreeHeadline": "Rakenna tulevaisuutesi kanssamme",
@@ -317,6 +317,12 @@
 
   "categories.it_specialist.certs.database_administration.name": "Tietokannan hallinta",
   "categories.it_specialist.certs.database_administration.description": "Hallinnoi ja optimoi tietokantoja suorituskyvyn ja turvallisuuden takaamiseksi.",
+
+"categories.unity_certified_user_programmer.description": "Unity Certified User Programmer -sertifikaattikoe vahvistaa perustaidot C#-ohjelmoinnissa Unity-ympäristössä. Hakijat osoittavat kykynsä luoda interaktiivisuutta peleissä, sovelluksissa, AR/VR-ratkaisuissa ja muissa kokemuksissa. Sertifikaatti kattaa keskeiset osaamisalueet kuten virheenkorjauksen, ongelmanratkaisun, API:en tulkinnan, koodin kirjoittamisen ja arvioinnin sekä Unityn käyttöliittymässä navigoinnin. Hyvä valmistautuminen edellyttää vähintään 150 tunnin Unity-harjoittelua ennen koetta.",
+
+"categories.unity_certified_user_vr.description": "Tämä sertifikaattikoe arvioi perustaidot, joita tarvitaan VR-simulaatioiden rakentamiseen Unityssä. Sertifikaatti vahvistaa hakijan kyvyn suunnitella ja kehittää interaktiivisia VR-kokemuksia ja sovelluksia Unity-ympäristössä.",
+"categories.unity_certified_user_design.description": "Tämä sertifikaatti vahvistaa perustaidot digitaalisen luomisen ja visuaalisen suunnittelun osalta Unityssä. Koe testaa hakijan kykyä työskennellä 2D- ja 3D-assetien kanssa, käyttää materiaaleja ja tekstuureja, valaistusta ja efektejä sekä luoda käyttöliittymiä ja visuaalisia sommitelmia. Sertifikaatti osoittaa, että hakija pystyy tuottamaan interaktiivisia ja visuaalisesti houkuttelevia kokemuksia peleissä, sovelluksissa ja AR/VR-ympäristöissä. Hyvä valmistautuminen edellyttää vähintään 150 tunnin Unity-harjoittelua.",
+
 
   "infoPage.testCenterSection.title": "Testikeskus",
 "infoPage.testCenterSection.city": "Malmö",

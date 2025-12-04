@@ -344,7 +344,7 @@ setSelectedcategory(courseName);
       <ul className="list-group">
        {currentCategory.certs.map((cert) => (
   <li key={cert.id || cert.name} className="certInformation list-group-item d-flex justify-content-between align-items-center">
-    <Link to={`/cert/${encodeURIComponent(cert.name)}/${cert.description}/${cert.price}/${cert.categoryId}/${cert.id}`}>
+    <Link to={`/cert/${cert.id}/${cert.categoryId}`}>
       <span className='certStyling'>{cert.name}</span>
     </Link>
     <button

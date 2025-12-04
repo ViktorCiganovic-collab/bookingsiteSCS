@@ -81,8 +81,8 @@ const Booking = () => {
   // Uppdatera pris när checkboxar ändras
   useEffect(() => {
     let priceTotal = Number(price);
-    if (includeMaterial) priceTotal += 100;
-    if (includeTest) priceTotal += 100;
+    if (includeMaterial) priceTotal += 750;
+    if (includeTest) priceTotal += 500;
     setAccprice(priceTotal);
   }, [includeMaterial, includeTest, price]);
 
@@ -173,13 +173,13 @@ const Booking = () => {
       <div className='d-flex justify-content-start gap-3 mb-3'>
         <Form.Check
           type="checkbox"
-          label={`${t('add_practice_material')} (+100 SEK)`}
+          label={`${t('add_practice_material')} (+750 SEK)`}
           checked={includeMaterial}
           onChange={(e) => setIncludeMaterial(e.target.checked)}
         />
         <Form.Check
           type="checkbox"
-          label={`${t('add_practice_test')} (+100 SEK)`}
+          label={`${t('add_practice_test')} (+500 SEK)`}
           checked={includeTest}
           onChange={(e) => setIncludeTest(e.target.checked)}
         />

@@ -93,13 +93,13 @@
   "enterLastName": "Indtast efternavn",
   "phoneNumber": "Telefonnummer",
   "enterPhoneNumber": "Indtast telefonnummer",
-  "address": "Adresse",
+  "country": "Land",
   "enterAddress": "Indtast adresse",
   "enterPassword": "Indtast adgangskode",
   "register": "Registrer dig",
   "testTime": "Vælg testtid",
   "about": "Kontakt os",
-  "about_tagline": "Vi uddanner fremtidens IT-specialister.",
+  "about_tagline": "Vi certificerer fremtidens IT-specialister",
     "who_we_are": "Hvem vi er",
   "about_team_description": "Vi er et passioneret team af IT-eksperter og undervisere, som har skabt denne platform for at hjælpe enkeltpersoner og virksomheder med at tage det næste skridt i deres IT-karriere.",
   "what_we_do": "Hvad vi gør",
@@ -197,7 +197,7 @@
       "registration_failed": "Registreringen mislykkedes. Brugernavnet kan allerede være taget.",
   "your_firstname": "Dit fornavn",
   "your_lastname_placeholder": "Dit efternavn",
-  "address_placeholder": "Angiv adresse",
+  "country_placeholder": "Angiv land",
   "email_username": "Email - Brugernavn",
    "error_could_not_fetch_bookings": "Kunne ikke hente bookinger.",
   "sectionThreeHeadline": "Byg din fremtid med os",
@@ -316,6 +316,12 @@
   "categories.it_specialist.certs.network_security.name": "Netværkssikkerhed",
 
   "categories.it_specialist.certs.python.name": "Python",
+
+  "categories.unity_certified_user_programmer.description": "Unity Certified User Programmer-certificeringsprøven validerer grundlæggende færdigheder i C#-programmering i Unity-miljøet. Kandidater demonstrerer evnen til at skabe interaktivitet i spil, applikationer, AR/VR og andre oplevelser. Certificeringen omfatter centrale kompetencer som fejlfinding, problemløsning, fortolkning af API'er, at skrive og evaluere kode samt at navigere i Unitys grænseflade. For at være godt forberedt forventes kandidater at have gennemført mindst 150 timers Unity-træning inden prøven.",
+
+  "categories.unity_certified_user_vr.description": "Denne certificeringsprøve vurderer de grundlæggende færdigheder, der kræves for at bygge VR-simulationer i Unity. Certificeringen bekræfter kandidatens evne til at designe og udvikle interaktive VR-oplevelser og applikationer i Unity-miljøet.",
+  "categories.unity_certified_user_design.description": "Denne certificering bekræfter grundlæggende færdigheder i digitalt skabelse og visuel design i Unity. Prøven tester kandidatens evne til at arbejde med 2D- og 3D-assets, anvende materialer og teksturer, belysning og effekter samt at skabe brugergrænseflader og visuelle kompositioner. Certificeringen viser, at kandidaten kan producere interaktive og visuelt tiltalende oplevelser i spil, applikationer og AR/VR-miljøer. For at være godt forberedt anbefales mindst 150 timers træning i Unity.",
+
 
   "infoPage.testCenterSection.title": "Testcenter",
 "infoPage.testCenterSection.city": "Malmö",

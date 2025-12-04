@@ -102,8 +102,8 @@ const About = () => {
         <Container data-aos="zoom-in" data-aos-duration="1000">
           <h2>{t('contact_us')}</h2>
           <p>{t('reach_out')}</p>
-          <p>📧 malmo@lexicon.se</p>
-          <p>📞 +46 40 665 56 50 (Lexicon Malmö)</p>
+          <p>📧 info@scservices.se</p>
+          <p>📞 +46 709 797 303</p>
           <p>📍 Malmö | Landskrona | Online</p>
         </Container>
       </section>

@@ -7,8 +7,8 @@ import './styling/CertDetail.css';
 import { translationKeys } from './translationMap';
 
 export default function CertDetail() {
-  const { certname, description, certcategory, certtestprice, certid } = useParams();
-  const decodedCertName = decodeURIComponent(certname);
+  const { id, categoryId } = useParams();
+  // const decodedCertName = decodeURIComponent(certname);
   const { t } = useTranslation();
 
   const [category, setCategory] = useState([]);
@@ -18,6 +18,9 @@ export default function CertDetail() {
   const [cert, setCert] = useState(null);
   const [certs, setCerts] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  console.log("CertID i frontend:", id);
+
 
   // Hämta kategorier
   useEffect(() => {
@@ -42,10 +45,10 @@ useEffect(() => {
       const allCerts = resAll.data;
       setCerts(allCerts);
      
-      const certificate = allCerts.find(c => c.certName === decodedCertName);
+    const certificate = allCerts.find(c => c.id === Number(id));
 
       if (!certificate) {
-        console.error("Certifikatet hittades inte:", decodedCertName);
+        console.error("Certifikatet hittades inte:", certificate.certName);
         setLoading(false);
         return;
       }
@@ -63,7 +66,7 @@ useEffect(() => {
   };
 
   fetchCert();
-}, [decodedCertName]);
+}, [id]);
 
 
   useEffect(() => {
@@ -71,16 +74,18 @@ useEffect(() => {
 }, [cert]);
 
 
-  const descriptionKey = translationKeys[description] || description;
+ const descriptionKey = cert 
+  ? (translationKeys[cert.description] ?? cert.description) 
+  : 'loading_description';
 
   // Hitta vald kategori
   useEffect(() => {
     if (category.length > 0) {
-      const catId = Number(certcategory);
+      const catId = Number(categoryId);
       const foundCategory = category.find((cat) => cat.id === catId);
       setSelectedCategory(foundCategory);
     }
-  }, [category, certcategory]);
+  }, [category, categoryId]);
 
   // Hämta testtider
   useEffect(() => {
@@ -162,26 +167,28 @@ useEffect(() => {
     }
   }, [toggleTesttimes, alltesttimes]);
 
+  
   return (
     <div>
       <section className="py-5 detailSection">
         <Container>
           <Row className='content'>
             <Col md={5} className="text-center">
-              <h1>{decodedCertName}</h1>
+              <h1>{cert?.name}</h1>
               <h3>
                 {t('course_category')}: {selectedCategory ? selectedCategory.name : t('loading_category')}
               </h3>
               <p>{t(descriptionKey)}</p>
+
             <h4>
             {cert ? (
               <a
-                href={cert.pdfUrl}
+                href={cert?.pdfUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="certiport-link"
               >
-                {t('link_to_certiport', { certName: decodedCertName })}
+                {t('link_to_certiport', { certName: cert.name })}
               </a>
             ) : (
               <Spinner animation="border" size="sm" />
@@ -321,7 +328,7 @@ useEffect(() => {
                           </td>
                           <td>
                           <Link
-                          to={`/booking/${certcategory}/${encodeURIComponent(certname)}/${testtime.id}/${cert.isDiscount ? cert.price * 0.5 : cert.price}`}
+                          to={`/booking/${categoryId}/${encodeURIComponent(cert.name)}/${testtime.id}/${cert.isDiscount ? cert.price * 0.5 : cert.price}`}
                           className="btn btn-primary"
                           role="button"
                         >
@@ -353,7 +360,7 @@ useEffect(() => {
                         )}
                       </p>
                            <Link
-                        to={`/booking/${certcategory}/${encodeURIComponent(certname)}/${testtime.id}/${cert.isDiscount ? cert.price * 0.5 : cert.price}`}
+                        to={`/booking/${categoryId}/${encodeURIComponent(cert.cetName)}/${testtime.id}/${cert.isDiscount ? cert.price * 0.5 : cert.price}`}
                         className="btn btn-primary w-100 mt-2"
                         role="button"
                       >

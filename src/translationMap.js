@@ -140,6 +140,15 @@ export const translationKeys = {
   "Deltagare för denna certifiering kommer att visa att de kan känna igen, skriva och felsöka Python-kod som logiskt löser ett problem.": "categories.it_specialist.certs.python.description",
 
   "Software Development": "categories.it_specialist.certs.software_development.name",
-  "Deltagare för denna certifiering kommer att visa kärnkompetenser inom programvaruutveckling, inklusive objektorienterad programmering, webbapplikationer och databaser. Deltagare förväntas ha viss erfarenhet av C# och ANSI SQL.": "categories.it_specialist.certs.software_development.description"
+  "Deltagare för denna certifiering kommer att visa kärnkompetenser inom programvaruutveckling, inklusive objektorienterad programmering, webbapplikationer och databaser. Deltagare förväntas ha viss erfarenhet av C# och ANSI SQL.": "categories.it_specialist.certs.software_development.description",
   
+
+  //Unity certified User certifications
+  "Unity Certified User Programmer": "categories.unity_certified_user_programmer.name",
+  "Certifieringsprovet Unity Certified User Programmer validerar grundläggande färdigheter i C#‑programmering inom Unity‑miljön. Kandidater visar sin förmåga att skapa interaktivitet i spel, applikationer, AR/VR och andra upplevelser.  Denna grundnivåcertifiering omfattar centrala kompetenser som felsökning, problemlösning, tolkning av API:er, att skriva och utvärdera kod samt att navigera i Unitys gränssnitt. För att vara väl förberedd förväntas kandidater ha genomfört minst 150 timmars Unity‑träning innan provet.": "categories.unity_certified_user_programmer.description",
+
+  "Detta certifieringsprov bedömer de grundläggande färdigheter som krävs för att bygga VR‑simulationer i Unity. Certifieringen bekräftar kandidatens förmåga att designa och utveckla interaktiva VR‑upplevelser och applikationer inom Unity‑miljön.": "categories.unity_certified_user_vr.description",
+  "Denna certifiering bekräftar grundläggande färdigheter i digitalt skapande och visuell design inom Unity. Provet testar kandidatens förmåga att arbeta med 2D‑ och 3D‑assets, använda material och texturer, ljussättning och effekter, samt att skapa användargränssnitt och visuella kompositioner.  Certifieringen visar att kandidaten kan producera interaktiva och visuellt tilltalande upplevelser i spel, applikationer och AR/VR‑miljöer. För att vara väl förberedd rekommenderas minst 150 timmars träning i Unity.": "categories.unity_certified_user_design.description"
+
+
 };
