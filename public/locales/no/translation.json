@@ -279,7 +279,7 @@
   "categories.cisco_certified_support_technician.certs.cybersecurity.description": "Introduksjon til cybersikkerhet og beskyttelse mot trusler.",
 
   "categories.it_specialist.name": "IT Specialist",
-  "categories.it_specialist.description": "Sertifiseringer innen programmering, dataanalyse, cybersikkerhet og mer.",
+"categories.it_specialist.description": "Denne sertifiseringen validerer grunnleggende IT-kompetanse som er etterspurt av arbeidsgivere. Programmet passer godt for personer som er nybegynnere innen IT eller vurderer en karriere på området. IT Specialist-programmet dekker flere områder, inkludert programmering, cybersikkerhet, datahåndtering og nettverkskunnskap. Det gir en bred forståelse av IT og kan hjelpe deg å bygge et solid grunnlag for å arbeide i ulike IT-roller.",
 
   "categories.it_specialist.certs.ai.name": "Kunstig intelligens",
 
@@ -561,8 +561,11 @@
   "categories.it_specialist.certs.python.description": "Fordyp deg i Python for dataanalyse, automatisering og smarte løsninger.",
   "categories.it_specialist.certs.software_development.description": "Lær hele programvareutviklingsprosessen og skap programmer som gjør en forskjell.",
 
+
   "categories.unity_certified_user_vr.description": "Dette sertifiseringsprøven vurderer de grunnleggende ferdighetene som kreves for å bygge VR-simuleringer i Unity. Sertifiseringen bekrefter kandidatens evne til å designe og utvikle interaktive VR-opplevelser og applikasjoner i Unity-miljøet.",
   "categories.unity_certified_user_design.description": "Denne sertifiseringen bekrefter grunnleggende ferdigheter i digital skapelse og visuell design i Unity. Prøven tester kandidatens evne til å arbeide med 2D- og 3D-assets, bruke materialer og teksturer, lyssetting og effekter, samt å lage brukergrensesnitt og visuelle komposisjoner. Sertifiseringen viser at kandidaten kan produsere interaktive og visuelt tiltalende opplevelser i spill, applikasjoner og AR/VR-miljøer. For å være godt forberedt anbefales minst 150 timer med Unity-trening.",
+
+  "categories.ccst.description": "CCST er en spesialisert sertifisering for dem som vil arbeide med nettverk og cybersikkerhet. Programmet fokuserer på å utvikle avanserte tekniske ferdigheter for å håndtere og feilsøke nettverksproblemer samt forstå og sikre cybersikkerhet i digitale miljøer. Hvis du allerede har en grunnleggende forståelse av IT, er dette sertifikatet som tar dine nettverks- og sikkerhetskunnskaper til neste nivå.",
 
   "link_to_certiport": "Les mer på Certiport om {{certName}}",
   
@@ -599,7 +602,10 @@
   "privacy_contact_5": "Org.nr: [legg til organisasjonsnummer]",
     "privacyLastUpdated": "Sist oppdatert: {{date}}",
   "privacy_intro_title": "Innledning",
-    "privacyTechPublished": "Publisert: {{publishedDate}}"
+    "privacyTechPublished": "Publisert: {{publishedDate}}",
+    
+    "categories.cisco_certified_support_technician.certs.ccst_networking.description": "Tester dine nettverkskunnskaper og forbereder deg på roller som nettverksanalytiker, supporttekniker og mer. Med CCST Networking-sertifiseringen viser du arbeidsgivere at du er klar til å møte utfordringer fra dag én."
+
 
 }
 

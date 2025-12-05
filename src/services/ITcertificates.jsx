@@ -1,9 +1,9 @@
-import dataAnalysisImg from '../media/it_specialist.png';
-import aiImg from '../media/pexels-photo-2007647.jpeg';
+import dataAnalysisImg from '../media/ITspecialist__.png';
+import aiImg from '../media/unity_cert.webp';
 import cybersecurityImg from '../media/cybersecurity.jpg';
-import cloudImg from '../media/microsoftfundamentals.png';
-import webDevImg from '../media/adobe_img.png'
-import networkingImg from '../media/cisco_certified.jpg'
+import cloudImg from '../media/microsoft_fundamentals.png';
+import webDevImg from '../media/adobe-logo.webp'
+import networkingImg from '../media/cybersecurity.jpg'
 import scriptingImg from '../media/microsoftofficespecialist.png';
 
 import { useTranslation } from 'react-i18next';

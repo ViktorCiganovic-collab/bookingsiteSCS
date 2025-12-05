@@ -62,7 +62,7 @@ export const translationKeys = {
   "Adobe Certified Professional": "categories.adobe_certified_professional.name",
   "Om du tar något av InDesign, Photoshop och Illustrator tillsammans med en annan Adobe certifiering kvalificerar du för Adobe Certified Professional.": "categories.adobe_certified_professional.description",
 
-  "Adobe After Effects": "categories.adobe_certified_professional.certs.after_effects.name",
+  "Adobe After Effects": "categories.adobe_certified_professional.certs.after_effects.description",
   "Skapa imponerande rörlig grafik och visuella effekter för video, webb och film – perfekt för dig som vill ta dina animationer till nästa nivå.": "categories.adobe_certified_professional.certs.after_effects.description",
 
   "Adobe Animate": "categories.adobe_certified_professional.certs.animate.name",
@@ -87,7 +87,7 @@ export const translationKeys = {
   "Cisco Certified Support Technican": "categories.cisco_certified_support_technician.name",
   "Detta program innehåller två certifieringsprov som är utformade för att validera arbetsklara färdigheter och kunskaper för att hjälpa eleverna att hitta ett jobb inom nätverks- och cybersäkerhetsområdet. Att få en Cisco Certified Support Technician-certifiering visar elevens färdigheter för arbetsgivare och berättar för dem att de är redo att kavla upp ärmarna från dag ett.\n\nCisco Certified Support Technician-programmet består av två prov, Cisco Certified Support Technician Networking och Cisco Certified Support Technician Cybersecurity.\n\nKontakta oss om du vill ha hjälp med kurser och övningstest.": "categories.cisco_certified_support_technician.description",
 
-  "CCST Networking": "categories.cisco_certified_support_technician.certs.ccst_networking.name",
+  "CCST Networking": "categories.cisco_certified_support_technician.certs.ccst_networking.description",
   "Testar dina nätverkskunskaper och förbereder dig för roller som nätverksanalytiker, supporttekniker och mer. Med CCST Networking-certifieringen visar du arbetsgivare att du är redo att ta itu med utmaningar från dag ett.": "categories.cisco_certified_support_technician.certs.networking.description",
 
   "CCST Cybersecurity": "categories.cisco_certified_support_technician.certs.ccst_cybersecurity.name",
@@ -97,7 +97,7 @@ export const translationKeys = {
   "IT Specialist": "categories.it_specialist.name",
   "Dessa certifieringar är ett sätt för deltagare att validera grundläggande IT-kompetenser eftertraktade av arbetsgivare. IT Specialist-programmet är riktat mot individer som överväger eller precis börjat en karriär inom IT.": "categories.it_specialist.description",
 
-  "Artificial Intelligence": "categories.it_specialist.certs.ai.name",
+  "Artificial Intelligence": "categories.it_specialist.certs.ai.description",
   "Deltagare för denna certifiering är AI-aktiverade elever som är förberedda för professionellt bruk av AI genom att förstå hur AI kan användas för att lösa problem.": "categories.it_specialist.certs.ai.description",
 
   "Cloud Computing": "categories.it_specialist.certs.cloud_computing.name",
@@ -148,7 +148,22 @@ export const translationKeys = {
   "Certifieringsprovet Unity Certified User Programmer validerar grundläggande färdigheter i C#‑programmering inom Unity‑miljön. Kandidater visar sin förmåga att skapa interaktivitet i spel, applikationer, AR/VR och andra upplevelser.  Denna grundnivåcertifiering omfattar centrala kompetenser som felsökning, problemlösning, tolkning av API:er, att skriva och utvärdera kod samt att navigera i Unitys gränssnitt. För att vara väl förberedd förväntas kandidater ha genomfört minst 150 timmars Unity‑träning innan provet.": "categories.unity_certified_user_programmer.description",
 
   "Detta certifieringsprov bedömer de grundläggande färdigheter som krävs för att bygga VR‑simulationer i Unity. Certifieringen bekräftar kandidatens förmåga att designa och utveckla interaktiva VR‑upplevelser och applikationer inom Unity‑miljön.": "categories.unity_certified_user_vr.description",
-  "Denna certifiering bekräftar grundläggande färdigheter i digitalt skapande och visuell design inom Unity. Provet testar kandidatens förmåga att arbeta med 2D‑ och 3D‑assets, använda material och texturer, ljussättning och effekter, samt att skapa användargränssnitt och visuella kompositioner.  Certifieringen visar att kandidaten kan producera interaktiva och visuellt tilltalande upplevelser i spel, applikationer och AR/VR‑miljöer. För att vara väl förberedd rekommenderas minst 150 timmars träning i Unity.": "categories.unity_certified_user_design.description"
+  "Denna certifiering bekräftar grundläggande färdigheter i digitalt skapande och visuell design inom Unity. Provet testar kandidatens förmåga att arbeta med 2D‑ och 3D‑assets, använda material och texturer, ljussättning och effekter, samt att skapa användargränssnitt och visuella kompositioner.  Certifieringen visar att kandidaten kan producera interaktiva och visuellt tilltalande upplevelser i spel, applikationer och AR/VR‑miljöer. För att vara väl förberedd rekommenderas minst 150 timmars träning i Unity.": "categories.unity_certified_user_design.description",
 
+  1: "categories.microsoft_office_specialist.description",
 
+  // 2️⃣ Microsoft Fundamentals
+  2: "categories.microsoft_fundamentals.description",
+
+  // 3️⃣ Unity Certified User
+  3: "categories.unity_certified_user.description",
+
+  // 4️⃣ Adobe Certified Professional
+  4: "categories.adobe_certified_professional.description",
+
+  // 5️⃣ Cisco Certified (CCST)
+  5: "categories.ccst.description",
+
+  // 6️⃣ IT Specialist
+  6: "categories.it_specialist.description",
 };

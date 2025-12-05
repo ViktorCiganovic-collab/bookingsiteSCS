@@ -279,7 +279,7 @@
   "categories.cisco_certified_support_technician.certs.cybersecurity.description": "Johdatus kyberturvallisuuteen ja uhkien torjuntaan.",
 
   "categories.it_specialist.name": "IT Specialist",
-  "categories.it_specialist.description": "Sertifikaatit ohjelmoinnista, data-analytiikasta, kyberturvallisuudesta ja muusta.",
+"categories.it_specialist.description": "Tämä sertifikaatti vahvistaa perustason IT-osaamisen, jota työnantajat arvostavat. Ohjelma sopii erinomaisesti henkilöille, jotka ovat aloittelijoita IT-alalla tai harkitsevat uraa alalla. IT Specialist -ohjelma kattaa useita osa-alueita, kuten ohjelmoinnin, kyberturvallisuuden, tietojen hallinnan ja verkko-osaamisen. Se tarjoaa laajan ymmärryksen IT:stä ja voi auttaa rakentamaan vankan perustan työskentelyyn erilaisissa IT-rooleissa.",
 
   "categories.it_specialist.certs.ai.name": "Tekoäly",
 
@@ -322,6 +322,8 @@
 
 "categories.unity_certified_user_vr.description": "Tämä sertifikaattikoe arvioi perustaidot, joita tarvitaan VR-simulaatioiden rakentamiseen Unityssä. Sertifikaatti vahvistaa hakijan kyvyn suunnitella ja kehittää interaktiivisia VR-kokemuksia ja sovelluksia Unity-ympäristössä.",
 "categories.unity_certified_user_design.description": "Tämä sertifikaatti vahvistaa perustaidot digitaalisen luomisen ja visuaalisen suunnittelun osalta Unityssä. Koe testaa hakijan kykyä työskennellä 2D- ja 3D-assetien kanssa, käyttää materiaaleja ja tekstuureja, valaistusta ja efektejä sekä luoda käyttöliittymiä ja visuaalisia sommitelmia. Sertifikaatti osoittaa, että hakija pystyy tuottamaan interaktiivisia ja visuaalisesti houkuttelevia kokemuksia peleissä, sovelluksissa ja AR/VR-ympäristöissä. Hyvä valmistautuminen edellyttää vähintään 150 tunnin Unity-harjoittelua.",
+
+"categories.ccst.description": "CCST on erikoistunut sertifikaatti niille, jotka haluavat työskennellä verkkojen ja kyberturvallisuuden parissa. Ohjelma keskittyy kehittämään edistyneitä teknisiä taitoja verkko-ongelmien hallintaan ja vianmääritykseen sekä kyberturvallisuuden ymmärtämiseen ja varmistamiseen digitaalisissa ympäristöissä. Jos sinulla on jo perustason IT-ymmärrys, tämä sertifikaatti vie verkko- ja turvallisuustaitosi seuraavalle tasolle.",
 
 
   "infoPage.testCenterSection.title": "Testikeskus",
@@ -601,7 +603,10 @@
 
   "privacyLastUpdated": "Viimeksi päivitetty: {{date}}",
   "privacy_intro_title": "Johdanto",
-    "privacyTechPublished": "Julkaistu: {{publishedDate}}"
+    "privacyTechPublished": "Julkaistu: {{publishedDate}}",
+
+    "categories.cisco_certified_support_technician.certs.ccst_networking.description": "Testaa verkko-osaamisesi ja valmistaa sinut rooleihin, kuten verkkoanalyytikko, tukiteknikko ja muihin. CCST Networking -sertifikaatin avulla osoitat työnantajille olevasi valmis tarttumaan haasteisiin heti ensimmäisestä päivästä lähtien."
+
 
 }
 

@@ -6,7 +6,7 @@ const IntegrityPolicy = () => {
   const { t } = useTranslation();
 
   const updatedDate = '19 november 2025';
-  const contactEmail = 'malmo@lexicon.se';
+  const contactEmail = 'info@scservices.se';
   const publishedDate = '11 november 2025';
 
   return (
@@ -95,8 +95,8 @@ const IntegrityPolicy = () => {
           <h2 id="contact-title">{t('privacy_contact_title')}</h2>
           <address>
             <p>{t('privacy_contact_1')}</p>
-            <p>{t('privacy_contact_2', { email: contactEmail })}</p>
-            <p>📞 +46 40 665 56 50</p>
+            <p>📧 info@scservices.se</p>
+            <p>📞 +46 709 797 303</p>
             <p>{t('privacy_contact_4')}</p>
             <p>Org.nr: 559389-0592</p>
           </address>

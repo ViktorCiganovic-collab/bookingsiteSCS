@@ -12,6 +12,7 @@ import { translationKeys } from './translationMap';
 
 export default function Cert() {
   const { t } = useTranslation();   
+  const [courses, setCourses] = useState([]);
   const [category, setCategory] = useState([]);
   const [selectedcategory, setSelectedcategory] = useState('');  
   const [selectedCertificate, setSelectedCertificate] = useState('');
@@ -24,7 +25,20 @@ export default function Cert() {
   const [cert, setCert] = useState();
 
   // Get translated course array
-  const courses = Itcourses(); // ✅ Function call to get data  
+  // const courses = Itcourses(); // ✅ Function call to get data  
+    // Hämta kategorier
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await axios.get('https://certbe-backend.onrender.com/api/category');
+        setCourses(res.data);
+      } catch (error) {
+        console.error('Kunde inte hämta kurser:', error);
+        setCategory([]);
+      }
+    };
+    fetchCategories();
+  }, []);
 
 const testSectionRef = useRef(null);
 
@@ -260,7 +274,7 @@ setSelectedcategory(courseName);
           handleCourseClick(course.courseName);
         }
       }}
-      onClick={() => handleCourseClick(course.courseName)}
+      onClick={() => handleCourseClick(course.name)}
     >
       <div className="card-base" style={{ height: '100%' }} data-aos="zoom-in-up" data-aos-duration="1000">
         <h4>{course.courseName}</h4>
@@ -292,7 +306,7 @@ setSelectedcategory(courseName);
         }}
       >
         <div>
-          <h5>{course.description}</h5>         
+          <h6>{course.description ? t(translationKeys[course.id]) : course.description}</h6>         
         </div>
       </div>
     </Col>

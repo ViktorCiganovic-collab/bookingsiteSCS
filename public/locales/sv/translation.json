@@ -275,7 +275,7 @@
   "categories.unity_certified_user.certs.game_dev.description": "Utveckla spel från idé till färdig produkt i Unity.",
 
   "categories.adobe_certified_professional.name": "Adobe Certified Professional",
-  "categories.adobe_certified_professional.description": "Om du tar något av InDesign, Photoshop och Illustrator tillsammans med en annan Adobe certifiering kvalificerar du för Adobe Certified Professional.",
+"categories.adobe_certified_professional.description": "Om du tar en certifiering i InDesign, Photoshop eller Illustrator tillsammans med ytterligare en Adobe-certifiering kvalificerar du dig för Adobe Certified Professional.",
 
   "categories.adobe_certified_professional.certs.after_effects.name": "Adobe After Effects",
   "categories.adobe_certified_professional.certs.after_effects.description": "Skapa imponerande rörlig grafik och visuella effekter för video, webb och film – perfekt för dig som vill ta dina animationer till nästa nivå.",
@@ -308,7 +308,7 @@
   "categories.cisco_certified_support_technician.certs.cybersecurity.description": "Introduktion till cybersäkerhet, hotanalys och skydd av digitala resurser.",
 
     "categories.it_specialist.name": "IT Specialist",
-  "categories.it_specialist.description": "IT Specialist-certifieringar täcker ett brett spektrum av tekniska ämnen – från programmering till cybersäkerhet och dataanalys.",
+"categories.it_specialist.description": "Denna certifiering validerar grundläggande IT-kompetenser som är eftertraktade av arbetsgivare. Programmet är perfekt för individer som är nybörjare inom IT eller överväger en karriär inom området. IT Specialist-programmet täcker flera områden, inklusive programmering, cybersäkerhet, datahantering, och nätverkskunskaper. Det ger en bred förståelse för IT och kan hjälpa dig att bygga en solid grund för att arbeta inom olika IT-roller.",
 
   "categories.it_specialist.certs.ai.name": "Artificiell Intelligens",
 
@@ -349,6 +349,9 @@
   "categories.it_specialist.certs.python.name": "Python",
 
   "categories.it_specialist.certs.software_development.name": "Programvaruutveckling",
+
+  "categories.ccst.description": "CCST är en specialiserad certifiering för dem som vill arbeta med nätverk och cybersäkerhet. Programmet fokuserar på att utveckla avancerade tekniska färdigheter för att hantera och felsöka nätverksproblem samt förstå och säkerställa cybersäkerhet i digitala miljöer. Om du redan har en grundläggande förståelse för IT, är detta certifikatet som tar dina nätverks- och säkerhetskunskaper till nästa nivå.",
+
 
   "infoPage.title": "Information om certifiering",
 "infoPage.subtitle": "Certifiera dig på dina villkor – online via Certiport och SCS. Snabbt, säkert och professionellt.",
@@ -626,6 +629,9 @@
   
   "privacyLastUpdated": "Senast uppdaterad: {{date}}",
   "privacy_intro_title": "Inledning",
-    "privacyTechPublished": "Publicerad: {{publishedDate}}"
+   "privacyTechPublished": "Publicerad: {{publishedDate}}",
+
+   "categories.cisco_certified_support_technician.certs.ccst_networking.description": "Testar dina nätverkskunskaper och förbereder dig för roller som nätverksanalytiker, supporttekniker och mer. Med CCST Networking-certifieringen visar du arbetsgivare att du är redo att ta itu med utmaningar från dag ett."
+
 }
 

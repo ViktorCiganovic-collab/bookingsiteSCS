@@ -1,6 +1,6 @@
 import './styling/App.css';
 import './styling/Main.css';
-import Itcourses from './services/ITcertificates'; 
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import thirdImg from './media/testworkingenvironment.png';
 import { useTranslation } from 'react-i18next';
@@ -8,16 +8,42 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 import { useMediaQuery } from 'react-responsive';
-
+import axios from 'axios';
+import { translationKeys } from './translationMap';
 
 function App() {
   const { t } = useTranslation();
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isDesktop = useMediaQuery({ minWidth: 992 });
+  const [categories, setCategories] = useState([]); 
+  const [itSpecialist, setItSpecialist] = useState([]);
+  const [networking, setNetworking] = useState([]);
+  const [adobe, setAdobe] = useState([]);
   
   // Anropa Itcourses-funktionen för att få kurserna som en array
-  const courses = Itcourses();  // Här anropar vi Itcourses som en funktion
-  const threeCourses = courses.slice(3, 6); 
+
+    useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await axios.get('https://certbe-backend.onrender.com/api/category');
+
+        // Exempel på att filtrera kategorier och sätta olika states
+        setCategories(res.data.slice(3, 6));
+        setItSpecialist(res.data.filter(cat => cat.name === 'IT Specialist'));
+        setNetworking(res.data.filter(cat => cat.name === 'Cisco Certified Support Technician'));
+        setAdobe(res.data.filter(cat => cat.name.includes('Adobe')));
+      } catch (error) {
+        console.error('Kunde inte hämta kurser:', error);
+        setItSpecialist([]);
+        setNetworking([]);
+        setAdobe([]);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+
 
   return (
     <div className='mainPage'>
@@ -38,9 +64,9 @@ function App() {
             {isMobile ? (
         // 📱 MOBILVY: visa slider
         <Carousel slide={false}>
-          {threeCourses.map((course, index) => (
+          {categories.map((course, index) => (
           <Carousel.Item key={index}>
-  <Link to={`/cert/${encodeURIComponent(course.certs[0].name)}/${encodeURIComponent(course.certs[0].description)}/1500/${course.categoryId}/${course.certs[0].certId}`}>
+  <Link to={`/cert/${course.certs[0].id}/${course.id}`}>
     <img
       className="d-block w-100"
       src={course.image}
@@ -71,25 +97,12 @@ function App() {
       ) : (
         // 🖥️ DESKTOPVY: visa 3 kolumner
         <Row>
-          {threeCourses.map((course, index) => (
+          {categories.map((course, index) => (
             
             <Col key={index} md={4}>
               <div className="course-card" data-aos="fade-up">
-               <Link
-              to={`/cert/${
-                6 < course.certs.length
-                  ? encodeURIComponent(course.certs[6].name)
-                  : encodeURIComponent(course.certs[course.certs.length - 1].name)
-              }/${
-                6 < course.certs.length
-                  ? encodeURIComponent(course.certs[6].description)
-                  : encodeURIComponent(course.certs[course.certs.length - 1].description)
-              }/1500/${course.categoryId}/${
-                6 < course.certs.length
-                  ? course.certs[6].certId
-                  : course.certs[course.certs.length - 1].certId
-              }`}
-            >       <img
+              <Link to={`/cert/${course.certs[0].id}/${course.id}`}>
+<img
                     src={course.image}
                     alt={course.courseName}
                     className="mb-3 w-100"
@@ -106,13 +119,9 @@ function App() {
                   </span>
                 </p>
                 <h3 className="text-white">
-                {4 < course.certs.length
-                  ? course.certs[6].name
-                  : course.certs[course.certs.length - 1].name}
+                {course.certs[0].name}
                 </h3>
-                <p className="text-white">{6 < course.certs.length
-                  ? course.certs[6].description
-                  : course.certs[course.certs.length - 1].description}</p>
+                <p className="text-white">{course.certs[0].description ? t(translationKeys[course.certs[0].name]) : course.certs[0].description}</p>
               </div>
             </Col>
           ))}

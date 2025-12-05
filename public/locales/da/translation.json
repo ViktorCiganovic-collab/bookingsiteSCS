@@ -279,7 +279,7 @@
   "categories.cisco_certified_support_technician.certs.cybersecurity.description": "Introduktion til cybersikkerhed og trusselsbeskyttelse.",
 
   "categories.it_specialist.name": "IT Specialist",
-  "categories.it_specialist.description": "Certificeringer inden for programmering, dataanalyse, cybersikkerhed og meget mere.",
+"categories.it_specialist.description": "Denne certificering validerer grundlæggende IT-kompetencer, som er efterspurgt af arbejdsgivere. Programmet er ideelt for personer, der er begyndere inden for IT eller overvejer en karriere på området. IT Specialist-programmet dækker flere områder, herunder programmering, cybersikkerhed, datahåndtering og netværksfærdigheder. Det giver en bred forståelse af IT og kan hjælpe dig med at opbygge et solidt fundament til at arbejde i forskellige IT-roller.",
 
   "categories.it_specialist.certs.ai.name": "Kunstig Intelligens",
 
@@ -321,6 +321,8 @@
 
   "categories.unity_certified_user_vr.description": "Denne certificeringsprøve vurderer de grundlæggende færdigheder, der kræves for at bygge VR-simulationer i Unity. Certificeringen bekræfter kandidatens evne til at designe og udvikle interaktive VR-oplevelser og applikationer i Unity-miljøet.",
   "categories.unity_certified_user_design.description": "Denne certificering bekræfter grundlæggende færdigheder i digitalt skabelse og visuel design i Unity. Prøven tester kandidatens evne til at arbejde med 2D- og 3D-assets, anvende materialer og teksturer, belysning og effekter samt at skabe brugergrænseflader og visuelle kompositioner. Certificeringen viser, at kandidaten kan producere interaktive og visuelt tiltalende oplevelser i spil, applikationer og AR/VR-miljøer. For at være godt forberedt anbefales mindst 150 timers træning i Unity.",
+
+  "categories.ccst.description": "CCST er en specialiseret certificering for dem, der ønsker at arbejde med netværk og cybersikkerhed. Programmet fokuserer på at udvikle avancerede tekniske færdigheder til at håndtere og fejlfinde netværksproblemer samt forstå og sikre cybersikkerhed i digitale miljøer. Hvis du allerede har en grundlæggende forståelse for IT, er dette certificeringen, der løfter dine netværks- og sikkerhedskundskaber til næste niveau.",
 
 
   "infoPage.testCenterSection.title": "Testcenter",
@@ -600,7 +602,10 @@
 
     "privacyLastUpdated": "Sidst opdateret: {{date}}",
   "privacy_intro_title": "Indledning",
-    "privacyTechPublished": "Offentliggjort: {{publishedDate}}"
+    "privacyTechPublished": "Offentliggjort: {{publishedDate}}",
+
+    "categories.cisco_certified_support_technician.certs.ccst_networking.description": "Tester dine netværksfærdigheder og forbereder dig til roller som netværksanalytiker, supporttekniker og mere. Med CCST Networking-certificeringen viser du arbejdsgivere, at du er klar til at håndtere udfordringer fra dag ét."
+
  
   
 }
