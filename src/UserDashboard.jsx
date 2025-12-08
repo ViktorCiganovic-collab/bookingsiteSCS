@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
 import './styling/UserDashboard.css';
 import { useNavigate } from "react-router-dom";
@@ -33,6 +33,8 @@ function UserDashboard() {
   const [tooLateToCancel, setTooLateToCancel] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userData, setUserData] = useState({});
+  const [toggleField, setToggleField] = useState(null);
+  const [isDirty, setIsDirty] = useState(false);
 
   console.log(`Email extracted from the token: ${email}`);
   
@@ -148,9 +150,7 @@ function UserDashboard() {
         console.log('Statuskod:', status);
         console.log('Felmeddelande från server:', err.response.data);
 
-        if (status === 401) {
-          setErrorBookings(t('error_unauthorized', 'Åtkomst nekad. Kontakta support om du tror detta är ett misstag.'));
-        } else if (status >= 500) {
+        if (status >= 500) {
           setErrorBookings(t('error_server', 'Ett serverfel uppstod. Försök igen senare.'));
         } else {
           setErrorBookings(t('error_unknown', 'Ett okänt fel uppstod vid hämtning.'));
@@ -183,6 +183,7 @@ function UserDashboard() {
       }
     }).then(res => {
       setUserData(res.data)
+      console.log(res.data)
     }).catch(err => {
       console.error("Fel vid hämtning:", err);
       setError(err.response?.data || "Något gick fel");
@@ -331,6 +332,45 @@ const changePassword = async (event) => {
     setIsChangingPassword(false);
   }
 };
+
+const [loading, setLoading] = useState(false);
+
+const updateUserOnServer = async (userData) => {
+  const user = {
+    id: userData.id,
+    country: userData.country,
+    email: userData.email,
+    firstName: userData.firstName,
+    lastName: userData.lastName
+  };
+
+  try {
+    setLoading(true);
+
+    const res = await axios.put(
+      "https://certbe-backend.onrender.com/api/account/update",
+      user,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        }
+      }
+    );
+
+    // Hantera svaret här
+    setUserData(res.data); // uppdatera med serverns version
+    setIsDirty(false);     // reset flaggan
+    setShowToast(true);
+
+  } catch (error) {
+    setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
 
 
@@ -709,10 +749,144 @@ const changePassword = async (event) => {
               <Card className="shadow-sm">
                 <Card.Body>
                   <Card.Title className="text-center mb-3" id="my-details-heading">Mina uppgifter</Card.Title>
-                  <Card.Text><strong>Förnamn:</strong> {userData.firstName}</Card.Text>
-                  <Card.Text><strong>Efternamn:</strong> {userData.lastName}</Card.Text>
-                  <Card.Text><strong>Email:</strong> {userData.email}</Card.Text>
-                  <Card.Text><strong>Land:</strong> {userData.country}</Card.Text>
+
+                    <Card.Text
+                  onClick={() => {
+                    if (toggleField === null) {
+                      setToggleField(1); // öppna om det är stängt
+                    }
+                    // gör inget om det redan är öppet
+                  }}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <strong>Land:</strong>{" "}
+                  {toggleField === 1 ? (
+                    <Form.Control
+                      type="text"
+                      value={userData.firstName}
+                      onChange={(e) => {
+                        setUserData({ ...userData, firstName: e.target.value });
+                        setIsDirty(true);
+                      }}
+                      onBlur={() => setToggleField(null)} // stäng när fokus tas bort
+                      autoFocus                      
+                    />
+                  ) : (
+                    userData.firstName
+                  )}
+                </Card.Text>
+
+                  <Card.Text
+                  onClick={() => {
+                    if (toggleField === null) {
+                      setToggleField(2); // öppna om det är stängt
+                    }
+                    // gör inget om det redan är öppet
+                  }}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <strong>Efternamn:</strong>{" "}
+                  {toggleField === 2 ? (
+                    <Form.Control
+                      type="text"
+                      value={userData.lastName}
+                      onChange={(e) => {
+                        setUserData({ ...userData, lastName: e.target.value });
+                        setIsDirty(true);
+                      }}
+                      onBlur={() => setToggleField(null)} // stäng när fokus tas bort
+                      autoFocus
+                    />
+                  ) : (
+                    userData.lastName
+                  )}
+                </Card.Text>
+
+                    <Card.Text
+                  onClick={() => {
+                    if (toggleField === null) {
+                      setToggleField(3); // öppna om det är stängt
+                    }
+                    // gör inget om det redan är öppet
+                  }}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <strong>Email:</strong>{" "}
+                  {toggleField === 3 ? (
+                    <Form.Control
+                      type="text"
+                      value={userData.email}
+                      onChange={(e) => {
+                        setUserData({ ...userData, email: e.target.value });
+                        setIsDirty(true);
+                      }}
+                      onBlur={() => setToggleField(null)} // stäng när fokus tas bort
+                      autoFocus
+                    />
+                  ) : (
+                    userData.email
+                  )}
+                </Card.Text>
+
+                  <Card.Text
+                  onClick={() => {
+                    if (toggleField === null) {
+                      setToggleField(4); // öppna om det är stängt
+                    }
+                    // gör inget om det redan är öppet
+                  }}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <strong>Land:</strong>{" "}
+                  {toggleField === 4 ? (
+                    <Form.Control
+                      type="text"
+                      value={userData.country}
+                      onChange={(e) => {
+                        setUserData({ ...userData, country: e.target.value });
+                        setIsDirty(true);
+                      }}
+                      onBlur={() => setToggleField(null)} // stäng när fokus tas bort
+                      autoFocus
+                    />
+                  ) : (
+                    userData.country
+                  )}
+                </Card.Text>
+
+                  <Card.Footer>
+                  {!isDirty && <p style={{ fontSize: '0.9rem', color: '#888' }}>✏️ Du kan uppdatera dina personuppgifter genom att klicka på dem.</p>}
+                  {isDirty && <Button onClick={() => updateUserOnServer(userData)} disabled={loading}>      {loading ? (
+                <>
+                  <Spinner 
+                    as="span" 
+                    animation="border" 
+                    size="sm" 
+                    role="status" 
+                    aria-hidden="true" 
+                  />
+                  {" "}Sparar...
+                </>
+              ) : (
+                "Update?"
+              )}</Button>}
+                </Card.Footer>
+
+                <ToastContainer position="top-center" className="p-3">
+                <Toast
+                  bg="success"
+                  onClose={() => setShowToast(false)}
+                  show={showToast}
+                  delay={3000}
+                  autohide
+                >
+                  <Toast.Header>
+                    <strong className="me-auto">Uppdatering</strong>
+                  </Toast.Header>
+                  <Toast.Body>Dina uppgifter har sparats!</Toast.Body>
+                </Toast>
+              </ToastContainer>
+
                 </Card.Body>
               </Card>
             </Col>
