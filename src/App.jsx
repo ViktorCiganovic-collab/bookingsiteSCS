@@ -105,7 +105,7 @@ function App() {
 <img
                     src={course.image}
                     alt={course.courseName}
-                    className="mb-3 w-100"
+                    className="mb-3 w-80"
                     style={{
                       objectFit: "cover",
                       borderRadius: "8px",
@@ -135,7 +135,7 @@ function App() {
           <Col md={12}>
             <div className="position-relative">
   <img src={thirdImg} className="mainpageImgthree" alt="illustration" />
-  <div className="position-absolute top-50 start-50 translate-middle text-white text-center bg-dark bg-opacity-50 p-3 rounded" data-aos="zoom-in" data-aos-duration="1500">
+  <div className="position-absolute top-50 start-50 translate-middle text-white text-center bg-dark bg-opacity-50 p-3 rounded" data-aos="slide-up">
     <h3>{t('sectionThreeHeadline')}</h3>
     <p>{t('sectionThreeSubtext')}</p>
   </div>

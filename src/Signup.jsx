@@ -91,10 +91,11 @@ function Signup() {
       <section className="signupSectionOne" aria-labelledby="register-heading">
         <Container fluid="md" className='px-3'>
           <Row className="d-flex justify-content-center align-items-center width-100">
-            <Col md={6} sm={10} xs={12}>
-              <h2 className="text-center my-5 mb-4" data-aos="zoom-out-right" id="register-heading">{t('register')}</h2>
+            <Col md={6} sm={10} xs={12}>             
 
               <Form onSubmit={handleSubmit} data-aos="zoom-in-left">
+
+                 <h2 className="text-center my-5 mb-4" data-aos="zoom-out-right" id="register-heading">{t('register')}</h2>
 
                 <Form.Group className='mb-3' controlId="formFirstName">
                   <Form.Label>{t('firstName')}</Form.Label>

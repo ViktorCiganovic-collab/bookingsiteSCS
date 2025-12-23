@@ -759,7 +759,7 @@ const updateUserOnServer = async (userData) => {
                   }}
                   style={{ cursor: 'pointer' }}
                 >
-                  <strong>Land:</strong>{" "}
+                  <strong>Förnamn:</strong>{" "}
                   {toggleField === 1 ? (
                     <Form.Control
                       type="text"

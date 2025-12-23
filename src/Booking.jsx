@@ -36,7 +36,7 @@ const Booking = () => {
   const [loading, setLoading] = useState(false);
   const [showStripeInfoModal, setShowStripeInfoModal] = useState(false);
 
-  const stripe = useStripe();
+  const stripe = useStripe(); /*En stripe komponent som gör det möjligt att interagera med Stripe API från client. Används för att kunna skapa betalningsid och skicka kortuppgifter till Stripes servrar*/
   const elements = useElements();
   const { t } = useTranslation();
   const { user, token } = useContext(AuthContext);
