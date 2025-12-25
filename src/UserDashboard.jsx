@@ -311,7 +311,15 @@ const changePassword = async (event) => {
   setIsChangingPassword(true); 
 
   try {
-    const res = await axios.post('https://api.scservices.se/backend/api/account/change-password', newData);
+
+    //hämta jwt token för att identifiera användaren
+    const token = localStorage.getItem("token");
+
+    const res = await axios.post('https://certbe-backend.onrender.com/api/account/change-password', newData, {
+      headers: {
+        'Authorization': `Bearer ${token}`  // Skickar JWT-token i headern
+      }
+    });
 
     console.log('Serverns svar:', res.data);
     if (typeof res.data === 'string' && res.data.includes("uppdaterats")) {
@@ -969,7 +977,22 @@ const updateUserOnServer = async (userData) => {
           </button>
         </div>
 
-            </form>              
+            </form>    
+
+              <ToastContainer position="top-center" className="p-3">
+                <Toast
+                  bg="success"
+                  onClose={() => setShowToast(false)}
+                  show={showToast}
+                  delay={3000}
+                  autohide
+                >
+                  <Toast.Header>
+                    <strong className="me-auto">Uppdatering</strong>
+                  </Toast.Header>
+                  <Toast.Body>Dina uppgifter har sparats!</Toast.Body>
+                </Toast>
+              </ToastContainer>          
 
              {error && <p className="svarsMeddelande mt-3 text-danger text-center">❌ {error}</p>}
 

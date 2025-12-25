@@ -10,6 +10,7 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow, handleClose
     testtimes: false,
     categories: false,
     statistics: false,
+    changePassword: false,
     logout: false,
   });
 
@@ -131,9 +132,18 @@ const AdminSidebar = ({ activeSection, setActiveSection, handleShow, handleClose
               </>
             )}        
             
-          </div>
+          </div>      
 
+        </div>
 
+        <div className='sidebar-group'>
+          <div>
+            <div className="sidebar-title" onClick={() => {setActiveSection('editPassword'); handleCloseSidebar();}}>
+              🔐 Ändra lösenord
+            </div>
+           
+            
+          </div>      
 
         </div>
 

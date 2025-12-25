@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Button, Offcanvas, Modal, Form } from 'react-bootstrap';
+import { Button, Offcanvas, Modal, Form, InputGroup, FormControl } from 'react-bootstrap';
 import AdminSidebar from './AdminSidebar';
 import QuarterlyChart from './services/QuarterlyChart';
 import CertBookingChart from './services/CertBookingChart';
@@ -10,6 +10,10 @@ import './styling/AdminDashboard.css';
 import { useTranslation } from 'react-i18next'; 
 import Spinner from 'react-bootstrap/Spinner';
 import Table from 'react-bootstrap/Table';
+import Toast from "react-bootstrap/Toast";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import ToastContainer from "react-bootstrap/ToastContainer";
+
 
 
 const AdminDashboard = () => {
@@ -48,6 +52,17 @@ const AdminDashboard = () => {
   const [bookingId, setBookingId] = useState(1);
   const [discountActive, setDiscountActive] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
+
+  /*För byte av lösenord*/
+  const [email, setEmail] = useState('');
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+  const [showToast, setShowToast] = useState(false);  
+  /*För byte av lösenord*/
 
   const handleClose = () => setShow(false);  
   const handleShow = () => setShow(true);
@@ -691,6 +706,64 @@ const DeleteCategory = async (e) => {
   }
 };
 
+const changePassword = async (event) => {
+  event.preventDefault();
+  
+  if (!email || !oldPassword || !newPassword) {
+    setError('Vänligen fyll i alla uppgifter');
+    return;
+  }
+
+  // Eventuell validering av lösenordet 
+   const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/; // Exempel: Minst 8 tecken, 1 bokstav, 1 siffra
+  if (!regex.test(newPassword)) {
+    setError('Lösenordet måste vara minst 8 tecken och innehålla minst 1 siffra, minst ett specialtecken och en stor bokstav.');
+    return;
+  }
+
+  if (newPassword !== confirmPassword) {
+     setError("❌ Lösenorden matchar inte.");
+      return;
+  }
+
+  let newData = {
+    Email: email,
+    OldPassword: oldPassword,
+    NewPassword: newPassword
+  };
+
+  setIsChangingPassword(true); 
+
+  try {
+    //hämta jwt token för att identifiera användaren
+        const token = localStorage.getItem("token");
+
+    const res = await axios.post('https://certbe-backend.onrender.com/api/account/change-password', newData, {
+      headers: {
+        'Authorization': `Bearer ${token}`  // Skickar JWT-token i headern
+      }
+    });
+
+    console.log('Serverns svar:', res.data);
+    if (typeof res.data === 'string' && res.data.includes("uppdaterats")) {
+      setResponse('Lösenordet har ändrats!');
+      setShowToast(true);      
+      setError(null); 
+      setOldPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    } else {
+      setError('Något gick fel, vänligen försök igen.');
+      setResponse(null); 
+    }
+  } catch (error) {
+    setError(`Något gick fel: ${error.message || "Vänligen försök igen senare."}`);
+    setResponse(null); 
+  } finally {
+    setIsChangingPassword(false);
+  }
+};
+
 
   useEffect(() => {
 
@@ -710,6 +783,9 @@ const DeleteCategory = async (e) => {
     case 'bookingsPerCert':
       fetchCertBookings();
       break;
+    case 'editPassword':
+    break;
+
     default:
       // Inga åtgärder eller nollställningar
       break;
@@ -1872,6 +1948,113 @@ case 'categories':
       <QuarterlyChart />
 
     );
+
+    case 'editPassword':
+        return (
+       <Form className="formPasswordchange mt-4" style={{ maxWidth: '400px', margin: '0 auto' }} aria-labelledby="change-password-heading" onSubmit={changePassword}>
+      <h3 id="change-password-heading" className="text-center">{t('change_your_password')}</h3>
+
+      <Form.Group className="mb-3">
+        <Form.Label>{t('your_email_address')}</Form.Label>
+        <Form.Control 
+          id="email" 
+          type="email" 
+          placeholder={t('enter_your_email')}
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          required 
+          aria-required="true"          
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3 position-relative">
+        <Form.Label>{t('current_password')}</Form.Label>
+        <InputGroup>
+          <Form.Control
+            id="oldPassword"
+            type={showOldPassword ? 'text' : 'password'}
+            value={oldPassword}
+            onChange={(e) => setOldPassword(e.target.value)}
+            required
+            aria-required="true"            
+          />
+          <InputGroup.Text 
+            onClick={() => setShowOldPassword(!showOldPassword)} 
+            style={{ cursor: 'pointer' }}
+            aria-label={showOldPassword ? t('hide_password', 'Dölj lösenord') : t('show_password', 'Visa lösenord')}
+          >
+            {showOldPassword ? <FaEyeSlash /> : <FaEye />}
+          </InputGroup.Text>
+        </InputGroup>
+      </Form.Group>
+
+      <Form.Group className="mb-3 position-relative">
+        <Form.Label>{t('new_password')}</Form.Label>
+        <InputGroup>
+          <Form.Control 
+            id="newPassword" 
+            type={showNewPassword ? 'text' : 'password'} 
+            value={newPassword} 
+            onChange={(e) => setNewPassword(e.target.value)} 
+            required 
+            aria-required="true"
+          />
+          <InputGroup.Text 
+            onClick={() => setShowNewPassword(!showNewPassword)} 
+            style={{ cursor: 'pointer' }}
+            aria-label={showNewPassword ? t('hide_password', 'Dölj lösenord') : t('show_password', 'Visa lösenord')}
+          >
+            {showNewPassword ? <FaEyeSlash /> : <FaEye />}
+          </InputGroup.Text>
+        </InputGroup>
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>{t('confirm_new_password')}</Form.Label>
+        <Form.Control 
+          id="confirmPassword" 
+          type="password" 
+          value={confirmPassword} 
+          onChange={(e) => setConfirmPassword(e.target.value)} 
+          required 
+          aria-required="true"
+        />
+      </Form.Group>
+
+      <Button 
+        variant="danger" 
+        type="submit" 
+        className="d-grid"
+        disabled={isChangingPassword}
+        aria-disabled={isChangingPassword}
+        style={{display: "block", width: "100%"}}
+      >
+        {isChangingPassword ? (
+          <>
+            <Spinner animation="border" size="sm" variant="light" /> {t('changing_password')}
+          </>
+        ) : (
+          t('change_button')
+        )}
+      </Button>
+       <ToastContainer position="top-center" className="p-3">
+                      <Toast
+                        bg="success"
+                        onClose={() => setShowToast(false)}
+                        show={showToast}
+                        delay={3000}
+                        autohide
+                      >
+                        <Toast.Header>
+                          <strong className="me-auto">Uppdatering</strong>
+                        </Toast.Header>
+                        <Toast.Body>Dina uppgifter har sparats!</Toast.Body>
+                      </Toast>
+                    </ToastContainer>          
+    </Form>
+
+     
+  );
 
     // Fallback
     default:
