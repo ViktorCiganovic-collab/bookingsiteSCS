@@ -818,32 +818,92 @@ const changePassword = async (event) => {
       ) : error ? (
         <p style={{ color: 'red' }}>{error}</p>
       ) : (
-        <div className='flexelementsBookings'>
-          {bookings.map((booking, index) => {
-            const startingTime = new Date(booking.examStartingTime);
-            const endingTime = new Date(booking.examEndingTime);
 
-            const now = new Date();
-            const isPassed = startingTime < now;
+        <>
+        <div className='table-responsive d-none d-md-block text-dark'>
+          <Table striped bordered hover style={{ position: 'relative'}}>
+            <thead>
+              <tr>
+              <th>Certifiering</th>
+              <th>Kund</th>
+              <th>Email</th>
+              <th>Testtid</th>
+              <th>Vill ha övningstest</th>
+              <th>Vill ha övningsmaterial</th>
+              <th>Boknings ID</th>
+              </tr>
+            </thead>
 
-            return (
-              <div key={index} className='booking'>
-                <p className="highlight">Certifikat: {booking.certName}</p>
-                <p>Kund: {booking.customerFirstName} {booking.customerLastName}</p>
-                <p>Email: {booking.customerEmail}</p>
-                 <p style={{color: isPassed ? 'red' : '', fontWeight: isPassed ? 'bold' : ''}}>
-                  Testtid: {formatDate(startingTime)} kl. {formatTime(startingTime)} - {formatTime(endingTime)}
-                  {isPassed && <span style={{color: 'red', fontWeight: 'bold', marginLeft: '8px'}}>Passerat</span>}
-                </p>
-                <p>Vill ha övningstest: {booking.wantsPracticeTest ? "✅" : "❌"}</p>
-                <p>Vill ha övningsmaterial: {booking.wantsPracticeMaterial ? "✅" : "❌"}</p>
-                <p>Boknings ID: {booking.id}</p>
-                
-               
-              </div>
-            );
-          })}
+            <tbody>
+              {bookings.map((booking, index) => {
+
+                const startingTime = new Date(booking.examStartingTime);
+                const endingTime = new Date(booking.examEndingTime);
+                const now = new Date();
+                const isPassed = startingTime < now;
+
+                return (
+                  <tr >
+                    <td>{booking.certName}</td>
+                    <td>{booking.customerFirstName} {booking.customerLastName}</td>
+                    <td>{booking.customerEmail}</td>
+                    <td>{formatDate(startingTime)} kl. {formatTime(startingTime)} - {formatTime(endingTime)}</td>
+                    {isPassed && <span style={{color: 'red', fontWeight: 'bold', marginLeft: '8px'}}>Passerat</span>}
+                    <td>{booking.wantsPracticeTest ? "✅" : "❌"}</td>
+                    <td>{booking.wantsPracticeMaterial ? "✅" : "❌"}</td>
+                    <td>{booking.id}</td>
+                  </tr>
+
+                )
+
+              })}
+            </tbody>
+          </Table>
         </div>
+
+        {/* MOBILE VIEW – OVDJE GA UBACUJEŠ */}
+    <div className="d-md-none">
+      {bookings.map((booking) => {
+        const startingTime = new Date(booking.examStartingTime);
+        const endingTime = new Date(booking.examEndingTime);
+        const now = new Date();
+        const isPassed = startingTime < now;
+
+        return (
+          <div key={booking.id} className="card mb-3 p-3 text-dark">
+            <p><strong>Certifiering:</strong> {booking.certName}</p>
+            <p><strong>Kund:</strong> {booking.customerFirstName} {booking.customerLastName}</p>
+            <p><strong>Email:</strong> {booking.customerEmail}</p>
+
+            <p>
+              <strong>Testtid:</strong><br />
+              {formatDate(startingTime)} kl. {formatTime(startingTime)} – {formatTime(endingTime)}
+              {isPassed && (
+                <span
+                  style={{
+                    backgroundColor: '#FF4D4D',
+                    color: 'white',
+                    padding: '2px 8px',
+                    borderRadius: '12px',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold',
+                    marginLeft: '8px'
+                  }}
+                >
+                  Passerat
+                </span>
+              )}
+            </p>
+
+            <p><strong>Övningstest:</strong> {booking.wantsPracticeTest ? '✅' : '❌'}</p>
+            <p><strong>Övningsmaterial:</strong> {booking.wantsPracticeMaterial ? '✅' : '❌'}</p>
+            <p><strong>Boknings ID:</strong> {booking.id}</p>
+          </div>
+        );
+      })}
+    </div>
+
+    </>        
       )}
     </div>
   );
