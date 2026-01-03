@@ -23,6 +23,10 @@ const AdminDashboard = () => {
   const { t } = useTranslation();
   const [show, setShow] = useState(false);
   const [bookings, setBookings] = useState([]);
+  const [checkedRows, setCheckedRows] = useState(() => {
+    const stored = localStorage.getItem("contactedcustomers");
+    return stored ? JSON.parse(stored) : [];
+  });
   const [cancellations, setCancellations] = useState([]);
   const [certificates, setCertificates] = useState([]);
   const [popularCertificates, setPopularCertificates] = useState([]);
@@ -131,6 +135,10 @@ const formatTime = (date) =>
   }
 
   }; //se alla bokningar
+
+  useEffect(() => {
+    localStorage.setItem("contactedcustomers", JSON.stringify(checkedRows))
+  }, [checkedRows]); //uppdatera webbläsarens localstorage när checkedRows uppdateras
 
   const fetchCancellations = async () => {
     setLoading(true);
@@ -831,6 +839,7 @@ const changePassword = async (event) => {
               <th>Vill ha övningstest</th>
               <th>Vill ha övningsmaterial</th>
               <th>Boknings ID</th>
+              <th>Kontaktad</th>
               </tr>
             </thead>
 
@@ -852,6 +861,20 @@ const changePassword = async (event) => {
                     <td>{booking.wantsPracticeTest ? "✅" : "❌"}</td>
                     <td>{booking.wantsPracticeMaterial ? "✅" : "❌"}</td>
                     <td>{booking.id}</td>
+                    <td>
+                    <input 
+                    type="checkbox" 
+                    checked={checkedRows.includes(booking.id)}
+                    onChange={(event)  => {
+                      if (event.target.checked) {
+                        setCheckedRows([...checkedRows, booking.id])
+                      } else {
+                        setCheckedRows(checkedRows.filter(id => id !== booking.id))
+                      }
+                    }}
+                     />  
+                     {checkedRows.includes(booking.id) ? <span style={{ marginLeft: '8px' }}>✅</span> : <span style={{ marginLeft: '8px'}}>❌</span>}                  
+                    </td>
                   </tr>
 
                 )
@@ -861,7 +884,7 @@ const changePassword = async (event) => {
           </Table>
         </div>
 
-        {/* MOBILE VIEW – OVDJE GA UBACUJEŠ */}
+        {/* MOBILE VIEW */}
     <div className="d-md-none">
       {bookings.map((booking) => {
         const startingTime = new Date(booking.examStartingTime);
