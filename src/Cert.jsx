@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; 
 import Spinner from 'react-bootstrap/Spinner';
 import { translationKeys } from './translationMap';
+import { Helmet } from "react-helmet-async";
 
 export default function Cert() {
   const { t } = useTranslation();   
@@ -197,6 +198,47 @@ setSelectedcategory(courseName);
   
   return (
     <div className='certificatesSite'>
+
+      <Helmet>
+  <title>Certifieringar – Alla certifikat | SCS</title>
+
+  <meta
+    name="description"
+    content="Utforska alla certifieringar hos Scandinavian Certification Services. Officiella prov, flexibla datum och certifikat inom IT, nätverk, Adobe och mer."
+  />
+
+  {/* Canonical */}
+  <link rel="canonical" href="https://www.scservices.se/certifiering" />
+
+  {/* Open Graph */}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Certifieringar – Alla certifikat | SCS" />
+  <meta property="og:description" content="Utforska alla certifieringar hos Scandinavian Certification Services. Officiella prov och flexibla datum." />
+  <meta property="og:url" content="https://www.scservices.se/certifiering" />
+  <meta property="og:site_name" content="SCS" />
+
+  {/* Twitter */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Certifieringar – Alla certifikat | SCS" />
+  <meta name="twitter:description" content="Utforska alla certifieringar hos Scandinavian Certification Services." />
+
+  {/* Breadcrumbs */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Certifieringar",
+          "item": "https://www.scservices.se/certifiering"
+        }
+      ]
+    })}
+  </script>
+</Helmet>
+
       <section className='certificatesPageSectionOne'>
         <div className='introducingSection'>
         <h1 data-aos="fade-down">{t('certifications')}</h1>
@@ -358,7 +400,7 @@ setSelectedcategory(courseName);
       <ul className="list-group">
        {currentCategory.certs.map((cert) => (
   <li key={cert.id || cert.name} className="certInformation list-group-item d-flex justify-content-between align-items-center">
-    <Link to={`/cert/${cert.id}/${cert.categoryId}`}>
+    <Link to={`/certifiering/${currentCategory.slug}/${cert.slug}/${cert.id}/${cert.categoryId}`}>
       <span className='certStyling'>{cert.name}</span>
     </Link>
     <button

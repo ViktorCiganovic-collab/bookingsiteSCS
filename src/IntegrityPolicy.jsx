@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './styling/Accessibility.css';
+import { Helmet } from "react-helmet-async";
 
 const IntegrityPolicy = () => {
   const { t } = useTranslation();
@@ -11,6 +12,53 @@ const IntegrityPolicy = () => {
 
   return (
     <div className="accessibilityPage d-flex flex-column align-items-center justify-content-center mx-auto me-auto w-100">
+
+      <Helmet>
+  <title>Integritetspolicy | Scandinavian Certification Services</title>
+
+  <meta
+    name="description"
+    content="Läs vår integritetspolicy för att förstå hur Scandinavian Certification Services hanterar personuppgifter, datasäkerhet och dina rättigheter enligt GDPR."
+  />
+
+  {/* Canonical */}
+  <link rel="canonical" href="https://www.scservices.se/integrity-policy" />
+
+  {/* Open Graph */}
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Integritetspolicy | Scandinavian Certification Services" />
+  <meta property="og:description" content="Information om hur vi hanterar personuppgifter, datasäkerhet och GDPR‑rättigheter." />
+  <meta property="og:url" content="https://www.scservices.se/integrity-policy" />
+  <meta property="og:site_name" content="SCS" />
+
+  {/* Twitter */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Integritetspolicy | Scandinavian Certification Services" />
+  <meta name="twitter:description" content="Läs om hur vi skyddar dina personuppgifter och följer GDPR." />
+
+  {/* Breadcrumbs */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Certifieringar",
+          "item": "https://www.scservices.se/certifiering"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Integritetspolicy",
+          "item": "https://www.scservices.se/integrity-policy"
+        }
+      ]
+    })}
+  </script>
+</Helmet>
+
 
       <div className='partOne'>
         <h1>{t('privacy_title')}</h1>

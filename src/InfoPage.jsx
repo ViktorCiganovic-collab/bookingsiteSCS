@@ -6,6 +6,7 @@ import malmö_testcenterImg from './media/malmötestcenter.jpeg'
 import FAQSection from './services/FAQAccordion';
 import { useTranslation, Trans  } from 'react-i18next';
 import { BsInfoCircle } from 'react-icons/bs';
+import { Helmet } from "react-helmet-async";
 
 const InfoPage = () => {
 
@@ -13,6 +14,55 @@ const { t } = useTranslation();
 
 return (
     <div className='infoPage'>
+
+      <Helmet>
+  <title>Information om certifieringar | SCS</title>
+
+  <meta
+    name="description"
+    content="Läs allt om hur certifieringar fungerar hos Scandinavian Certification Services. Testcenter, bokningsinformation, vanliga frågor och kontaktuppgifter."
+  />
+
+  {/* Canonical */}
+  <link rel="canonical" href="https://www.scservices.se/info" />
+
+  {/* Open Graph */}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Information om certifieringar | SCS" />
+  <meta property="og:description" content="Information om certifieringar, testcenter, bokning och vanliga frågor hos Scandinavian Certification Services." />
+  <meta property="og:url" content="https://www.scservices.se/info" />
+  <meta property="og:site_name" content="SCS" />
+
+  {/* Twitter */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Information om certifieringar | SCS" />
+  <meta name="twitter:description" content="Läs allt om certifieringar, testcenter och bokning hos SCS." />
+
+  {/* Breadcrumbs */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Certifieringar",
+          "item": "https://www.scservices.se/certifiering"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Information",
+          "item": "https://www.scservices.se/info"
+        }
+      ]
+    })}
+  </script>
+      </Helmet>
+
+
+
    <section className="infoPageSectionOne">
 
     <div className='textInfo'>
@@ -82,7 +132,7 @@ return (
           <p>
             <Trans
               i18nKey="certificationsMoreInfo"
-              components={{ Link: <Link to="/cert" /> }}
+              components={{ Link: <Link to="/certifiering" /> }}
             />
           </p>
         </Col>

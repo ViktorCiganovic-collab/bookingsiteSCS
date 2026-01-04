@@ -11,12 +11,61 @@ import test_center from './media/annie-spratt-sggw4-qDD54-unsplash.jpg';
 import bildkontor from './media/affarsutbildning2.jpg';
 import yh from './media/arbetsmarknadsutbildning.jpg';
 import generellUtb from './media/generell-utbildning.jpg'
+import { Helmet } from "react-helmet-async";
 
 const About = () => {
   const { t } = useTranslation(); // translation hook
 
   return (
     <div className="aboutPage">
+
+      <Helmet>
+  <title>Om oss – Scandinavian Certification Services | SCS</title>
+
+  <meta
+    name="description"
+    content="Lär känna Scandinavian Certification Services. Vi erbjuder certifieringar, testcenter, support och flexibla lösningar för både företag och privatpersoner."
+  />
+
+  {/* Canonical */}
+  <link rel="canonical" href="https://www.scservices.se/about" />
+
+  {/* Open Graph */}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Om oss – Scandinavian Certification Services" />
+  <meta property="og:description" content="Läs mer om vilka vi är, vad vi gör och varför du ska välja Scandinavian Certification Services." />
+  <meta property="og:url" content="https://www.scservices.se/about" />
+  <meta property="og:site_name" content="SCS" />
+
+  {/* Twitter */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Om oss – Scandinavian Certification Services" />
+  <meta name="twitter:description" content="Lär känna teamet bakom Scandinavian Certification Services." />
+
+  {/* Breadcrumbs */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Certifieringar",
+          "item": "https://www.scservices.se/certifiering"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Om oss",
+          "item": "https://www.scservices.se/about"
+        }
+      ]
+    })}
+  </script>
+      </Helmet>
+
+
       {/* SEKTION 1 – Bakgrundsvideo och intro */}
       <section className='aboutSectionOne' aria-label="about-section-intro">
      

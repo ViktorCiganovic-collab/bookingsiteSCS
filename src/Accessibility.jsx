@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './styling/Accessibility.css';
+import { Helmet } from "react-helmet-async";
 
 const AccessibilityPage = () => {
   const { t } = useTranslation();
@@ -13,6 +14,53 @@ const AccessibilityPage = () => {
 
   return (
     <div className="accessibilityPage d-flex flex-column align-items-center justify-content-center mx-auto me-auto w-100">
+
+      <Helmet>
+  <title>Tillgänglighetsredogörelse | Scandinavian Certification Services</title>
+
+  <meta
+    name="description"
+    content="Läs vår tillgänglighetsredogörelse för att förstå hur Scandinavian Certification Services arbetar med digital tillgänglighet, förbättringar och WCAG‑anpassning."
+  />
+
+  {/* Canonical */}
+  <link rel="canonical" href="https://www.scservices.se/accessibility" />
+
+  {/* Open Graph */}
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Tillgänglighetsredogörelse | Scandinavian Certification Services" />
+  <meta property="og:description" content="Information om hur vi arbetar med digital tillgänglighet, WCAG‑krav och planerade förbättringar." />
+  <meta property="og:url" content="https://www.scservices.se/accessibility" />
+  <meta property="og:site_name" content="SCS" />
+
+  {/* Twitter */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tillgänglighetsredogörelse | Scandinavian Certification Services" />
+  <meta name="twitter:description" content="Läs om vårt arbete med digital tillgänglighet och WCAG‑anpassning." />
+
+  {/* Breadcrumbs */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Certifieringar",
+          "item": "https://www.scservices.se/certifiering"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tillgänglighet",
+          "item": "https://www.scservices.se/accessibility"
+        }
+      ]
+    })}
+  </script>
+      </Helmet>
+
 
       <div className='partOne'>
         <h1>{t('accessibilityTitle')}</h1>

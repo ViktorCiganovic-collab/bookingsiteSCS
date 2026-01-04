@@ -27,6 +27,7 @@ import Accessibility from './Accessibility.jsx';
 import BookingTermsPage from './BookingTerms.jsx';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { HelmetProvider } from 'react-helmet-async';
 
 const stripePromise = loadStripe('pk_live_51NXMZwLnaujgTgslmIML1du0820qvljj86C62VIQQcEhTE1c5vhVA7E7xzaauwCBt4O1101PnVYRYE07MAIJjnjj00Fzk4o2q2'); 
 
@@ -41,12 +42,12 @@ const router = createBrowserRouter([
         element: <App />,
       },
       {
-        path: 'cert',
+        path: 'certifiering',
         element: <Cert />,
       },
   
       {
-        path:"cert/:id/:categoryId",
+        path:"certifiering/:categorySlug/:certSlug/:id/:categoryId",
         element: <CertDetail />,
       },
       {
@@ -113,10 +114,12 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <HelmetProvider>
     <AuthProvider>
       <Elements stripe={stripePromise}>
       <RouterProvider router={router} />
       </Elements>
     </AuthProvider>
+    </HelmetProvider>
   </StrictMode>
 );

@@ -34,6 +34,7 @@ const AdminDashboard = () => {
   const [category, setCategory] = useState([]);
   const [selectedcategory, setSelectedcategory] = useState('');
   const [name, setName] = useState('');
+  const [slug, setSlug] = useState('');
   const [certDesc, setCertDesc] = useState('');
   const [price, setPrice] = useState('');
   const [certId, setCertId] = useState('');
@@ -210,6 +211,7 @@ const formatTime = (date) =>
   const certificate = {
     CategoryId: selectedcategory,
     CertName: name,
+    Slug: slug,
     CertDescription: certDesc,
     Price: price, 
     PdfUrl: certUrl
@@ -249,6 +251,7 @@ const Editcertificate = async (e) => {
     Id: Number(certId),
     CategoryId: Number(selectedcategory),
     CertName: name,
+    Slug: slug,
     CertDescription: certDesc,
     price: Number(price),
     LinkToCertInfo: certUrl
@@ -593,6 +596,7 @@ const UpdateTesttime = async (event) => {
         const newCategory = {
         Name: name,  
         Description: description,
+        Slug: slug,
         Image: image
       };
 
@@ -662,6 +666,7 @@ const UpdateTesttime = async (event) => {
   const updatedCategory = {
     Id: Number(selectedcategory),
     Name: name,
+    Slug: slug,
     Description: description,
     Image: image
   }; //uppdatera en kategori 
@@ -1013,6 +1018,7 @@ case 'certificates':
             <th>Certifikat ID</th>
             <th>Kategori</th>
             <th>Certifikat</th>
+            <th>Slug (URL)</th>
             <th>Pris</th>
           </tr>
         </thead>
@@ -1040,6 +1046,7 @@ case 'certificates':
                     setName(certificate.certName);          
                     setCertDesc(certDescription.description);       
                     setPrice(certificate.price);
+                    setSlug(certificate.slug);
                     setActiveSection('addCert');
                     setCertUrl(certificate.linkToCertInfo);
                   }}
@@ -1053,6 +1060,7 @@ case 'certificates':
                     setSelectedcategory(catObj ? catObj.id : '');
                     setActiveSection('editCert');
                     setName(certificate.certName);
+                    setSlug(certificate.slug);
                     setPrice(certificate.price);
                     setCertUrl(certificate.linkToCertInfo);
                   }}
@@ -1075,6 +1083,8 @@ case 'certificates':
                   }}>Radera</button>
                 </div>
               </td>
+
+              <td>{certificate.slug}</td>
 
 
               <td>
@@ -1135,6 +1145,7 @@ case 'certificates':
     setName(certificate.certName);
     setCertDesc(certDescription ? certDescription.description : '');
     setPrice(certificate.price);
+    setSlug(certificate.slug);
     setCertUrl(certificate.linkToCertInfo);
     setActiveSection('addCert');
   }}
@@ -1149,6 +1160,7 @@ case 'certificates':
     const catObj = category.find(c => c.name === certificate.category);
     setSelectedcategory(catObj ? catObj.id : '');
     setCertUrl(certificate.linkToCertInfo);
+    setSlug(certificate.slug);
     setActiveSection('editCert');
   }}
 >
@@ -1213,6 +1225,18 @@ case 'certificates':
         onChange={(e) => setName(e.target.value)}
         required
       />
+    </div>
+
+      <div className="mb-3">
+      <label className="form-label">Slug (URL)</label>
+      <input
+        type="text"
+        className="form-control text-center"
+        value={slug}
+        onChange={(e) => setSlug(e.target.value)}
+        required
+      />
+      <small className="text-white"> Används i URL:en, t.ex. /certifiering/microsoft/{slug} </small>
     </div>
 
     <div className="mb-3">
@@ -1307,6 +1331,18 @@ case 'certificates':
           required
         />
       </div>
+
+      <div className="mb-3 w-100">
+      <label className="form-label">Slug (URL)</label>
+      <input
+        type="text"
+        className="form-control text-center"
+        value={slug}
+        onChange={(e) => setSlug(e.target.value)}
+        required
+      />
+      <small className="text-white"> Används i URL:en, t.ex. /certifiering/microsoft/{slug} </small>
+    </div>
 
       <div className="mb-3 w-100">
         <label className="form-label">Nytt pris</label>
@@ -1785,6 +1821,7 @@ case 'categories':
               <th>Kategori ID</th>
               <th>Kategori</th>
               <th>Beskrivning</th>
+              <th>Slug (URL)</th>
             </tr>
           </thead>
           <tbody>
@@ -1806,6 +1843,7 @@ case 'categories':
                   onClick={() => {
                     setName(x.name);
                     setDescription(x.description);
+                    setSlug(x.slug);
                     setImage(x.image);
                     setActiveSection('createCategory');
                   }}
@@ -1815,6 +1853,7 @@ case 'categories':
                   onClick={() => {
                     setSelectedcategory(x.id);
                     setName(x.name);
+                    setSlug(x.slug);
                     setDescription(x.description);
                     setImage(x.image);
                     setActiveSection('updateCategory');
@@ -1830,6 +1869,8 @@ case 'categories':
                   
                   
                 </td>
+
+                <td>{x.slug}</td>
 
 
               </tr>
@@ -1854,6 +1895,7 @@ case 'categories':
             setName(x.name);
             setDescription(x.description);
             setImage(x.image);
+            setSlug(x.slug);
             setActiveSection('createCategory');
           }}
         >
@@ -1865,6 +1907,7 @@ case 'categories':
           onClick={() => {
             setSelectedcategory(x.id);
             setName(x.name);
+            setSlug(x.slug);
             setDescription(x.description);
             setImage(x.image);
             setActiveSection('updateCategory');
@@ -1902,6 +1945,17 @@ case 'categories':
             className="form-control"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+
+             <div className="mb-3">
+          <label className="form-label">Slug (URL)</label>
+          <input
+            type="text"
+            className="form-control"
+            value={slug}
+            onChange={(e) => setSlug(e.target.value)}
             required
           />
         </div>
@@ -1960,6 +2014,17 @@ case 'categories':
             className="form-control"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+
+         <div className="mb-3">
+          <label className="form-label">Slug (URL)</label>
+          <input
+            type="text"
+            className="form-control"
+            value={slug}
+            onChange={(e) => setSlug(e.target.value)}
             required
           />
         </div>

@@ -27,7 +27,7 @@ function NavComponent() {
         <Navbar.Collapse id="responsive-navbar-nav" className="menu text-white">
           <Nav className="me-auto">
             {/* Länk till Certifieringar med översättning */}
-            <Nav.Link as={Link} to="/cert" className='nav-custom'>{t('certifications')}</Nav.Link> 
+            <Nav.Link as={Link} to="/certifiering" className='nav-custom'>{t('certifications')}</Nav.Link> 
 
             
             <Nav.Link as={Link} to="/about">{t('about')}</Nav.Link>

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import './styling/CertDetail.css';
 import { translationKeys } from './translationMap';
+import { Helmet } from "react-helmet-async";
 
 export default function CertDetail() {
   const { id, categoryId } = useParams();
@@ -18,6 +19,7 @@ export default function CertDetail() {
   const [cert, setCert] = useState(null);
   const [certs, setCerts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [relatedCerts, setRelatedCerts] = useState([]);
 
   console.log("CertID i frontend:", id);
 
@@ -47,11 +49,12 @@ useEffect(() => {
      
     const certificate = allCerts.find(c => c.id === Number(id));
 
-      if (!certificate) {
-        console.error("Certifikatet hittades inte:", certificate.certName);
-        setLoading(false);
-        return;
-      }
+        if (!certificate) {
+    console.error("Certifikatet hittades inte:", id);
+    setLoading(false);
+    return;
+    }
+
       
       const resDetail = await axios.get(
         `https://certbe-backend.onrender.com/api/cert/${certificate.id}`
@@ -167,9 +170,109 @@ useEffect(() => {
     }
   }, [toggleTesttimes, alltesttimes]);
 
+  useEffect(() => {
+  if (!cert || certs.length === 0) return;
+
+  const filtered = certs
+    .filter(c => c.categoryId === cert.categoryId && c.id !== cert.id)
+    .slice(0, 3);
+
+  setRelatedCerts(filtered);
+}, [cert, certs]);
+
+
+
+
   
   return (
     <div>
+
+          <Helmet>
+  <title>
+    {cert 
+      ? `${cert.name} – ${selectedCategory?.name} certifiering | SCS`
+      : "Certifiering | SCS"}
+  </title>
+
+  <meta
+    name="description"
+    content={
+      cert
+        ? `Boka ${cert.name} certifiering inom ${selectedCategory?.name}. Officiellt prov, flexibla datum och snabb bokning hos SCS.`
+        : "Certifieringar hos SCS."
+    }
+  />
+
+  {/* Open Graph */}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={cert ? `${cert.name} – ${selectedCategory?.name} certifiering | SCS` : "Certifiering | SCS"} />
+  <meta property="og:description" content={cert ? `Boka ${cert.name} certifiering inom ${selectedCategory?.name}. Officiellt prov, flexibla datum och snabb bokning hos SCS.` : "Certifieringar hos SCS."} />
+  <meta property="og:url" content={`https://www.scservices.se/certifiering/${selectedCategory?.slug}/${cert?.slug}/${cert?.id}/${cert?.categoryId}`} />
+  <meta property="og:site_name" content="SCS" />
+
+  {/* Twitter */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={cert ? `${cert.name} – ${selectedCategory?.name} certifiering | SCS` : "Certifiering | SCS"} />
+  <meta name="twitter:description" content={cert ? `Boka ${cert.name} certifiering inom ${selectedCategory?.name}. Officiellt prov, flexibla datum och snabb bokning hos SCS.` : "Certifieringar hos SCS."} />
+
+  {/* Canonical */}
+  <link
+    rel="canonical"
+    href={`https://www.scservices.se/certifiering/${selectedCategory?.slug}/${cert?.slug}/${cert?.id}/${cert?.categoryId}`}
+  />
+
+  {/* Course Schema */}
+  {cert && (
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Course",
+        name: cert.name,
+        description: cert.description,
+        provider: {
+          "@type": "Organization",
+          name: "SCS",
+          sameAs: "https://www.scservices.se",
+        },
+        url: `https://www.scservices.se/certifiering/${selectedCategory?.slug}/${cert.slug}/${cert.id}/${cert.categoryId}`,
+      })}
+    </script>
+  )}
+
+  {/* Breadcrumb Schema */}
+  {cert && selectedCategory && (
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Certifieringar",
+            "item": "https://www.scservices.se/certifiering"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": selectedCategory.name,
+            "item": `https://www.scservices.se/certifiering/${selectedCategory.slug}`
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": cert.name,
+            "item": `https://www.scservices.se/certifiering/${selectedCategory.slug}/${cert.slug}/${cert.id}/${cert.categoryId}`
+          }
+        ]
+      })}
+    </script>
+  )}
+</Helmet>
+
+
+
+
       <section className="py-5 detailSection">
         <Container>
           <Row className='content'>
@@ -373,6 +476,9 @@ useEffect(() => {
             </Row>
           )}
         </Container>
+
+       
+
       </section>
     </div>
   );

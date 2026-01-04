@@ -10,6 +10,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { useMediaQuery } from 'react-responsive';
 import axios from 'axios';
 import { translationKeys } from './translationMap';
+import { Helmet } from "react-helmet-async";
 
 function App() {
   const { t } = useTranslation();
@@ -47,13 +48,68 @@ function App() {
 
   return (
     <div className='mainPage'>
+
+      <Helmet>
+  <title>SCS – Certifieringar & Officiella prov</title>
+
+  <meta
+    name="description"
+    content="Boka officiella certifieringar snabbt och enkelt hos Scandinavian Certification Services. Flexibla datum, officiella prov och professionell support."
+  />
+
+  {/* Canonical */}
+  <link rel="canonical" href="https://www.scservices.se/" />
+
+  {/* Open Graph */}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SCS – Certifieringar & Officiella prov" />
+  <meta property="og:description" content="Boka officiella certifieringar snabbt och enkelt hos Scandinavian Certification Services." />
+  <meta property="og:url" content="https://www.scservices.se/" />
+  <meta property="og:site_name" content="SCS" />
+
+  {/* Twitter */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SCS – Certifieringar & Officiella prov" />
+  <meta name="twitter:description" content="Boka officiella certifieringar snabbt och enkelt hos Scandinavian Certification Services." />
+
+  {/* Organization Schema */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Scandinavian Certification Services",
+      url: "https://www.scservices.se",
+      logo: "https://www.scservices.se/logo.png",
+      sameAs: [
+        "https://www.scservices.se"
+      ]
+    })}
+  </script>
+
+  {/* Breadcrumbs */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Hem",
+          item: "https://www.scservices.se/"
+        }
+      ]
+    })}
+  </script>
+      </Helmet>
+
       <div className="video-container">
      
         <div className="video-overlay">
           <div className="hero-content" data-aos="zoom-in" data-aos-duration="1000">
           <h1>{t('welcome_message')} Scandinavian Certification Services</h1>
           <p>{t('subheadline')}</p>      
-          <Link to="/cert"><button className='cta-btn'>Boka nu</button></Link>
+          <Link to="/certifiering"><button className='cta-btn'>Boka nu</button></Link>
           </div>   
         </div>        
       </div>
@@ -66,7 +122,8 @@ function App() {
         <Carousel slide={false}>
           {categories.map((course, index) => (
           <Carousel.Item key={index}>
-  <Link to={`/cert/${course.certs[0].id}/${course.id}`}>
+  <Link to={`/certifiering/${course.slug}/${course.certs[0].slug}/${course.certs[0].id}/${course.id}`}>
+
     <img
       className="d-block w-100"
       src={course.image}
@@ -101,7 +158,7 @@ function App() {
             
             <Col key={index} md={4}>
               <div className="course-card" data-aos="fade-up">
-              <Link to={`/cert/${course.certs[0].id}/${course.id}`}>
+              <Link to={`/certifiering/${course.slug}/${course.certs[0].slug}/${course.certs[0].id}/${course.id}`}>
 <img
                     src={course.image}
                     alt={course.courseName}
