@@ -16,6 +16,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
 import dayjs from "dayjs";
+import { Helmet } from "react-helmet-async";
 
 function UserDashboard() {
   const { role, setRole, isAuthenticated, setIsAuthenticated, token, email } = useContext(AuthContext);
@@ -384,6 +385,13 @@ const updateUserOnServer = async (userData) => {
 
   return (
     <div className="userDashboard" style={{ display: 'flex', minHeight: '100vh'}}>
+
+      <Helmet>
+      <title>Mitt konto | SCS</title>
+      <meta name="robots" content="noindex, nofollow" />
+      <link rel="canonical" href="https://www.scservices.se/user" />
+    </Helmet>
+
 
       <div className='d-md-none bg-dark'>
       <Button

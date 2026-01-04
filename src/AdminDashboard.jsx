@@ -13,8 +13,7 @@ import Table from 'react-bootstrap/Table';
 import Toast from "react-bootstrap/Toast";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import ToastContainer from "react-bootstrap/ToastContainer";
-
-
+import { Helmet } from "react-helmet-async";
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('');
@@ -2218,6 +2217,13 @@ case 'categories':
 
   return (
     <div className="adminDashboard d-flex" style={{ minHeight: '100vh' }}>
+
+      <Helmet>
+      <title>Adminpanel | SCS</title>
+      <meta name="robots" content="noindex, nofollow" />
+      <link rel="canonical" href="https://www.scservices.se/admin" />
+    </Helmet>
+
       
       {/* Fast sidopanel på md och uppåt */}
       <div className="d-none d-md-block" style={{marginTop: '70px'}}>

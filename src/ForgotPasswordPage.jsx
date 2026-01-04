@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {Spinner} from 'react-bootstrap';
 import ReCAPTCHA from "react-google-recaptcha";
-
+import { Helmet } from "react-helmet-async";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -42,6 +42,12 @@ export default function ForgotPasswordPage() {
 
   return (
     <section className="forgotpasswordSection rounded-3 shadow-sm">
+      <Helmet>
+      <title>Glömt lösenord | SCS</title>
+      <meta name="robots" content="noindex, nofollow" />
+      <link rel="canonical" href="https://www.scservices.se/forgot_password" />
+    </Helmet>
+
        <form onSubmit={handleSubmit}>
         <h2 className="text-xl font-bold mb-4 text-center">{t('forgotPassword')}</h2>
         <label htmlFor="forgotEmail" className="form-label text-white">{t('email')}</label>

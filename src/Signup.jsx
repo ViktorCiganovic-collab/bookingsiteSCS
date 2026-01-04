@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import './styling/signup.css';
 import ReCAPTCHA from "react-google-recaptcha";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { Helmet } from "react-helmet-async";
 
 function Signup() {
   const { t } = useTranslation();
@@ -88,6 +89,12 @@ function Signup() {
 
   return (
     <div className="signupPage" style={{ paddingTop: '60px' }}>
+      <Helmet>
+  <title>Registrera konto | SCS</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://www.scservices.se/signup" />
+      </Helmet>
+
       <section className="signupSectionOne" aria-labelledby="register-heading">
         <Container fluid="md" className='px-3'>
           <Row className="d-flex justify-content-center align-items-center width-100">

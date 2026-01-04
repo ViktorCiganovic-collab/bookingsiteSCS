@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import axios from "axios";
 import dayjs from "dayjs";
 import { AuthContext } from './services/AuthProvider';
+import { Helmet } from "react-helmet-async";
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -161,6 +162,12 @@ const Booking = () => {
 
   return (
     <div className="bookingSectionone d-flex flex-column justify-content-center align-items-center" style={{ paddingTop: '80px' }}>
+
+      <Helmet>
+      <title>Boka certifiering | SCS</title>
+      <meta name="robots" content="noindex, nofollow" />
+      <link rel="canonical" href="https://www.scservices.se/booking" />
+      </Helmet>
       
       <div className='bookingForm d-flex flex-column justify-content-center align-items-center'>
 

@@ -4,7 +4,7 @@ import axios from "axios";
 import './styling/ResetPasswordPage.css';  
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
+import { Helmet } from "react-helmet-async";
 
 export default function ResetPasswordPage() {
   const [searchParams] = useSearchParams();
@@ -52,6 +52,13 @@ const handleSubmit = async (e) => {
 
   return (
     <section className="resetPasswordSection rounded-3 shadow-sm">
+
+      <Helmet>
+      <title>Återställ lösenord | SCS</title>
+      <meta name="robots" content="noindex, nofollow" />
+      <link rel="canonical" href="https://www.scservices.se/reset-password" />
+      </Helmet>
+
        <form onSubmit={handleSubmit}>
         <h2 className="text-xl font-bold mb-4 text-center">{t('resetPassword')}</h2>
         <label htmlFor="newPassword" className="form-label text-white">

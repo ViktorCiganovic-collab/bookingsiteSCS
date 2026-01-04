@@ -10,7 +10,7 @@ import { jwtDecode } from 'jwt-decode';
 import { AuthContext } from './services/AuthProvider';
 import { Link } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-
+import { Helmet } from "react-helmet-async";
 
 function Login() {
   const [username, setUsername] = useState('');  
@@ -103,6 +103,12 @@ useEffect(() => {
 
  return (
     <div className="loginPage" style={{ paddingTop: '70px', minHeight: '100vh' }}>
+      <Helmet>
+  <title>Login | SCS</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://www.scservices.se/login" />
+</Helmet>
+
       <section className="loginSectionOne" aria-labelledby="login-heading">
         <Container>
           <Row className="d-flex justify-content-center align-items-center mb-5 width-100">
