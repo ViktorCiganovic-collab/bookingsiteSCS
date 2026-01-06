@@ -18,7 +18,8 @@
 
 @media (max-width: 700px) {
   .aboutSectionOne {
-    background-position: 65% 35%;
+    background-image: url('../media/ai_lexicon.jpg') !important;
+    background-position: 65% 45% !important;
   }
 }
 

@@ -22,6 +22,13 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
 }
 
+@media (max-width: 700px) {
+  .certificatesPageSectionOne {
+    background-image: url('../media/pexels-shkrabaanthony-5475750.jpg');
+    background-position: center 80%;
+  }
+}
+
 .introducingSection {
     background: linear-gradient(
     rgba(0, 0, 0, 0.6), 
@@ -248,16 +255,33 @@ h1 {
   text-decoration: underline;
 }
 
+
+
+.certInformation a {
+  text-decoration: none !important;
+  color: black !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.certInformation a:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 6px rgba(255, 80, 80, 0.45);
+ }
+
 @media (max-width: 768px) {
+
+  .certInformation{
+  margin-bottom: 20px;
+  }
+
   .testtider {
-    flex-direction: column !important;
-    
+    flex-direction: column !important;    
     gap: 0.5rem;
     text-align: center;
   }
 
   .certInformation {
-    flex-direction: column;
+    flex-direction: column;    
   }
 }
 

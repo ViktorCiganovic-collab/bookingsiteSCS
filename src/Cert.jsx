@@ -237,7 +237,7 @@ setSelectedcategory(courseName);
       ]
     })}
   </script>
-</Helmet>
+    </Helmet>
 
       <section className='certificatesPageSectionOne'>
         <div className='introducingSection'>
