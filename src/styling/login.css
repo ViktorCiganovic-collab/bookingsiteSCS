@@ -3,7 +3,7 @@
 width: 100%;
 min-height: 90vh;
 /* background-color: var(--secondary-bg); */
-background-image: url('../media/pexels-shottrotter-1309766.jpg');
+background-image: url('../media/certifications-1716x965_-_2025-02-25.jpg');
 background-size:cover;
 background-position: center;
 background-repeat: no-repeat;
@@ -41,7 +41,12 @@ height: 100%;
 }
 
 .loginSectionOne .col-md-6 {
-  background: transparent;
+    background: linear-gradient(
+    rgba(0, 0, 0, 0.6), 
+    rgba(0, 0, 0, 0.3)
+  );
+  
+  backdrop-filter: blur(6px);
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   padding: 40px 30px;

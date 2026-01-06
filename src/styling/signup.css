@@ -16,7 +16,7 @@ background-position: center;
 width: 100%;
 min-height: 100vh;
 border-radius: 10px;
-padding-top: 30px;
+margin-top: 50px;
 padding-bottom: 30px;
 
 }
@@ -76,7 +76,12 @@ padding-bottom: 30px;
 }
 
 .signupSectionOne form {
-  background: transparent;
+    background: linear-gradient(
+    rgba(0, 0, 0, 0.6), 
+    rgba(0, 0, 0, 0.3)
+  );
+  
+  backdrop-filter: blur(6px);
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 40px 30px;

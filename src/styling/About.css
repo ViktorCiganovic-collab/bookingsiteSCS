@@ -9,7 +9,7 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-image: url('../media/testworkingenvironment.png') !important;
+  background-image: url('../media/affarsutbildning.jpg') !important;
   /* background-image: url('../assets/backgroundimg.webp'); */
   background-size: cover;
   background-repeat: no-repeat;
@@ -102,12 +102,16 @@
 
 /* Bootstrap anpassningar för mindre skärmar */
 @media (max-width: 767px) {
+
+  .overlayContent {
+    padding: 1.5rem;    
+  }
   .overlayContent h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .overlayContent p {
-    font-size: 1.2rem;
+    font-size: 0.95rem;
   }
 }
 
@@ -117,4 +121,12 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     padding: 2rem;
     border-radius: 12px;
+    max-width: 700px;
 }
+
+@media (max-width: 520px) {
+  .overlayContent {
+    width: 80%;
+  }
+}
+

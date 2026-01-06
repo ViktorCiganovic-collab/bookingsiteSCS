@@ -8,7 +8,7 @@
 
 .certificatesPageSectionOne {
   /* background-image: url('https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') !important; */
-  background-image: url('../media/affarsutbildning.jpg');
+  background-image: url('../media/certifications-1716x965_-_2025-02-25.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -24,8 +24,8 @@
 
 @media (max-width: 700px) {
   .certificatesPageSectionOne {
-    background-image: url('../media/pexels-shkrabaanthony-5475750.jpg');
-    background-position: center 80%;
+    background-image: url('../media/cert-hearder__ScaleMaxWidthWzMwNDhd.jpg-6gkg6o.jpg');
+    background-position: center;
   }
 }
 
@@ -34,11 +34,13 @@
     rgba(0, 0, 0, 0.6), 
     rgba(0, 0, 0, 0.3)
   );
+  
   backdrop-filter: blur(6px);
   padding: 2rem;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 0 25px rgba(0, 150, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 0 25px rgba(0, 150, 255, 0.4); */
 }
 
 h1 {
