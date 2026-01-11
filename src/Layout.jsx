@@ -5,6 +5,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 import { useEffect } from "react"; 
 import "./layout.css";
+import ScrollToTop from './services/ScrollToTop'  
 
 export default function Layout({ context }) {
 
@@ -18,6 +19,7 @@ export default function Layout({ context }) {
 
     return (
         <div id='root_c'>
+           <ScrollToTop />
             <div className='nav_c'>
                 <NavComponent />
             </div>

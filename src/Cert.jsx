@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import Spinner from 'react-bootstrap/Spinner';
 import { translationKeys } from './translationMap';
 import { Helmet } from "react-helmet-async";
+import { useLocation } from 'react-router-dom';
 
 export default function Cert() {
   const { t } = useTranslation();   
@@ -24,7 +25,7 @@ export default function Cert() {
   const categorySectionRef = useRef(null); 
   const [selectedTest, setSelectedTest] = useState('');
   const [cert, setCert] = useState();
-
+ 
   // Get translated course array
   // const courses = Itcourses(); // ✅ Function call to get data  
     // Hämta kategorier
@@ -33,8 +34,10 @@ export default function Cert() {
       try {
         const res = await axios.get('https://certbe-backend.onrender.com/api/category');
         setCourses(res.data);
+        setCategory(res.data);
       } catch (error) {
         console.error('Kunde inte hämta kurser:', error);
+        setCategory([]);
         setCategory([]);
       }
     };
@@ -49,6 +52,37 @@ useEffect(() => {
     testSectionRef.current.scrollIntoView({ behavior: 'smooth' });
   }
 }, [selectedTest]); // when selectedTest is rendered and there is a reference to currentsection scroll it into view smooth
+
+const location = useLocation();
+
+
+useEffect(() => {
+  if (!selectedcategory) return;
+  if (category.length === 0) return;
+
+  const current = category.find(c => c.name === selectedcategory);
+  if (!current) return;
+
+  const scrollToSection = () => {
+    if (categorySectionRef.current) {
+      categorySectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  setTimeout(scrollToSection, 50);
+  setTimeout(scrollToSection, 200);
+  setTimeout(scrollToSection, 500);
+}, [selectedcategory, category]);
+
+useEffect(() => {
+  const params = new URLSearchParams(location.search);
+  const categoryFromUrl = params.get("category");
+
+  if (categoryFromUrl) {
+    setSelectedcategory(categoryFromUrl);
+  }
+}, [location.search]);
+
 
 
 useEffect(() => {
@@ -122,25 +156,6 @@ useEffect(() => {
     .catch(err => console.error("Error fetching exam dates:", err));
 }, []);
 
-
-
-
-useEffect(() => {
-  const fetchCategories = async () => {
-
-    try {
-      const res = await axios.get('https://certbe-backend.onrender.com/api/category');
-      setCategory(res.data);
-      console.log(res.data);
-    }
-    catch (error) {
-      console.error('Kunde inte hämta kurser:', error);
-      setCategory([]);
-    }
-  }  
-  fetchCategories();
-}, []);
-
   // Filter categories based on userchoice
   const currentCategory = category.find(category => category.name === selectedcategory);
   const categoryDescriptionKey = currentCategory?.description
@@ -199,12 +214,14 @@ setSelectedcategory(courseName);
   return (
     <div className='certificatesSite'>
 
-      <Helmet>
-  <title>Certifieringar – Alla certifikat | SCS</title>
+     <Helmet>
+  {/* Title */}
+  <title>IT Certifications – Certiport Exams in Scandinavia | SCS</title>
 
+  {/* Meta Description */}
   <meta
     name="description"
-    content="Utforska alla certifieringar hos Scandinavian Certification Services. Officiella prov, flexibla datum och certifikat inom IT, nätverk, Adobe och mer."
+    content="Explore all Certiport IT certifications with SCS Sweden. Microsoft Office Specialist, Microsoft Fundamentals, Adobe, IT Specialist, Cisco, Unity and more. Online or on-site exams with flexible scheduling and instant results."
   />
 
   {/* Canonical */}
@@ -212,32 +229,33 @@ setSelectedcategory(courseName);
 
   {/* Open Graph */}
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Certifieringar – Alla certifikat | SCS" />
-  <meta property="og:description" content="Utforska alla certifieringar hos Scandinavian Certification Services. Officiella prov och flexibla datum." />
+  <meta property="og:title" content="IT Certifications – Certiport Exams in Scandinavia | SCS" />
+  <meta property="og:description" content="Browse all Certiport certifications offered by SCS Sweden. Microsoft, Adobe, Cisco, IT Specialist and more. Online or on-site exams with fast results." />
   <meta property="og:url" content="https://www.scservices.se/certifiering" />
-  <meta property="og:site_name" content="SCS" />
+  <meta property="og:site_name" content="Scandinavian Certification Services" />
 
   {/* Twitter */}
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Certifieringar – Alla certifikat | SCS" />
-  <meta name="twitter:description" content="Utforska alla certifieringar hos Scandinavian Certification Services." />
+  <meta name="twitter:title" content="IT Certifications – Certiport Exams in Scandinavia | SCS" />
+  <meta name="twitter:description" content="Explore all Certiport IT certifications with SCS Sweden. Microsoft, Adobe, Cisco, IT Specialist and more." />
 
   {/* Breadcrumbs */}
   <script type="application/ld+json">
     {JSON.stringify({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
-      "itemListElement": [
+      itemListElement: [
         {
           "@type": "ListItem",
-          "position": 1,
-          "name": "Certifieringar",
-          "item": "https://www.scservices.se/certifiering"
+          position: 1,
+          name: "Certifications",
+          item: "https://www.scservices.se/certifiering"
         }
       ]
     })}
   </script>
-    </Helmet>
+</Helmet>
+
 
       <section className='certificatesPageSectionOne'>
         <div className='introducingSection'>

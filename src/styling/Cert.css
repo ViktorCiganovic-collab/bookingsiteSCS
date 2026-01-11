@@ -46,7 +46,7 @@
 h1 {
   font-size: 3rem;
   color: var(--white-text) !important;
-  text-shadow: var(--text-shadow);
+    text-shadow: var(--text-shadow);
   text-align: center; /* Center the title */
 }
 
@@ -58,8 +58,8 @@ h1 {
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(10px); }
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(10px); opacity: 1; }
 }
 
 /*Tillgänglighet: om användaren i systeminställningar valt "minska rörelse" så stängs animationen av WCAG*/

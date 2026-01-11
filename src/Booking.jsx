@@ -122,8 +122,13 @@ const Booking = () => {
       // Skapa betalning
       const paymentIntentResponse = await axios.post(
         'https://certbe-backend.onrender.com/payment/create-payment-intent',
-        { amount: accprice * 100, testId: examid },
-        { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } }
+        { amount: accprice * 100, 
+          testId: examid,
+          customerEmail: user.email,  
+          country: user.country        
+        },
+        { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
+        }
       );
 
       const clientSecret = paymentIntentResponse.data.clientSecret;

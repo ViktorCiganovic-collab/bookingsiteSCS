@@ -17,6 +17,7 @@ const LanguageSwitcher = () => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
+        <Dropdown.Item onClick={() => handleLanguageChange('en')}>Engelska</Dropdown.Item>
         <Dropdown.Item onClick={() => handleLanguageChange('sv')}>Svenska</Dropdown.Item>
         <Dropdown.Item onClick={() => handleLanguageChange('da')}>Dansk</Dropdown.Item>
         <Dropdown.Item onClick={() => handleLanguageChange('no')}>Norsk</Dropdown.Item>

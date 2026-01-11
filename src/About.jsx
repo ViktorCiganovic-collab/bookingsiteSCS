@@ -19,12 +19,14 @@ const About = () => {
   return (
     <div className="aboutPage">
 
-      <Helmet>
-  <title>Om oss – Scandinavian Certification Services | SCS</title>
+     <Helmet>
+  {/* Title */}
+  <title>About Us – Scandinavian Certification Services | Official Certiport Partner</title>
 
+  {/* Meta Description */}
   <meta
     name="description"
-    content="Lär känna Scandinavian Certification Services. Vi erbjuder certifieringar, testcenter, support och flexibla lösningar för både företag och privatpersoner."
+    content="Learn more about Scandinavian Certification Services (SCS), a Certiport-based IT certification provider in Scandinavia. We offer Microsoft, Adobe, Cisco, Unity and IT Specialist exams with online and on-site testing options."
   />
 
   {/* Canonical */}
@@ -32,38 +34,39 @@ const About = () => {
 
   {/* Open Graph */}
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Om oss – Scandinavian Certification Services" />
-  <meta property="og:description" content="Läs mer om vilka vi är, vad vi gör och varför du ska välja Scandinavian Certification Services." />
+  <meta property="og:title" content="About Us – Scandinavian Certification Services" />
+  <meta property="og:description" content="Discover who we are and how SCS delivers official Certiport IT certifications across Scandinavia. Online and on-site exams with professional support." />
   <meta property="og:url" content="https://www.scservices.se/about" />
-  <meta property="og:site_name" content="SCS" />
+  <meta property="og:site_name" content="Scandinavian Certification Services" />
 
   {/* Twitter */}
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Om oss – Scandinavian Certification Services" />
-  <meta name="twitter:description" content="Lär känna teamet bakom Scandinavian Certification Services." />
+  <meta name="twitter:title" content="About Us – Scandinavian Certification Services" />
+  <meta name="twitter:description" content="Learn more about SCS and our mission to provide accessible Certiport IT certifications in Scandinavia." />
 
   {/* Breadcrumbs */}
   <script type="application/ld+json">
     {JSON.stringify({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
-      "itemListElement": [
+      itemListElement: [
         {
           "@type": "ListItem",
-          "position": 1,
-          "name": "Certifieringar",
-          "item": "https://www.scservices.se/certifiering"
+          position: 1,
+          name: "Certifications",
+          item: "https://www.scservices.se/certifiering"
         },
         {
           "@type": "ListItem",
-          "position": 2,
-          "name": "Om oss",
-          "item": "https://www.scservices.se/about"
+          position: 2,
+          name: "About Us",
+          item: "https://www.scservices.se/about"
         }
       ]
     })}
   </script>
-      </Helmet>
+</Helmet>
+
 
 
       {/* SEKTION 1 – Bakgrundsvideo och intro */}

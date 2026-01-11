@@ -87,6 +87,8 @@ h1 {
     background-color: var(--secondary-bg);
 }
 
+.infoCenteredBlock { margin: 0 auto; max-width: 760px; }
+
 .infoPageSectionThree {
     background-color: var(--main-bg);
 }

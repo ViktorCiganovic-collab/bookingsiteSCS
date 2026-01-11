@@ -605,7 +605,85 @@
   "privacy_intro_title": "Johdanto",
     "privacyTechPublished": "Julkaistu: {{publishedDate}}",
 
-    "categories.cisco_certified_support_technician.certs.ccst_networking.description": "Testaa verkko-osaamisesi ja valmistaa sinut rooleihin, kuten verkkoanalyytikko, tukiteknikko ja muihin. CCST Networking -sertifikaatin avulla osoitat työnantajille olevasi valmis tarttumaan haasteisiin heti ensimmäisestä päivästä lähtien."
+    "categories.cisco_certified_support_technician.certs.ccst_networking.description": "Testaa verkko-osaamisesi ja valmistaa sinut rooleihin, kuten verkkoanalyytikko, tukiteknikko ja muihin. CCST Networking -sertifikaatin avulla osoitat työnantajille olevasi valmis tarttumaan haasteisiin heti ensimmäisestä päivästä lähtien.",
+
+ "info_title": "Miten Certiport-kokeet toimivat",
+"info_subtitle": "Kaikki mitä sinun tarvitsee tietää IT-sertifiointikokeista SCS Swedenin kautta.",
+
+"info_benefits_title": "Miksi valita SCS?",
+"info_benefits_safe": "Virallinen ja turvallinen",
+"info_benefits_safeDesc": "Kaikki kokeet suoritetaan Certiportin virallisella testialustalla.",
+"info_benefits_fast": "Nopeat tulokset",
+"info_benefits_fastDesc": "Sertifiointitulokset näkyvät heti kokeen päätyttyä.",
+"info_benefits_variety": "Laaja valikoima",
+"info_benefits_varietyDesc": "Valitse Microsoftin, Adoben, IT Specialistin, Ciscon, Unityn ja muiden sertifikaattien välillä.",
+"info_benefits_support": "Ammattitaitoinen tuki",
+"info_benefits_supportDesc": "Autamme sinua koko varaus- ja testausprosessin ajan.",
+
+"info_section_title": "Näin sertifiointiprosessi toimii",
+"info_section_intro": "Etä- tai paikan päällä tehtävät kokeet — joustavat vaihtoehdot kaikille.",
+
+"info_section_paragraph1": "<strong>Kaikki kokeet suoritetaan digitaalisesti</strong> Certiportin virallisen alustan kautta. Voit suorittaa kokeen kotoa käsin tai Malmössä sijaitsevassa testikeskuksessamme.",
+"info_section_paragraph2": "Jokaisessa kokeessa on ennalta määrätty määrä kysymyksiä ja aikaraja. Tulokset näkyvät heti kokeen jälkeen, ja hyväksytyn suorituksen jälkeen saat digitaalisen sertifikaatin.",
+"info_section_paragraph3": "Etäkokeita varten tarvitset vakaan internetyhteyden, webkameran, mikrofonin ja rauhallisen ympäristön.",
+"info_section_paragraph4": "Voit myös tilata virallisia harjoituskokeita ja oppimateriaaleja kokeen varaamisen yhteydessä.",
+
+"info_testcenter_title": "Kokeet paikan päällä Malmössä",
+"info_testcenter_hint": "Haluatko suorittaa kokeen paikan päällä? Malmössä sijaitseva testikeskuksemme tarjoaa rauhallisen ja ammattimaisen ympäristön.",
+
+"info_booking_info": "Varausta ja laskutusta varten ota yhteyttä <strong>Lexicon Malmö</strong> -toimipisteeseen osoitteessa <a>certifiering@lexicon.se</a>.",
+
+"info_certifications_title": "Esimerkkejä sertifioinneista",
+"info_certifications_description": "Voit sertifioitua monilla IT- ja digitaalisilla osaamisalueilla:",
+"info_certifications_list1": "Python – perustason ohjelmointi",
+"info_certifications_list2": "HTML & CSS – web-kehitys",
+"info_certifications_list3": "Cybersecurity – tietoturvan perusteet",
+"info_certifications_list4": "Tietokannat (SQL) – tietokantojen suunnittelu ja kyselyt",
+"info_certifications_list5": "Azure & Microsoft Fundamentals – AZ-900, AI-900, DP-900",
+"info_certifications_moreinfo": "Täydellisen sertifiointilistan löydät <Link>sertifiointisivultamme</Link>.",
+
+"info_testcenter_section_title": "Testikeskus Malmössä",
+"info_testcenter_section_city": "Malmö",
+"info_testcenter_section_description": "Lexiconin testikeskus Malmössä tarjoaa paikan päällä suoritettavia sertifiointikokeita rauhallisessa ja ammattimaisessa ympäristössä. Täällä voit suorittaa kokeita seuraavilta palveluntarjoajilta:",
+"info_testcenter_section_provider_pearson": "Pearson VUE",
+"info_testcenter_section_provider_psi": "PSI",
+"info_testcenter_section_provider_kryterion": "Kryterion",
+"info_testcenter_section_provider_certiport": "Certiport",
+"info_testcenter_section_provider_cips": "CIPS",
+"info_testcenter_section_provider_meazure": "Meazure Learning",
+"info_testcenter_section_address_title": "Osoite",
+"info_testcenter_section_address": "Lexicon Malmö, Södergatan 24, Malmö",
+"info_testcenter_section_hours_title": "Aukioloajat",
+"info_testcenter_section_hours": "Maanantai – perjantai: 08:00–17:00",
+
+"info_map_title": "Löydä perille",
+
+"info_contact_title": "Yhteystiedot",
+"info_contact_pearson": "Pearson VUE -kokeita varten ota yhteyttä",
+"info_contact_pearsonService": "Pearson asiakaspalvelu",
+"info_contact_pearsonPhone": "+46 20 798 690",
+"info_contact_booking": "Certiport-kokeiden varaamiseen käytä",
+"info_contact_bookingPortal": "SCS-varausportaalia",
+"info_contact_bookingOrg": "Lexicon Malmö",
+"info_contact_other": "Muita kysymyksiä varten lähetä sähköpostia",
+
+"info_contact_stockholm_name": "Lexicon Stockholm",
+"info_contact_stockholm_address": "Sveavägen 34, Stockholm",
+"info_contact_stockholm_phone": "+46 8 511 611 00",
+"info_contact_stockholm_hours": "Maanantai – perjantai: 08:00–17:00",
+
+"info_contact_malmo_title": "Malmö",
+"info_contact_malmo_name": "Lexicon Malmö",
+"info_contact_malmo_address": "Södergatan 24, Malmö",
+"info_contact_malmo_phone": "+46 40 665 56 50",
+"info_contact_malmo_hours": "Maanantai – perjantai: 08:00–17:00",
+
+"price_incl_vat": "sis. alv",
+
+"home_info_teaser": "SCS Sweden tarjoaa virallisia Certiport-sertifiointeja IT- ja digitaalisissa taidoissa. Haluatko tietää, miten prosessi toimii – varauksesta aina diplomiin asti?",
+"home_info_link_text": "Näin Certiport-sertifioinnit toimivat"
+
+
 
 
 }

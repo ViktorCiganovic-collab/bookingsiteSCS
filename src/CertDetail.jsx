@@ -8,7 +8,7 @@ import { translationKeys } from './translationMap';
 import { Helmet } from "react-helmet-async";
 
 export default function CertDetail() {
-  const { id, categoryId } = useParams();
+const { categorySlug, certSlug, id, categoryId } = useParams();
   // const decodedCertName = decodeURIComponent(certname);
   const { t } = useTranslation();
 
@@ -279,7 +279,9 @@ useEffect(() => {
             <Col md={5} className="text-center">
               <h1>{cert?.name}</h1>
               <h3>
-                {t('course_category')}: {selectedCategory ? selectedCategory.name : t('loading_category')}
+              <Link to={`/certifiering/#certifications`}>
+
+                  {selectedCategory ? selectedCategory.name : t('loading_category')}</Link>
               </h3>
               <p>{t(descriptionKey)}</p>
 
@@ -324,11 +326,11 @@ useEffect(() => {
                                 {cert.price} kr
                               </span>{' '}
                               <span className="badge bg-success ms-2">-50%</span>{' '}
-                              <strong>{cert.price * 0.5} kr</strong> exkl. moms
+                              <strong>{cert.price * 0.5} kr</strong> {t('price_incl_vat')}
                             </>
                           ) : (
                             <>
-                              {cert.price} kr exkl. moms
+                              {cert.price} kr {t('price_incl_vat')}
                             </>
                           )}
                         </>
@@ -451,7 +453,13 @@ useEffect(() => {
                       <h5>{testtime.formattedStartTime} - {testtime.formattedEndTime}</h5>
                       <div className='slotsDIv'>
                         <span className={`slots-badge ${testtime.slots === 0 ? "full" : ""}`}>
-                        {testtime.slots > 0 ? `${testtime.slots} ${t('slots_left')}` : t('fully_booked')}
+
+                        {Number(testtime.slots) === 0 
+                        ? t('fully_booked') 
+                        : Number(testtime.slots) > 5 
+                          ? t('slotsMoreThanFive') 
+                          : `${Number(testtime.slots)} ${t('slots_left')}`}
+
                       </span>
                       </div>
                       <p className="price">

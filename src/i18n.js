@@ -9,8 +9,8 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: 'sv',         // <- Svenska som standardspråk
-    supportedLngs: ['sv', 'da', 'no', 'fi'],
+    fallbackLng: 'en',         // <- Svenska som standardspråk
+    supportedLngs: ['en', 'sv', 'da', 'no', 'fi'],
     debug: false,
     interpolation: {
       escapeValue: false,

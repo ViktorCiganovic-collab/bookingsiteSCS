@@ -50,22 +50,20 @@ function App() {
     <div className='mainPage'>
 
       <Helmet>
-  <title>SCS – Certifieringar & Officiella prov</title>
+<title>SCS – Certiport IT Certifications in Scandinavia</title>
 
-  <meta
-    name="description"
-    content="Boka officiella certifieringar snabbt och enkelt hos Scandinavian Certification Services. Flexibla datum, officiella prov och professionell support."
-  />
+  <meta name="description" content="Take Certiport certifications online or on-site in Scandinavia with SCS Sweden. Microsoft, Adobe, Cisco, Unity and IT Specialist exams with flexible scheduling, fast results and digital certificates." />
 
   {/* Canonical */}
   <link rel="canonical" href="https://www.scservices.se/" />
 
   {/* Open Graph */}
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="SCS – Certifieringar & Officiella prov" />
-  <meta property="og:description" content="Boka officiella certifieringar snabbt och enkelt hos Scandinavian Certification Services." />
+  <meta property="og:title" content="SCS – Official Certiport IT Certifications" />
+  <meta property="og:description" content="Take Certiport certifications online or on-site in Scandinavia with SCS Sweden. Microsoft, Adobe, Cisco, Unity and IT Specialist exams with flexible scheduling and fast results." />
   <meta property="og:url" content="https://www.scservices.se/" />
-  <meta property="og:site_name" content="SCS" />
+  <meta property="og:site_name" content="Scandinavian Certification Services" />
+
 
   {/* Twitter */}
   <meta name="twitter:card" content="summary_large_image" />
@@ -191,12 +189,20 @@ function App() {
         <Row>
           <Col md={12}>
             <div className="position-relative">
-  <img src={thirdImg} className="mainpageImgthree" alt="illustration" />
-  <div className="position-absolute top-50 start-50 translate-middle text-white text-center bg-dark bg-opacity-50 p-3 rounded" data-aos="slide-up">
-    <h3>{t('sectionThreeHeadline')}</h3>
-    <p>{t('sectionThreeSubtext')}</p>
-  </div>
-</div>
+        <img src={thirdImg} className="mainpageImgthree" alt="Modern office environment with people collaborating" />
+        <div className="infobox position-absolute top-50 start-50 translate-middle text-white text-center bg-dark bg-opacity-50 p-5 rounded-3" data-aos="slide-up">
+          <h3>{t('sectionThreeHeadline')}</h3>
+          <p className="infoClasses">{t('sectionThreeSubtext')}</p>
+
+          <p className="infoClasses mt-3">{t('home_info_teaser')}</p>
+          
+          <p className='scroll-indicator'>⬇️</p>       
+
+          <Link to="/info" className="mt-2 btn btn-outline-light infoClasses" aria-label="Learn how Certiport certifications work">
+          {t('home_info_link_text')}
+        </Link>
+        </div>
+        </div>
 
           </Col>
         </Row>

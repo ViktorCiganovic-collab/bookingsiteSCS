@@ -604,7 +604,84 @@
   "privacy_intro_title": "Innledning",
     "privacyTechPublished": "Publisert: {{publishedDate}}",
     
-    "categories.cisco_certified_support_technician.certs.ccst_networking.description": "Tester dine nettverkskunnskaper og forbereder deg på roller som nettverksanalytiker, supporttekniker og mer. Med CCST Networking-sertifiseringen viser du arbeidsgivere at du er klar til å møte utfordringer fra dag én."
+    "categories.cisco_certified_support_technician.certs.ccst_networking.description": "Tester dine nettverkskunnskaper og forbereder deg på roller som nettverksanalytiker, supporttekniker og mer. Med CCST Networking-sertifiseringen viser du arbeidsgivere at du er klar til å møte utfordringer fra dag én.",
+
+    "info_title": "Slik fungerer Certiport‑eksamener",
+"info_subtitle": "Alt du trenger å vite om IT‑sertifiseringer hos SCS Sweden.",
+
+"info_benefits_title": "Hvorfor velge SCS?",
+"info_benefits_safe": "Offisielt & sikkert",
+"info_benefits_safeDesc": "Alle eksamener gjennomføres via Certiports offisielle testplattform.",
+"info_benefits_fast": "Raske resultater",
+"info_benefits_fastDesc": "Resultatene dine vises umiddelbart etter fullført eksamen.",
+"info_benefits_variety": "Stort utvalg",
+"info_benefits_varietyDesc": "Velg mellom Microsoft, Adobe, IT Specialist, Cisco, Unity og flere.",
+"info_benefits_support": "Profesjonell support",
+"info_benefits_supportDesc": "Vi hjelper deg gjennom hele booking‑ og testprosessen.",
+
+"info_section_title": "Slik fungerer sertifiseringsprosessen",
+"info_section_intro": "Fjern‑ eller on‑site testing — fleksible alternativer for alle kandidater.",
+
+"info_section_paragraph1": "<strong>Alle eksamener gjennomføres digitalt</strong> via Certiports offisielle plattform. Du kan ta eksamen hjemmefra eller på vårt testsenter i Malmö.",
+"info_section_paragraph2": "Hver eksamen har et fast antall spørsmål og en tidsbegrensning. Resultatene vises umiddelbart, og hvis du består, mottar du et digitalt sertifiseringsbevis.",
+"info_section_paragraph3": "For fjern‑eksamener trenger du stabil internettforbindelse, webkamera, mikrofon og et stille miljø.",
+"info_section_paragraph4": "Du kan også bestille offisielle øvingsprøver og studiemateriell når du booker eksamen.",
+
+"info_testcenter_title": "On‑site testing i Malmö",
+"info_testcenter_hint": "Foretrekker du å ta eksamen fysisk? Testsenteret vårt i Malmö tilbyr et rolig og profesjonelt miljø.",
+
+"info_booking_info": "For booking og fakturering, kontakt <strong>Lexicon Malmö</strong> på <a>certifiering@lexicon.se</a>.",
+
+"info_certifications_title": "Eksempler på sertifiseringer",
+"info_certifications_description": "Du kan sertifisere deg innen en rekke IT‑ og digitale ferdigheter:",
+"info_certifications_list1": "Python – grunnleggende programmering",
+"info_certifications_list2": "HTML & CSS – webutvikling",
+"info_certifications_list3": "Cybersecurity – IT‑sikkerhetsgrunnlag",
+"info_certifications_list4": "Databaser (SQL) – databasedesign og spørringer",
+"info_certifications_list5": "Azure & Microsoft Fundamentals – AZ‑900, AI‑900, DP‑900",
+"info_certifications_moreinfo": "For en komplett liste over sertifiseringer, besøk vår <Link>sertifiseringsside</Link>.",
+
+"info_testcenter_section_title": "Testsenter i Malmö",
+"info_testcenter_section_city": "Malmö",
+"info_testcenter_section_description": "Lexicons testsenter i sentrum av Malmö tilbyr on‑site sertifisering i et rolig og profesjonelt miljø. Her kan du ta eksamener fra:",
+"info_testcenter_section_provider_pearson": "Pearson VUE",
+"info_testcenter_section_provider_psi": "PSI",
+"info_testcenter_section_provider_kryterion": "Kryterion",
+"info_testcenter_section_provider_certiport": "Certiport",
+"info_testcenter_section_provider_cips": "CIPS",
+"info_testcenter_section_provider_meazure": "Meazure Learning",
+"info_testcenter_section_address_title": "Adresse",
+"info_testcenter_section_address": "Lexicon Malmö, Södergatan 24, Malmö",
+"info_testcenter_section_hours_title": "Åpningstider",
+"info_testcenter_section_hours": "Mandag – fredag: 08:00–17:00",
+
+"info_map_title": "Finn oss",
+
+"info_contact_title": "Kontaktinformasjon",
+"info_contact_pearson": "For Pearson VUE‑eksamener, kontakt",
+"info_contact_pearsonService": "Pearson Kundeservice",
+"info_contact_pearsonPhone": "+46 20 798 690",
+"info_contact_booking": "For booking av Certiport‑eksamener, bruk",
+"info_contact_bookingPortal": "SCS bookingportal",
+"info_contact_bookingOrg": "Lexicon Malmö",
+"info_contact_other": "For andre spørsmål, send e‑post til",
+
+"info_contact_stockholm_name": "Lexicon Stockholm",
+"info_contact_stockholm_address": "Sveavägen 34, Stockholm",
+"info_contact_stockholm_phone": "+46 8 511 611 00",
+"info_contact_stockholm_hours": "Mandag – fredag: 08:00–17:00",
+
+"info_contact_malmo_title": "Malmö",
+"info_contact_malmo_name": "Lexicon Malmö",
+"info_contact_malmo_address": "Södergatan 24, Malmö",
+"info_contact_malmo_phone": "+46 40 665 56 50",
+"info_contact_malmo_hours": "Mandag – fredag: 08:00–17:00",
+"price_incl_vat": "inkl. mva",
+
+"home_info_teaser": "Hos SCS Sweden tilbyr vi offisielle Certiport-sertifiseringer innen IT og digitale ferdigheter. Vil du vite hvordan prosessen fungerer – fra booking til diplom?",
+"home_info_link_text": "Slik fungerer Certiport-sertifiseringene"
+
+
 
 
 }
